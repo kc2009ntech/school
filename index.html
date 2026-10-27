@@ -9,12 +9,17 @@
       integrity="sha384-B/GM4XqrwHnWXNOWMbloTmrYXZg10cakYGmpfsR/bbzQ6JAJI4ihuyADKLnBgrCe"
       crossorigin="anonymous"
     />
-    <title>Hello, modularity!</title>
+    <title>Home</title>
   </head>
   <body>
     <nav class="navbar md:navbar-expand bg-1">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#">Navbar</a>
+  <div class="container-fluid">
+        <a class="navbar-brand" href="index.html">
+            <img 
+            src="image/image.png"
+            alt="Aerolover Logo"
+            style="max-height: 3.8rem;">
+        </a>
         <button
           class="btn-icon navbar-toggler"
           type="button"
@@ -24,68 +29,57 @@
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <span class="navbar-toggler-icon" aria-hidden="true"></span>
-        </button>
+      <span class="navbar-toggler-icon" aria-hidden="true"></span>
+    </button>
         <dialog
           class="drawer drawer-end"
           tabindex="-1"
           id="navbarDrawer"
           aria-labelledby="navbarDrawerLabel"
         >
-          <div class="drawer-header">
-            <h5 class="drawer-title" id="navbarDrawerLabel">Menu</h5>
+      <div class="drawer-header">
+        <h5 class="drawer-title" id="navbarDrawerLabel">Menu</h5>
             <button
               type="button"
               class="btn-close"
               data-bs-dismiss="drawer"
               aria-label="Close"
             ></button>
-          </div>
+         </div>
           <div class="drawer-body mb-2 md:mb-0">
             <ul class="nav navbar-nav me-auto">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
+                <li class="nav-item">
+                <a class="nav-link" href="index.html">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
+                <a class="nav-link" href="airlines.html">Airlines</a>
               </li>
               <li class="nav-item">
-                <button
-                  class="nav-link"
-                  type="button"
-                  data-bs-toggle="menu"
-                  aria-expanded="false"
-                >
-                  Menu
-                </button>
-                <div class="menu">
-                  <a class="menu-item" href="#">Action</a>
-                  <a class="menu-item" href="#">Another action</a>
-                  <hr class="menu-divider" />
-                  <a class="menu-item" href="#">Something else here</a>
-                </div>
+                <a class="nav-link" href="airports.html">Airports</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+                <a class="nav-link" href="news.html">News</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="sustainability.html">Sustainability</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="technology.html">Technology</a>
               </li>
             </ul>
-            <form class="hstack gap-2" role="search">
-              <input
-                class="form-control"
-                type="search"
-                placeholder="Search"
-                aria-label="Search"
-              />
-              <button class="btn-solid btn-icon theme-secondary" type="submit">
+        <form class="hstack gap-2" role="search">
+          <input class="form-control" style="margin-left: 68%;" type="search" placeholder="Search" aria-label="Search"/>
+          <button class="btn-solid btn-icon theme-secondary" type="submit">
                 <svg class="bi" width="16" height="16">
                   <use href="#search" />
                 </svg>
-              </button>
-            </form>
-          </div>
-        </dialog>
+          </button>
+        </form>
       </div>
-    </nav>
+    </dialog>
+  </div>
+</nav>
     <h1>Hello, modularity!</h1>
     <button
       id="popoverButton"
