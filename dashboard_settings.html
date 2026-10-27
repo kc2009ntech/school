@@ -1,0 +1,507 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Aerolover - Account Settings</title>
+    <!-- Bootstrap 5 CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      crossorigin="anonymous"
+    />
+    <style>
+      .navbar-glass {
+        background-color: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+      }
+    </style>
+  </head>
+  <body class="bg-light">
+    <!-- Navbar -->
+    <nav
+      class="navbar navbar-expand-lg sticky-top navbar-glass border-bottom shadow-sm py-2"
+    >
+      <div class="container-fluid px-4">
+        <a class="navbar-brand me-4" href="index.html">
+          <img
+            src="image/image.png"
+            alt="Aerolover Logo"
+            style="height: 3.2rem"
+          />
+        </a>
+        <button
+          class="navbar-toggler border-0"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarContent"
+          aria-controls="navbarContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0 fw-semibold">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="airlines.html">Airlines</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="airports.html">Airports</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="news.html">News</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="sustainability.html">Sustainability</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="technology.html">Technology</a>
+            </li>
+          </ul>
+          <!-- Inside your navbar container -->
+          <div class="dropdown">
+            <button
+              class="btn btn-outline-primary dropdown-toggle rounded-pill px-3"
+              type="button"
+              id="dropdownMenuButton"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              👤 <span id="navUserName">Account</span>
+            </button>
+            <ul
+              class="dropdown-menu dropdown-menu-end shadow-sm"
+              aria-labelledby="dropdownMenuButton"
+            >
+              <li><a class="dropdown-item" href="account.html">Settings</a></li>
+              <li>
+                <a class="dropdown-item" href="dashboard.html">Dashboard</a>
+              </li>
+              <li><hr class="dropdown-divider" /></li>
+              <li>
+                <button class="dropdown-item text-danger" id="logoutBtn">
+                  Sign Out
+                </button>
+              </li>
+            </ul>
+          </div>
+
+          <div class="d-flex align-items-center gap-2">
+            <button
+              id="logoutBtn"
+              class="btn btn-outline-danger btn-sm rounded-pill px-3"
+            >
+              Sign Out
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="container py-5" style="max-width: 960px">
+      <div class="row g-4">
+        <!-- Settings Sidebar Navigation -->
+        <aside class="col-md-3">
+          <div class="card shadow-sm border-0 sticky-top" style="top: 5.5rem">
+            <div
+              class="list-group list-group-flush rounded-3"
+              id="settingsTabs"
+              role="tablist"
+            >
+              <button
+                class="list-group-item list-group-item-action active fw-semibold py-3"
+                id="tab-profile"
+                data-bs-toggle="list"
+                data-bs-target="#pane-profile"
+                type="button"
+                role="tab"
+              >
+                👤 Profile Settings
+              </button>
+              <button
+                class="list-group-item list-group-item-action fw-semibold py-3"
+                id="tab-payment"
+                data-bs-toggle="list"
+                data-bs-target="#pane-payment"
+                type="button"
+                role="tab"
+              >
+                💳 Payment Methods
+              </button>
+              <button
+                class="list-group-item list-group-item-action fw-semibold py-3"
+                id="tab-preferences"
+                data-bs-toggle="list"
+                data-bs-target="#pane-preferences"
+                type="button"
+                role="tab"
+              >
+                ⚙️ Site Preferences
+              </button>
+              <button
+                class="list-group-item list-group-item-action fw-semibold py-3"
+                id="tab-security"
+                data-bs-toggle="list"
+                data-bs-target="#pane-security"
+                type="button"
+                role="tab"
+              >
+                🔒 Passcode & Security
+              </button>
+            </div>
+          </div>
+        </aside>
+
+        <!-- Settings Content Panes -->
+        <main class="col-md-9">
+          <!-- Notification Alert -->
+          <div
+            id="settingsAlert"
+            class="alert alert-success d-none alert-dismissible fade show"
+            role="alert"
+          >
+            <span id="settingsAlertMsg">Settings updated successfully!</span>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="alert"
+              aria-label="Close"
+            ></button>
+          </div>
+
+          <div class="tab-content" id="settingsTabContent">
+            <!-- 1. PROFILE SETTINGS -->
+            <div
+              class="tab-pane fade show active"
+              id="pane-profile"
+              role="tabpanel"
+              aria-labelledby="tab-profile"
+            >
+              <div class="card shadow-sm border-0 p-4">
+                <h4 class="card-title text-primary mb-3">
+                  Profile Information
+                </h4>
+                <form id="profileForm">
+                  <div class="row g-3">
+                    <div class="col-md-6">
+                      <label for="firstName" class="form-label small text-muted"
+                        >First Name</label
+                      >
+                      <input
+                        type="text"
+                        id="firstName"
+                        class="form-control"
+                        placeholder="First Name"
+                        required
+                      />
+                    </div>
+                    <div class="col-md-6">
+                      <label for="lastName" class="form-label small text-muted"
+                        >Last Name</label
+                      >
+                      <input
+                        type="text"
+                        id="lastName"
+                        class="form-control"
+                        placeholder="Last Name"
+                        required
+                      />
+                    </div>
+                    <div class="col-12">
+                      <label for="email" class="form-label small text-muted"
+                        >Email Address</label
+                      >
+                      <input
+                        type="email"
+                        id="email"
+                        class="form-control"
+                        placeholder="captain@aerolover.com"
+                        required
+                      />
+                    </div>
+                    <div class="col-12">
+                      <label for="bio" class="form-label small text-muted"
+                        >Aviation Bio</label
+                      >
+                      <textarea
+                        id="bio"
+                        class="form-control"
+                        rows="3"
+                        placeholder="Commercial aviation enthusiast and frequent flyer..."
+                      ></textarea>
+                    </div>
+                  </div>
+                  <div class="d-flex gap-2 mt-4">
+                    <button
+                      type="submit"
+                      class="btn btn-primary rounded-pill px-4"
+                    >
+                      Save Profile
+                    </button>
+                    <button
+                      type="button"
+                      id="resetProfileBtn"
+                      class="btn btn-outline-danger rounded-pill px-4"
+                    >
+                      Clear Saved Profile
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+
+            <!-- 2. PAYMENT METHODS -->
+            <div
+              class="tab-pane fade"
+              id="pane-payment"
+              role="tabpanel"
+              aria-labelledby="tab-payment"
+            >
+              <div class="card shadow-sm border-0 p-4">
+                <div
+                  class="d-flex justify-content-between align-items-center mb-3"
+                >
+                  <h4 class="card-title text-primary m-0">
+                    Saved Payment Methods
+                  </h4>
+                  <button
+                    class="btn btn-outline-primary btn-sm rounded-pill"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#addCardCollapse"
+                  >
+                    + Add New Card
+                  </button>
+                </div>
+
+                <div id="savedCardContainer">
+                  <div
+                    class="card border p-3 mb-3 d-flex flex-row justify-content-between align-items-center"
+                  >
+                    <div class="d-flex align-items-center gap-3">
+                      <span class="fs-3">💳</span>
+                      <div>
+                        <div class="fw-bold" id="cardDisplayTitle">
+                          Visa ending in 4242
+                        </div>
+                        <div class="text-muted small" id="cardDisplaySubtitle">
+                          Expires 12/28 • Default Payment
+                        </div>
+                      </div>
+                    </div>
+                    <span class="badge bg-primary rounded-pill">Default</span>
+                  </div>
+                </div>
+
+                <!-- Add Card Form -->
+                <div class="collapse mt-3" id="addCardCollapse">
+                  <div class="card card-body border-light-subtle bg-light">
+                    <h6 class="fw-bold mb-3">Add Credit / Debit Card</h6>
+                    <form id="paymentForm">
+                      <div class="row g-3">
+                        <div class="col-12">
+                          <label
+                            for="cardHolder"
+                            class="form-label small text-muted"
+                            >Cardholder Name</label
+                          >
+                          <input
+                            type="text"
+                            id="cardHolder"
+                            class="form-control"
+                            placeholder="Name on card"
+                            required
+                          />
+                        </div>
+                        <div class="col-12">
+                          <label
+                            for="cardNumber"
+                            class="form-label small text-muted"
+                            >Card Number</label
+                          >
+                          <input
+                            type="text"
+                            id="cardNumber"
+                            class="form-control"
+                            placeholder="•••• •••• •••• 4242"
+                            maxlength="19"
+                            required
+                          />
+                        </div>
+                        <div class="col-md-6">
+                          <label
+                            for="expDate"
+                            class="form-label small text-muted"
+                            >Expiry Date</label
+                          >
+                          <input
+                            type="text"
+                            id="expDate"
+                            class="form-control"
+                            placeholder="MM/YY"
+                            required
+                          />
+                        </div>
+                        <div class="col-md-6">
+                          <label for="cvv" class="form-label small text-muted"
+                            >CVC / CVV</label
+                          >
+                          <input
+                            type="password"
+                            id="cvv"
+                            class="form-control"
+                            placeholder="123"
+                            maxlength="4"
+                            required
+                          />
+                        </div>
+                      </div>
+                      <button
+                        type="submit"
+                        class="btn btn-success rounded-pill px-4 mt-3"
+                      >
+                        Save Card
+                      </button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 3. SITE PREFERENCES -->
+            <div
+              class="tab-pane fade"
+              id="pane-preferences"
+              role="tabpanel"
+              aria-labelledby="tab-preferences"
+            >
+              <div class="card shadow-sm border-0 p-4">
+                <h4 class="card-title text-primary mb-3">
+                  Notifications & Preferences
+                </h4>
+                <form id="preferencesForm">
+                  <div class="form-check form-switch mb-3">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      id="prefNews"
+                      checked
+                    />
+                    <label class="form-check-label fw-semibold" for="prefNews"
+                      >Daily Aviation News Digest</label
+                    >
+                    <div class="text-muted small">
+                      Receive morning summaries of fleet and airport updates.
+                    </div>
+                  </div>
+                  <hr />
+                  <div class="form-check form-switch mb-3">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      id="prefAlerts"
+                      checked
+                    />
+                    <label class="form-check-label fw-semibold" for="prefAlerts"
+                      >Breaking News Alerts</label
+                    >
+                    <div class="text-muted small">
+                      Get immediate notifications for major aerospace
+                      announcements.
+                    </div>
+                  </div>
+                  <hr />
+                  <div class="mb-3">
+                    <label for="prefCategory" class="form-label fw-semibold"
+                      >Default News Category</label
+                    >
+                    <select class="form-select" id="prefCategory">
+                      <option value="all">All Topics</option>
+                      <option value="airlines">Airlines</option>
+                      <option value="airports">Airports</option>
+                      <option value="technology">Technology</option>
+                    </select>
+                  </div>
+                  <button
+                    type="submit"
+                    class="btn btn-primary rounded-pill px-4 mt-3"
+                  >
+                    Save Preferences
+                  </button>
+                </form>
+              </div>
+            </div>
+
+            <!-- 4. SECURITY -->
+            <div
+              class="tab-pane fade"
+              id="pane-security"
+              role="tabpanel"
+              aria-labelledby="tab-security"
+            >
+              <div class="card shadow-sm border-0 p-4">
+                <h4 class="card-title text-primary mb-3">
+                  Passcode & Authentication
+                </h4>
+                <form id="securityForm">
+                  <div class="mb-3">
+                    <label
+                      for="currentPasscode"
+                      class="form-label small text-muted"
+                      >Current Passcode</label
+                    >
+                    <input
+                      type="password"
+                      id="currentPasscode"
+                      class="form-control"
+                      placeholder="skyhigh"
+                      required
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <label for="newPasscode" class="form-label small text-muted"
+                      >New Passcode</label
+                    >
+                    <input
+                      type="password"
+                      id="newPasscode"
+                      class="form-control"
+                      placeholder="Enter new passcode"
+                      required
+                    />
+                  </div>
+                  <button
+                    type="submit"
+                    class="btn btn-primary rounded-pill px-4 mt-2"
+                  >
+                    Update Passcode
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <!-- Import Map for ES Modules -->
+    <script type="importmap">
+      {
+        "imports": {
+          "@popperjs/core": "https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/esm/popper.js",
+          "bootstrap": "https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.esm.min.js"
+        }
+      }
+    </script>
+    <script type="module">
+      import * as bootstrap from "bootstrap";
+    </script>
+    <script src="script.js"></script>
+  </body>
+</html>

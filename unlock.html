@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Aerolover - Exclusive Access & Sign Up</title>
+    <!-- Standard Bootstrap 5 CSS CDN -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      crossorigin="anonymous"
+    />
+    <style>
+      .navbar-glass {
+        background-color: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+      }
+    </style>
+  </head>
+  <body class="bg-light">
+    <!-- Modern Sticky Navbar -->
+    <nav
+      class="navbar navbar-expand-lg sticky-top navbar-glass border-bottom shadow-sm py-2"
+    >
+      <div class="container-fluid px-4">
+        <a class="navbar-brand me-4" href="index.html">
+          <img
+            src="image/image.png"
+            alt="Aerolover Logo"
+            style="height: 3.2rem"
+          />
+        </a>
+        <button
+          class="navbar-toggler border-0"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarContent"
+          aria-controls="navbarContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0 fw-semibold">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="airlines.html">Airlines</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="airports.html">Airports</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="news.html">News</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="sustainability.html">Sustainability</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="technology.html">Technology</a>
+            </li>
+          </ul>
+
+          <div class="d-flex align-items-center gap-2">
+            <!-- Account Dropdown -->
+            <div class="dropdown">
+              <button
+                class="btn btn-outline-primary dropdown-toggle rounded-pill px-3"
+                type="button"
+                id="dropdownMenuButton"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Account
+              </button>
+              <ul
+                class="dropdown-menu dropdown-menu-end shadow-sm"
+                aria-labelledby="dropdownMenuButton"
+              >
+                <li>
+                  <a class="dropdown-item active" href="unlock.html"
+                    >Exclusive Access</a
+                  >
+                </li>
+              </ul>
+            </div>
+
+            <!-- Search Redirect Form -->
+            <form id="searchForm" class="d-flex gap-2" role="search">
+              <div class="input-group">
+                <input
+                  type="search"
+                  id="searchInput"
+                  class="form-control rounded-start-pill"
+                  placeholder="Search Google..."
+                  required
+                />
+                <button type="submit" class="btn btn-primary rounded-end-pill">
+                  Search
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="container py-5">
+      <div class="text-center mb-5">
+        <h1 class="display-5 fw-bold text-primary">
+          Unlock Aerolover Exclusive Access
+        </h1>
+        <p class="lead text-muted mx-auto" style="max-width: 650px">
+          Get unlimited access to commercial fleet tracking, real-time airline
+          analytics, early cabin reviews, and high-resolution cockpit downloads.
+        </p>
+      </div>
+
+      <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-5">
+          <div class="card shadow border-0 rounded-4 overflow-hidden">
+            <div class="card-header bg-primary text-white text-center py-3">
+              <h5 class="mb-0 fw-bold">Aerolover VIP Pass</h5>
+            </div>
+            <div class="card-body p-4 p-md-5">
+              <div class="text-center mb-4">
+                <span class="display-4 fw-bold text-dark">$9.99</span>
+                <span class="text-muted">/ month</span>
+              </div>
+
+              <ul class="list-unstyled mb-4">
+                <li class="mb-2">
+                  ✅ Full access to Member Lounge & Dashboard
+                </li>
+                <li class="mb-2">
+                  ✅ High-resolution 4K aviation wallpaper downloads
+                </li>
+                <li class="mb-2">
+                  ✅ Non-public fleet analytics & delivery schedules
+                </li>
+                <li class="mb-2">
+                  ✅ Ad-free browsing experience across all pages
+                </li>
+              </ul>
+
+              <!-- Passcode Form (Demo Unlock) -->
+              <div id="loginCard">
+                <form id="passwordForm" class="mb-4">
+                  <div class="mb-3">
+                    <label for="passcode" class="form-label small text-muted"
+                      >Enter Promo Passcode (skyhigh)</label
+                    >
+                    <input
+                      type="password"
+                      id="passcode"
+                      class="form-control"
+                      placeholder="skyhigh"
+                      required
+                    />
+                  </div>
+                  <div
+                    id="errorMessage"
+                    class="alert alert-danger py-2 small d-none"
+                    role="alert"
+                  >
+                    Incorrect passcode. Try again!
+                  </div>
+                  <button
+                    type="submit"
+                    class="btn btn-outline-primary rounded-pill w-100 fw-semibold"
+                  >
+                    Unlock via Passcode
+                  </button>
+                </form>
+
+                <div class="text-center my-3 text-muted border-top pt-3 small">
+                  OR SUBSCRIBE WITH PAYMENT
+                </div>
+
+                <!-- Stripe Payment Form -->
+                <form id="signupPaymentForm" class="mb-3">
+                  <div class="mb-3">
+                    <label for="userEmail" class="form-label small text-muted"
+                      >Email Address</label
+                    >
+                    <input
+                      type="email"
+                      id="userEmail"
+                      class="form-control"
+                      placeholder="captain@example.com"
+                      required
+                    />
+                  </div>
+                  <button
+                    type="submit"
+                    class="btn btn-primary rounded-pill w-100 py-2 fw-semibold"
+                  >
+                    Pay with Stripe ($9.99)
+                  </button>
+                </form>
+
+                <!-- PayPal Button Target -->
+                <div id="paypal-button-container" class="mt-3"></div>
+              </div>
+            </div>
+            <div class="card-footer bg-light text-center py-3 border-top-0">
+              <small class="text-muted"
+                >Secured payment integration. Cancel anytime.</small
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white pt-5 pb-4 mt-5">
+      <div class="container text-center text-md-start">
+        <div class="row g-4">
+          <div class="col-md-4 mx-auto">
+            <a href="index.html" class="d-inline-block mb-3">
+              <img
+                src="image/image.png"
+                alt="AeroLover logo"
+                style="height: 4.5rem"
+              />
+            </a>
+            <p class="text-white-50 small">
+              Your ultimate portal for aviation news, airport updates, airline
+              fleet specs, and future aerospace technologies.
+            </p>
+          </div>
+          <div class="col-md-2 mx-auto">
+            <h6 class="text-uppercase mb-3 fw-bold text-primary">Navigation</h6>
+            <ul class="list-unstyled small">
+              <li class="mb-2">
+                <a href="index.html" class="text-white-50 text-decoration-none"
+                  >Home</a
+                >
+              </li>
+              <li class="mb-2">
+                <a
+                  href="airlines.html"
+                  class="text-white-50 text-decoration-none"
+                  >Airlines</a
+                >
+              </li>
+              <li class="mb-2">
+                <a
+                  href="airports.html"
+                  class="text-white-50 text-decoration-none"
+                  >Airports</a
+                >
+              </li>
+              <li class="mb-2">
+                <a href="news.html" class="text-white-50 text-decoration-none"
+                  >News</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-3 mx-auto small">
+            <h6 class="text-uppercase mb-3 fw-bold text-primary">Connect</h6>
+            <p class="mb-2 text-white-50">📧 contact@aerolover.com</p>
+            <p class="mb-2 text-white-50">📍 Worldwide Aviation Network</p>
+          </div>
+        </div>
+        <hr class="my-4 border-light opacity-25" />
+        <div class="row align-items-center small">
+          <div class="col-md-7 text-center text-md-start">
+            <p class="mb-0 text-white-50">
+              © 2026 Aerolover. Built with Bootstrap 5 & Vanilla JS.
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Payment SDKs -->
+    <script src="https://js.stripe.com/v3/"></script>
+    <script src="https://www.paypal.com/sdk/js?client-id=YOUR_CLIENT_ID&currency=USD"></script>
+
+    <!-- Bootstrap ES Modules -->
+    <script type="importmap">
+      {
+        "imports": {
+          "@popperjs/core": "https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/esm/popper.js",
+          "bootstrap": "https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.esm.min.js"
+        }
+      }
+    </script>
+    <script type="module">
+      import * as bootstrap from "bootstrap";
+      const dropdownElementList = document.querySelectorAll(".dropdown-toggle");
+      const dropdownList = [...dropdownElementList].map(
+        (el) => new bootstrap.Dropdown(el),
+      );
+    </script>
+
+    <!-- Unified Script -->
+    <script src="script.js"></script>
+  </body>
+</html>

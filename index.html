@@ -3,108 +3,477 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Aerolover - Aviation News</title>
+    <!-- Standard Bootstrap 5 CSS CDN -->
     <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/css/bootstrap.min.css"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
       rel="stylesheet"
-      integrity="sha384-B/GM4XqrwHnWXNOWMbloTmrYXZg10cakYGmpfsR/bbzQ6JAJI4ihuyADKLnBgrCe"
       crossorigin="anonymous"
     />
-    <title>Home</title>
+    <style>
+      /* Translucent glass effect for sticky navbar */
+      .navbar-glass {
+        background-color: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+      }
+    </style>
   </head>
-  <body>
-    <nav class="navbar md:navbar-expand bg-1">
-  <div class="container-fluid">
-        <a class="navbar-brand" href="index.html">
-            <img 
+  <body class="bg-light">
+    <!-- Modern Sticky Navbar -->
+    <nav
+      class="navbar navbar-expand-lg sticky-top navbar-glass border-bottom shadow-sm py-2"
+    >
+      <div class="container-fluid px-4">
+        <a class="navbar-brand me-4" href="index.html">
+          <img
             src="image/image.png"
             alt="Aerolover Logo"
-            style="max-height: 3.8rem;">
+            style="height: 3.2rem"
+          />
         </a>
         <button
-          class="btn-icon navbar-toggler"
+          class="navbar-toggler border-0"
           type="button"
-          data-bs-toggle="drawer"
-          data-bs-target="#navbarDrawer"
-          aria-controls="navbarDrawer"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarContent"
+          aria-controls="navbarContent"
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-      <span class="navbar-toggler-icon" aria-hidden="true"></span>
-    </button>
-        <dialog
-          class="drawer drawer-end"
-          tabindex="-1"
-          id="navbarDrawer"
-          aria-labelledby="navbarDrawerLabel"
-        >
-      <div class="drawer-header">
-        <h5 class="drawer-title" id="navbarDrawerLabel">Menu</h5>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="drawer"
-              aria-label="Close"
-            ></button>
-         </div>
-          <div class="drawer-body mb-2 md:mb-0">
-            <ul class="nav navbar-nav me-auto">
-              <li class="nav-item">
-                <li class="nav-item">
-                <a class="nav-link" href="index.html">Home</a>
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0 fw-semibold">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="airlines.html">Airlines</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="airports.html">Airports</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="news.html"
+                >News</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="sustainability.html">Sustainability</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="technology.html">Technology</a>
+            </li>
+          </ul>
+
+          <div class="d-flex align-items-center gap-2">
+            <!-- Account Dropdown -->
+            <div class="dropdown">
+              <button
+                class="btn btn-outline-primary dropdown-toggle rounded-pill px-3"
+                type="button"
+                id="dropdownMenuButton"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Account
+              </button>
+              <ul
+                class="dropdown-menu dropdown-menu-end shadow-sm"
+                aria-labelledby="dropdownMenuButton"
+              >
+                <li>
+                  <a class="dropdown-item" href="unlock.html" id="option1"
+                    >Exclusive Access</a
+                  >
+                </li>
+              </ul>
+            </div>
+
+            <!-- Search Redirect Form -->
+            <form id="searchForm" class="d-flex gap-2" role="search">
+              <div class="input-group">
+                <input
+                  type="search"
+                  id="searchInput"
+                  class="form-control rounded-start-pill"
+                  placeholder="Search Google..."
+                  required
+                />
+                <button type="submit" class="btn btn-primary rounded-end-pill">
+                  Search
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Page Container -->
+    <div class="container py-4">
+      <!-- Welcome Banner Container -->
+      <div
+        id="welcomeBanner"
+        class="p-4 p-md-5 mb-4 rounded-4 shadow-sm border-0 position-relative text-white"
+        style="background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%)"
+      >
+        <button
+          type="button"
+          class="btn-close btn-close-white position-absolute top-0 end-0 m-3"
+          id="dismissWelcomeBtn"
+          aria-label="Close welcome message"
+        ></button>
+        <div class="col-md-10 py-1">
+          <div class="d-flex align-items-center gap-2 mb-2">
+            <span class="fs-2">✈️</span>
+            <h1 class="display-6 fw-bold mb-0">
+              Welcome to the Aerolover Hangar!
+            </h1>
+          </div>
+          <p class="fs-5 opacity-90 mb-3">
+            We're thrilled to have you here. Explore real-time stories across
+            commercial fleets, international airport expansions, and
+            cutting-edge aerospace technology.
+          </p>
+          <div class="d-flex flex-wrap align-items-center gap-3">
+            <span
+              class="badge bg-white text-primary px-3 py-2 rounded-pill fw-semibold"
+            >
+              💡 Tip: Use the filter panel on the right to pinpoint articles by
+              topic or headline instantly.
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Grid Layout: News Feed + Sidebar Filter -->
+      <div class="row g-4">
+        <!-- News Feed Column (Left 8 Cols) -->
+        <main class="col-lg-8">
+          <div class="row g-4" id="newsGrid">
+            <!-- News Article 1 -->
+            <div class="col-md-6 news-card" data-category="airlines">
+              <div class="card h-100 shadow-sm border-0 overflow-hidden">
+                <img
+                  src="images/fleet-upgrade.jpg"
+                  class="card-img-top news-thumb"
+                  alt="Next-Gen Aircraft Fleet"
+                  style="height: 180px; object-fit: cover"
+                />
+                <div class="card-body">
+                  <span class="badge bg-primary mb-2">Airlines</span>
+                  <h5 class="card-title news-title">
+                    Next-Gen Fleet Upgrades Announced
+                  </h5>
+                  <p class="card-text text-muted">
+                    Major international carriers are ordering eco-efficient
+                    wide-body jets for long-haul routes.
+                  </p>
+                </div>
+                <div class="card-footer bg-white border-top-0 text-muted small">
+                  Posted 2 hours ago
+                </div>
+              </div>
+            </div>
+
+            <!-- News Article 2 -->
+            <div class="col-md-6 news-card" data-category="airports">
+              <div class="card h-100 shadow-sm border-0 overflow-hidden">
+                <img
+                  src="images/airport-terminal.jpg"
+                  class="card-img-top news-thumb"
+                  alt="Airport Terminal"
+                  style="height: 180px; object-fit: cover"
+                />
+                <div class="card-body">
+                  <span class="badge bg-success mb-2">Airports</span>
+                  <h5 class="card-title news-title">
+                    Terminal Expansion Project Opens
+                  </h5>
+                  <p class="card-text text-muted">
+                    New biometric security lines reduce passenger wait times by
+                    up to 40 percent.
+                  </p>
+                </div>
+                <div class="card-footer bg-white border-top-0 text-muted small">
+                  Posted 5 hours ago
+                </div>
+              </div>
+            </div>
+
+            <!-- News Article 3 -->
+            <div class="col-md-6 news-card" data-category="technology">
+              <div class="card h-100 shadow-sm border-0 overflow-hidden">
+                <img
+                  src="images/saf-testing.jpg"
+                  class="card-img-top news-thumb"
+                  alt="Sustainable Aviation Fuel Flight"
+                  style="height: 180px; object-fit: cover"
+                />
+                <div class="card-body">
+                  <span class="badge bg-info text-dark mb-2">Technology</span>
+                  <h5 class="card-title news-title">
+                    Sustainable Aviation Fuel Milestones
+                  </h5>
+                  <p class="card-text text-muted">
+                    Flight tests complete successful transatlantic crossing
+                    powered purely by synthetic SAF blend.
+                  </p>
+                </div>
+                <div class="card-footer bg-white border-top-0 text-muted small">
+                  Posted 1 day ago
+                </div>
+              </div>
+            </div>
+
+            <!-- News Article 4 -->
+            <div class="col-md-6 news-card" data-category="airlines">
+              <div class="card h-100 shadow-sm border-0 overflow-hidden">
+                <img
+                  src="images/summer-routes.jpg"
+                  class="card-img-top news-thumb"
+                  alt="Airlines Network Routes"
+                  style="height: 180px; object-fit: cover"
+                />
+                <div class="card-body">
+                  <span class="badge bg-primary mb-2">Airlines</span>
+                  <h5 class="card-title news-title">
+                    New Direct Routes Launched for Summer
+                  </h5>
+                  <p class="card-text text-muted">
+                    Airlines expand seasonal connectivity across regional hubs
+                    worldwide.
+                  </p>
+                </div>
+                <div class="card-footer bg-white border-top-0 text-muted small">
+                  Posted 2 days ago
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Empty Filter Alert State -->
+          <div
+            id="noNewsFound"
+            class="alert alert-warning text-center mt-4 d-none"
+          >
+            No articles match your active filter.
+          </div>
+        </main>
+
+        <!-- Sidebar Filter Column (Right 4 Cols) -->
+        <aside class="col-lg-4">
+          <div class="card shadow-sm border-0 sticky-top" style="top: 5.5rem">
+            <div class="card-header bg-white fw-bold py-3 border-bottom">
+              Filter News
+            </div>
+            <div class="card-body">
+              <!-- Headline Search Input -->
+              <div class="mb-3">
+                <label
+                  for="newsSearchInput"
+                  class="form-label small text-muted"
+                >
+                  Search Headline
+                </label>
+                <input
+                  type="text"
+                  id="newsSearchInput"
+                  class="form-control"
+                  placeholder="Type to filter..."
+                />
+              </div>
+
+              <!-- Category Radio Filters -->
+              <div class="mb-3">
+                <label class="form-label small text-muted">Category</label>
+                <div class="form-check">
+                  <input
+                    class="form-check-input category-filter"
+                    type="radio"
+                    name="category"
+                    id="catAll"
+                    value="all"
+                    checked
+                  />
+                  <label class="form-check-label" for="catAll"
+                    >All Topics</label
+                  >
+                </div>
+                <div class="form-check">
+                  <input
+                    class="form-check-input category-filter"
+                    type="radio"
+                    name="category"
+                    id="catAirlines"
+                    value="airlines"
+                  />
+                  <label class="form-check-label" for="catAirlines"
+                    >Airlines</label
+                  >
+                </div>
+                <div class="form-check">
+                  <input
+                    class="form-check-input category-filter"
+                    type="radio"
+                    name="category"
+                    id="catAirports"
+                    value="airports"
+                  />
+                  <label class="form-check-label" for="catAirports"
+                    >Airports</label
+                  >
+                </div>
+                <div class="form-check">
+                  <input
+                    class="form-check-input category-filter"
+                    type="radio"
+                    name="category"
+                    id="catTech"
+                    value="technology"
+                  />
+                  <label class="form-check-label" for="catTech"
+                    >Technology</label
+                  >
+                </div>
+              </div>
+
+              <!-- Reset Button -->
+              <button
+                id="resetFilters"
+                class="btn btn-outline-secondary btn-sm w-100 rounded-pill"
+              >
+                Reset Filters
+              </button>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white pt-5 pb-4 mt-5">
+      <div class="container text-center text-md-start">
+        <div class="row g-4">
+          <div class="col-md-4 col-lg-4 col-xl-3 mx-auto">
+            <a href="index.html" class="d-inline-block mb-3">
+              <img
+                src="image/image.png"
+                alt="AeroLover logo"
+                style="height: 4.5rem"
+              />
+            </a>
+            <p class="text-white-50 small">
+              Your ultimate portal for aviation news, airport updates, airline
+              fleet specs, and future aerospace technologies.
+            </p>
+          </div>
+
+          <div class="col-md-2 col-lg-2 col-xl-2 mx-auto">
+            <h6 class="text-uppercase mb-3 fw-bold text-primary">Navigation</h6>
+            <ul class="list-unstyled small">
+              <li class="mb-2">
+                <a href="index.html" class="text-white-50 text-decoration-none"
+                  >Home</a
+                >
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="airlines.html">Airlines</a>
+              <li class="mb-2">
+                <a
+                  href="airlines.html"
+                  class="text-white-50 text-decoration-none"
+                  >Airlines</a
+                >
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="airports.html">Airports</a>
+              <li class="mb-2">
+                <a
+                  href="airports.html"
+                  class="text-white-50 text-decoration-none"
+                  >Airports</a
+                >
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="news.html">News</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="sustainability.html">Sustainability</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="technology.html">Technology</a>
+              <li class="mb-2">
+                <a href="news.html" class="text-white-50 text-decoration-none"
+                  >News</a
+                >
               </li>
             </ul>
-        <form class="hstack gap-2" role="search">
-          <input class="form-control" style="margin-left: 68%;" type="search" placeholder="Search" aria-label="Search"/>
-          <button class="btn-solid btn-icon theme-secondary" type="submit">
-                <svg class="bi" width="16" height="16">
-                  <use href="#search" />
-                </svg>
-          </button>
-        </form>
-      </div>
-    </dialog>
-  </div>
-</nav>
-    <h1>Hello, modularity!</h1>
-    <button
-      id="popoverButton"
-      type="button"
-      class="btn-solid theme-primary btn-lg"
-      data-bs-toggle="popover"
-      title="ESM in Browser"
-      data-bs-content="Bang!"
-    >
-      Get started
-    </button>
+          </div>
 
+          <div class="col-md-3 col-lg-2 col-xl-2 mx-auto">
+            <h6 class="text-uppercase mb-3 fw-bold text-primary">Topics</h6>
+            <ul class="list-unstyled small">
+              <li class="mb-2">
+                <a
+                  href="sustainability.html"
+                  class="text-white-50 text-decoration-none"
+                  >Sustainability</a
+                >
+              </li>
+              <li class="mb-2">
+                <a
+                  href="technology.html"
+                  class="text-white-50 text-decoration-none"
+                  >Technology</a
+                >
+              </li>
+              <li class="mb-2">
+                <a href="unlock.html" class="text-white-50 text-decoration-none"
+                  >Exclusive Access</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div class="col-md-3 col-lg-3 col-xl-3 mx-auto small">
+            <h6 class="text-uppercase mb-3 fw-bold text-primary">Connect</h6>
+            <p class="mb-2 text-white-50">📧 contact@aerolover.com</p>
+            <p class="mb-2 text-white-50">📍 Worldwide Aviation Network</p>
+          </div>
+        </div>
+
+        <hr class="my-4 border-light opacity-25" />
+
+        <div class="row align-items-center small">
+          <div class="col-md-7 text-center text-md-start">
+            <p class="mb-0 text-white-50">
+              © 2026 Aerolover. Built with Bootstrap 5 & Vanilla JS.
+            </p>
+          </div>
+          <div class="col-md-5 text-center text-md-end mt-3 mt-md-0">
+            <a href="#" class="text-white-50 text-decoration-none me-3"
+              >Privacy Policy</a
+            >
+            <a href="#" class="text-white-50 text-decoration-none"
+              >Terms of Service</a
+            >
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Import Map for ES Modules -->
     <script type="importmap">
       {
         "imports": {
-          "@floating-ui/dom": "https://cdn.jsdelivr.net/npm/@floating-ui/dom@1.7.6/dist/floating-ui.dom.esm.min.js",
-          "vanilla-calendar-pro": "https://cdn.jsdelivr.net/npm/vanilla-calendar-pro@3.4.0/index.mjs",
-          "bootstrap": "https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/js/bootstrap.min.js"
+          "@popperjs/core": "https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/esm/popper.js",
+          "bootstrap": "https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.esm.min.js"
         }
       }
     </script>
+
+    <!-- Bootstrap Module Script -->
     <script type="module">
       import * as bootstrap from "bootstrap";
 
-      new bootstrap.Popover(document.getElementById("popoverButton"));
+      const dropdownElementList = document.querySelectorAll(".dropdown-toggle");
+      const dropdownList = [...dropdownElementList].map(
+        (dropdownToggleEl) => new bootstrap.Dropdown(dropdownToggleEl),
+      );
     </script>
+
+    <!-- Project Scripts -->
+    <script src="script.js"></script>
   </body>
 </html>
