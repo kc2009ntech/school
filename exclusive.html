@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Aerolover - Exclusive Member Lounge</title>
+    <!-- Bootstrap 5 CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      crossorigin="anonymous"
+    />
+    <style>
+      .navbar-glass {
+        background-color: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+      }
+      .avatar-circle {
+        width: 32px;
+        height: 32px;
+        background-color: #0d6efd;
+        color: #ffffff;
+        font-weight: bold;
+        font-size: 0.85rem;
+        border-radius: 50%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+    </style>
+  </head>
+  <body class="bg-light">
+    <!-- Navbar -->
+    <nav
+      class="navbar navbar-expand-lg sticky-top navbar-glass border-bottom shadow-sm py-2"
+    >
+      <div class="container-fluid px-4">
+        <a class="navbar-brand me-4" href="index.html">
+          <img
+            src="image/image.png"
+            alt="Aerolover Logo"
+            style="height: 3.2rem"
+          />
+        </a>
+        <button
+          class="navbar-toggler border-0"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarContent"
+          aria-controls="navbarContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarContent">
+          <!-- All Navigation Links -->
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0 fw-semibold">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="airlines.html">Airlines</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="airports.html">Airports</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="news.html">News</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="sustainability.html">Sustainability</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="technology.html">Technology</a>
+            </li>
+          </ul>
+
+          <!-- Member Lounge Badge & Signed-In Account Dropdown -->
+          <div class="d-flex align-items-center gap-3 ms-auto">
+            <span
+              class="navbar-text fw-semibold text-primary d-none d-xl-inline"
+            >
+              ✈️ Paid Member Lounge
+            </span>
+
+            <div class="dropdown">
+              <button
+                class="btn btn-outline-primary dropdown-toggle rounded-pill px-3 d-inline-flex align-items-center gap-2"
+                type="button"
+                id="dropdownMenuButton"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <span id="navAvatarCircle" class="avatar-circle d-none"></span>
+                <span id="navUserName">Account</span>
+              </button>
+              <ul
+                class="dropdown-menu dropdown-menu-end shadow-sm"
+                aria-labelledby="dropdownMenuButton"
+              >
+                <li>
+                  <a class="dropdown-item" href="dashboard.html">Dashboard</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="dashboard_settings.html"
+                    >Account Settings</a
+                  >
+                </li>
+                <li><hr class="dropdown-divider" /></li>
+                <li>
+                  <button class="dropdown-item text-danger" id="logoutBtn">
+                    Sign Out
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Content Container -->
+    <div class="container py-5">
+      <!-- Welcome Header -->
+      <div class="p-4 p-md-5 mb-4 rounded-4 shadow-sm border bg-white">
+        <span class="badge bg-success mb-2 px-3 py-2 rounded-pill"
+          >Premium Unlocked</span
+        >
+        <h1 class="display-6 fw-bold text-primary mb-2">
+          Welcome to the Exclusive Lounge! 👨‍✈️
+        </h1>
+        <p class="text-muted fs-5 mb-0">
+          Your payment has been verified. You now have full access to non-public
+          fleet reports, high-res wallpapers, and early flight logs.
+        </p>
+      </div>
+
+      <!-- Secret Content Grid -->
+      <div class="row g-4">
+        <!-- Card 1 -->
+        <div class="col-md-4">
+          <div class="card h-100 shadow-sm border-0">
+            <div class="card-body">
+              <h5 class="card-title text-primary">📊 Fleet Analytics</h5>
+              <p class="card-text text-muted">
+                View real-time delivery timelines for next-generation widebody
+                aircraft orders.
+              </p>
+            </div>
+            <div class="card-footer bg-white border-0">
+              <button class="btn btn-sm btn-primary rounded-pill w-100">
+                View Data
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="col-md-4">
+          <div class="card h-100 shadow-sm border-0">
+            <div class="card-body">
+              <h5 class="card-title text-success">🖼️ Member Wallpapers</h5>
+              <p class="card-text text-muted">
+                Download high-resolution 4K cockpit and exterior aircraft
+                photography.
+              </p>
+            </div>
+            <div class="card-footer bg-white border-0">
+              <button class="btn btn-sm btn-success rounded-pill w-100">
+                Download Pack
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="col-md-4">
+          <div class="card h-100 shadow-sm border-0">
+            <div class="card-body">
+              <h5 class="card-title text-info">📝 Early Flight Reports</h5>
+              <p class="card-text text-muted">
+                Read preview reviews on new airline cabin products before public
+                release.
+              </p>
+            </div>
+            <div class="card-footer bg-white border-0">
+              <button class="btn btn-sm btn-info text-white rounded-pill w-100">
+                Read Articles
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Import Map for ES Modules -->
+    <script type="importmap">
+      {
+        "imports": {
+          "@popperjs/core": "https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/esm/popper.js",
+          "bootstrap": "https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.esm.min.js"
+        }
+      }
+    </script>
+    <script type="module">
+      import * as bootstrap from "bootstrap";
+    </script>
+    <script src="script.js"></script>
+  </body>
+</html>

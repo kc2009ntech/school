@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Aerolover - Aviation News</title>
+    <title>Aerolover - Ultimate Aviation Portal</title>
     <!-- Standard Bootstrap 5 CSS CDN -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
@@ -11,28 +11,29 @@
       crossorigin="anonymous"
     />
     <style>
-      /* Translucent glass effect for sticky navbar */
       .navbar-glass {
         background-color: rgba(255, 255, 255, 0.85);
         backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);
       }
-      .avatar-circle {
-        width: 32px;
-        height: 32px;
-        background-color: #0d6efd;
+      .hero-section {
+        background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);
         color: #ffffff;
-        font-weight: bold;
-        font-size: 0.85rem;
-        border-radius: 50%;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
+      }
+      .carousel-item img {
+        height: 420px;
+        object-fit: cover;
+      }
+      .carousel-caption-glass {
+        background: rgba(0, 0, 0, 0.65);
+        backdrop-filter: blur(8px);
+        border-radius: 1rem;
+        padding: 1.25rem 1.5rem;
       }
     </style>
   </head>
   <body class="bg-light">
-    <!-- Modern Sticky Navbar -->
+    <!-- Navbar (Unauthenticated State) -->
     <nav
       class="navbar navbar-expand-lg sticky-top navbar-glass border-bottom shadow-sm py-2"
     >
@@ -58,7 +59,9 @@
         <div class="collapse navbar-collapse" id="navbarContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0 fw-semibold">
             <li class="nav-item">
-              <a class="nav-link" href="index.html">Home</a>
+              <a class="nav-link active" aria-current="page" href="index.html"
+                >Home</a
+              >
             </li>
             <li class="nav-item">
               <a class="nav-link" href="airlines.html">Airlines</a>
@@ -67,9 +70,7 @@
               <a class="nav-link" href="airports.html">Airports</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="news.html"
-                >News</a
-              >
+              <a class="nav-link" href="news.html">News</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="sustainability.html">Sustainability</a>
@@ -80,42 +81,17 @@
           </ul>
 
           <div class="d-flex align-items-center gap-2">
-            <!-- Account Dropdown with Initials Avatar -->
-            <div class="dropdown">
-              <button
-                class="btn btn-outline-primary dropdown-toggle rounded-pill px-3 d-inline-flex align-items-center gap-2"
-                type="button"
-                id="dropdownMenuButton"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                <span id="navAvatarCircle" class="avatar-circle d-none"></span>
-                <span id="navUserName">Account</span>
-              </button>
-              <ul
-                class="dropdown-menu dropdown-menu-end shadow-sm"
-                aria-labelledby="dropdownMenuButton"
-              >
-                <li>
-                  <a class="dropdown-item" href="signin.html">Sign In</a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="account.html">Settings</a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="dashboard.html">Dashboard</a>
-                </li>
-                <li><hr class="dropdown-divider" /></li>
-                <li>
-                  <button class="dropdown-item text-danger" id="logoutBtn">
-                    Sign Out
-                  </button>
-                </li>
-              </ul>
-            </div>
+            <a
+              href="signin.html"
+              class="btn btn-outline-primary rounded-pill px-3"
+            >
+              Sign In
+            </a>
+            <a href="signup.html" class="btn btn-primary rounded-pill px-3">
+              Create Free Account
+            </a>
 
-            <!-- Search Form -->
-            <form id="searchForm" class="d-flex gap-2" role="search">
+            <form id="searchForm" class="d-flex gap-2 ms-2" role="search">
               <div class="input-group">
                 <input
                   type="search"
@@ -134,247 +110,300 @@
       </div>
     </nav>
 
-    <!-- Main Page Container -->
-    <div class="container py-4">
-      <!-- Welcome Banner Container -->
-      <div
-        id="welcomeBanner"
-        class="p-4 p-md-5 mb-4 rounded-4 shadow-sm border-0 position-relative text-white"
-        style="background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%)"
-      >
-        <button
-          type="button"
-          class="btn-close btn-close-white position-absolute top-0 end-0 m-3"
-          id="dismissWelcomeBtn"
-          aria-label="Close welcome message"
-        ></button>
-        <div class="col-md-10 py-1">
-          <div class="d-flex align-items-center gap-2 mb-2">
-            <span class="fs-2">✈️</span>
-            <h1 class="display-6 fw-bold mb-0">
-              Welcome to the Aerolover Hangar!
+    <!-- Hero Banner -->
+    <header class="hero-section py-5 text-center text-md-start">
+      <div class="container py-4">
+        <div class="row align-items-center g-4">
+          <div class="col-lg-7">
+            <h1 class="display-4 fw-bold mb-3">
+              Your Premier Destination for Aviation Insights & Analytics
             </h1>
-          </div>
-          <p class="fs-5 opacity-90 mb-3">
-            We're thrilled to have you here. Explore real-time stories across
-            commercial fleets, international airport expansions, and
-            cutting-edge aerospace technology.
-          </p>
-          <div class="d-flex flex-wrap align-items-center gap-3">
-            <span
-              class="badge bg-white text-primary px-3 py-2 rounded-pill fw-semibold"
+            <p class="lead opacity-90 mb-4">
+              Track global airline fleets, explore international airport
+              developments, and stay updated with breaking aerospace news.
+            </p>
+            <div
+              class="d-flex flex-wrap gap-3 justify-content-center justify-content-md-start"
             >
-              💡 Tip: Use the filter panel on the right to pinpoint articles by
-              topic or headline instantly.
-            </span>
+              <a
+                href="signup.html"
+                class="btn btn-light text-primary btn-lg rounded-pill px-4 fw-bold"
+              >
+                Get Started Free
+              </a>
+              <a
+                href="signin.html"
+                class="btn btn-outline-light btn-lg rounded-pill px-4"
+              >
+                Sign In
+              </a>
+            </div>
+          </div>
+          <div class="col-lg-5 text-center">
+            <img
+              src="image/image2.jpg"
+              alt="Aviation Banner"
+              class="img-fluid rounded-4 shadow-lg border border-2 border-white"
+              style="max-height: 320px; object-fit: cover"
+            />
           </div>
         </div>
       </div>
+    </header>
 
-      <!-- Grid Layout: News Feed + Sidebar Filter -->
-      <div class="row g-4">
-        <!-- News Feed Column (Left 8 Cols) -->
-        <main class="col-lg-8">
-          <div class="row g-4" id="newsGrid">
-            <!-- News Article 1 -->
-            <div class="col-md-6 news-card" data-category="airlines">
-              <div class="card h-100 shadow-sm border-0 overflow-hidden">
-                <img
-                  src="images/fleet-upgrade.jpg"
-                  class="card-img-top news-thumb"
-                  alt="Next-Gen Aircraft Fleet"
-                  style="height: 180px; object-fit: cover"
-                />
-                <div class="card-body">
-                  <span class="badge bg-primary mb-2">Airlines</span>
-                  <h5 class="card-title news-title">
-                    Next-Gen Fleet Upgrades Announced
-                  </h5>
-                  <p class="card-text text-muted">
-                    Major international carriers are ordering eco-efficient
-                    wide-body jets for long-haul routes.
-                  </p>
-                </div>
-                <div class="card-footer bg-white border-top-0 text-muted small">
-                  Posted 2 hours ago
-                </div>
-              </div>
-            </div>
-
-            <!-- News Article 2 -->
-            <div class="col-md-6 news-card" data-category="airports">
-              <div class="card h-100 shadow-sm border-0 overflow-hidden">
-                <img
-                  src="images/airport-terminal.jpg"
-                  class="card-img-top news-thumb"
-                  alt="Airport Terminal"
-                  style="height: 180px; object-fit: cover"
-                />
-                <div class="card-body">
-                  <span class="badge bg-success mb-2">Airports</span>
-                  <h5 class="card-title news-title">
-                    Terminal Expansion Project Opens
-                  </h5>
-                  <p class="card-text text-muted">
-                    New biometric security lines reduce passenger wait times by
-                    up to 40 percent.
-                  </p>
-                </div>
-                <div class="card-footer bg-white border-top-0 text-muted small">
-                  Posted 5 hours ago
-                </div>
-              </div>
-            </div>
-
-            <!-- News Article 3 -->
-            <div class="col-md-6 news-card" data-category="technology">
-              <div class="card h-100 shadow-sm border-0 overflow-hidden">
-                <img
-                  src="images/saf-testing.jpg"
-                  class="card-img-top news-thumb"
-                  alt="Sustainable Aviation Fuel Flight"
-                  style="height: 180px; object-fit: cover"
-                />
-                <div class="card-body">
-                  <span class="badge bg-info text-dark mb-2">Technology</span>
-                  <h5 class="card-title news-title">
-                    Sustainable Aviation Fuel Milestones
-                  </h5>
-                  <p class="card-text text-muted">
-                    Flight tests complete successful transatlantic crossing
-                    powered purely by synthetic SAF blend.
-                  </p>
-                </div>
-                <div class="card-footer bg-white border-top-0 text-muted small">
-                  Posted 1 day ago
-                </div>
-              </div>
-            </div>
-
-            <!-- News Article 4 -->
-            <div class="col-md-6 news-card" data-category="airlines">
-              <div class="card h-100 shadow-sm border-0 overflow-hidden">
-                <img
-                  src="images/summer-routes.jpg"
-                  class="card-img-top news-thumb"
-                  alt="Airlines Network Routes"
-                  style="height: 180px; object-fit: cover"
-                />
-                <div class="card-body">
-                  <span class="badge bg-primary mb-2">Airlines</span>
-                  <h5 class="card-title news-title">
-                    New Direct Routes Launched for Summer
-                  </h5>
-                  <p class="card-text text-muted">
-                    Airlines expand seasonal connectivity across regional hubs
-                    worldwide.
-                  </p>
-                </div>
-                <div class="card-footer bg-white border-top-0 text-muted small">
-                  Posted 2 days ago
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Empty Filter Alert State -->
-          <div
-            id="noNewsFound"
-            class="alert alert-warning text-center mt-4 d-none"
+    <!-- News Carousel Section -->
+    <section class="container py-5">
+      <div class="d-flex justify-content-between align-items-end mb-4">
+        <div>
+          <span class="text-primary fw-bold text-uppercase small tracking-wide"
+            >Breaking Headlines</span
           >
-            No articles match your active filter.
-          </div>
-        </main>
-
-        <!-- Sidebar Filter Column (Right 4 Cols) -->
-        <aside class="col-lg-4">
-          <div class="card shadow-sm border-0 sticky-top" style="top: 5.5rem">
-            <div class="card-header bg-white fw-bold py-3 border-bottom">
-              Filter News
-            </div>
-            <div class="card-body">
-              <!-- Headline Search Input -->
-              <div class="mb-3">
-                <label
-                  for="newsSearchInput"
-                  class="form-label small text-muted"
-                >
-                  Search Headline
-                </label>
-                <input
-                  type="text"
-                  id="newsSearchInput"
-                  class="form-control"
-                  placeholder="Type to filter..."
-                />
-              </div>
-
-              <!-- Category Radio Filters -->
-              <div class="mb-3">
-                <label class="form-label small text-muted">Category</label>
-                <div class="form-check">
-                  <input
-                    class="form-check-input category-filter"
-                    type="radio"
-                    name="category"
-                    id="catAll"
-                    value="all"
-                    checked
-                  />
-                  <label class="form-check-label" for="catAll"
-                    >All Topics</label
-                  >
-                </div>
-                <div class="form-check">
-                  <input
-                    class="form-check-input category-filter"
-                    type="radio"
-                    name="category"
-                    id="catAirlines"
-                    value="airlines"
-                  />
-                  <label class="form-check-label" for="catAirlines"
-                    >Airlines</label
-                  >
-                </div>
-                <div class="form-check">
-                  <input
-                    class="form-check-input category-filter"
-                    type="radio"
-                    name="category"
-                    id="catAirports"
-                    value="airports"
-                  />
-                  <label class="form-check-label" for="catAirports"
-                    >Airports</label
-                  >
-                </div>
-                <div class="form-check">
-                  <input
-                    class="form-check-input category-filter"
-                    type="radio"
-                    name="category"
-                    id="catTech"
-                    value="technology"
-                  />
-                  <label class="form-check-label" for="catTech"
-                    >Technology</label
-                  >
-                </div>
-              </div>
-
-              <!-- Reset Button -->
-              <button
-                id="resetFilters"
-                class="btn btn-outline-secondary btn-sm w-100 rounded-pill"
-              >
-                Reset Filters
-              </button>
-            </div>
-          </div>
-        </aside>
+          <h2 class="fw-bold mb-0">Featured Aviation News</h2>
+        </div>
+        <a
+          href="news.html"
+          class="btn btn-outline-primary btn-sm rounded-pill px-3"
+        >
+          View All News →
+        </a>
       </div>
-    </div>
+
+      <div
+        id="newsCarousel"
+        class="carousel slide shadow-lg rounded-4 overflow-hidden"
+        data-bs-ride="carousel"
+        data-bs-interval="5000"
+      >
+        <!-- Slide Indicators -->
+        <div class="carousel-indicators mb-3">
+          <button
+            type="button"
+            data-bs-target="#newsCarousel"
+            data-bs-slide-to="0"
+            class="active"
+            aria-current="true"
+            aria-label="Slide 1"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#newsCarousel"
+            data-bs-slide-to="1"
+            aria-label="Slide 2"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#newsCarousel"
+            data-bs-slide-to="2"
+            aria-label="Slide 3"
+          ></button>
+        </div>
+
+        <!-- Carousel Slides -->
+        <div class="carousel-inner">
+          <!-- Slide 1 -->
+          <div class="carousel-item active">
+            <img
+              src="https://images.euronews.com/articles/stories/09/64/06/83/1536x864_cmsv2_a6bff4bf-4ce7-5355-a884-faf4e563bbb5-9640683.jpg"
+              class="d-block w-100"
+              alt="Next-Gen Fleet Order"
+            />
+            <div
+              class="carousel-caption carousel-caption-glass text-start mb-4 mx-3 mx-md-5"
+            >
+              <span class="badge bg-primary mb-2">Airlines</span>
+              <h3 class="fw-bold text-white mb-2">
+                Next-Gen Commercial Fleet Upgrades Announced
+              </h3>
+              <p class="mb-3 d-none d-md-block opacity-90">
+                Major international carriers place multibillion-dollar orders
+                for fuel-efficient wide-body jets to modernize long-haul
+                networks.
+              </p>
+              <a
+                href="news.html"
+                class="btn btn-primary btn-sm rounded-pill px-3"
+                >Read Full Story</a
+              >
+            </div>
+          </div>
+
+          <!-- Slide 2 -->
+          <div class="carousel-item">
+            <img
+              src="https://static.wikia.nocookie.net/aviation-airport/images/c/c6/London_heathrow_airport_lhr-1.jpg/revision/latest/scale-to-width-down/1200?cb=20240425180753"
+              class="d-block w-100"
+              alt="Airport Expansion Project"
+            />
+            <div
+              class="carousel-caption carousel-caption-glass text-start mb-4 mx-3 mx-md-5"
+            >
+              <span class="badge bg-success mb-2">Airports</span>
+              <h3 class="fw-bold text-white mb-2">
+                Smart Biometric Terminals Open Worldwide
+              </h3>
+              <p class="mb-3 d-none d-md-block opacity-90">
+                International airport hubs integrate automated facial
+                recognition security lines to cut passenger check-in processing
+                times by up to 40%.
+              </p>
+              <a
+                href="news.html"
+                class="btn btn-success btn-sm rounded-pill px-3"
+                >Read Full Story</a
+              >
+            </div>
+          </div>
+
+          <!-- Slide 3 -->
+          <div class="carousel-item">
+            <img
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoPzEUWrRlHFEZOFMI6KvOzdGCPrcNeelr15zdfkFlxNzL8NCdk86Fcrb3&s=10"
+              class="d-block w-100"
+              alt="Synthetic Fuel Transatlantic Flight"
+            />
+            <div
+              class="carousel-caption carousel-caption-glass text-start mb-4 mx-3 mx-md-5"
+            >
+              <span class="badge bg-info text-dark mb-2">Technology</span>
+              <h3 class="fw-bold text-white mb-2">
+                100% SAF Transatlantic Crossing Successful
+              </h3>
+              <p class="mb-3 d-none d-md-block opacity-90">
+                A landmark flight completes a transatlantic flight powered
+                entirely by 100% Sustainable Aviation Fuel without engine
+                modifications.
+              </p>
+              <a
+                href="news.html"
+                class="btn btn-info text-dark btn-sm rounded-pill px-3"
+                >Read Full Story</a
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- Navigation Arrows -->
+        <button
+          class="carousel-control-prev"
+          type="button"
+          data-bs-target="#newsCarousel"
+          data-bs-slide="prev"
+        >
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button
+          class="carousel-control-next"
+          type="button"
+          data-bs-target="#newsCarousel"
+          data-bs-slide="next"
+        >
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Featured Categories Grid -->
+    <main class="container pb-5">
+      <div class="text-center mb-5">
+        <h2 class="fw-bold text-primary">Explore Commercial Aviation</h2>
+        <p class="text-muted">In-depth coverage across key industry sectors.</p>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="card h-100 shadow-sm border-0 rounded-4 p-3">
+            <div class="card-body">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="48"
+                height="48"
+                fill="currentColor"
+                class="text-primary mb-3"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M6.428 1.151C6.708.591 7.213 0 8 0s1.292.592 1.572 1.151C9.861 1.73 10 2.431 10 3v3.691l5.17 2.585a1.5 1.5 0 0 1 .83 1.342V12a.5.5 0 0 1-.582.493l-5.507-.918-.375 2.253 1.318 1.318A.5.5 0 0 1 10.5 16h-5a.5.5 0 0 1-.354-.854l1.319-1.318-.376-2.253-5.507.918A.5.5 0 0 1 0 12v-1.382a1.5 1.5 0 0 1 .83-1.342L6 6.691V3c0-.568.14-1.271.428-1.849m.894.448C7.111 2.02 7 2.569 7 3v4a.5.5 0 0 1-.276.447l-5.448 2.724a.5.5 0 0 0-.276.447v.792l5.418-.903a.5.5 0 0 1 .575.41l.5 3a.5.5 0 0 1-.14.437L6.708 15h2.586l-.647-.646a.5.5 0 0 1-.14-.436l.5-3a.5.5 0 0 1 .576-.411L15 11.41v-.792a.5.5 0 0 0-.276-.447L9.276 7.447A.5.5 0 0 1 9 7V3c0-.432-.11-.979-.322-1.401C8.458 1.159 8.213 1 8 1s-.458.158-.678.599"
+                />
+              </svg>
+              <h4 class="card-title fw-bold">Airlines & Fleets</h4>
+              <p class="card-text text-muted">
+                Detailed breakdowns of wide-body deliveries, cabin
+                configurations, and route expansions.
+              </p>
+              <a
+                href="airlines.html"
+                class="btn btn-outline-primary btn-sm rounded-pill mt-2"
+                >View Airlines</a
+              >
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="card h-100 shadow-sm border-0 rounded-4 p-3">
+            <div class="card-body">
+              <div
+                class="d-inline-flex align-items-center justify-content-center bg-primary-subtle text-primary rounded-circle mb-3 p-3"
+                style="width: 56px; height: 56px"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="28"
+                  height="28"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M10 2h4l1 4h-6l1-4zm-1 5h6l1 3h-8l1-3zm-1 4h10l-1 3h-2v8h-4v-8h-2l-1-3zm3 5h2v6h-2v-6z"
+                  />
+                </svg>
+              </div>
+              <h4 class="card-title fw-bold">Airports & Terminals</h4>
+              <p class="card-text text-muted">
+                Coverage of new runway construction, terminal modernizations,
+                and biometric check-in rollouts.
+              </p>
+              <a
+                href="airports.html"
+                class="btn btn-outline-primary btn-sm rounded-pill mt-2"
+                >View Airports</a
+              >
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="card h-100 shadow-sm border-0 rounded-4 p-3">
+            <div class="card-body">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="48"
+                height="48"
+                fill="currentColor"
+                class="text-primary mb-3"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M1.4 1.7c.217.289.65.84 1.725 1.274 1.093.44 2.885.774 5.834.528 2.02-.168 3.431.51 4.326 1.556C14.161 6.082 14.5 7.41 14.5 8.5q0 .344-.027.734C13.387 8.252 11.877 7.76 10.39 7.5c-2.016-.288-4.188-.445-5.59-2.045-.142-.162-.402-.102-.379.112.108.985 1.104 1.82 1.844 2.308 2.37 1.566 5.772-.118 7.6 3.071.505.8 1.374 2.7 1.75 4.292.07.298-.066.611-.354.715a.7.7 0 0 1-.161.042 1 1 0 0 1-1.08-.794c-.13-.97-.396-1.913-.868-2.77C12.173 13.386 10.565 14 8 14c-1.854 0-3.32-.544-4.45-1.435-1.124-.887-1.889-2.095-2.39-3.383-1-2.562-1-5.536-.65-7.28L.73.806z"
+                />
+              </svg>
+              <h4 class="card-title fw-bold">Aerospace Tech & SAF</h4>
+              <p class="card-text text-muted">
+                Updates on Sustainable Aviation Fuel testing, hydrogen
+                propulsion, and next-gen avionics.
+              </p>
+              <a
+                href="technology.html"
+                class="btn btn-outline-primary btn-sm rounded-pill mt-2"
+                >View Tech</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
 
     <!-- Footer -->
     <footer class="bg-dark text-white pt-5 pb-4 mt-5">
@@ -490,10 +519,14 @@
     <script type="module">
       import * as bootstrap from "bootstrap";
 
-      const dropdownElementList = document.querySelectorAll(".dropdown-toggle");
-      const dropdownList = [...dropdownElementList].map(
-        (dropdownToggleEl) => new bootstrap.Dropdown(dropdownToggleEl),
-      );
+      // Initialize carousel
+      const newsCarousel = document.querySelector("#newsCarousel");
+      if (newsCarousel) {
+        new bootstrap.Carousel(newsCarousel, {
+          interval: 5000,
+          ride: "carousel",
+        });
+      }
     </script>
 
     <!-- Project Scripts -->
