@@ -11,40 +11,52 @@ document.addEventListener("DOMContentLoaded", () => {
   const STORAGE_PAYMENT_KEY = "aerolover_user_payment";
 
   // ==========================================
-  // DYNAMIC NAVBAR USER NAME DISPLAY
+  // DYNAMIC NAVBAR USER NAME & AVATAR DISPLAY
   // ==========================================
   function updateNavbarUserName() {
     const navUserName = document.querySelector("#navUserName");
+    const navAvatarCircle = document.querySelector("#navAvatarCircle");
     if (!navUserName) return;
 
     const savedProfile = localStorage.getItem(STORAGE_PROFILE_KEY);
     if (savedProfile) {
       try {
         const data = JSON.parse(savedProfile);
-        if (data.firstName) {
-          const fullName = data.lastName
-            ? `${data.firstName} ${data.lastName}`
-            : data.firstName;
+        const first = data.firstName ? data.firstName.trim() : "";
+        const last = data.lastName ? data.lastName.trim() : "";
+
+        if (first) {
+          const fullName = last ? `${first} ${last}` : first;
           navUserName.textContent = fullName;
+
+          const initials = last
+            ? `${first.charAt(0)}${last.charAt(0)}`.toUpperCase()
+            : first.slice(0, 2).toUpperCase();
+
+          if (navAvatarCircle) {
+            navAvatarCircle.textContent = initials;
+            navAvatarCircle.classList.remove("d-none");
+          }
         }
       } catch (e) {
         console.error("Error parsing user profile for navbar:", e);
       }
+    } else if (navAvatarCircle) {
+      navAvatarCircle.classList.add("d-none");
     }
   }
 
-  // Initial call on page load
   updateNavbarUserName();
 
   // ==========================================
-  // 1. ROUTE GUARD
+  // 1. ROUTE GUARD (CHECKOUT PROTECTION)
   // ==========================================
   if (
     (currentPath.includes("dashboard.html") ||
       currentPath.includes("account.html")) &&
     !isUnlocked
   ) {
-    window.location.href = "unlock.html";
+    window.location.href = "signin.html";
     return;
   }
 
@@ -65,8 +77,6 @@ document.addEventListener("DOMContentLoaded", () => {
   // ==========================================
   // 3. ACCOUNT SETTINGS: LOCALSTORAGE INTEGRATION
   // ==========================================
-
-  // --- A. Profile Information ---
   const profileForm = document.querySelector("#profileForm");
   const firstNameInput = document.querySelector("#firstName");
   const lastNameInput = document.querySelector("#lastName");
@@ -88,7 +98,6 @@ document.addEventListener("DOMContentLoaded", () => {
         console.error("Error reading profile from localStorage", e);
       }
     } else {
-      // Default fallback values
       if (firstNameInput) firstNameInput.value = "Captain";
       if (lastNameInput) lastNameInput.value = "Aviator";
       if (emailInput) emailInput.value = "captain@aerolover.com";
@@ -109,10 +118,7 @@ document.addEventListener("DOMContentLoaded", () => {
       };
 
       localStorage.setItem(STORAGE_PROFILE_KEY, JSON.stringify(profileData));
-
-      // Update navbar text immediately without page refresh
       updateNavbarUserName();
-
       showAlert("Profile settings saved successfully!");
     });
   }
@@ -125,9 +131,10 @@ document.addEventListener("DOMContentLoaded", () => {
       if (emailInput) emailInput.value = "";
       if (bioInput) bioInput.value = "";
 
-      // Reset navbar name to default
       const navUserName = document.querySelector("#navUserName");
+      const navAvatarCircle = document.querySelector("#navAvatarCircle");
       if (navUserName) navUserName.textContent = "Account";
+      if (navAvatarCircle) navAvatarCircle.classList.add("d-none");
 
       showAlert("Saved profile cleared from localStorage.", false);
     });
@@ -252,65 +259,139 @@ document.addEventListener("DOMContentLoaded", () => {
   // ==========================================
   // 4. AUTHENTICATION & SIGN OUT LOGIC
   // ==========================================
-  const passwordForm = document.querySelector("#passwordForm");
-  const passcodeInput = document.querySelector("#passcode");
-  const errorMessage = document.querySelector("#errorMessage");
   const logoutBtn = document.querySelector("#logoutBtn");
-
-  if (passwordForm) {
-    if (isUnlocked) {
-      window.location.href = "dashboard.html";
-      return;
-    }
-
-    passwordForm.addEventListener("submit", (event) => {
-      event.preventDefault();
-      const enteredPasscode = passcodeInput ? passcodeInput.value.trim() : "";
-
-      if (enteredPasscode === SECRET_PASSCODE) {
-        sessionStorage.setItem("isUnlocked", "true");
-        if (errorMessage) errorMessage.classList.add("d-none");
-        window.location.href = "dashboard.html";
-      } else {
-        if (errorMessage) errorMessage.classList.remove("d-none");
-        if (passcodeInput) {
-          passcodeInput.value = "";
-          passcodeInput.focus();
-        }
-      }
-    });
-  }
-
   if (logoutBtn) {
     logoutBtn.addEventListener("click", () => {
       sessionStorage.removeItem("isUnlocked");
-      window.location.href = "unlock.html";
+      sessionStorage.removeItem("paymentCompleted");
+      window.location.href = "signin.html";
+    });
+  }
+
+  // Free / Non-Subscribed Sign In Handler (signin.html)
+  const freeSigninForm = document.querySelector("#freeSigninForm");
+  if (freeSigninForm) {
+    freeSigninForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const emailInput = document.querySelector("#signinEmail");
+      const email = emailInput ? emailInput.value.trim() : "";
+
+      const profileData = {
+        email: email,
+        firstName: email.split("@")[0],
+        updatedAt: new Date().toISOString(),
+      };
+      localStorage.setItem(STORAGE_PROFILE_KEY, JSON.stringify(profileData));
+      sessionStorage.setItem("userEmail", email);
+
+      updateNavbarUserName();
+      window.location.href = "checkout.html";
+    });
+  }
+
+  // Free Sign-Up Handler (signup.html)
+  const freeSignupForm = document.querySelector("#freeSignupForm");
+  if (freeSignupForm) {
+    freeSignupForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const firstName = document.querySelector("#signupFirstName").value.trim();
+      const lastName = document.querySelector("#signupLastName").value.trim();
+      const email = document.querySelector("#signupEmail").value.trim();
+
+      const profileData = {
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        createdAt: new Date().toISOString(),
+      };
+
+      localStorage.setItem(STORAGE_PROFILE_KEY, JSON.stringify(profileData));
+      sessionStorage.setItem("userEmail", email);
+
+      updateNavbarUserName();
+      window.location.href = "signin.html";
     });
   }
 
   // ==========================================
-  // 5. SIMULATED PAYMENT FOR UNLOCK.HTML
+  // 5. FORGOT & RESET PASSWORD FLOW
   // ==========================================
-  const signupPaymentForm = document.querySelector("#signupPaymentForm");
-  if (signupPaymentForm) {
-    signupPaymentForm.addEventListener("submit", (event) => {
-      event.preventDefault();
-      const emailInput = document.querySelector("#userEmail");
+  const forgotPasswordForm = document.querySelector("#forgotPasswordForm");
+  if (forgotPasswordForm) {
+    forgotPasswordForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const emailInput = document.querySelector("#resetEmail");
       const email = emailInput ? emailInput.value.trim() : "";
-      const submitBtn = signupPaymentForm.querySelector(
-        "button[type='submit']",
-      );
+      const sendResetBtn = document.querySelector("#sendResetBtn");
+      const resetAlert = document.querySelector("#resetAlert");
 
-      if (submitBtn) {
-        submitBtn.disabled = true;
-        submitBtn.textContent = "Processing Payment...";
+      if (sendResetBtn) {
+        sendResetBtn.disabled = true;
+        sendResetBtn.textContent = "Sending Email...";
       }
 
       setTimeout(() => {
-        sessionStorage.setItem("isUnlocked", "true");
-        sessionStorage.setItem("userEmail", email);
-        window.location.href = "dashboard.html";
+        if (resetAlert) resetAlert.classList.remove("d-none");
+        if (sendResetBtn) {
+          sendResetBtn.disabled = false;
+          sendResetBtn.textContent = "Send Reset Link";
+        }
+        forgotPasswordForm.reset();
+      }, 1200);
+    });
+  }
+
+  const newPasswordForm = document.querySelector("#newPasswordForm");
+  if (newPasswordForm) {
+    newPasswordForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const newPasswordAlert = document.querySelector("#newPasswordAlert");
+      if (newPasswordAlert) newPasswordAlert.classList.remove("d-none");
+
+      setTimeout(() => {
+        window.location.href = "signin.html";
       }, 1500);
     });
+  }
+
+  // ==========================================
+  // 6. STANDALONE CHECKOUT & VERIFICATION FLOW
+  // ==========================================
+  const checkoutForm = document.querySelector("#checkoutForm");
+  if (checkoutForm) {
+    checkoutForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const emailInput = document.querySelector("#checkoutEmail");
+      const email = emailInput ? emailInput.value.trim() : "";
+      const payBtn = document.querySelector("#payButton");
+
+      if (payBtn) {
+        payBtn.disabled = true;
+        payBtn.textContent = "Processing Payment...";
+      }
+
+      setTimeout(() => {
+        sessionStorage.setItem("paymentCompleted", "true");
+        sessionStorage.setItem("userEmail", email);
+        window.location.href = "verify.html";
+      }, 1500);
+    });
+  }
+
+  if (currentPath.includes("verify.html")) {
+    const isPaid = sessionStorage.getItem("paymentCompleted") === "true";
+    const verifyingState = document.querySelector("#verifyingState");
+    const failedState = document.querySelector("#failedState");
+
+    setTimeout(() => {
+      if (isPaid) {
+        sessionStorage.setItem("isUnlocked", "true");
+        sessionStorage.removeItem("paymentCompleted");
+        window.location.href = "dashboard.html";
+      } else {
+        if (verifyingState) verifyingState.classList.add("d-none");
+        if (failedState) failedState.classList.remove("d-none");
+      }
+    }, 2000);
   }
 });

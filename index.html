@@ -17,6 +17,18 @@
         backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);
       }
+      .avatar-circle {
+        width: 32px;
+        height: 32px;
+        background-color: #0d6efd;
+        color: #ffffff;
+        font-weight: bold;
+        font-size: 0.85rem;
+        border-radius: 50%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
     </style>
   </head>
   <body class="bg-light">
@@ -68,30 +80,41 @@
           </ul>
 
           <div class="d-flex align-items-center gap-2">
-            <!-- Account Dropdown -->
+            <!-- Account Dropdown with Initials Avatar -->
             <div class="dropdown">
               <button
-                class="btn btn-outline-primary dropdown-toggle rounded-pill px-3"
+                class="btn btn-outline-primary dropdown-toggle rounded-pill px-3 d-inline-flex align-items-center gap-2"
                 type="button"
                 id="dropdownMenuButton"
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
-                Account
+                <span id="navAvatarCircle" class="avatar-circle d-none"></span>
+                <span id="navUserName">Account</span>
               </button>
               <ul
                 class="dropdown-menu dropdown-menu-end shadow-sm"
                 aria-labelledby="dropdownMenuButton"
               >
                 <li>
-                  <a class="dropdown-item" href="unlock.html" id="option1"
-                    >Exclusive Access</a
-                  >
+                  <a class="dropdown-item" href="signin.html">Sign In</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="account.html">Settings</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="dashboard.html">Dashboard</a>
+                </li>
+                <li><hr class="dropdown-divider" /></li>
+                <li>
+                  <button class="dropdown-item text-danger" id="logoutBtn">
+                    Sign Out
+                  </button>
                 </li>
               </ul>
             </div>
 
-            <!-- Search Redirect Form -->
+            <!-- Search Form -->
             <form id="searchForm" class="d-flex gap-2" role="search">
               <div class="input-group">
                 <input
@@ -419,7 +442,7 @@
                 >
               </li>
               <li class="mb-2">
-                <a href="unlock.html" class="text-white-50 text-decoration-none"
+                <a href="signin.html" class="text-white-50 text-decoration-none"
                   >Exclusive Access</a
                 >
               </li>

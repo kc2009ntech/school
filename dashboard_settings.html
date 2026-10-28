@@ -66,13 +66,14 @@
           <!-- Inside your navbar container -->
           <div class="dropdown">
             <button
-              class="btn btn-outline-primary dropdown-toggle rounded-pill px-3"
+              class="btn btn-outline-primary dropdown-toggle rounded-pill px-3 d-inline-flex align-items-center gap-2"
               type="button"
               id="dropdownMenuButton"
               data-bs-toggle="dropdown"
               aria-expanded="false"
             >
-              👤 <span id="navUserName">Account</span>
+              <span id="navAvatarCircle" class="avatar-circle d-none"></span>
+              <span id="navUserName">Account</span>
             </button>
             <ul
               class="dropdown-menu dropdown-menu-end shadow-sm"
