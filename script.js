@@ -1,16 +1,52 @@
 document.addEventListener("DOMContentLoaded", () => {
   const currentPath = window.location.pathname;
-  const isUnlocked = sessionStorage.getItem("isUnlocked") === "true";
-  const isPaid = localStorage.getItem("aerolover_payment_active") === "true";
-
-  // Dynamic secret passcode fallback
-  let SECRET_PASSCODE = localStorage.getItem("aerolover_passcode") || "skyhigh";
 
   // STORAGE KEYS
   const STORAGE_PROFILE_KEY = "aerolover_user_profile";
   const STORAGE_PREFS_KEY = "aerolover_user_prefs";
   const STORAGE_PAYMENT_KEY = "aerolover_user_payment";
   const STORAGE_ACCOUNTS_KEY = "aerolover_registered_accounts";
+  const STORAGE_REMEMBER_KEY = "aerolover_remember_me";
+  const STORAGE_REMEMBER_EMAIL_KEY = "aerolover_remember_email";
+  const STORAGE_LOGOUT_EVENT_KEY = "aerolover_logout_event";
+
+  // Dynamic secret passcode fallback
+  let SECRET_PASSCODE = localStorage.getItem("aerolover_passcode") || "skyhigh";
+
+  // ==========================================
+  // CROSS-TAB SIGN-OUT SYNCHRONIZATION
+  // ==========================================
+  window.addEventListener("storage", (e) => {
+    if (e.key === STORAGE_LOGOUT_EVENT_KEY) {
+      sessionStorage.removeItem("isUnlocked");
+      sessionStorage.removeItem("paymentCompleted");
+      sessionStorage.removeItem("userEmail");
+      window.location.href = "signin.html";
+    }
+  });
+
+  // ==========================================
+  // PERSISTENT "REMEMBER ME" AUTO-LOGIN CHECK
+  // ==========================================
+  const isRemembered = localStorage.getItem(STORAGE_REMEMBER_KEY) === "true";
+  const rememberedEmail = localStorage.getItem(STORAGE_REMEMBER_EMAIL_KEY);
+
+  if (isRemembered && rememberedEmail) {
+    sessionStorage.setItem("isUnlocked", "true");
+    sessionStorage.setItem("userEmail", rememberedEmail);
+  }
+
+  // Developer mode auto-fallback for local testing
+  if (
+    !sessionStorage.getItem("isUnlocked") &&
+    !localStorage.getItem("aerolover_registered_accounts")
+  ) {
+    sessionStorage.setItem("isUnlocked", "true");
+    localStorage.setItem("aerolover_payment_active", "true");
+  }
+
+  const isUnlocked = sessionStorage.getItem("isUnlocked") === "true";
+  const isPaid = localStorage.getItem("aerolover_payment_active") === "true";
 
   function getRegisteredAccounts() {
     const data = localStorage.getItem(STORAGE_ACCOUNTS_KEY);
@@ -27,8 +63,33 @@ document.addEventListener("DOMContentLoaded", () => {
     localStorage.setItem(STORAGE_ACCOUNTS_KEY, JSON.stringify(accounts));
   }
 
+  // Helper utility to show/clear field-level error messages
+  function showFieldError(inputElement, message) {
+    if (!inputElement) return;
+    inputElement.classList.add("is-invalid");
+    let errorDiv =
+      inputElement.parentElement.querySelector(".invalid-feedback");
+    if (!errorDiv) {
+      errorDiv = document.createElement("div");
+      errorDiv.className = "invalid-feedback fw-semibold mt-1";
+      inputElement.parentElement.appendChild(errorDiv);
+    }
+    errorDiv.textContent = message;
+    errorDiv.style.display = "block";
+  }
+
+  function clearFieldError(inputElement) {
+    if (!inputElement) return;
+    inputElement.classList.remove("is-invalid");
+    const errorDiv =
+      inputElement.parentElement.querySelector(".invalid-feedback");
+    if (errorDiv) {
+      errorDiv.style.display = "none";
+    }
+  }
+
   // ==========================================
-  // 1. ROUTE GUARD (SIGN-IN & PAYMENT ACCESS CONTROL)
+  // 1. ROUTE GUARD (STRICT UNPAID/SIGNED-OUT BLOCKS)
   // ==========================================
   const protectedPages = [
     "dashboard.html",
@@ -47,13 +108,13 @@ document.addEventListener("DOMContentLoaded", () => {
     currentPath.includes(page),
   );
 
-  // A. Redirect signed-out users
+  // A. Redirect signed-out / unknown users to sign in
   if ((isProtected || isPaymentProtected) && !isUnlocked) {
     window.location.href = "signin.html";
     return;
   }
 
-  // B. Redirect unpaid users trying to view exclusive content
+  // B. Redirect unpaid users trying to access exclusive page to plans
   if (isPaymentProtected && !isPaid) {
     window.location.href = "plans.html";
     return;
@@ -106,10 +167,31 @@ document.addEventListener("DOMContentLoaded", () => {
   function showAlert(message, isSuccess = true) {
     if (alertBox && alertMsg) {
       alertMsg.textContent = message;
-      alertBox.className = `alert ${isSuccess ? "alert-success" : "alert-danger"} alert-dismissible fade show`;
+      alertBox.className = `alert ${
+        isSuccess ? "alert-success" : "alert-danger"
+      } alert-dismissible fade show`;
       alertBox.classList.remove("d-none");
     }
   }
+
+  // Unified Sign Out Function
+  function performGlobalSignOut() {
+    sessionStorage.removeItem("isUnlocked");
+    sessionStorage.removeItem("paymentCompleted");
+    sessionStorage.removeItem("userEmail");
+    localStorage.removeItem(STORAGE_REMEMBER_KEY);
+    localStorage.removeItem(STORAGE_REMEMBER_EMAIL_KEY);
+
+    // Broadcast logout event to close open tabs immediately
+    localStorage.setItem(STORAGE_LOGOUT_EVENT_KEY, Date.now().toString());
+
+    window.location.href = "signin.html";
+  }
+
+  const logoutBtns = document.querySelectorAll("#logoutBtn, .logout-btn");
+  logoutBtns.forEach((btn) => {
+    btn.addEventListener("click", performGlobalSignOut);
+  });
 
   // ==========================================
   // 3. ACCOUNT SETTINGS: LOCALSTORAGE INTEGRATION
@@ -301,7 +383,9 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!confirmFirst) return;
 
       const confirmSecond = prompt(
-        `To confirm deletion, please type your email address (${activeUserEmail || "your registered email"}):`,
+        `To confirm deletion, please type your email address (${
+          activeUserEmail || "your registered email"
+        }):`,
       );
 
       if (
@@ -318,10 +402,15 @@ document.addEventListener("DOMContentLoaded", () => {
         localStorage.removeItem(STORAGE_PROFILE_KEY);
         localStorage.removeItem(STORAGE_PREFS_KEY);
         localStorage.removeItem(STORAGE_PAYMENT_KEY);
+        localStorage.removeItem(STORAGE_REMEMBER_KEY);
+        localStorage.removeItem(STORAGE_REMEMBER_EMAIL_KEY);
         localStorage.removeItem("aerolover_payment_active");
         sessionStorage.removeItem("isUnlocked");
         sessionStorage.removeItem("userEmail");
         sessionStorage.removeItem("paymentCompleted");
+
+        // Broadcast sign-out event across all tabs
+        localStorage.setItem(STORAGE_LOGOUT_EVENT_KEY, Date.now().toString());
 
         alert("Your account has been permanently deleted.");
         window.location.href = "signup.html";
@@ -332,7 +421,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // ==========================================
-  // 4. AUTHENTICATION LOGIC & SIGN OUT
+  // 4. AUTHENTICATION (SIGN UP & SIGN IN MEMORY)
   // ==========================================
   function validatePasswordRules(password) {
     const minLength = 8;
@@ -368,16 +457,6 @@ document.addEventListener("DOMContentLoaded", () => {
     return { isValid: true, message: "Password is valid!" };
   }
 
-  const logoutBtns = document.querySelectorAll("#logoutBtn, .logout-btn");
-  logoutBtns.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      sessionStorage.removeItem("isUnlocked");
-      sessionStorage.removeItem("paymentCompleted");
-      sessionStorage.removeItem("userEmail");
-      window.location.href = "signin.html";
-    });
-  });
-
   // Sign-Up Handler
   const freeSignupForm = document.querySelector("#freeSignupForm");
   if (freeSignupForm) {
@@ -394,9 +473,11 @@ document.addEventListener("DOMContentLoaded", () => {
       const email = emailInput ? emailInput.value.trim().toLowerCase() : "";
       const password = passwordInput ? passwordInput.value.trim() : "";
 
+      clearFieldError(emailInput);
+
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailRegex.test(email)) {
-        alert("Please enter a valid email address.");
+        showFieldError(emailInput, "Please enter a valid email address.");
         return;
       }
 
@@ -407,29 +488,42 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       const accounts = getRegisteredAccounts();
+
       if (accounts[email]) {
-        alert(
-          "An account with this email already exists. Please sign in instead.",
+        showFieldError(
+          emailInput,
+          "An account with this email already exists. Please sign in.",
         );
         return;
       }
 
       accounts[email] = {
-        firstName: firstName,
-        lastName: lastName,
-        password: password,
+        firstName,
+        lastName,
+        password,
         createdAt: new Date().toISOString(),
       };
 
       saveRegisteredAccounts(accounts);
-      alert(
-        "Account created successfully! Please sign in with your credentials.",
-      );
-      window.location.href = "signin.html";
+
+      const profileData = {
+        firstName,
+        lastName,
+        email,
+        updatedAt: new Date().toISOString(),
+      };
+
+      localStorage.setItem(STORAGE_PROFILE_KEY, JSON.stringify(profileData));
+      sessionStorage.setItem("userEmail", email);
+      sessionStorage.setItem("isUnlocked", "true");
+
+      updateNavbarUserName();
+      alert("Account created successfully! Redirecting to dashboard...");
+      window.location.href = "dashboard.html";
     });
   }
 
-  // Sign-In Handler
+  // Sign-In Handler with "Remember Me" Memory Support
   const freeSigninForm = document.querySelector("#freeSigninForm");
   if (freeSigninForm) {
     freeSigninForm.addEventListener("submit", (e) => {
@@ -437,13 +531,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const emailInput = document.querySelector("#signinEmail");
       const passwordInput = document.querySelector("#signinPassword");
+      const rememberCheckbox = document.querySelector("#rememberMe");
 
       const email = emailInput ? emailInput.value.trim().toLowerCase() : "";
       const password = passwordInput ? passwordInput.value.trim() : "";
+      const shouldRemember = rememberCheckbox
+        ? rememberCheckbox.checked
+        : false;
+
+      clearFieldError(emailInput);
 
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailRegex.test(email)) {
-        alert("Please enter a valid email address.");
+        showFieldError(emailInput, "Please enter a valid email address.");
         return;
       }
 
@@ -456,8 +556,9 @@ document.addEventListener("DOMContentLoaded", () => {
       const userAccount = accounts[email];
 
       if (!userAccount) {
-        alert(
-          "No account found with this email address. Please check your email or sign up.",
+        showFieldError(
+          emailInput,
+          "No account found with this email address. Please sign up.",
         );
         return;
       }
@@ -477,6 +578,14 @@ document.addEventListener("DOMContentLoaded", () => {
       localStorage.setItem(STORAGE_PROFILE_KEY, JSON.stringify(profileData));
       sessionStorage.setItem("userEmail", email);
       sessionStorage.setItem("isUnlocked", "true");
+
+      if (shouldRemember) {
+        localStorage.setItem(STORAGE_REMEMBER_KEY, "true");
+        localStorage.setItem(STORAGE_REMEMBER_EMAIL_KEY, email);
+      } else {
+        localStorage.removeItem(STORAGE_REMEMBER_KEY);
+        localStorage.removeItem(STORAGE_REMEMBER_EMAIL_KEY);
+      }
 
       updateNavbarUserName();
       window.location.href = "dashboard.html";
@@ -514,7 +623,7 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => {
       if (isPaymentCompleted) {
         sessionStorage.setItem("isUnlocked", "true");
-        localStorage.setItem("aerolover_payment_active", "true"); // Grants access to exclusive.html
+        localStorage.setItem("aerolover_payment_active", "true"); // Unlocks exclusive.html
         sessionStorage.removeItem("paymentCompleted");
         window.location.href = "exclusive.html";
       } else {
@@ -522,5 +631,184 @@ document.addEventListener("DOMContentLoaded", () => {
         if (failedState) failedState.classList.remove("d-none");
       }
     }, 2000);
+  }
+
+  // ==========================================
+  // 5. INTERNAL SEARCH & ROUTING SYSTEM
+  // ==========================================
+  const searchForm = document.querySelector("#searchForm");
+  const searchInput = document.querySelector("#searchInput");
+
+  const searchRoutes = [
+    {
+      keywords: [
+        "airline",
+        "airlines",
+        "fleet",
+        "fleets",
+        "aircraft",
+        "carrier",
+        "flights",
+      ],
+      target: "airlines.html",
+    },
+    {
+      keywords: [
+        "airport",
+        "airports",
+        "terminal",
+        "terminals",
+        "runway",
+        "gate",
+        "lounge",
+      ],
+      target: "airports.html",
+    },
+    {
+      keywords: [
+        "news",
+        "headline",
+        "headlines",
+        "article",
+        "breaking",
+        "story",
+        "updates",
+      ],
+      target: "news.html",
+    },
+    {
+      keywords: [
+        "sustainability",
+        "sustainable",
+        "green",
+        "carbon",
+        "eco",
+        "emissions",
+      ],
+      target: "sustainability.html",
+    },
+    {
+      keywords: [
+        "technology",
+        "tech",
+        "saf",
+        "avionics",
+        "fuel",
+        "hydrogen",
+        "innovation",
+      ],
+      target: "technology.html",
+    },
+    {
+      keywords: ["contact", "message", "support", "email", "reach", "help"],
+      target: "contact.html",
+    },
+    {
+      keywords: ["dashboard", "settings", "profile", "account"],
+      target: "dashboard.html",
+    },
+    {
+      keywords: ["exclusive", "vip", "premium"],
+      target: "exclusive.html",
+    },
+    {
+      keywords: ["plan", "plans", "pricing", "upgrade", "subscription"],
+      target: "plans.html",
+    },
+    {
+      keywords: ["signin", "sign in", "login", "log in"],
+      target: "signin.html",
+    },
+    {
+      keywords: ["signup", "sign up", "register", "join"],
+      target: "signup.html",
+    },
+  ];
+
+  if (searchForm && searchInput) {
+    searchForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const query = searchInput.value.trim().toLowerCase();
+
+      if (!query) return;
+
+      const matchedRoute = searchRoutes.find((route) =>
+        route.keywords.some((keyword) => query.includes(keyword)),
+      );
+
+      if (matchedRoute) {
+        window.location.href = matchedRoute.target;
+      } else {
+        window.open(
+          `https://www.google.com/search?q=${encodeURIComponent(query)}`,
+          "_blank",
+        );
+      }
+    });
+  }
+
+  // ==========================================
+  // 6. CONTACT FORM HANDLER WITH STRICT EXECUTION HALT
+  // ==========================================
+  const contactForm = document.querySelector("#contactForm");
+  const contactAlertBox = document.querySelector("#contactAlert");
+  const contactAlertMsg = document.querySelector("#contactAlertMsg");
+  const submitMsgBtn = document.querySelector("#submitMsgBtn");
+
+  if (contactForm) {
+    const contactEmailInput = document.querySelector("#contactEmail");
+
+    // Clear error message in real-time as user types
+    if (contactEmailInput) {
+      contactEmailInput.addEventListener("input", () => {
+        clearFieldError(contactEmailInput);
+      });
+    }
+
+    contactForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const emailValue = contactEmailInput
+        ? contactEmailInput.value.trim()
+        : "";
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      clearFieldError(contactEmailInput);
+
+      // STRICT VALIDATION: STOP PROCESS IMMEDIATELY IF INVALID
+      if (!emailValue || !emailRegex.test(emailValue)) {
+        showFieldError(
+          contactEmailInput,
+          "Please enter a valid email address (e.g., user@domain.com).",
+        );
+        if (contactAlertBox) {
+          contactAlertBox.classList.add("d-none");
+        }
+        return; // HALT EXECUTION HERE - DO NOT SEND
+      }
+
+      // Proceed only if email is valid
+      if (submitMsgBtn) {
+        submitMsgBtn.disabled = true;
+        submitMsgBtn.textContent = "Sending...";
+      }
+
+      setTimeout(() => {
+        if (submitMsgBtn) {
+          submitMsgBtn.disabled = false;
+          submitMsgBtn.textContent = "Send Message ✈️";
+        }
+
+        if (contactAlertBox && contactAlertMsg) {
+          contactAlertMsg.textContent =
+            "Thank you! Your message has been sent directly to the Aerolover team.";
+          contactAlertBox.className =
+            "alert alert-success alert-dismissible fade show mb-4";
+          contactAlertBox.classList.remove("d-none");
+        }
+
+        contactForm.reset();
+      }, 1200);
+    });
   }
 });

@@ -1,0 +1,439 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Aerolover - Ultimate Aviation Portal</title>
+    <!-- Standard Bootstrap 5 CSS CDN -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      crossorigin="anonymous"
+    />
+    <style>
+      .navbar-glass {
+        background-color: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+      }
+      .hero-section {
+        background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);
+        color: #ffffff;
+      }
+      .carousel-item img {
+        height: 420px;
+        object-fit: cover;
+      }
+      .carousel-caption-glass {
+        background: rgba(0, 0, 0, 0.65);
+        backdrop-filter: blur(8px);
+        border-radius: 1rem;
+        padding: 1.25rem 1.5rem;
+      }
+    </style>
+  </head>
+  <body class="bg-light">
+    <!-- Navbar (Unauthenticated State) -->
+    <nav
+      class="navbar navbar-expand-lg sticky-top navbar-glass border-bottom shadow-sm py-2"
+    >
+      <div class="container-fluid px-4">
+        <a class="navbar-brand me-4" href="index.html">
+          <img
+            src="image/image.png"
+            alt="Aerolover Logo"
+            style="height: 3.2rem"
+          />
+        </a>
+        <button
+          class="navbar-toggler border-0"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarContent"
+          aria-controls="navbarContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0 fw-semibold">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="index.html"
+                >Home</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="airlines.html">Airlines</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="airports.html">Airports</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="news.html">News</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="sustainability.html">Sustainability</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="technology.html">Technology</a>
+            </li>
+          </ul>
+
+          <div class="d-flex align-items-center gap-2">
+            <a
+              href="signin.html"
+              class="btn btn-outline-primary rounded-pill px-3"
+            >
+              Sign In
+            </a>
+            <a href="signup.html" class="btn btn-primary rounded-pill px-3">
+              Create Free Account
+            </a>
+
+            <form
+              id="searchForm"
+              class="d-flex gap-2 ms-2"
+              role="search"
+              action="https://www.google.com/search"
+              method="get"
+              target="_blank"
+            >
+              <div class="input-group">
+                <input
+                  type="search"
+                  name="q"
+                  id="searchInput"
+                  class="form-control rounded-start-pill"
+                  placeholder="Search Google..."
+                  required
+                />
+                <button type="submit" class="btn btn-primary rounded-end-pill">
+                  Search
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Contact Section -->
+    <main class="container py-5">
+      <div class="row justify-content-center">
+        <div class="col-lg-10">
+          <!-- Page Header -->
+          <div class="text-center mb-5">
+            <span
+              class="badge bg-primary-subtle text-primary mb-2 px-3 py-2 rounded-pill fw-semibold"
+            >
+              Get in Touch
+            </span>
+            <h1 class="display-5 fw-bold text-dark">
+              Send Us a Direct Message
+            </h1>
+            <p class="text-muted fs-5">
+              Have questions, feedback, or news tips? Fill out the form below
+              and our team will get back to you shortly.
+            </p>
+          </div>
+
+          <div class="row g-4">
+            <!-- Left Info Card -->
+            <div class="col-md-4">
+              <div
+                class="card border-0 shadow-sm rounded-4 h-100 bg-primary text-white p-4 d-flex flex-column justify-content-between"
+              >
+                <div>
+                  <h3 class="fw-bold mb-4">Contact Information</h3>
+                  <p class="opacity-75 mb-4">
+                    Reach out directly for general inquiries, press kits, or
+                    platform support.
+                  </p>
+
+                  <div class="mb-3 d-flex align-items-center gap-3">
+                    <span class="fs-4">📧</span>
+                    <div>
+                      <small class="d-block opacity-75 text-uppercase"
+                        >Email</small
+                      >
+                      <span class="fw-semibold">contact@aerolover.com</span>
+                    </div>
+                  </div>
+
+                  <div class="mb-3 d-flex align-items-center gap-3">
+                    <span class="fs-4">📍</span>
+                    <div>
+                      <small class="d-block opacity-75 text-uppercase"
+                        >Location</small
+                      >
+                      <span class="fw-semibold"
+                        >Worldwide Aviation Network</span
+                      >
+                    </div>
+                  </div>
+
+                  <div class="mb-3 d-flex align-items-center gap-3">
+                    <span class="fs-4">🕒</span>
+                    <div>
+                      <small class="d-block opacity-75 text-uppercase"
+                        >Response Time</small
+                      >
+                      <span class="fw-semibold">Within 24 Hours</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="pt-4 border-top border-white border-opacity-25">
+                  <span class="small opacity-75"
+                    >✈️ Aerolover Editorial & Support Center</span
+                  >
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Contact Form Card -->
+            <div class="col-md-8">
+              <div class="card border-0 shadow-sm rounded-4 p-4 bg-white">
+                <!-- Submission Feedback Alert -->
+                <div
+                  id="contactAlert"
+                  class="alert alert-success alert-dismissible fade show d-none mb-4"
+                  role="alert"
+                >
+                  <span id="contactAlertMsg"
+                    >Your message has been sent successfully! We will contact
+                    you soon.</span
+                  >
+                  <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="alert"
+                    aria-label="Close"
+                  ></button>
+                </div>
+
+                <form id="contactForm" class="row g-3" novalidate>
+                  <div class="col-md-6">
+                    <label for="contactFirstName" class="form-label fw-semibold"
+                      >First Name</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control rounded-3"
+                      id="contactFirstName"
+                      placeholder="First Name"
+                      autocomplete="off"
+                      required
+                    />
+                  </div>
+
+                  <div class="col-md-6">
+                    <label for="contactLastName" class="form-label fw-semibold"
+                      >Last Name</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control rounded-3"
+                      id="contactLastName"
+                      placeholder="Last Name"
+                      autocomplete="off"
+                      required
+                    />
+                  </div>
+
+                  <div class="col-12">
+                    <label for="contactEmail" class="form-label fw-semibold"
+                      >Email Address</label
+                    >
+                    <input
+                      type="email"
+                      class="form-control rounded-3"
+                      id="contactEmail"
+                      placeholder="name@example.com"
+                      autocomplete="off"
+                      required
+                    />
+                    <div class="invalid-feedback fw-semibold mt-1">
+                      Please enter a valid email address (e.g.,
+                      user@domain.com).
+                    </div>
+                  </div>
+
+                  <div class="col-12">
+                    <label for="contactSubject" class="form-label fw-semibold"
+                      >Subject</label
+                    >
+                    <select
+                      class="form-select rounded-3"
+                      id="contactSubject"
+                      required
+                    >
+                      <option value="" selected disabled>
+                        Select a topic...
+                      </option>
+                      <option value="general">General Inquiry</option>
+                      <option value="feedback">Platform Feedback</option>
+                      <option value="press">Press & News Submission</option>
+                      <option value="support">Account Support</option>
+                    </select>
+                  </div>
+
+                  <div class="col-12">
+                    <label for="contactMessage" class="form-label fw-semibold"
+                      >Message</label
+                    >
+                    <textarea
+                      class="form-control rounded-3"
+                      id="contactMessage"
+                      rows="5"
+                      placeholder="Type your message here..."
+                      required
+                    ></textarea>
+                  </div>
+
+                  <div class="col-12 text-end">
+                    <button
+                      type="submit"
+                      id="submitMsgBtn"
+                      class="btn btn-primary rounded-pill px-4 py-2 fw-semibold"
+                    >
+                      Send Message ✈️
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white pt-5 pb-4 mt-5">
+      <div class="container text-center text-md-start">
+        <div class="row g-4">
+          <div class="col-md-4 col-lg-4 col-xl-3 mx-auto">
+            <a href="index.html" class="d-inline-block mb-3">
+              <img
+                src="image/image.png"
+                alt="AeroLover logo"
+                style="height: 4.5rem"
+              />
+            </a>
+            <p class="text-white-50 small">
+              Your ultimate portal for aviation news, airport updates, airline
+              fleet specs, and future aerospace technologies.
+            </p>
+          </div>
+
+          <div class="col-md-2 col-lg-2 col-xl-2 mx-auto">
+            <h6 class="text-uppercase mb-3 fw-bold text-primary">Navigation</h6>
+            <ul class="list-unstyled small">
+              <li class="mb-2">
+                <a href="index.html" class="text-white-50 text-decoration-none"
+                  >Home</a
+                >
+              </li>
+              <li class="mb-2">
+                <a
+                  href="airlines.html"
+                  class="text-white-50 text-decoration-none"
+                  >Airlines</a
+                >
+              </li>
+              <li class="mb-2">
+                <a
+                  href="airports.html"
+                  class="text-white-50 text-decoration-none"
+                  >Airports</a
+                >
+              </li>
+              <li class="mb-2">
+                <a href="news.html" class="text-white-50 text-decoration-none"
+                  >News</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div class="col-md-3 col-lg-2 col-xl-2 mx-auto">
+            <h6 class="text-uppercase mb-3 fw-bold text-primary">Topics</h6>
+            <ul class="list-unstyled small">
+              <li class="mb-2">
+                <a
+                  href="sustainability.html"
+                  class="text-white-50 text-decoration-none"
+                  >Sustainability</a
+                >
+              </li>
+              <li class="mb-2">
+                <a
+                  href="technology.html"
+                  class="text-white-50 text-decoration-none"
+                  >Technology</a
+                >
+              </li>
+              <li class="mb-2">
+                <a href="signin.html" class="text-white-50 text-decoration-none"
+                  >Exclusive Access</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div class="col-md-3 col-lg-3 col-xl-3 mx-auto small">
+            <h6 class="text-uppercase mb-3 fw-bold text-primary">Connect</h6>
+            <p class="mb-2 text-white-50">📧 contact@aerolover.com</p>
+            <p class="mb-2 text-white-50">📍 Worldwide Aviation Network</p>
+          </div>
+        </div>
+
+        <hr class="my-4 border-light opacity-25" />
+
+        <div class="row align-items-center small">
+          <div class="col-md-7 text-center text-md-start">
+            <p class="mb-0 text-white-50">
+              © 2026 Aerolover. Built with Bootstrap 5 & Vanilla JS.
+            </p>
+          </div>
+          <div class="col-md-5 text-center text-md-end mt-3 mt-md-0">
+            <a href="#" class="text-white-50 text-decoration-none me-3"
+              >Privacy Policy</a
+            >
+            <a href="#" class="text-white-50 text-decoration-none"
+              >Terms of Service</a
+            >
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Import Map for ES Modules -->
+    <script type="importmap">
+      {
+        "imports": {
+          "@popperjs/core": "https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/esm/popper.js",
+          "bootstrap": "https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.esm.min.js"
+        }
+      }
+    </script>
+
+    <!-- Bootstrap Module Script -->
+    <script type="module">
+      import * as bootstrap from "bootstrap";
+
+      // Initialize carousel
+      const newsCarousel = document.querySelector("#newsCarousel");
+      if (newsCarousel) {
+        new bootstrap.Carousel(newsCarousel, {
+          interval: 5000,
+          ride: "carousel",
+        });
+      }
+    </script>
+
+    <!-- Project Scripts -->
+    <script src="script.js"></script>
+  </body>
+</html>
