@@ -811,4 +811,56 @@ document.addEventListener("DOMContentLoaded", () => {
       }, 1200);
     });
   }
+
+  // ==========================================
+  // 7. IN-PAGE AIRPORT FILTER LOGIC
+  // ==========================================
+  const airportFilterInput = document.querySelector("#airportFilterInput");
+  const regionFilterSelect = document.querySelector("#regionFilterSelect");
+  const airportCards = document.querySelectorAll(".airport-card-wrapper");
+  const noResultsMsg = document.querySelector("#noResultsMsg");
+
+  function applyAirportFilters() {
+    const query = airportFilterInput
+      ? airportFilterInput.value.toLowerCase().trim()
+      : "";
+    const selectedRegion = regionFilterSelect
+      ? regionFilterSelect.value
+      : "all";
+    let visibleCount = 0;
+
+    airportCards.forEach((card) => {
+      const title = card.getAttribute("data-title")
+        ? card.getAttribute("data-title").toLowerCase()
+        : "";
+      const region = card.getAttribute("data-region");
+
+      const matchesText = title.includes(query);
+      const matchesRegion =
+        selectedRegion === "all" || region === selectedRegion;
+
+      if (matchesText && matchesRegion) {
+        card.classList.remove("d-none");
+        visibleCount++;
+      } else {
+        card.classList.add("d-none");
+      }
+    });
+
+    if (noResultsMsg) {
+      if (visibleCount === 0) {
+        noResultsMsg.classList.remove("d-none");
+      } else {
+        noResultsMsg.classList.add("d-none");
+      }
+    }
+  }
+
+  if (airportFilterInput) {
+    airportFilterInput.addEventListener("input", applyAirportFilters);
+  }
+
+  if (regionFilterSelect) {
+    regionFilterSelect.addEventListener("change", applyAirportFilters);
+  }
 });

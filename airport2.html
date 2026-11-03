@@ -30,6 +30,10 @@
         border-radius: 1rem;
         padding: 1.25rem 1.5rem;
       }
+      .card-img-top {
+        height: 240px;
+        object-fit: cover;
+      }
     </style>
   </head>
   <body class="bg-light">
@@ -59,15 +63,18 @@
         <div class="collapse navbar-collapse" id="navbarContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0 fw-semibold">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="index.html"
-                >Home</a
-              >
+              <a class="nav-link" href="index.html">Home</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="airlines.html">Airlines</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="airports.html">Airports</a>
+              <a
+                class="nav-link active"
+                aria-current="page"
+                href="airports.html"
+                >Airports</a
+              >
             </li>
             <li class="nav-item">
               <a class="nav-link" href="news.html">News</a>
@@ -91,10 +98,18 @@
               Create Free Account
             </a>
 
-            <form id="searchForm" class="d-flex gap-2 ms-2" role="search">
+            <form
+              id="searchForm"
+              class="d-flex gap-2 ms-2"
+              role="search"
+              action="https://www.google.com/search"
+              method="get"
+              target="_blank"
+            >
               <div class="input-group">
                 <input
                   type="search"
+                  name="q"
                   id="searchInput"
                   class="form-control rounded-start-pill"
                   placeholder="Search..."
@@ -109,99 +124,270 @@
         </div>
       </div>
     </nav>
+
+    <!-- Header & Filter Section -->
+    <div class="container mt-5">
+      <div class="text-primary fw-bold text-uppercase small tracking-wide">
+        Global Hubs & Terminals
+      </div>
+      <h2 class="fw-bold mb-3">Airports Directory (Page 2)</h2>
+
+      <!-- Filter Controls Bar -->
+      <div class="card border-0 shadow-sm rounded-4 p-3 mb-4 bg-white">
+        <div class="row g-3 align-items-center">
+          <div class="col-md-7">
+            <div class="input-group">
+              <span
+                class="input-group-text bg-light border-end-0 rounded-start-pill text-muted px-3"
+                >🔍</span
+              >
+              <input
+                type="text"
+                id="airportFilterInput"
+                class="form-control bg-light border-start-0 rounded-end-pill"
+                placeholder="Filter airports by name, city or airport code..."
+              />
+            </div>
+          </div>
+          <div class="col-md-5">
+            <select
+              id="regionFilterSelect"
+              class="form-select rounded-pill bg-light"
+            >
+              <option value="all" selected>All Regions</option>
+              <option value="south-america">South America</option>
+              <option value="europe">Europe</option>
+              <option value="north-america">North America</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Airports Grid -->
     <div class="container">
-      <div class="row g-3 gx-3 gy-3">
-        <div class="col-6">
-          <section class="card" style="max-width: 499px">
-            <img src="..." class="card-img-top" alt="..." />
-            <div class="card-body">
-              <h4 class="card-title">Card title</h4>
-              <p class="card-text">
-                Some quick example text to build on the card title and make up
-                the bulk of the card’s content.
+      <div class="row g-4" id="airportsGrid">
+        <!-- Airport 1 -->
+        <div
+          class="col-md-6 airport-card-wrapper"
+          data-title="São Paulo-Guarulhos International Airport (GRU)"
+          data-region="south-america"
+        >
+          <section
+            class="card h-100 shadow-sm border-0 rounded-4 overflow-hidden"
+          >
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/e/e1/Sao_paulo_airport_terminal_3.jpg?utm_source=en.wikipedia.org&utm_campaign=index&utm_content=original"
+              class="card-img-top"
+              alt="Guarulhos Terminal 3"
+            />
+            <div class="card-body p-4">
+              <span
+                class="badge bg-primary-subtle text-primary rounded-pill mb-2"
+                >South America</span
+              >
+              <h4 class="card-title fw-bold">São Paulo Guarulhos (GRU)</h4>
+              <p class="card-text text-muted">
+                Brazil’s busiest international airport hub featuring modern
+                passenger terminals and extensive long-haul connectivity across
+                Latin America.
               </p>
-              <a href="#" class="btn-solid theme-primary">Go somewhere</a>
+              <a href="#" class="btn btn-outline-primary btn-sm rounded-pill"
+                >View Details</a
+              >
             </div>
           </section>
         </div>
-        <div class="col-6">
-          <section class="card" style="max-width: 499px">
-            <img src="..." class="card-img-top" alt="..." />
-            <div class="card-body">
-              <h4 class="card-title">Card title</h4>
-              <p class="card-text">
-                Some quick example text to build on the card title and make up
-                the bulk of the card’s content.
+
+        <!-- Airport 2 -->
+        <div
+          class="col-md-6 airport-card-wrapper"
+          data-title="London Heathrow Airport (LHR)"
+          data-region="europe"
+        >
+          <section
+            class="card h-100 shadow-sm border-0 rounded-4 overflow-hidden"
+          >
+            <img
+              src="https://londontopia.net/wp-content/uploads/2015/02/Heathrow-T5.jpg"
+              class="card-img-top"
+              alt="London Heathrow Terminal 5"
+            />
+            <div class="card-body p-4">
+              <span
+                class="badge bg-success-subtle text-success rounded-pill mb-2"
+                >Europe</span
+              >
+              <h4 class="card-title fw-bold">London Heathrow (LHR)</h4>
+              <p class="card-text text-muted">
+                One of Europe’s primary aviation gateways, processing tens of
+                millions of international passengers annually through five
+                terminals.
               </p>
-              <a href="#" class="btn-solid theme-primary">Go somewhere</a>
+              <a href="#" class="btn btn-outline-primary btn-sm rounded-pill"
+                >View Details</a
+              >
             </div>
           </section>
         </div>
-        <div class="col-6">
-          <section class="card" style="max-width: 499px">
-            <img src="..." class="card-img-top" alt="..." />
-            <div class="card-body">
-              <h4 class="card-title">Card title</h4>
-              <p class="card-text">
-                Some quick example text to build on the card title and make up
-                the bulk of the card’s content.
+
+        <!-- Airport 3 -->
+        <div
+          class="col-md-6 airport-card-wrapper"
+          data-title="John F. Kennedy International Airport (JFK)"
+          data-region="north-america"
+        >
+          <section
+            class="card h-100 shadow-sm border-0 rounded-4 overflow-hidden"
+          >
+            <img
+              src="https://s7d9.scene7.com/is/image/panynjaviation/T4-exterior-new:card-wide-16x9"
+              class="card-img-top"
+              alt="JFK Airport New York"
+            />
+            <div class="card-body p-4">
+              <span class="badge bg-info-subtle text-info rounded-pill mb-2"
+                >North America</span
+              >
+              <h4 class="card-title fw-bold">New York JFK (JFK)</h4>
+              <p class="card-text text-muted">
+                The major international gateway to New York City with
+                multi-terminal operations undergoing a billion-dollar
+                modernization project.
               </p>
-              <a href="#" class="btn-solid theme-primary">Go somewhere</a>
+              <a href="#" class="btn btn-outline-primary btn-sm rounded-pill"
+                >View Details</a
+              >
             </div>
           </section>
         </div>
-        <div class="col-6">
-          <section class="card" style="max-width: 499px">
-            <img src="..." class="card-img-top" alt="..." />
-            <div class="card-body">
-              <h4 class="card-title">Card title</h4>
-              <p class="card-text">
-                Some quick example text to build on the card title and make up
-                the bulk of the card’s content.
+
+        <!-- Airport 4 -->
+        <div
+          class="col-md-6 airport-card-wrapper"
+          data-title="Paris Charles de Gaulle Airport (CDG)"
+          data-region="europe"
+        >
+          <section
+            class="card h-100 shadow-sm border-0 rounded-4 overflow-hidden"
+          >
+            <img
+              src="https://cdn-paso-back.pro.digital.cloud-adp.fr/back/upload/large_cdg_terminal2_E_hall_K_plan_351d0f4634.jpg"
+              class="card-img-top"
+              alt="Paris CDG Terminal 2E"
+            />
+            <div class="card-body p-4">
+              <span
+                class="badge bg-success-subtle text-success rounded-pill mb-2"
+                >Europe</span
+              >
+              <h4 class="card-title fw-bold">Paris Charles de Gaulle (CDG)</h4>
+              <p class="card-text text-muted">
+                France’s largest hub connecting major worldwide destinations
+                with dedicated high-speed rail integration directly inside the
+                terminals.
               </p>
-              <a href="#" class="btn-solid theme-primary">Go somewhere</a>
+              <a href="#" class="btn btn-outline-primary btn-sm rounded-pill"
+                >View Details</a
+              >
             </div>
           </section>
         </div>
-        <div class="col-6">
-          <section class="card" style="max-width: 499px">
-            <img src="..." class="card-img-top" alt="..." />
-            <div class="card-body">
-              <h4 class="card-title">Card title</h4>
-              <p class="card-text">
-                Some quick example text to build on the card title and make up
-                the bulk of the card’s content.
+
+        <!-- Airport 5 -->
+        <div
+          class="col-md-6 airport-card-wrapper"
+          data-title="Frankfurt Airport (FRA)"
+          data-region="europe"
+        >
+          <section
+            class="card h-100 shadow-sm border-0 rounded-4 overflow-hidden"
+          >
+            <img
+              src="https://www.kiwi.com/stories/images/media/fra-hero-2026-guide.webp"
+              class="card-img-top"
+              alt="Frankfurt Main Airport"
+            />
+            <div class="card-body p-4">
+              <span
+                class="badge bg-success-subtle text-success rounded-pill mb-2"
+                >Europe</span
+              >
+              <h4 class="card-title fw-bold">Frankfurt Airport (FRA)</h4>
+              <p class="card-text text-muted">
+                Germany’s main aviation hub, renowned for cargo handling,
+                extensive passenger transfers, and next-generation terminal
+                infrastructure.
               </p>
-              <a href="#" class="btn-solid theme-primary">Go somewhere</a>
+              <a href="#" class="btn btn-outline-primary btn-sm rounded-pill"
+                >View Details</a
+              >
             </div>
           </section>
         </div>
-        <div class="col-6">
-          <section class="card" style="max-width: 499px">
-            <img src="..." class="card-img-top" alt="..." />
-            <div class="card-body">
-              <h4 class="card-title">Card title</h4>
-              <p class="card-text">
-                Some quick example text to build on the card title and make up
-                the bulk of the card’s content.
+
+        <!-- Airport 6 -->
+        <div
+          class="col-md-6 airport-card-wrapper"
+          data-title="Los Angeles International Airport (LAX)"
+          data-region="north-america"
+        >
+          <section
+            class="card h-100 shadow-sm border-0 rounded-4 overflow-hidden"
+          >
+            <img
+              src="https://static0.simpleflyingimages.com/wordpress/wp-content/uploads/2025/02/delta-air-lines-airbus-a321-at-lax-shutterstock_2418144697.jpg"
+              class="card-img-top"
+              alt="Los Angeles LAX"
+            />
+            <div class="card-body p-4">
+              <span class="badge bg-info-subtle text-info rounded-pill mb-2"
+                >North America</span
+              >
+              <h4 class="card-title fw-bold">Los Angeles (LAX)</h4>
+              <p class="card-text text-muted">
+                The primary international hub serving Southern California,
+                featuring Automated People Mover connections and upgraded
+                passenger lounges.
               </p>
-              <a href="#" class="btn-solid theme-primary">Go somewhere</a>
+              <a href="#" class="btn btn-outline-primary btn-sm rounded-pill"
+                >View Details</a
+              >
             </div>
           </section>
         </div>
       </div>
+
+      <!-- No Results Message -->
+      <div
+        id="noResultsMsg"
+        class="alert alert-warning text-center rounded-4 py-4 d-none mt-4"
+        role="alert"
+      >
+        <h5>No Airports Found</h5>
+        <p class="mb-0 text-muted">
+          Try adjusting your search terms or region filter.
+        </p>
+      </div>
     </div>
-    <nav aria-label="Page navigation example">
-      <ul class="pagination" style="margin-left: 42%; margin-top: 4%">
+
+    <!-- Pagination -->
+    <nav
+      aria-label="Page navigation example"
+      class="d-flex justify-content-center mt-5"
+    >
+      <ul class="pagination">
         <li class="page-item">
-          <a class="page-link" href="#" aria-label="Previous">
+          <a class="page-link" href="airports.html" aria-label="Previous">
             <span aria-hidden="true">&laquo;</span>
           </a>
         </li>
         <li class="page-item">
           <a class="page-link" href="airports.html">1</a>
         </li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item active">
+          <a class="page-link" href="airport2.html">2</a>
+        </li>
         <li class="page-item"><a class="page-link" href="#">3</a></li>
         <li class="page-item">
           <a class="page-link" href="#" aria-label="Next">
@@ -210,6 +396,7 @@
         </li>
       </ul>
     </nav>
+
     <!-- Footer -->
     <footer class="bg-dark text-white pt-5 pb-4 mt-5">
       <div class="container text-center text-md-start">
@@ -323,15 +510,6 @@
     <!-- Bootstrap Module Script -->
     <script type="module">
       import * as bootstrap from "bootstrap";
-
-      // Initialize carousel
-      const newsCarousel = document.querySelector("#newsCarousel");
-      if (newsCarousel) {
-        new bootstrap.Carousel(newsCarousel, {
-          interval: 5000,
-          ride: "carousel",
-        });
-      }
     </script>
 
     <!-- Project Scripts -->
