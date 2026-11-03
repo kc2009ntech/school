@@ -12,7 +12,7 @@
     />
     <style>
       .navbar-glass {
-        background-color: rgba(255, 255, 255, 0.85);
+        background-color: rgba(253, 252, 252, 0.85);
         backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);
       }
@@ -20,7 +20,7 @@
         width: 32px;
         height: 32px;
         background-color: #0d6efd;
-        color: #ffffff;
+        color: #faf6f6;
         font-weight: bold;
         font-size: 0.85rem;
         border-radius: 50%;
@@ -80,10 +80,10 @@
               <a class="nav-link" href="airlines.html">Airlines</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="airports.html">Airports</a>
+              <a class="nav-link" href="dashboard_airports.html">Airports</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="dashboard2.html">News</a>
+              <a class="nav-link" href="dashboard2.html">Latest news</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="sustainability.html">Sustainability</a>
@@ -91,17 +91,16 @@
             <li class="nav-item">
               <a class="nav-link" href="technology.html">Technology</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="airspace.html">Airspace</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="technology.html">Technology</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="dashboard_contact.html">Contact</a>
+            </li>
           </ul>
-
-          <div class="d-flex align-items-center gap-2">
-            <!-- Upgrade Plan Redirect Button -->
-            <a
-              href="plans.html"
-              class="btn btn-warning rounded-pill px-3 fw-bold text-dark me-1"
-            >
-              ⚡ Upgrade Plan
-            </a>
-
             <!-- Account Dropdown -->
             <div class="dropdown">
               <button
@@ -289,9 +288,7 @@
             <h6 class="text-uppercase mb-3 fw-bold text-primary">Navigation</h6>
             <ul class="list-unstyled small">
               <li class="mb-2">
-                <a
-                  href="dashboard.html"
-                  class="text-white-50 text-decoration-none"
+                <a href="index.html" class="text-white-50 text-decoration-none"
                   >Home</a
                 >
               </li>
@@ -311,17 +308,12 @@
               </li>
               <li class="mb-2">
                 <a
-                  href="dashboard2.html"
+                  href="latestnews.html"
                   class="text-white-50 text-decoration-none"
-                  >News</a
+                  >Latest news</a
                 >
               </li>
-            </ul>
-          </div>
 
-          <div class="col-md-3 col-lg-2 col-xl-2 mx-auto">
-            <h6 class="text-uppercase mb-3 fw-bold text-primary">Topics</h6>
-            <ul class="list-unstyled small">
               <li class="mb-2">
                 <a
                   href="sustainability.html"
@@ -336,9 +328,27 @@
                   >Technology</a
                 >
               </li>
+            </ul>
+          </div>
+
+          <div class="col-md-3 col-lg-2 col-xl-2 mx-auto">
+            <h6 class="text-uppercase mb-3 fw-bold text-primary">Benefits</h6>
+            <ul class="list-unstyled small">
               <li class="mb-2">
                 <a href="plans.html" class="text-white-50 text-decoration-none"
-                  >Upgrade Plan</a
+                  >Exclusive Access</a
+                >
+              </li>
+
+              <li class="mb-2">
+                <a href="signin.html" class="text-white-50 text-decoration-none"
+                  >Sign in</a
+                >
+              </li>
+
+              <li class="mb-2">
+                <a href="signup.html" class="text-white-50 text-decoration-none"
+                  >Create account</a
                 >
               </li>
             </ul>
@@ -380,27 +390,22 @@
         }
       }
     </script>
+
+    <!-- Bootstrap Module Script -->
     <script type="module">
       import * as bootstrap from "bootstrap";
+
+      // Initialize carousel
+      const newsCarousel = document.querySelector("#newsCarousel");
+      if (newsCarousel) {
+        new bootstrap.Carousel(newsCarousel, {
+          interval: 5000,
+          ride: "carousel",
+        });
+      }
     </script>
 
-    <!-- Inline Auth State Toggle Script -->
-    <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        const isUnlocked = sessionStorage.getItem("isUnlocked") === "true";
-        const loggedOutControls = document.querySelector("#loggedOutControls");
-        const loggedInControls = document.querySelector("#loggedInControls");
-
-        if (isUnlocked) {
-          if (loggedOutControls) loggedOutControls.classList.add("d-none");
-          if (loggedInControls) loggedInControls.classList.remove("d-none");
-        } else {
-          if (loggedOutControls) loggedOutControls.classList.remove("d-none");
-          if (loggedInControls) loggedInControls.classList.add("d-none");
-        }
-      });
-    </script>
-
+    <!-- Project Scripts -->
     <script src="script.js"></script>
   </body>
 </html>

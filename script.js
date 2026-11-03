@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const STORAGE_REMEMBER_KEY = "aerolover_remember_me";
   const STORAGE_REMEMBER_EMAIL_KEY = "aerolover_remember_email";
   const STORAGE_LOGOUT_EVENT_KEY = "aerolover_logout_event";
+  const STORAGE_RESET_TOKENS_KEY = "aerolover_password_reset_tokens";
 
   // Dynamic secret passcode fallback
   let SECRET_PASSCODE = localStorage.getItem("aerolover_passcode") || "skyhigh";
@@ -88,6 +89,40 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  function validatePasswordRules(password) {
+    const minLength = 8;
+    const hasUpperCase = /[A-Z]/.test(password);
+    const hasLowerCase = /[a-z]/.test(password);
+    const hasNumber = /[0-9]/.test(password);
+
+    if (password.length < minLength) {
+      return {
+        isValid: false,
+        message: "Password must be at least 8 characters long.",
+      };
+    }
+    if (!hasUpperCase) {
+      return {
+        isValid: false,
+        message: "Password must contain at least one uppercase letter.",
+      };
+    }
+    if (!hasLowerCase) {
+      return {
+        isValid: false,
+        message: "Password must contain at least one lowercase letter.",
+      };
+    }
+    if (!hasNumber) {
+      return {
+        isValid: false,
+        message: "Password must contain at least one number.",
+      };
+    }
+
+    return { isValid: true, message: "Password is valid!" };
+  }
+
   // ==========================================
   // 1. ROUTE GUARD (STRICT UNPAID/SIGNED-OUT BLOCKS)
   // ==========================================
@@ -97,6 +132,7 @@ document.addEventListener("DOMContentLoaded", () => {
     "dashboard_1.html",
     "dashboard_2.html",
     "dashboard_3.html",
+    "dashboard2.html",
     "account.html",
     "plans.html",
   ];
@@ -108,13 +144,13 @@ document.addEventListener("DOMContentLoaded", () => {
     currentPath.includes(page),
   );
 
-  // A. Redirect signed-out / unknown users to sign in
+  // Redirect signed-out / unknown users to sign in
   if ((isProtected || isPaymentProtected) && !isUnlocked) {
     window.location.href = "signin.html";
     return;
   }
 
-  // B. Redirect unpaid users trying to access exclusive page to plans
+  // Redirect unpaid users trying to access exclusive page to plans
   if (isPaymentProtected && !isPaid) {
     window.location.href = "plans.html";
     return;
@@ -423,39 +459,6 @@ document.addEventListener("DOMContentLoaded", () => {
   // ==========================================
   // 4. AUTHENTICATION (SIGN UP & SIGN IN MEMORY)
   // ==========================================
-  function validatePasswordRules(password) {
-    const minLength = 8;
-    const hasUpperCase = /[A-Z]/.test(password);
-    const hasLowerCase = /[a-z]/.test(password);
-    const hasNumber = /[0-9]/.test(password);
-
-    if (password.length < minLength) {
-      return {
-        isValid: false,
-        message: "Password must be at least 8 characters long.",
-      };
-    }
-    if (!hasUpperCase) {
-      return {
-        isValid: false,
-        message: "Password must contain at least one uppercase letter.",
-      };
-    }
-    if (!hasLowerCase) {
-      return {
-        isValid: false,
-        message: "Password must contain at least one lowercase letter.",
-      };
-    }
-    if (!hasNumber) {
-      return {
-        isValid: false,
-        message: "Password must contain at least one number.",
-      };
-    }
-
-    return { isValid: true, message: "Password is valid!" };
-  }
 
   // Sign-Up Handler
   const freeSignupForm = document.querySelector("#freeSignupForm");
@@ -523,7 +526,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Sign-In Handler with "Remember Me" Memory Support
+  // Sign-In Handler
   const freeSigninForm = document.querySelector("#freeSigninForm");
   if (freeSigninForm) {
     freeSigninForm.addEventListener("submit", (e) => {
@@ -592,6 +595,184 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // ==========================================
+  // DIRECT INBOX PROVIDER ROUTER & PASSWORD RESET
+  // ==========================================
+  function getInboxUrlForEmail(email) {
+    const domain = email.split("@")[1] || "";
+    switch (domain.toLowerCase()) {
+      case "gmail.com":
+      case "googlemail.com":
+        return "https://mail.google.com";
+      case "outlook.com":
+      case "hotmail.com":
+      case "live.com":
+      case "msn.com":
+        return "https://outlook.live.com";
+      case "yahoo.com":
+      case "ymail.com":
+        return "https://mail.yahoo.com";
+      case "icloud.com":
+      case "me.com":
+        return "https://www.icloud.com/mail";
+      case "proton.me":
+      case "protonmail.com":
+        return "https://mail.proton.me";
+      default:
+        return `https://${domain}`;
+    }
+  }
+
+  // Forgot Password Request Handler
+  const forgotPasswordForm = document.querySelector("#forgotPasswordForm");
+  if (forgotPasswordForm) {
+    forgotPasswordForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const emailInput = document.querySelector("#forgotEmail");
+      const sendResetBtn = document.querySelector("#sendResetBtn");
+      const alertBox = document.querySelector("#forgotPasswordAlert");
+      const email = emailInput ? emailInput.value.trim().toLowerCase() : "";
+
+      clearFieldError(emailInput);
+
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        showFieldError(emailInput, "Please enter a valid email address.");
+        return;
+      }
+
+      const accounts = getRegisteredAccounts();
+      if (!accounts[email]) {
+        showFieldError(
+          emailInput,
+          "No registered account found with this email address.",
+        );
+        return;
+      }
+
+      if (sendResetBtn) {
+        sendResetBtn.disabled = true;
+        sendResetBtn.textContent = "Sending Request...";
+      }
+
+      // Generate token valid for 1 hour
+      const token =
+        Math.random().toString(36).substring(2, 15) + Date.now().toString(36);
+      const tokens = JSON.parse(
+        localStorage.getItem(STORAGE_RESET_TOKENS_KEY) || "{}",
+      );
+      tokens[token] = { email, expires: Date.now() + 3600000 };
+      localStorage.setItem(STORAGE_RESET_TOKENS_KEY, JSON.stringify(tokens));
+
+      setTimeout(() => {
+        const inboxUrl = getInboxUrlForEmail(email);
+
+        if (alertBox) {
+          alertBox.className = "alert alert-success mt-3 shadow-sm";
+          alertBox.innerHTML = `
+            <div class="d-flex align-items-center mb-2">
+              <span class="fs-4 me-2">📩</span>
+              <div>
+                <strong>Reset Link Sent to ${email}!</strong>
+              </div>
+            </div>
+            <p class="small text-muted mb-3">
+              We have sent a password reset link to your email. Please open your inbox to access the link and set a new password.
+            </p>
+            <div class="d-grid gap-2">
+              <a href="${inboxUrl}" target="_blank" class="btn btn-sm btn-success rounded-pill fw-bold">
+                Open Email Inbox (${email.split("@")[1]}) ↗
+              </a>
+            </div>
+          `;
+          alertBox.classList.remove("d-none");
+        }
+
+        if (sendResetBtn) {
+          sendResetBtn.disabled = false;
+          sendResetBtn.textContent = "Resend Request";
+        }
+      }, 800);
+    });
+  }
+
+  // Reset Password Execution Handler
+  const resetPasswordForm = document.querySelector("#resetPasswordForm");
+  if (resetPasswordForm) {
+    const urlParams = new URLSearchParams(window.location.search);
+    const token = urlParams.get("token");
+    const alertBox = document.querySelector("#resetPasswordAlert");
+
+    const tokens = JSON.parse(
+      localStorage.getItem(STORAGE_RESET_TOKENS_KEY) || "{}",
+    );
+    const tokenData = tokens[token];
+
+    if (!token || !tokenData || Date.now() > tokenData.expires) {
+      if (alertBox) {
+        alertBox.className = "alert alert-danger";
+        alertBox.textContent =
+          "This password reset link is invalid or has expired. Please request a new one.";
+        alertBox.classList.remove("d-none");
+      }
+      resetPasswordForm.style.display = "none";
+    }
+
+    resetPasswordForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const newPassInput = document.querySelector("#newPassword");
+      const confirmPassInput = document.querySelector("#confirmNewPassword");
+      const saveBtn = document.querySelector("#saveNewPasswordBtn");
+
+      const newPass = newPassInput ? newPassInput.value.trim() : "";
+      const confirmPass = confirmPassInput ? confirmPassInput.value.trim() : "";
+
+      clearFieldError(newPassInput);
+      clearFieldError(confirmPassInput);
+
+      const passValidation = validatePasswordRules(newPass);
+      if (!passValidation.isValid) {
+        showFieldError(newPassInput, passValidation.message);
+        return;
+      }
+
+      if (newPass !== confirmPass) {
+        showFieldError(confirmPassInput, "Passwords do not match.");
+        return;
+      }
+
+      if (saveBtn) {
+        saveBtn.disabled = true;
+        saveBtn.textContent = "Updating Password...";
+      }
+
+      setTimeout(() => {
+        const accounts = getRegisteredAccounts();
+        if (accounts[tokenData.email]) {
+          accounts[tokenData.email].password = newPass;
+          saveRegisteredAccounts(accounts);
+        }
+
+        // Revoke token after use
+        delete tokens[token];
+        localStorage.setItem(STORAGE_RESET_TOKENS_KEY, JSON.stringify(tokens));
+
+        if (alertBox) {
+          alertBox.className = "alert alert-success";
+          alertBox.textContent =
+            "Password updated successfully! Redirecting to sign in...";
+          alertBox.classList.remove("d-none");
+        }
+
+        setTimeout(() => {
+          window.location.href = "signin.html";
+        }, 1500);
+      }, 1000);
+    });
+  }
+
   // Checkout & Verification Flow
   const checkoutForm = document.querySelector("#checkoutForm");
   if (checkoutForm) {
@@ -623,7 +804,7 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => {
       if (isPaymentCompleted) {
         sessionStorage.setItem("isUnlocked", "true");
-        localStorage.setItem("aerolover_payment_active", "true"); // Unlocks exclusive.html
+        localStorage.setItem("aerolover_payment_active", "true");
         sessionStorage.removeItem("paymentCompleted");
         window.location.href = "exclusive.html";
       } else {
@@ -674,7 +855,7 @@ document.addEventListener("DOMContentLoaded", () => {
         "story",
         "updates",
       ],
-      target: "news.html",
+      target: "latestnews.html",
     },
     {
       keywords: [
@@ -698,6 +879,17 @@ document.addEventListener("DOMContentLoaded", () => {
         "innovation",
       ],
       target: "technology.html",
+    },
+    {
+      keywords: [
+        "airspace",
+        "atc",
+        "traffic management",
+        "navigation",
+        "sky",
+        "altitude",
+      ],
+      target: "airspace.html",
     },
     {
       keywords: ["contact", "message", "support", "email", "reach", "help"],
@@ -748,7 +940,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // ==========================================
-  // 6. CONTACT FORM HANDLER WITH STRICT EXECUTION HALT
+  // 6. CONTACT FORM HANDLER
   // ==========================================
   const contactForm = document.querySelector("#contactForm");
   const contactAlertBox = document.querySelector("#contactAlert");
@@ -758,7 +950,6 @@ document.addEventListener("DOMContentLoaded", () => {
   if (contactForm) {
     const contactEmailInput = document.querySelector("#contactEmail");
 
-    // Clear error message in real-time as user types
     if (contactEmailInput) {
       contactEmailInput.addEventListener("input", () => {
         clearFieldError(contactEmailInput);
@@ -775,7 +966,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
       clearFieldError(contactEmailInput);
 
-      // STRICT VALIDATION: STOP PROCESS IMMEDIATELY IF INVALID
       if (!emailValue || !emailRegex.test(emailValue)) {
         showFieldError(
           contactEmailInput,
@@ -784,10 +974,9 @@ document.addEventListener("DOMContentLoaded", () => {
         if (contactAlertBox) {
           contactAlertBox.classList.add("d-none");
         }
-        return; // HALT EXECUTION HERE - DO NOT SEND
+        return;
       }
 
-      // Proceed only if email is valid
       if (submitMsgBtn) {
         submitMsgBtn.disabled = true;
         submitMsgBtn.textContent = "Sending...";
@@ -862,5 +1051,48 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (regionFilterSelect) {
     regionFilterSelect.addEventListener("change", applyAirportFilters);
+  }
+
+  // ==========================================
+  // 8. TIMELINE FILTER LOGIC
+  // ==========================================
+  const filterBtns = document.querySelectorAll("#timelineFilterGroup button");
+  const newsItems = document.querySelectorAll(".news-item-wrapper");
+  const noNewsAlert = document.querySelector("#noNewsAlert");
+
+  if (filterBtns.length > 0) {
+    filterBtns.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        filterBtns.forEach((b) => {
+          b.classList.remove("btn-primary", "active");
+          b.classList.add("btn-outline-primary");
+        });
+
+        btn.classList.remove("btn-outline-primary");
+        btn.classList.add("btn-primary", "active");
+
+        const selectedTimeline = btn.getAttribute("data-timeline");
+        let visibleCount = 0;
+
+        newsItems.forEach((item) => {
+          const itemTimeline = item.getAttribute("data-timeline");
+
+          if (selectedTimeline === "all" || itemTimeline === selectedTimeline) {
+            item.classList.remove("d-none");
+            visibleCount++;
+          } else {
+            item.classList.add("d-none");
+          }
+        });
+
+        if (noNewsAlert) {
+          if (visibleCount === 0) {
+            noNewsAlert.classList.remove("d-none");
+          } else {
+            noNewsAlert.classList.add("d-none");
+          }
+        }
+      });
+    });
   }
 });
