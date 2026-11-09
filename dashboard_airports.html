@@ -50,25 +50,25 @@
               >
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="airlines.html">Airlines</a>
+              <a class="nav-link" href="dashboard_airlines.html">Airlines</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="dashboard_airports.html">Airports</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="dashboard2.html">Latest news</a>
+              <a class="nav-link" href="dashboard_latestnews.html">Latest news</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="sustainability.html">Sustainability</a>
+              <a class="nav-link" href="dashboard_sustainability.html">Sustainability</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="technology.html">Technology</a>
+              <a class="nav-link" href="dashboard_technology.html">Technology</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="airspace.html">Airspace</a>
+              <a class="nav-link" href="dashboard_airspace.html">Airspace</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="technology.html">Technology</a>
+              <a class="nav-link" href="dashboard_technology.html">Technology</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="dashboard_contact.html">Contact</a>
@@ -164,6 +164,7 @@
               <option value="south-america">South America</option>
               <option value="europe">Europe</option>
               <option value="north-america">North America</option>
+              <option value="asia">Asia</option>
             </select>
           </div>
         </div>
@@ -171,260 +172,277 @@
     </div>
 
     <!-- Airports Grid -->
-    <div class="container">
+    <div class="container pb-5">
+      <p id="airportCount" class="text-muted small mb-3">
+        Showing 6 of 6 airports
+      </p>
+
       <div class="row g-4" id="airportsGrid">
         <!-- Airport 1 -->
         <div
-          class="col-md-6 airport-card-wrapper"
+          class="col-md-6 col-lg-4 airport-card-wrapper"
           data-title="São Paulo-Guarulhos International Airport (GRU)"
           data-region="south-america"
         >
-          <section
-            class="card h-100 shadow-sm border-0 rounded-4 overflow-hidden"
-          >
+          <div class="card border-0 shadow-sm rounded-4 h-100 overflow-hidden">
             <img
               src="https://upload.wikimedia.org/wikipedia/commons/e/e1/Sao_paulo_airport_terminal_3.jpg?utm_source=en.wikipedia.org&utm_campaign=index&utm_content=original"
-              class="card-img-top"
-              alt="Guarulhos Terminal 3"
+              class="card-img-top airport-card-img"
+              alt="São Paulo Guarulhos Terminal 3"
             />
-            <div class="card-body p-4">
-              <span
-                class="badge bg-primary-subtle text-primary rounded-pill mb-2"
-                >South America</span
-              >
-              <h4 class="card-title fw-bold">São Paulo Guarulhos (GRU)</h4>
-              <p class="card-text text-muted">
-                Brazil’s busiest international airport hub featuring modern
-                passenger terminals and extensive long-haul connectivity across
-                Latin America.
-              </p>
-              <a href="#" class="btn btn-outline-primary btn-sm rounded-pill"
-                >View Details</a
-              >
+            <div
+              class="card-body p-4 d-flex flex-column justify-content-between"
+            >
+              <div>
+                <div class="d-flex gap-2 mb-2">
+                  <span
+                    class="badge bg-primary-subtle text-primary rounded-pill"
+                    >South America</span
+                  >
+                  <span
+                    class="badge bg-secondary-subtle text-secondary rounded-pill"
+                    >Hub (GRU)</span
+                  >
+                </div>
+                <h4 class="card-title fw-bold">São Paulo Guarulhos</h4>
+                <p class="card-text text-muted small">
+                  Brazil’s busiest international airport hub featuring modern
+                  passenger terminals and extensive long-haul connectivity
+                  across Latin America.
+                </p>
+              </div>
+              <div class="pt-3 border-top mt-3">
+                <a
+                  href="#"
+                  class="btn btn-outline-primary btn-sm rounded-pill w-100"
+                >
+                  View Details
+                </a>
+              </div>
             </div>
-          </section>
+          </div>
         </div>
 
         <!-- Airport 2 -->
         <div
-          class="col-md-6 airport-card-wrapper"
+          class="col-md-6 col-lg-4 airport-card-wrapper"
           data-title="London Heathrow Airport (LHR)"
           data-region="europe"
         >
-          <section
-            class="card h-100 shadow-sm border-0 rounded-4 overflow-hidden"
-          >
+          <div class="card border-0 shadow-sm rounded-4 h-100 overflow-hidden">
             <img
               src="https://londontopia.net/wp-content/uploads/2015/02/Heathrow-T5.jpg"
-              class="card-img-top"
+              class="card-img-top airport-card-img"
               alt="London Heathrow Terminal 5"
             />
-            <div class="card-body p-4">
-              <span
-                class="badge bg-success-subtle text-success rounded-pill mb-2"
-                >Europe</span
-              >
-              <h4 class="card-title fw-bold">London Heathrow (LHR)</h4>
-              <p class="card-text text-muted">
-                One of Europe’s primary aviation gateways, processing tens of
-                millions of international passengers annually through five
-                terminals.
-              </p>
-              <a href="#" class="btn btn-outline-primary btn-sm rounded-pill"
-                >View Details</a
-              >
+            <div
+              class="card-body p-4 d-flex flex-column justify-content-between"
+            >
+              <div>
+                <div class="d-flex gap-2 mb-2">
+                  <span
+                    class="badge bg-success-subtle text-success rounded-pill"
+                    >Europe</span
+                  >
+                  <span
+                    class="badge bg-secondary-subtle text-secondary rounded-pill"
+                    >Hub (LHR)</span
+                  >
+                </div>
+                <h4 class="card-title fw-bold">London Heathrow</h4>
+                <p class="card-text text-muted small">
+                  One of Europe’s primary aviation gateways, processing tens of
+                  millions of international passengers annually through five
+                  terminals.
+                </p>
+              </div>
+              <div class="pt-3 border-top mt-3">
+                <a
+                  href="#"
+                  class="btn btn-outline-primary btn-sm rounded-pill w-100"
+                >
+                  View Details
+                </a>
+              </div>
             </div>
-          </section>
+          </div>
         </div>
 
         <!-- Airport 3 -->
         <div
-          class="col-md-6 airport-card-wrapper"
+          class="col-md-6 col-lg-4 airport-card-wrapper"
           data-title="John F. Kennedy International Airport (JFK)"
           data-region="north-america"
         >
-          <section
-            class="card h-100 shadow-sm border-0 rounded-4 overflow-hidden"
-          >
+          <div class="card border-0 shadow-sm rounded-4 h-100 overflow-hidden">
             <img
               src="https://s7d9.scene7.com/is/image/panynjaviation/T4-exterior-new:card-wide-16x9"
-              class="card-img-top"
+              class="card-img-top airport-card-img"
               alt="JFK Airport New York"
             />
-            <div class="card-body p-4">
-              <span class="badge bg-info-subtle text-info rounded-pill mb-2"
-                >North America</span
-              >
-              <h4 class="card-title fw-bold">New York JFK (JFK)</h4>
-              <p class="card-text text-muted">
-                The major international gateway to New York City with
-                multi-terminal operations undergoing a billion-dollar
-                modernization project.
-              </p>
-              <a href="#" class="btn btn-outline-primary btn-sm rounded-pill"
-                >View Details</a
-              >
+            <div
+              class="card-body p-4 d-flex flex-column justify-content-between"
+            >
+              <div>
+                <div class="d-flex gap-2 mb-2">
+                  <span class="badge bg-info-subtle text-info rounded-pill"
+                    >North America</span
+                  >
+                  <span
+                    class="badge bg-secondary-subtle text-secondary rounded-pill"
+                    >Hub (JFK)</span
+                  >
+                </div>
+                <h4 class="card-title fw-bold">New York JFK</h4>
+                <p class="card-text text-muted small">
+                  The major international gateway to New York City with
+                  multi-terminal operations undergoing a billion-dollar
+                  modernization project.
+                </p>
+              </div>
+              <div class="pt-3 border-top mt-3">
+                <a
+                  href="#"
+                  class="btn btn-outline-primary btn-sm rounded-pill w-100"
+                >
+                  View Details
+                </a>
+              </div>
             </div>
-          </section>
+          </div>
         </div>
 
         <!-- Airport 4 -->
         <div
-          class="col-md-6 airport-card-wrapper"
+          class="col-md-6 col-lg-4 airport-card-wrapper"
           data-title="Paris Charles de Gaulle Airport (CDG)"
           data-region="europe"
         >
-          <section
-            class="card h-100 shadow-sm border-0 rounded-4 overflow-hidden"
-          >
+          <div class="card border-0 shadow-sm rounded-4 h-100 overflow-hidden">
             <img
               src="https://cdn-paso-back.pro.digital.cloud-adp.fr/back/upload/large_cdg_terminal2_E_hall_K_plan_351d0f4634.jpg"
-              class="card-img-top"
+              class="card-img-top airport-card-img"
               alt="Paris CDG Terminal 2E"
             />
-            <div class="card-body p-4">
-              <span
-                class="badge bg-success-subtle text-success rounded-pill mb-2"
-                >Europe</span
-              >
-              <h4 class="card-title fw-bold">Paris Charles de Gaulle (CDG)</h4>
-              <p class="card-text text-muted">
-                France’s largest hub connecting major worldwide destinations
-                with dedicated high-speed rail integration directly inside the
-                terminals.
-              </p>
-              <a href="#" class="btn btn-outline-primary btn-sm rounded-pill"
-                >View Details</a
-              >
+            <div
+              class="card-body p-4 d-flex flex-column justify-content-between"
+            >
+              <div>
+                <div class="d-flex gap-2 mb-2">
+                  <span
+                    class="badge bg-success-subtle text-success rounded-pill"
+                    >Europe</span
+                  >
+                  <span
+                    class="badge bg-secondary-subtle text-secondary rounded-pill"
+                    >Hub (CDG)</span
+                  >
+                </div>
+                <h4 class="card-title fw-bold">Paris Charles de Gaulle</h4>
+                <p class="card-text text-muted small">
+                  France’s largest hub connecting major worldwide destinations
+                  with dedicated high-speed rail integration directly inside the
+                  terminals.
+                </p>
+              </div>
+              <div class="pt-3 border-top mt-3">
+                <a
+                  href="#"
+                  class="btn btn-outline-primary btn-sm rounded-pill w-100"
+                >
+                  View Details
+                </a>
+              </div>
             </div>
-          </section>
+          </div>
         </div>
 
         <!-- Airport 5 -->
         <div
-          class="col-md-6 airport-card-wrapper"
-          data-title="Frankfurt Airport (FRA)"
-          data-region="europe"
+          class="col-md-6 col-lg-4 airport-card-wrapper"
+          data-title="Los Angeles International Airport (LAX)"
+          data-region="north-america"
         >
-          <section
-            class="card h-100 shadow-sm border-0 rounded-4 overflow-hidden"
-          >
+          <div class="card border-0 shadow-sm rounded-4 h-100 overflow-hidden">
             <img
-              src="https://www.kiwi.com/stories/images/media/fra-hero-2026-guide-ai-label.webp"
-              class="card-img-top"
-              alt="Frankfurt Main Airport"
+              src="https://static0.simpleflyingimages.com/wordpress/wp-content/uploads/2025/02/delta-air-lines-airbus-a321-at-lax-shutterstock_2418144697.jpg"
+              class="card-img-top airport-card-img"
+              alt="Los Angeles LAX"
             />
-            <div class="card-body p-4">
-              <span
-                class="badge bg-success-subtle text-success rounded-pill mb-2"
-                >Europe</span
-              >
-              <h4 class="card-title fw-bold">Frankfurt Airport (FRA)</h4>
-              <p class="card-text text-muted">
-                Germany’s main aviation hub, renowned for cargo handling,
-                extensive passenger transfers, and next-generation terminal
-                infrastructure.
-              </p>
-              <a href="#" class="btn btn-outline-primary btn-sm rounded-pill"
-                >View Details</a
-              >
+            <div
+              class="card-body p-4 d-flex flex-column justify-content-between"
+            >
+              <div>
+                <div class="d-flex gap-2 mb-2">
+                  <span class="badge bg-info-subtle text-info rounded-pill"
+                    >North America</span
+                  >
+                  <span
+                    class="badge bg-secondary-subtle text-secondary rounded-pill"
+                    >Hub (LAX)</span
+                  >
+                </div>
+                <h4 class="card-title fw-bold">Los Angeles (LAX)</h4>
+                <p class="card-text text-muted small">
+                  The primary international hub serving Southern California,
+                  featuring Automated People Mover connections and upgraded
+                  passenger lounges.
+                </p>
+              </div>
+              <div class="pt-3 border-top mt-3">
+                <a
+                  href="#"
+                  class="btn btn-outline-primary btn-sm rounded-pill w-100"
+                >
+                  View Details
+                </a>
+              </div>
             </div>
-          </section>
+          </div>
         </div>
 
         <!-- Airport 6 -->
         <div
-          class="col-md-6 airport-card-wrapper"
-          data-title="Los Angeles International Airport (LAX)"
-          data-region="north-america"
+          class="col-md-6 col-lg-4 airport-card-wrapper"
+          data-title="Tokyo Haneda Airport (HND)"
+          data-region="asia"
         >
-          <section
-            class="card h-100 shadow-sm border-0 rounded-4 overflow-hidden"
-          >
+          <div class="card border-0 shadow-sm rounded-4 h-100 overflow-hidden">
             <img
-              src="https://static0.simpleflyingimages.com/wordpress/wp-content/uploads/2025/02/delta-air-lines-airbus-a321-at-lax-shutterstock_2418144697.jpg"
-              class="card-img-top"
-              alt="Los Angeles LAX"
+              src="https://www.machiya-inn-japan.com/blog/wp-content/uploads/2024/12/Haneda-Airport-Tokyo-International-Airport.jpeg"
+              class="card-img-top airport-card-img"
+              alt="Tokyo HND Terminal 1"
             />
-            <div class="card-body p-4">
-              <span class="badge bg-info-subtle text-info rounded-pill mb-2"
-                >North America</span
-              >
-              <h4 class="card-title fw-bold">Los Angeles (LAX)</h4>
-              <p class="card-text text-muted">
-                The primary international hub serving Southern California,
-                featuring Automated People Mover connections and upgraded
-                passenger lounges.
-              </p>
-              <a href="#" class="btn btn-outline-primary btn-sm rounded-pill"
-                >View Details</a
-              >
+            <div
+              class="card-body p-4 d-flex flex-column justify-content-between"
+            >
+              <div>
+                <div class="d-flex gap-2 mb-2">
+                  <span
+                    class="badge bg-warning-subtle text-warning-emphasis rounded-pill"
+                    >Asia</span
+                  >
+                  <span
+                    class="badge bg-secondary-subtle text-secondary rounded-pill"
+                    >Hub (HND)</span
+                  >
+                </div>
+                <h4 class="card-title fw-bold">Tokyo Haneda</h4>
+                <p class="card-text text-muted small">
+                  A major international gateway in Japan, world-renowned for its
+                  punctuality, efficiency, and modern passenger facilities.
+                </p>
+              </div>
+              <div class="pt-3 border-top mt-3">
+                <a
+                  href="#"
+                  class="btn btn-outline-primary btn-sm rounded-pill w-100"
+                >
+                  View Details
+                </a>
+              </div>
             </div>
-          </section>
-        </div>
-
-        <!-- Airport 7 -->
-        <div
-          class="col-md-6 airport-card-wrapper"
-          data-title="Amsterdam Airport Schiphol (AMS)"
-          data-region="europe"
-        >
-          <section
-            class="card h-100 shadow-sm border-0 rounded-4 overflow-hidden"
-          >
-            <img
-              src="https://images.ctfassets.net/biom0eqyyi6b/7wIGbIkDkbUHr5C3aetf4R/ae809427a6c28ce8cf2fcb438d2c6e6a/royal_schiphol_group_hero_ascending.jpg"
-              class="card-img-top"
-              alt="Amsterdam Schiphol Airport"
-            />
-            <div class="card-body p-4">
-              <span
-                class="badge bg-success-subtle text-success rounded-pill mb-2"
-                >Europe</span
-              >
-              <h4 class="card-title fw-bold">Amsterdam Schiphol (AMS)</h4>
-              <p class="card-text text-muted">
-                A major European transfer hub utilizing a single-terminal
-                concept, renowned for innovative passenger automation and
-                extensive global flight connections.
-              </p>
-              <a href="#" class="btn btn-outline-primary btn-sm rounded-pill"
-                >View Details</a
-              >
-            </div>
-          </section>
-        </div>
-
-        <!-- Airport 8 -->
-        <div
-          class="col-md-6 airport-card-wrapper"
-          data-title="Zurich Airport (ZRH)"
-          data-region="europe"
-        >
-          <section
-            class="card h-100 shadow-sm border-0 rounded-4 overflow-hidden"
-          >
-            <img
-              src="https://static0.simpleflyingimages.com/wordpress/wp-content/uploads/2023/12/20190617-dsc3827-3.jpg"
-              class="card-img-top"
-              alt="Zurich Airport"
-            />
-            <div class="card-body p-4">
-              <span
-                class="badge bg-success-subtle text-success rounded-pill mb-2"
-                >Europe</span
-              >
-              <h4 class="card-title fw-bold">Zurich Airport (ZRH)</h4>
-              <p class="card-text text-muted">
-                Switzerland’s largest international airport, known for its
-                efficiency, high-quality services, and seamless connections to
-                European destinations.
-              </p>
-              <a href="#" class="btn btn-outline-primary btn-sm rounded-pill"
-                >View Details</a
-              >
-            </div>
-          </section>
+          </div>
         </div>
       </div>
 
@@ -434,39 +452,22 @@
         class="alert alert-warning text-center rounded-4 py-4 d-none mt-4"
         role="alert"
       >
-        <h5>No Airports Found</h5>
+        <h5 class="fw-bold">No Airports Found</h5>
         <p class="mb-0 text-muted">
           Try adjusting your search terms or region filter.
         </p>
       </div>
+
+      <!-- Load More Button Container -->
+      <div class="text-center mt-4">
+        <button
+          id="loadMoreBtn"
+          class="btn btn-outline-primary rounded-pill px-4"
+        >
+          Load More Airports
+        </button>
+      </div>
     </div>
-
-    <!-- Pagination -->
-    <nav
-      aria-label="Page navigation example"
-      class="d-flex justify-content-center mt-5"
-    >
-      <ul class="pagination">
-        <li class="page-item disabled">
-          <a class="page-link" href="airports.html" aria-label="Previous">
-            <span aria-hidden="true">&laquo;</span>
-          </a>
-        </li>
-        <li class="page-item active">
-          <a class="page-link" href="airports.html">1</a>
-        </li>
-        <li class="page-item">
-          <a class="page-link" href="airport2.html">2</a>
-        </li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item">
-          <a class="page-link" href="airport2.html" aria-label="Next">
-            <span aria-hidden="true">&raquo;</span>
-          </a>
-        </li>
-      </ul>
-    </nav>
-
 <!-- Footer -->
     <footer class="bg-dark text-white pt-5 pb-4 mt-5">
       <div class="container text-center text-md-start">
@@ -489,27 +490,27 @@
             <h6 class="text-uppercase mb-3 fw-bold text-primary">Navigation</h6>
             <ul class="list-unstyled small">
               <li class="mb-2">
-                <a href="index.html" class="text-white-50 text-decoration-none"
+                <a href="dashboard.html" class="text-white-50 text-decoration-none"
                   >Home</a
                 >
               </li>
               <li class="mb-2">
                 <a
-                  href="airlines.html"
+                  href="dashboard_airlines.html"
                   class="text-white-50 text-decoration-none"
                   >Airlines</a
                 >
               </li>
               <li class="mb-2">
                 <a
-                  href="airports.html"
+                  href="dashboard_airports.html"
                   class="text-white-50 text-decoration-none"
                   >Airports</a
                 >
               </li>
               <li class="mb-2">
                 <a
-                  href="latestnews.html"
+                  href="dashboard_latestnews.html"
                   class="text-white-50 text-decoration-none"
                   >Latest news</a
                 >
@@ -517,16 +518,23 @@
 
               <li class="mb-2">
                 <a
-                  href="sustainability.html"
+                  href="dashboard_sustainability.html"
                   class="text-white-50 text-decoration-none"
                   >Sustainability</a
                 >
               </li>
               <li class="mb-2">
                 <a
-                  href="technology.html"
+                  href="dashboard_technology.html"
                   class="text-white-50 text-decoration-none"
                   >Technology</a
+                >
+              </li>
+              <li class="mb-2">
+                <a
+                  href="dashboard_airspace.html"
+                  class="text-white-50 text-decoration-none"
+                  >Airspace</a
                 >
               </li>
             </ul>
@@ -542,16 +550,11 @@
               </li>
 
               <li class="mb-2">
-                <a href="signin.html" class="text-white-50 text-decoration-none"
-                  >Sign in</a
+                <a href="dashboard_settings.html" class="text-white-50 text-decoration-none"
+                  >My Account</a
                 >
               </li>
 
-              <li class="mb-2">
-                <a href="signup.html" class="text-white-50 text-decoration-none"
-                  >Create account</a
-                >
-              </li>
             </ul>
           </div>
 
@@ -610,3 +613,4 @@
     <script src="script.js"></script>
   </body>
 </html>
+

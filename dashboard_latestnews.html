@@ -108,59 +108,58 @@
             </li>
           </ul>
 
-            <!-- Account Dropdown -->
-            <div class="dropdown">
-              <button
-                class="btn btn-outline-primary dropdown-toggle rounded-pill px-1 d-inline-flex align-items-center gap-2"
-                type="button"
-                id="dropdownMenuButton"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                <span id="navAvatarCircle" class="avatar-circle d-none"></span>
-                <span id="navUserName">Account</span>
-              </button>
-              <ul
-                class="dropdown-menu dropdown-menu-end shadow-sm"
-                aria-labelledby="dropdownMenuButton"
-              >
-                <li>
-                  <a class="dropdown-item" href="dashboard_settings.html"
-                    >Account Settings</a
-                  >
-                </li>
-                <li>
-                  <a
-                    class="dropdown-item text-warning fw-semibold"
-                    href="plans.html"
-                    >⚡ Upgrade Subscription</a
-                  >
-                </li>
-                <li><hr class="dropdown-divider" /></li>
-                <li>
-                  <button class="dropdown-item text-danger" id="logoutBtn">
-                    Sign Out
-                  </button>
-                </li>
-              </ul>
-            </div>
-
-            <!-- Search Bar -->
-            <form id="searchForm" class="d-flex gap-2 ms-2" role="search">
-              <div class="input-group">
-                <input
-                  type="search"
-                  id="searchInput"
-                  class="form-control rounded-start-pill"
-                  placeholder="Search..."
-                  required
-                />
-                <button type="submit" class="btn btn-primary rounded-end-pill">
-                  Go
+          <!-- Account Dropdown -->
+          <div class="dropdown">
+            <button
+              class="btn btn-outline-primary dropdown-toggle rounded-pill px-1 d-inline-flex align-items-center gap-2"
+              type="button"
+              id="dropdownMenuButton"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              <span id="navAvatarCircle" class="avatar-circle d-none"></span>
+              <span id="navUserName">Account</span>
+            </button>
+            <ul
+              class="dropdown-menu dropdown-menu-end shadow-sm"
+              aria-labelledby="dropdownMenuButton"
+            >
+              <li>
+                <a class="dropdown-item" href="dashboard_settings.html"
+                  >Account Settings</a
+                >
+              </li>
+              <li>
+                <a
+                  class="dropdown-item text-warning fw-semibold"
+                  href="plans.html"
+                  >⚡ Upgrade Subscription</a
+                >
+              </li>
+              <li><hr class="dropdown-divider" /></li>
+              <li>
+                <button class="dropdown-item text-danger" id="logoutBtn">
+                  Sign Out
                 </button>
-              </div>
-            </form>
+              </li>
+            </ul>
           </div>
+
+          <!-- Search Bar -->
+          <form id="searchForm" class="d-flex gap-2 ms-2" role="search">
+            <div class="input-group">
+              <input
+                type="search"
+                id="searchInput"
+                class="form-control rounded-start-pill"
+                placeholder="Search..."
+                required
+              />
+              <button type="submit" class="btn btn-primary rounded-end-pill">
+                Go
+              </button>
+            </div>
+          </form>
         </div>
       </div>
     </nav>
@@ -469,43 +468,53 @@
             <h6 class="text-uppercase mb-3 fw-bold text-primary">Navigation</h6>
             <ul class="list-unstyled small">
               <li class="mb-2">
-                <a href="index.html" class="text-white-50 text-decoration-none"
+                <a
+                  href="dashboard.html"
+                  class="text-white-50 text-decoration-none"
                   >Home</a
                 >
               </li>
               <li class="mb-2">
                 <a
-                  href="airlines.html"
+                  href="dashboard_airlines.html"
                   class="text-white-50 text-decoration-none"
                   >Airlines</a
                 >
               </li>
               <li class="mb-2">
                 <a
-                  href="airports.html"
+                  href="dashboard_airports.html"
                   class="text-white-50 text-decoration-none"
                   >Airports</a
                 >
               </li>
               <li class="mb-2">
                 <a
-                  href="latestnews.html"
+                  href="dashboard_latestnews.html"
                   class="text-white-50 text-decoration-none"
                   >Latest news</a
                 >
               </li>
+
               <li class="mb-2">
                 <a
-                  href="sustainability.html"
+                  href="dashboard_sustainability.html"
                   class="text-white-50 text-decoration-none"
                   >Sustainability</a
                 >
               </li>
               <li class="mb-2">
                 <a
-                  href="technology.html"
+                  href="dashboard_technology.html"
                   class="text-white-50 text-decoration-none"
                   >Technology</a
+                >
+              </li>
+              <li class="mb-2">
+                <a
+                  href="dashboard_airspace.html"
+                  class="text-white-50 text-decoration-none"
+                  >Airspace</a
                 >
               </li>
             </ul>
@@ -519,14 +528,12 @@
                   >Exclusive Access</a
                 >
               </li>
+
               <li class="mb-2">
-                <a href="signin.html" class="text-white-50 text-decoration-none"
-                  >Sign in</a
-                >
-              </li>
-              <li class="mb-2">
-                <a href="signup.html" class="text-white-50 text-decoration-none"
-                  >Create account</a
+                <a
+                  href="dashboard_settings.html"
+                  class="text-white-50 text-decoration-none"
+                  >My Account</a
                 >
               </li>
             </ul>
@@ -572,6 +579,15 @@
     <!-- Bootstrap Module Script -->
     <script type="module">
       import * as bootstrap from "bootstrap";
+
+      // Initialize carousel
+      const newsCarousel = document.querySelector("#newsCarousel");
+      if (newsCarousel) {
+        new bootstrap.Carousel(newsCarousel, {
+          interval: 5000,
+          ride: "carousel",
+        });
+      }
     </script>
 
     <!-- Project Scripts -->

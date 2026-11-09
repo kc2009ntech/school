@@ -570,54 +570,71 @@
             <h6 class="text-uppercase mb-3 fw-bold text-primary">Navigation</h6>
             <ul class="list-unstyled small">
               <li class="mb-2">
-                <a href="index.html" class="text-white-50 text-decoration-none"
+                <a href="dashboard.html" class="text-white-50 text-decoration-none"
                   >Home</a
                 >
               </li>
               <li class="mb-2">
                 <a
-                  href="airlines.html"
+                  href="dashboard_airlines.html"
                   class="text-white-50 text-decoration-none"
                   >Airlines</a
                 >
               </li>
               <li class="mb-2">
                 <a
-                  href="airports.html"
+                  href="dashboard_airports.html"
                   class="text-white-50 text-decoration-none"
                   >Airports</a
                 >
               </li>
               <li class="mb-2">
-                <a href="news.html" class="text-white-50 text-decoration-none"
-                  >News</a
+                <a
+                  href="dashboard_latestnews.html"
+                  class="text-white-50 text-decoration-none"
+                  >Latest news</a
                 >
               </li>
-            </ul>
-          </div>
 
-          <div class="col-md-3 col-lg-2 col-xl-2 mx-auto">
-            <h6 class="text-uppercase mb-3 fw-bold text-primary">Topics</h6>
-            <ul class="list-unstyled small">
               <li class="mb-2">
                 <a
-                  href="sustainability.html"
+                  href="dashboard_sustainability.html"
                   class="text-white-50 text-decoration-none"
                   >Sustainability</a
                 >
               </li>
               <li class="mb-2">
                 <a
-                  href="technology.html"
+                  href="dashboard_technology.html"
                   class="text-white-50 text-decoration-none"
                   >Technology</a
                 >
               </li>
               <li class="mb-2">
-                <a href="signin.html" class="text-white-50 text-decoration-none"
+                <a
+                  href="dashboard_airspace.html"
+                  class="text-white-50 text-decoration-none"
+                  >Airspace</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div class="col-md-3 col-lg-2 col-xl-2 mx-auto">
+            <h6 class="text-uppercase mb-3 fw-bold text-primary">Benefits</h6>
+            <ul class="list-unstyled small">
+              <li class="mb-2">
+                <a href="plans.html" class="text-white-50 text-decoration-none"
                   >Exclusive Access</a
                 >
               </li>
+
+              <li class="mb-2">
+                <a href="dashboard_settings.html" class="text-white-50 text-decoration-none"
+                  >My Account</a
+                >
+              </li>
+
             </ul>
           </div>
 
@@ -657,9 +674,22 @@
         }
       }
     </script>
+
+    <!-- Bootstrap Module Script -->
     <script type="module">
       import * as bootstrap from "bootstrap";
+
+      // Initialize carousel
+      const newsCarousel = document.querySelector("#newsCarousel");
+      if (newsCarousel) {
+        new bootstrap.Carousel(newsCarousel, {
+          interval: 5000,
+          ride: "carousel",
+        });
+      }
     </script>
+
+    <!-- Project Scripts -->
     <script src="script.js"></script>
   </body>
 </html>

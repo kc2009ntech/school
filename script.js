@@ -134,7 +134,7 @@ document.addEventListener("DOMContentLoaded", () => {
     "dashboard_3.html",
     "dashboard2.html",
     "account.html",
-    "plans.html",
+    "checkout.html",
   ];
 
   const paymentRequiredPages = ["exclusive.html"];
@@ -1002,59 +1002,207 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // ==========================================
-  // 7. IN-PAGE AIRPORT FILTER LOGIC
+  // 7. AIRLINES DIRECTORY FILTERING & PAGINATION
   // ==========================================
-  const airportFilterInput = document.querySelector("#airportFilterInput");
-  const regionFilterSelect = document.querySelector("#regionFilterSelect");
-  const airportCards = document.querySelectorAll(".airport-card-wrapper");
-  const noResultsMsg = document.querySelector("#noResultsMsg");
+  const airlineSearchInput = document.getElementById("filterSearch");
+  const airlineRegionSelect = document.getElementById("filterRegion");
+  const allianceSelect = document.getElementById("filterAlliance");
+  const typeCheckboxes = document.querySelectorAll(".filter-type");
+  const resetBtn = document.getElementById("resetFiltersBtn");
+  const airlineCards = Array.from(
+    document.querySelectorAll(".airline-card-item"),
+  );
+  const airlineCountDisplay = document.getElementById("airlineCount");
+  const airlineNoResults = document.getElementById("noResults");
+  const loadMoreAirlinesBtn = document.getElementById("loadMoreBtn");
 
-  function applyAirportFilters() {
-    const query = airportFilterInput
-      ? airportFilterInput.value.toLowerCase().trim()
-      : "";
-    const selectedRegion = regionFilterSelect
-      ? regionFilterSelect.value
-      : "all";
-    let visibleCount = 0;
+  if (airlineCards.length > 0) {
+    const AIRLINES_PER_PAGE = 6;
+    let visibleAirlineLimit = AIRLINES_PER_PAGE;
 
-    airportCards.forEach((card) => {
-      const title = card.getAttribute("data-title")
-        ? card.getAttribute("data-title").toLowerCase()
+    function updateAirlinesDisplay() {
+      const searchTerm = airlineSearchInput
+        ? airlineSearchInput.value.toLowerCase().trim()
         : "";
-      const region = card.getAttribute("data-region");
+      const selectedRegion = airlineRegionSelect
+        ? airlineRegionSelect.value
+        : "all";
+      const selectedAlliance = allianceSelect ? allianceSelect.value : "all";
+      const selectedTypes = Array.from(typeCheckboxes)
+        .filter((cb) => cb.checked)
+        .map((cb) => cb.value);
 
-      const matchesText = title.includes(query);
-      const matchesRegion =
-        selectedRegion === "all" || region === selectedRegion;
+      const matchingCards = airlineCards.filter((card) => {
+        const name = card.dataset.name ? card.dataset.name.toLowerCase() : "";
+        const region = card.dataset.region || "";
+        const alliance = card.dataset.alliance || "";
+        const type = card.dataset.type || "";
 
-      if (matchesText && matchesRegion) {
-        card.classList.remove("d-none");
-        visibleCount++;
-      } else {
-        card.classList.add("d-none");
+        const matchesSearch = !searchTerm || name.includes(searchTerm);
+        const matchesRegion =
+          selectedRegion === "all" || region === selectedRegion;
+        const matchesAlliance =
+          selectedAlliance === "all" || alliance === selectedAlliance;
+        const matchesType =
+          selectedTypes.length === 0 || selectedTypes.includes(type);
+
+        return matchesSearch && matchesRegion && matchesAlliance && matchesType;
+      });
+
+      airlineCards.forEach((card) => card.classList.add("d-none"));
+
+      const cardsToDisplay = matchingCards.slice(0, visibleAirlineLimit);
+      cardsToDisplay.forEach((card) => card.classList.remove("d-none"));
+
+      if (airlineCountDisplay) {
+        airlineCountDisplay.textContent = `Showing ${cardsToDisplay.length} of ${matchingCards.length} airline${matchingCards.length === 1 ? "" : "s"}`;
       }
-    });
 
-    if (noResultsMsg) {
-      if (visibleCount === 0) {
-        noResultsMsg.classList.remove("d-none");
-      } else {
-        noResultsMsg.classList.add("d-none");
+      if (airlineNoResults) {
+        if (matchingCards.length === 0) {
+          airlineNoResults.classList.remove("d-none");
+        } else {
+          airlineNoResults.classList.add("d-none");
+        }
+      }
+
+      if (loadMoreAirlinesBtn) {
+        if (
+          visibleAirlineLimit >= matchingCards.length ||
+          matchingCards.length === 0
+        ) {
+          loadMoreAirlinesBtn.classList.add("d-none");
+        } else {
+          loadMoreAirlinesBtn.classList.remove("d-none");
+        }
       }
     }
-  }
 
-  if (airportFilterInput) {
-    airportFilterInput.addEventListener("input", applyAirportFilters);
-  }
+    function handleAirlineFilterChange() {
+      visibleAirlineLimit = AIRLINES_PER_PAGE;
+      updateAirlinesDisplay();
+    }
 
-  if (regionFilterSelect) {
-    regionFilterSelect.addEventListener("change", applyAirportFilters);
+    if (loadMoreAirlinesBtn) {
+      loadMoreAirlinesBtn.addEventListener("click", () => {
+        visibleAirlineLimit += AIRLINES_PER_PAGE;
+        updateAirlinesDisplay();
+      });
+    }
+
+    if (airlineSearchInput)
+      airlineSearchInput.addEventListener("input", handleAirlineFilterChange);
+    if (airlineRegionSelect)
+      airlineRegionSelect.addEventListener("change", handleAirlineFilterChange);
+    if (allianceSelect)
+      allianceSelect.addEventListener("change", handleAirlineFilterChange);
+    typeCheckboxes.forEach((cb) =>
+      cb.addEventListener("change", handleAirlineFilterChange),
+    );
+
+    if (resetBtn) {
+      resetBtn.addEventListener("click", () => {
+        if (airlineSearchInput) airlineSearchInput.value = "";
+        if (airlineRegionSelect) airlineRegionSelect.value = "all";
+        if (allianceSelect) allianceSelect.value = "all";
+        typeCheckboxes.forEach((cb) => (cb.checked = true));
+        handleAirlineFilterChange();
+      });
+    }
+
+    updateAirlinesDisplay();
   }
 
   // ==========================================
-  // 8. TIMELINE FILTER LOGIC
+  // 8. AIRPORTS DIRECTORY FILTERING & PAGINATION
+  // ==========================================
+  const airportWrappers = Array.from(
+    document.querySelectorAll(".airport-card-wrapper"),
+  );
+  const loadMoreAirportsBtn = document.getElementById("loadMoreBtn");
+  const airportSearchInput = document.getElementById("airportFilterInput");
+  const airportRegionSelect = document.getElementById("regionFilterSelect");
+  const airportNoResults = document.getElementById("noResultsMsg");
+  const airportCount = document.getElementById("airportCount");
+
+  if (airportWrappers.length > 0) {
+    const AIRPORTS_PER_LOAD = 3;
+    let currentVisibleAirports = AIRPORTS_PER_LOAD;
+
+    function updateAirportsDisplay() {
+      const searchTerm = airportSearchInput
+        ? airportSearchInput.value.toLowerCase().trim()
+        : "";
+      const selectedRegion = airportRegionSelect
+        ? airportRegionSelect.value
+        : "all";
+
+      const matchingAirports = airportWrappers.filter((card) => {
+        const title = card.getAttribute("data-title")?.toLowerCase() || "";
+        const region = card.getAttribute("data-region") || "";
+
+        const matchesSearch = !searchTerm || title.includes(searchTerm);
+        const matchesRegion =
+          selectedRegion === "all" || region === selectedRegion;
+
+        return matchesSearch && matchesRegion;
+      });
+
+      airportWrappers.forEach((card) => card.classList.add("d-none"));
+
+      const visibleBatch = matchingAirports.slice(0, currentVisibleAirports);
+      visibleBatch.forEach((card) => card.classList.remove("d-none"));
+
+      if (airportCount) {
+        airportCount.textContent = `Showing ${visibleBatch.length} of ${matchingAirports.length} airport${matchingAirports.length === 1 ? "" : "s"}`;
+      }
+
+      if (airportNoResults) {
+        if (matchingAirports.length === 0) {
+          airportNoResults.classList.remove("d-none");
+        } else {
+          airportNoResults.classList.add("d-none");
+        }
+      }
+
+      if (loadMoreAirportsBtn) {
+        if (
+          currentVisibleAirports >= matchingAirports.length ||
+          matchingAirports.length === 0
+        ) {
+          loadMoreAirportsBtn.parentElement.classList.add("d-none");
+        } else {
+          loadMoreAirportsBtn.parentElement.classList.remove("d-none");
+        }
+      }
+    }
+
+    if (loadMoreAirportsBtn) {
+      loadMoreAirportsBtn.addEventListener("click", () => {
+        currentVisibleAirports += AIRPORTS_PER_LOAD;
+        updateAirportsDisplay();
+      });
+    }
+
+    if (airportSearchInput) {
+      airportSearchInput.addEventListener("input", () => {
+        currentVisibleAirports = AIRPORTS_PER_LOAD;
+        updateAirportsDisplay();
+      });
+    }
+
+    if (airportRegionSelect) {
+      airportRegionSelect.addEventListener("change", () => {
+        currentVisibleAirports = AIRPORTS_PER_LOAD;
+        updateAirportsDisplay();
+      });
+    }
+
+    updateAirportsDisplay();
+  }
+
+  // ==========================================
+  // 9. TIMELINE FILTER LOGIC
   // ==========================================
   const filterBtns = document.querySelectorAll("#timelineFilterGroup button");
   const newsItems = document.querySelectorAll(".news-item-wrapper");
