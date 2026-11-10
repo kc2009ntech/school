@@ -15,6 +15,92 @@ document.addEventListener("DOMContentLoaded", () => {
   let SECRET_PASSCODE = localStorage.getItem("aerolover_passcode") || "skyhigh";
 
   // ==========================================
+  // INITIALIZE DEFAULT ACCOUNT (IF NONE EXISTS)
+  // ==========================================
+  function initializeDefaultAccount() {
+    const existingAccounts = localStorage.getItem(STORAGE_ACCOUNTS_KEY);
+    if (!existingAccounts) {
+      const defaultAccount = {
+        "demo@aerolover.com": {
+          firstName: "Demo",
+          lastName: "User",
+          password: "Password123",
+          createdAt: new Date().toISOString(),
+        },
+      };
+      localStorage.setItem(
+        STORAGE_ACCOUNTS_KEY,
+        JSON.stringify(defaultAccount),
+      );
+
+      const defaultProfile = {
+        firstName: "Demo",
+        lastName: "User",
+        email: "demo@aerolover.com",
+        bio: "Aviation Enthusiast",
+        updatedAt: new Date().toISOString(),
+      };
+      localStorage.setItem(STORAGE_PROFILE_KEY, JSON.stringify(defaultProfile));
+    }
+  }
+
+  initializeDefaultAccount();
+
+  // ==========================================
+  // ADMIN DIRECT PASSWORD RESET & OPTION B
+  // ==========================================
+  window.adminResetPassword = function (email, newPassword) {
+    const targetEmail = (email || "").trim().toLowerCase();
+    const accountsData = localStorage.getItem(STORAGE_ACCOUNTS_KEY);
+
+    if (!accountsData) {
+      console.error("No registered accounts found in LocalStorage.");
+      return false;
+    }
+
+    try {
+      const accounts = JSON.parse(accountsData);
+
+      if (!accounts[targetEmail]) {
+        console.warn(`Account '${targetEmail}' does not exist.`);
+        return false;
+      }
+
+      const passValidation = validatePasswordRules(newPassword);
+      if (!passValidation.isValid) {
+        console.error(`Password validation failed: ${passValidation.message}`);
+        return false;
+      }
+
+      // Direct password update
+      accounts[targetEmail].password = newPassword;
+      localStorage.setItem(STORAGE_ACCOUNTS_KEY, JSON.stringify(accounts));
+
+      console.log(
+        `✅ Success! Password for '${targetEmail}' has been updated to '${newPassword}'.`,
+      );
+      return true;
+    } catch (err) {
+      console.error("Error during admin password reset:", err);
+      return false;
+    }
+  };
+
+  // Option B UI Listener: One-click testing bypass button
+  const quickResetBtn = document.querySelector("#adminQuickResetBtn");
+  if (quickResetBtn) {
+    quickResetBtn.addEventListener("click", () => {
+      const success = window.adminResetPassword(
+        "demo@aerolover.com",
+        "Password123",
+      );
+      if (success) {
+        alert("Admin Override: Password directly reset to 'Password123'!");
+      }
+    });
+  }
+
+  // ==========================================
   // CROSS-TAB SIGN-OUT SYNCHRONIZATION
   // ==========================================
   window.addEventListener("storage", (e) => {
@@ -22,7 +108,13 @@ document.addEventListener("DOMContentLoaded", () => {
       sessionStorage.removeItem("isUnlocked");
       sessionStorage.removeItem("paymentCompleted");
       sessionStorage.removeItem("userEmail");
-      window.location.href = "signin.html";
+
+      if (
+        !currentPath.endsWith("signin.html") &&
+        !currentPath.endsWith("signup.html")
+      ) {
+        window.location.href = "signin.html";
+      }
     }
   });
 
@@ -35,15 +127,6 @@ document.addEventListener("DOMContentLoaded", () => {
   if (isRemembered && rememberedEmail) {
     sessionStorage.setItem("isUnlocked", "true");
     sessionStorage.setItem("userEmail", rememberedEmail);
-  }
-
-  // Developer mode auto-fallback for local testing
-  if (
-    !sessionStorage.getItem("isUnlocked") &&
-    !localStorage.getItem("aerolover_registered_accounts")
-  ) {
-    sessionStorage.setItem("isUnlocked", "true");
-    localStorage.setItem("aerolover_payment_active", "true");
   }
 
   const isUnlocked = sessionStorage.getItem("isUnlocked") === "true";
@@ -64,7 +147,6 @@ document.addEventListener("DOMContentLoaded", () => {
     localStorage.setItem(STORAGE_ACCOUNTS_KEY, JSON.stringify(accounts));
   }
 
-  // Helper utility to show/clear field-level error messages
   function showFieldError(inputElement, message) {
     if (!inputElement) return;
     inputElement.classList.add("is-invalid");
@@ -139,18 +221,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const paymentRequiredPages = ["exclusive.html"];
 
-  const isProtected = protectedPages.some((page) => currentPath.includes(page));
+  const isProtected = protectedPages.some((page) => currentPath.endsWith(page));
   const isPaymentProtected = paymentRequiredPages.some((page) =>
-    currentPath.includes(page),
+    currentPath.endsWith(page),
   );
 
-  // Redirect signed-out / unknown users to sign in
   if ((isProtected || isPaymentProtected) && !isUnlocked) {
     window.location.href = "signin.html";
     return;
   }
 
-  // Redirect unpaid users trying to access exclusive page to plans
   if (isPaymentProtected && !isPaid) {
     window.location.href = "plans.html";
     return;
@@ -210,7 +290,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // Unified Sign Out Function
   function performGlobalSignOut() {
     sessionStorage.removeItem("isUnlocked");
     sessionStorage.removeItem("paymentCompleted");
@@ -218,7 +297,6 @@ document.addEventListener("DOMContentLoaded", () => {
     localStorage.removeItem(STORAGE_REMEMBER_KEY);
     localStorage.removeItem(STORAGE_REMEMBER_EMAIL_KEY);
 
-    // Broadcast logout event to close open tabs immediately
     localStorage.setItem(STORAGE_LOGOUT_EVENT_KEY, Date.now().toString());
 
     window.location.href = "signin.html";
@@ -445,7 +523,6 @@ document.addEventListener("DOMContentLoaded", () => {
         sessionStorage.removeItem("userEmail");
         sessionStorage.removeItem("paymentCompleted");
 
-        // Broadcast sign-out event across all tabs
         localStorage.setItem(STORAGE_LOGOUT_EVENT_KEY, Date.now().toString());
 
         alert("Your account has been permanently deleted.");
@@ -656,7 +733,6 @@ document.addEventListener("DOMContentLoaded", () => {
         sendResetBtn.textContent = "Sending Request...";
       }
 
-      // Generate token valid for 1 hour
       const token =
         Math.random().toString(36).substring(2, 15) + Date.now().toString(36);
       const tokens = JSON.parse(
@@ -755,7 +831,6 @@ document.addEventListener("DOMContentLoaded", () => {
           saveRegisteredAccounts(accounts);
         }
 
-        // Revoke token after use
         delete tokens[token];
         localStorage.setItem(STORAGE_RESET_TOKENS_KEY, JSON.stringify(tokens));
 
@@ -795,7 +870,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  if (currentPath.includes("verify.html")) {
+  if (currentPath.endsWith("verify.html")) {
     const isPaymentCompleted =
       sessionStorage.getItem("paymentCompleted") === "true";
     const verifyingState = document.querySelector("#verifyingState");
@@ -1014,7 +1089,9 @@ document.addEventListener("DOMContentLoaded", () => {
   );
   const airlineCountDisplay = document.getElementById("airlineCount");
   const airlineNoResults = document.getElementById("noResults");
-  const loadMoreAirlinesBtn = document.getElementById("loadMoreBtn");
+  const loadMoreAirlinesBtn =
+    document.getElementById("loadMoreAirlinesBtn") ||
+    document.getElementById("loadMoreBtn");
 
   if (airlineCards.length > 0) {
     const AIRLINES_PER_PAGE = 6;
@@ -1119,7 +1196,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const airportWrappers = Array.from(
     document.querySelectorAll(".airport-card-wrapper"),
   );
-  const loadMoreAirportsBtn = document.getElementById("loadMoreBtn");
+  const loadMoreAirportsBtn = document.getElementById("loadMoreAirportsBtn");
   const airportSearchInput = document.getElementById("airportFilterInput");
   const airportRegionSelect = document.getElementById("regionFilterSelect");
   const airportNoResults = document.getElementById("noResultsMsg");
