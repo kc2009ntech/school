@@ -15,123 +15,8 @@ document.addEventListener("DOMContentLoaded", () => {
   let SECRET_PASSCODE = localStorage.getItem("aerolover_passcode") || "skyhigh";
 
   // ==========================================
-  // INITIALIZE DEFAULT ACCOUNT (IF NONE EXISTS)
+  // HELPER UTILITIES
   // ==========================================
-  function initializeDefaultAccount() {
-    const existingAccounts = localStorage.getItem(STORAGE_ACCOUNTS_KEY);
-    if (!existingAccounts) {
-      const defaultAccount = {
-        "demo@aerolover.com": {
-          firstName: "Demo",
-          lastName: "User",
-          password: "Password123",
-          createdAt: new Date().toISOString(),
-        },
-      };
-      localStorage.setItem(
-        STORAGE_ACCOUNTS_KEY,
-        JSON.stringify(defaultAccount),
-      );
-
-      const defaultProfile = {
-        firstName: "Demo",
-        lastName: "User",
-        email: "demo@aerolover.com",
-        bio: "Aviation Enthusiast",
-        updatedAt: new Date().toISOString(),
-      };
-      localStorage.setItem(STORAGE_PROFILE_KEY, JSON.stringify(defaultProfile));
-    }
-  }
-
-  initializeDefaultAccount();
-
-  // ==========================================
-  // ADMIN DIRECT PASSWORD RESET & OPTION B
-  // ==========================================
-  window.adminResetPassword = function (email, newPassword) {
-    const targetEmail = (email || "").trim().toLowerCase();
-    const accountsData = localStorage.getItem(STORAGE_ACCOUNTS_KEY);
-
-    if (!accountsData) {
-      console.error("No registered accounts found in LocalStorage.");
-      return false;
-    }
-
-    try {
-      const accounts = JSON.parse(accountsData);
-
-      if (!accounts[targetEmail]) {
-        console.warn(`Account '${targetEmail}' does not exist.`);
-        return false;
-      }
-
-      const passValidation = validatePasswordRules(newPassword);
-      if (!passValidation.isValid) {
-        console.error(`Password validation failed: ${passValidation.message}`);
-        return false;
-      }
-
-      // Direct password update
-      accounts[targetEmail].password = newPassword;
-      localStorage.setItem(STORAGE_ACCOUNTS_KEY, JSON.stringify(accounts));
-
-      console.log(
-        `✅ Success! Password for '${targetEmail}' has been updated to '${newPassword}'.`,
-      );
-      return true;
-    } catch (err) {
-      console.error("Error during admin password reset:", err);
-      return false;
-    }
-  };
-
-  // Option B UI Listener: One-click testing bypass button
-  const quickResetBtn = document.querySelector("#adminQuickResetBtn");
-  if (quickResetBtn) {
-    quickResetBtn.addEventListener("click", () => {
-      const success = window.adminResetPassword(
-        "demo@aerolover.com",
-        "Password123",
-      );
-      if (success) {
-        alert("Admin Override: Password directly reset to 'Password123'!");
-      }
-    });
-  }
-
-  // ==========================================
-  // CROSS-TAB SIGN-OUT SYNCHRONIZATION
-  // ==========================================
-  window.addEventListener("storage", (e) => {
-    if (e.key === STORAGE_LOGOUT_EVENT_KEY) {
-      sessionStorage.removeItem("isUnlocked");
-      sessionStorage.removeItem("paymentCompleted");
-      sessionStorage.removeItem("userEmail");
-
-      if (
-        !currentPath.endsWith("signin.html") &&
-        !currentPath.endsWith("signup.html")
-      ) {
-        window.location.href = "signin.html";
-      }
-    }
-  });
-
-  // ==========================================
-  // PERSISTENT "REMEMBER ME" AUTO-LOGIN CHECK
-  // ==========================================
-  const isRemembered = localStorage.getItem(STORAGE_REMEMBER_KEY) === "true";
-  const rememberedEmail = localStorage.getItem(STORAGE_REMEMBER_EMAIL_KEY);
-
-  if (isRemembered && rememberedEmail) {
-    sessionStorage.setItem("isUnlocked", "true");
-    sessionStorage.setItem("userEmail", rememberedEmail);
-  }
-
-  const isUnlocked = sessionStorage.getItem("isUnlocked") === "true";
-  const isPaid = localStorage.getItem("aerolover_payment_active") === "true";
-
   function getRegisteredAccounts() {
     const data = localStorage.getItem(STORAGE_ACCOUNTS_KEY);
     if (!data) return {};
@@ -206,7 +91,112 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // ==========================================
-  // 1. ROUTE GUARD (STRICT UNPAID/SIGNED-OUT BLOCKS)
+  // INITIALIZE DEFAULT ACCOUNT (IF NONE EXISTS)
+  // ==========================================
+  function initializeDefaultAccount() {
+    const existingAccounts = localStorage.getItem(STORAGE_ACCOUNTS_KEY);
+    if (!existingAccounts) {
+      const defaultAccount = {
+        "demo@aerolover.com": {
+          firstName: "Demo",
+          lastName: "User",
+          password: "Password123",
+          createdAt: new Date().toISOString(),
+        },
+      };
+      saveRegisteredAccounts(defaultAccount);
+
+      const defaultProfile = {
+        firstName: "Demo",
+        lastName: "User",
+        email: "demo@aerolover.com",
+        bio: "Aviation Enthusiast",
+        updatedAt: new Date().toISOString(),
+      };
+      localStorage.setItem(STORAGE_PROFILE_KEY, JSON.stringify(defaultProfile));
+    }
+  }
+
+  initializeDefaultAccount();
+
+  // ==========================================
+  // ADMIN DIRECT PASSWORD RESET & OPTION B
+  // ==========================================
+  window.adminResetPassword = function (email, newPassword) {
+    const activeEmail =
+      sessionStorage.getItem("userEmail") || "demo@aerolover.com";
+    const targetEmail = (email || activeEmail).trim().toLowerCase();
+    const accounts = getRegisteredAccounts();
+
+    if (!accounts[targetEmail]) {
+      console.warn(`Account '${targetEmail}' does not exist.`);
+      return false;
+    }
+
+    const passValidation = validatePasswordRules(newPassword);
+    if (!passValidation.isValid) {
+      console.error(`Password validation failed: ${passValidation.message}`);
+      return false;
+    }
+
+    // Direct password update
+    accounts[targetEmail].password = newPassword;
+    saveRegisteredAccounts(accounts);
+
+    console.log(
+      `✅ Success! Password for '${targetEmail}' has been updated to '${newPassword}'.`,
+    );
+    return true;
+  };
+
+  // Option B UI Listener: One-click testing bypass button
+  const quickResetBtn = document.querySelector("#adminQuickResetBtn");
+  if (quickResetBtn) {
+    quickResetBtn.addEventListener("click", () => {
+      const activeEmail =
+        sessionStorage.getItem("userEmail") || "demo@aerolover.com";
+      const success = window.adminResetPassword(activeEmail, "Password123");
+      if (success) {
+        alert(
+          `Admin Override: Password for '${activeEmail}' directly reset to 'Password123'!`,
+        );
+      }
+    });
+  }
+
+  // ==========================================
+  // CROSS-TAB SIGN-OUT SYNCHRONIZATION
+  // ==========================================
+  window.addEventListener("storage", (e) => {
+    if (e.key === STORAGE_LOGOUT_EVENT_KEY) {
+      sessionStorage.removeItem("isUnlocked");
+      sessionStorage.removeItem("paymentCompleted");
+      sessionStorage.removeItem("userEmail");
+
+      if (
+        !currentPath.endsWith("signin.html") &&
+        !currentPath.endsWith("signup.html")
+      ) {
+        window.location.href = "signin.html";
+      }
+    }
+  });
+
+  // ==========================================
+  // PERSISTENT "REMEMBER ME" AUTO-LOGIN CHECK
+  // ==========================================
+  const isRemembered = localStorage.getItem(STORAGE_REMEMBER_KEY) === "true";
+  const rememberedEmail = localStorage.getItem(STORAGE_REMEMBER_EMAIL_KEY);
+
+  if (isRemembered && rememberedEmail) {
+    sessionStorage.setItem("isUnlocked", "true");
+    sessionStorage.setItem("userEmail", rememberedEmail);
+  }
+
+  const isUnlocked = sessionStorage.getItem("isUnlocked") === "true";
+  const isPaid = localStorage.getItem("aerolover_payment_active") === "true";
+  // ==========================================
+  // 1. ROUTE GUARD (OWNER-ONLY EXCLUSIVE ACCESS)
   // ==========================================
   const protectedPages = [
     "dashboard.html",
@@ -226,16 +216,32 @@ document.addEventListener("DOMContentLoaded", () => {
     currentPath.endsWith(page),
   );
 
+  // Redirect signed-out / unknown users to sign in
   if ((isProtected || isPaymentProtected) && !isUnlocked) {
     window.location.href = "signin.html";
     return;
   }
 
-  if (isPaymentProtected && !isPaid) {
-    window.location.href = "plans.html";
-    return;
-  }
+  // Set the site owner's email address here
+  const OWNER_EMAIL = "demo@aerolover.com";
+  const currentUserEmail = sessionStorage.getItem("userEmail") || "";
 
+  // Strictly check if the active user is the web owner
+  if (isPaymentProtected) {
+    const isOwner =
+      currentUserEmail.toLowerCase() === OWNER_EMAIL.toLowerCase();
+    if (isOwner) {
+      localStorage.setItem("aerolover_payment_active", "true");
+    }
+
+    if (!isOwner || !isPaid) {
+      alert(
+        "Access Denied: The Exclusive Lounge is restricted to the site owner only.",
+      );
+      window.location.href = "plans.html";
+      return;
+    }
+  }
   // ==========================================
   // DYNAMIC NAVBAR USER NAME & AVATAR DISPLAY
   // ==========================================
