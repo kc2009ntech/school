@@ -1,0 +1,416 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Aerolover - TAP Air Portugal Profile</title>
+    <!-- Bootstrap 5 CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body class="bg-light d-flex flex-column min-vh-100">
+    <!-- Navbar -->
+    <nav
+      class="navbar navbar-expand-lg sticky-top navbar-glass border-bottom shadow-sm py-2"
+    >
+      <div class="container-fluid px-4">
+        <a class="navbar-brand me-4" href="index.html">
+          <img
+            src="image/image.png"
+            alt="Aerolover Logo"
+            style="height: 3.2rem"
+          />
+        </a>
+        <button
+          class="navbar-toggler border-0"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarContent"
+          aria-controls="navbarContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarContent">
+          <!-- All Navigation Links -->
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0 fw-semibold">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link active"
+                aria-current="page"
+                href="airlines.html"
+                >Airlines</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="airports.html">Airports</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="latestnews.html">Latest news</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="sustainability.html">Sustainability</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="technology.html">Technology</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="airspace.html">Airspace</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html">Contact</a>
+            </li>
+          </ul>
+
+          <div class="d-flex flex-wrap align-items-center gap-2">
+            <a
+              href="signin.html"
+              class="btn btn-outline-primary rounded-pill px-3"
+            >
+              Sign In
+            </a>
+            <a href="signup.html" class="btn btn-primary rounded-pill px-3">
+              Create Free Account
+            </a>
+
+            <form id="searchForm" class="d-flex gap-2 ms-lg-2" role="search">
+              <div class="input-group">
+                <input
+                  type="search"
+                  id="searchInput"
+                  class="form-control rounded-start-pill"
+                  placeholder="Search..."
+                  required
+                />
+                <button type="submit" class="btn btn-primary rounded-end-pill">
+                  Go
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container py-5 flex-grow-1">
+      <div class="col-12 col-lg-10 mx-auto">
+        <!-- Back Button -->
+        <div class="mb-4">
+          <a
+            href="airlines.html"
+            class="btn btn-outline-secondary btn-sm rounded-pill px-3"
+          >
+            ← Back to Airlines Directory
+          </a>
+        </div>
+
+        <!-- Hero Header Card -->
+        <div class="card border-0 shadow-sm rounded-4 p-4 p-md-5 mb-4 bg-white text-center">
+          <div class="mb-3">
+            <img
+              src="image/e5ea871f-5122-415b-94e1-a22fa0dee9dc (2).webp"
+              class="img-fluid rounded-3 shadow-sm"
+              style="max-height: 600px; object-fit: contain"
+              alt="TAP Air Portugal Logo"
+            />
+          </div>
+          <div class="mb-2">
+            <span class="badge bg-success-subtle text-success rounded-pill px-3 py-2 fw-semibold">
+              IATA: TP • ICAO: TAP • HQ: Lisbon, Portugal • Star Alliance
+            </span>
+          </div>
+          <h1 class="display-5 fw-bold text-dark mt-2">TAP Air Portugal</h1>
+          <p class="lead text-muted mx-auto" style="max-width: 750px">
+            The flag carrier of Portugal, headquartered at Lisbon Humberto Delgado Airport. TAP serves as a premier transatlantic bridge connecting Europe with Brazil, North America, and Africa via an all-Airbus mainline fleet.
+          </p>
+        </div>
+
+        <!-- Content Grid -->
+        <div class="row g-4">
+          <!-- Fleet Overview & List (Left Column) -->
+          <div class="col-lg-7">
+            <div class="card border-0 shadow-sm rounded-4 p-4 h-100 bg-white">
+              <div class="d-flex align-items-center gap-2 mb-3">
+                <span class="fs-4">✈️</span>
+                <h3 class="fw-bold mb-0">Active Fleet Overview</h3>
+              </div>
+              <p class="text-muted small mb-4">
+                TAP Air Portugal operates an all-Airbus mainline fleet paired with regional Embraer and ATR aircraft operated under its TAP Express subsidiary.
+              </p>
+
+              <ul class="list-group list-group-flush border rounded-3">
+                <li class="list-group-item d-flex justify-content-between align-items-center py-3">
+                  <div>
+                    <span class="fw-bold text-dark">Airbus A319-100</span>
+                    <div class="text-muted small">Short-haul European & domestic routes</div>
+                  </div>
+                  <span class="badge bg-light text-dark border rounded-pill">144 Seats</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center py-3">
+                  <div>
+                    <span class="fw-bold text-dark">Airbus A320-200</span>
+                    <div class="text-muted small">Core European & North African trunk routes</div>
+                  </div>
+                  <span class="badge bg-light text-dark border rounded-pill">174 Seats</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center py-3">
+                  <div>
+                    <span class="fw-bold text-dark">Airbus A320neo</span>
+                    <div class="text-muted small">Next-gen fuel-efficient single-aisle</div>
+                  </div>
+                  <span class="badge bg-success-subtle text-success rounded-pill">174 Seats</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center py-3">
+                  <div>
+                    <span class="fw-bold text-dark">Airbus A321-200</span>
+                    <div class="text-muted small">High-capacity continental Europe</div>
+                  </div>
+                  <span class="badge bg-light text-dark border rounded-pill">216 Seats</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center py-3">
+                  <div>
+                    <span class="fw-bold text-dark">Airbus A321neo</span>
+                    <div class="text-muted small">Medium-haul & high-density European routes</div>
+                  </div>
+                  <span class="badge bg-success-subtle text-success rounded-pill">216–221 Seats</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center py-3">
+                  <div>
+                    <span class="fw-bold text-dark">Airbus A321LR (Long Range)</span>
+                    <div class="text-muted small">Transatlantic narrowbody (US East Coast & Northeast Brazil)</div>
+                  </div>
+                  <span class="badge bg-primary-subtle text-primary rounded-pill">168–171 Seats</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center py-3">
+                  <div>
+                    <span class="fw-bold text-dark">Airbus A330-200</span>
+                    <div class="text-muted small">Long-haul Americas & African routes</div>
+                  </div>
+                  <span class="badge bg-light text-dark border rounded-pill">269 Seats</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center py-3">
+                  <div>
+                    <span class="fw-bold text-dark">Airbus A330-900neo</span>
+                    <div class="text-muted small">Flagship widebody (Launch operator worldwide)</div>
+                  </div>
+                  <span class="badge bg-primary-subtle text-primary rounded-pill">298 Seats</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center py-3">
+                  <div>
+                    <span class="fw-bold text-dark">Embraer E190 / E195 (TAP Express)</span>
+                    <div class="text-muted small">Regional feeder & Iberian Peninsula flights</div>
+                  </div>
+                  <span class="badge bg-warning-subtle text-warning-emphasis rounded-pill">106–118 Seats</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Services & Destinations (Right Column) -->
+          <div class="col-lg-5 d-flex flex-column gap-4">
+            <!-- Services Card -->
+            <div class="card border-0 shadow-sm rounded-4 p-4 bg-white">
+              <div class="d-flex align-items-center gap-2 mb-3">
+                <span class="fs-4">🛋️</span>
+                <h3 class="fw-bold mb-0">Cabin & Services</h3>
+              </div>
+              <p class="text-muted small">
+                TAP offers signature Portuguese hospitality and modern cabin products across its fleet:
+              </p>
+              <ul class="list-group list-group-flush small">
+                <li class="list-group-item px-0">
+                  <strong>Executive Class:</strong> Full-flat staggered Recaro beds on A330neo and Thompson Vantage seats on A321LR transatlantic flights.
+                </li>
+                <li class="list-group-item px-0">
+                  <strong>EconomyXtra:</strong> Enhanced legroom (34-inch pitch), adjustable headrests, and power outlets on long-haul aircraft.
+                </li>
+                <li class="list-group-item px-0">
+                  <strong>Portugal Stopover:</strong> Free stopover program allowing passengers to explore Lisbon or Porto for up to 10 days on connecting tickets.
+                </li>
+                <li class="list-group-item px-0">
+                  <strong>TAP Miles&Go:</strong> Loyalty program integrated across all 25+ Star Alliance partner carriers.
+                </li>
+              </ul>
+            </div>
+
+            <!-- Destinations Card -->
+            <div class="card border-0 shadow-sm rounded-4 p-4 bg-white flex-grow-1">
+              <div class="d-flex align-items-center gap-2 mb-3">
+                <span class="fs-4">🌍</span>
+                <h3 class="fw-bold mb-0">Major Hubs & Network</h3>
+              </div>
+              <p class="text-muted small">
+                Operating over 2,500 weekly flights to more than 85 destinations across 30+ countries:
+              </p>
+              <ul class="list-group list-group-flush small">
+                <li class="list-group-item px-0 d-flex justify-content-between">
+                  <span><strong>Lisbon (LIS)</strong> — Portugal</span>
+                  <span class="text-muted">Primary Global Hub</span>
+                </li>
+                <li class="list-group-item px-0 d-flex justify-content-between">
+                  <span><strong>Porto (OPO)</strong> — Portugal</span>
+                  <span class="text-muted">Secondary Northern Hub</span>
+                </li>
+                <li class="list-group-item px-0 d-flex justify-content-between">
+                  <span><strong>Brazil Network (13 Cities)</strong></span>
+                  <span class="text-muted">Largest European Carrier to Brazil</span>
+                </li>
+                <li class="list-group-item px-0 d-flex justify-content-between">
+                  <span><strong>North America</strong></span>
+                  <span class="text-muted">Newark, JFK, Boston, Miami, Toronto</span>
+                </li>
+                <li class="list-group-item px-0 d-flex justify-content-between">
+                  <span><strong>Lusophone Africa</strong></span>
+                  <span class="text-muted">Luanda, Maputo, Praia, São Tomé</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white pt-5 pb-4 mt-auto">
+      <div class="container text-center text-md-start">
+        <div class="row g-4">
+          <div class="col-md-4 col-lg-4 col-xl-3 mx-auto">
+            <a href="index.html" class="d-inline-block mb-3">
+              <img
+                src="image/image.png"
+                alt="AeroLover logo"
+                style="height: 4.5rem"
+              />
+            </a>
+            <p class="text-white-50 small">
+              Your ultimate portal for aviation news, airport updates, airline
+              fleet specs, and future aerospace technologies.
+            </p>
+          </div>
+
+          <div class="col-md-2 col-lg-2 col-xl-2 mx-auto">
+            <h6 class="text-uppercase mb-3 fw-bold text-primary">Navigation</h6>
+            <ul class="list-unstyled small">
+              <li class="mb-2">
+                <a href="index.html" class="text-white-50 text-decoration-none"
+                  >Home</a
+                >
+              </li>
+              <li class="mb-2">
+                <a
+                  href="airlines.html"
+                  class="text-white-50 text-decoration-none"
+                  >Airlines</a
+                >
+              </li>
+              <li class="mb-2">
+                <a
+                  href="airports.html"
+                  class="text-white-50 text-decoration-none"
+                  >Airports</a
+                >
+              </li>
+              <li class="mb-2">
+                <a
+                  href="latestnews.html"
+                  class="text-white-50 text-decoration-none"
+                  >Latest news</a
+                >
+              </li>
+              <li class="mb-2">
+                <a
+                  href="sustainability.html"
+                  class="text-white-50 text-decoration-none"
+                  >Sustainability</a
+                >
+              </li>
+              <li class="mb-2">
+                <a
+                  href="technology.html"
+                  class="text-white-50 text-decoration-none"
+                  >Technology</a
+                >
+              </li>
+              <li class="mb-2">
+                <a
+                  href="airspace.html"
+                  class="text-white-50 text-decoration-none"
+                  >Airspace</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div class="col-md-3 col-lg-2 col-xl-2 mx-auto">
+            <h6 class="text-uppercase mb-3 fw-bold text-primary">Benefits</h6>
+            <ul class="list-unstyled small">
+              <li class="mb-2">
+                <a href="plans.html" class="text-white-50 text-decoration-none"
+                  >Exclusive Access</a
+                >
+              </li>
+              <li class="mb-2">
+                <a href="signin.html" class="text-white-50 text-decoration-none"
+                  >Sign in</a
+                >
+              </li>
+              <li class="mb-2">
+                <a href="signup.html" class="text-white-50 text-decoration-none"
+                  >Create account</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div class="col-md-3 col-lg-3 col-xl-3 mx-auto small">
+            <h6 class="text-uppercase mb-3 fw-bold text-primary">Connect</h6>
+            <p class="mb-2 text-white-50">📧 contact@aerolover.com</p>
+            <p class="mb-2 text-white-50">📍 Worldwide Aviation Network</p>
+          </div>
+        </div>
+
+        <hr class="my-4 border-light opacity-25" />
+
+        <div class="row align-items-center small">
+          <div class="col-md-7 text-center text-md-start">
+            <p class="mb-0 text-white-50">
+              © 2026 Aerolover. Built with Bootstrap 5 & Vanilla JS.
+            </p>
+          </div>
+          <div class="col-md-5 text-center text-md-end mt-3 mt-md-0">
+            <a href="#" class="text-white-50 text-decoration-none me-3"
+              >Privacy Policy</a
+            >
+            <a href="#" class="text-white-50 text-decoration-none"
+              >Terms of Service</a
+            >
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Import Map & Main Script -->
+    <script type="importmap">
+      {
+        "imports": {
+          "@popperjs/core": "https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/esm/popper.js",
+          "bootstrap": "https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.esm.min.js"
+        }
+      }
+    </script>
+    <script type="module">
+      import * as bootstrap from "bootstrap";
+    </script>
+  </body>
+</html>

@@ -1,0 +1,457 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Aerolover - LATAM Airlines Profile</title>
+    <!-- Bootstrap 5 CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      crossorigin="anonymous"
+    />
+    <style>
+      .navbar-glass {
+        background-color: rgba(253, 252, 252, 0.85);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+      }
+      .avatar-circle {
+        width: 32px;
+        height: 32px;
+        background-color: #0d6efd;
+        color: #faf6f6;
+        font-weight: bold;
+        font-size: 0.85rem;
+        border-radius: 50%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+    </style>
+  </head>
+  <body class="bg-light d-flex flex-column min-vh-100">
+    <!-- Navbar -->
+    <nav
+      class="navbar navbar-expand-lg sticky-top navbar-glass border-bottom shadow-sm py-2"
+    >
+      <div class="container-fluid px-4">
+        <a class="navbar-brand me-4" href="dashboard.html">
+          <img
+            src="image/image.png"
+            alt="Aerolover Logo"
+            style="height: 3.2rem"
+          />
+        </a>
+        <button
+          class="navbar-toggler border-0"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarContent"
+          aria-controls="navbarContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarContent">
+          <!-- Navigation Links -->
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0 fw-semibold">
+            <li class="nav-item">
+              <a class="nav-link" href="dashboard.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link active"
+                aria-current="page"
+                href="airlines.html"
+                >Airlines</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="dashboard_airports.html">Airports</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="dashboard2.html">Latest news</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="sustainability.html">Sustainability</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="technology.html">Technology</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="airspace.html">Airspace</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="dashboard_contact.html">Contact</a>
+            </li>
+          </ul>
+
+          <!-- Account & Search Controls -->
+          <div class="d-flex flex-wrap align-items-center gap-2">
+            <div class="dropdown">
+              <button
+                class="btn btn-outline-primary dropdown-toggle rounded-pill px-3 d-inline-flex align-items-center gap-2"
+                type="button"
+                id="dropdownMenuButton"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <span id="navAvatarCircle" class="avatar-circle d-none"></span>
+                <span id="navUserName">Account</span>
+              </button>
+              <ul
+                class="dropdown-menu dropdown-menu-end shadow-sm"
+                aria-labelledby="dropdownMenuButton"
+              >
+                <li>
+                  <a class="dropdown-item" href="dashboard_settings.html"
+                    >Account Settings</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item text-warning fw-semibold"
+                    href="plans.html"
+                    >⚡ Upgrade Subscription</a
+                  >
+                </li>
+                <li><hr class="dropdown-divider" /></li>
+                <li>
+                  <button class="dropdown-item text-danger" id="logoutBtn">
+                    Sign Out
+                  </button>
+                </li>
+              </ul>
+            </div>
+
+            <form id="searchForm" class="d-flex gap-2 ms-lg-2" role="search">
+              <div class="input-group">
+                <input
+                  type="search"
+                  id="searchInput"
+                  class="form-control rounded-start-pill"
+                  placeholder="Search..."
+                  required
+                />
+                <button type="submit" class="btn btn-primary rounded-end-pill">
+                  Go
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <!-- Main Content -->
+    <main class="container py-5 flex-grow-1">
+      <div class="col-12 col-lg-10 mx-auto">
+        <!-- Back Button -->
+        <div class="mb-4">
+          <a
+            href="dashboard_airlines.html"
+            class="btn btn-outline-secondary btn-sm rounded-pill px-3"
+          >
+            ← Back to Airlines Directory
+          </a>
+        </div>
+
+        <!-- Hero Header Card -->
+        <div class="card border-0 shadow-sm rounded-4 p-4 p-md-5 mb-4 bg-white text-center">
+          <div class="mb-3">
+            <img
+              src="https://www.airway.com.br/uploads/aviation/2025/11/emirates-airbus-a380-emirates-airline-rqag2cv.webp"
+              class="img-fluid rounded-3 shadow-sm"
+              style="max-height: 600px; object-fit: contain"
+              alt="Emirates Logo"
+            />
+          </div>
+          <div class="mb-2">
+            <span class="badge bg-danger-subtle text-danger rounded-pill px-3 py-2 fw-semibold">
+              IATA: EK • ICAO: UAE • HQ: Dubai, United Arab Emirates • Non-Aligned Carrier
+            </span>
+          </div>
+          <h1 class="display-5 fw-bold text-dark mt-2">Emirates</h1>
+          <p class="lead text-muted mx-auto" style="max-width: 750px">
+            Based in Dubai, Emirates is the world's largest international airline and the largest operator of both the Airbus A380 and Boeing 777. Operating exclusively wide-body aircraft, it connects six continents through its global super-hub at Dubai International Airport (DXB).
+          </p>
+        </div>
+
+        <!-- Content Grid -->
+        <div class="row g-4">
+          <!-- Fleet Overview & List (Left Column) -->
+          <div class="col-lg-7">
+            <div class="card border-0 shadow-sm rounded-4 p-4 h-100 bg-white">
+              <div class="d-flex align-items-center gap-2 mb-3">
+                <span class="fs-4">✈️</span>
+                <h3 class="fw-bold mb-0">Active Wide-Body Fleet Overview</h3>
+              </div>
+              <p class="text-muted small mb-4">
+                Emirates operates an all-wide-body passenger and cargo fleet, recently expanding with next-generation Airbus A350-900 deliveries alongside retrofitted A380s and 777s.
+              </p>
+
+              <ul class="list-group list-group-flush border rounded-3">
+                <li class="list-group-item d-flex justify-content-between align-items-center py-3">
+                  <div>
+                    <span class="fw-bold text-dark">Airbus A380-800 (3-Class & 4-Class)</span>
+                    <div class="text-muted small">Flagship double-decker with First Class Suites, Shower Spa & Onboard Lounge</div>
+                  </div>
+                  <span class="badge bg-primary-subtle text-primary rounded-pill">484–519 Seats</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center py-3">
+                  <div>
+                    <span class="fw-bold text-dark">Airbus A380-800 (2-Class High-Density)</span>
+                    <div class="text-muted small">World's highest-capacity commercial airliner configuration</div>
+                  </div>
+                  <span class="badge bg-primary-subtle text-primary rounded-pill">615 Seats</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center py-3">
+                  <div>
+                    <span class="fw-bold text-dark">Airbus A350-900</span>
+                    <div class="text-muted small">Next-gen medium-to-long-haul widebody featuring new cabin interiors</div>
+                  </div>
+                  <span class="badge bg-success-subtle text-success rounded-pill">312 Seats</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center py-3">
+                  <div>
+                    <span class="fw-bold text-dark">Boeing 777-200LR</span>
+                    <div class="text-muted small">Ultra-long-range twinjet for distant Americas & Australasia routes</div>
+                  </div>
+                  <span class="badge bg-light text-dark border rounded-pill">302 Seats</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center py-3">
+                  <div>
+                    <span class="fw-bold text-dark">Boeing 777-300ER (3-Class & Retrofitted 4-Class)</span>
+                    <div class="text-muted small">Global network backbone with Game Changer First Class & Premium Economy</div>
+                  </div>
+                  <span class="badge bg-primary-subtle text-primary rounded-pill">328–360 Seats</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center py-3">
+                  <div>
+                    <span class="fw-bold text-dark">Boeing 777-300ER (2-Class)</span>
+                    <div class="text-muted small">High-capacity regional & South Asia trunk routes</div>
+                  </div>
+                  <span class="badge bg-light text-dark border rounded-pill">428 Seats</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center py-3">
+                  <div>
+                    <span class="fw-bold text-dark">Boeing 777F (Emirates SkyCargo)</span>
+                    <div class="text-muted small">Dedicated global air freighter fleet based at DWC</div>
+                  </div>
+                  <span class="badge bg-warning-subtle text-warning-emphasis rounded-pill">Cargo Only</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Services & Destinations (Right Column) -->
+          <div class="col-lg-5 d-flex flex-column gap-4">
+            <!-- Services Card -->
+            <div class="card border-0 shadow-sm rounded-4 p-4 bg-white">
+              <div class="d-flex align-items-center gap-2 mb-3">
+                <span class="fs-4">🛋️</span>
+                <h3 class="fw-bold mb-0">Cabin & Services</h3>
+              </div>
+              <p class="text-muted small">
+                Renowned for luxury long-haul hospitality across four distinct cabin classes:
+              </p>
+              <ul class="list-group list-group-flush small">
+                <li class="list-group-item px-0">
+                  <strong>First Class Suites:</strong> Floor-to-ceiling enclosed suites on select 777-300ERs ("Game Changer") and private suites with onboard Shower Spas on the A380.
+                </li>
+                <li class="list-group-item px-0">
+                  <strong>Business Class:</strong> Lie-flat seating, complimentary Chauffeur-drive service, and access to the signature A380 Onboard Lounge at 40,000 feet.
+                </li>
+                <li class="list-group-item px-0">
+                  <strong>Premium Economy:</strong> Cream leather seats with 40-inch pitch, cushioned legrests, and elevated dining on A380, A350, and retrofitted 777 jets.
+                </li>
+                <li class="list-group-item px-0">
+                  <strong>ice Inflight Entertainment & Skywards:</strong> Award-winning entertainment system with over 6,500 channels and the Emirates Skywards loyalty program.
+                </li>
+              </ul>
+            </div>
+
+            <!-- Destinations Card -->
+            <div class="card border-0 shadow-sm rounded-4 p-4 bg-white flex-grow-1">
+              <div class="d-flex align-items-center gap-2 mb-3">
+                <span class="fs-4">🌍</span>
+                <h3 class="fw-bold mb-0">Major Hubs & Network</h3>
+              </div>
+              <p class="text-muted small">
+                Connecting over 140 destinations across 80+ countries and territories via Dubai:
+              </p>
+              <ul class="list-group list-group-flush small">
+                <li class="list-group-item px-0 d-flex justify-content-between">
+                  <span><strong>Dubai International (DXB)</strong> — UAE</span>
+                  <span class="text-muted">Dedicated Terminal 3 Super-Hub</span>
+                </li>
+                <li class="list-group-item px-0 d-flex justify-content-between">
+                  <span><strong>Dubai World Central (DWC)</strong> — UAE</span>
+                  <span class="text-muted">Emirates SkyCargo Hub</span>
+                </li>
+                <li class="list-group-item px-0 d-flex justify-content-between">
+                  <span><strong>Europe & UK</strong></span>
+                  <span class="text-muted">London Heathrow (6x daily A380), Paris, Frankfurt</span>
+                </li>
+                <li class="list-group-item px-0 d-flex justify-content-between">
+                  <span><strong>Asia-Pacific & Australasia</strong></span>
+                  <span class="text-muted">Sydney, Melbourne, Singapore, Tokyo, Bangkok</span>
+                </li>
+                <li class="list-group-item px-0 d-flex justify-content-between">
+                  <span><strong>Americas & Africa</strong></span>
+                  <span class="text-muted">New York JFK, LAX, São Paulo, Johannesburg</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white pt-5 pb-4 mt-5">
+      <div class="container text-center text-md-start">
+        <div class="row g-4">
+          <div class="col-md-4 col-lg-4 col-xl-3 mx-auto">
+            <a href="index.html" class="d-inline-block mb-3">
+              <img
+                src="image/image.png"
+                alt="AeroLover logo"
+                style="height: 4.5rem"
+              />
+            </a>
+            <p class="text-white-50 small">
+              Your ultimate portal for aviation news, airport updates, airline
+              fleet specs, and future aerospace technologies.
+            </p>
+          </div>
+
+          <div class="col-md-2 col-lg-2 col-xl-2 mx-auto">
+            <h6 class="text-uppercase mb-3 fw-bold text-primary">Navigation</h6>
+            <ul class="list-unstyled small">
+              <li class="mb-2">
+                <a href="dashboard.html" class="text-white-50 text-decoration-none"
+                  >Home</a
+                >
+              </li>
+              <li class="mb-2">
+                <a
+                  href="dashboard_airlines.html"
+                  class="text-white-50 text-decoration-none"
+                  >Airlines</a
+                >
+              </li>
+              <li class="mb-2">
+                <a
+                  href="dashboard_airports.html"
+                  class="text-white-50 text-decoration-none"
+                  >Airports</a
+                >
+              </li>
+              <li class="mb-2">
+                <a
+                  href="dashboard_latestnews.html"
+                  class="text-white-50 text-decoration-none"
+                  >Latest news</a
+                >
+              </li>
+
+              <li class="mb-2">
+                <a
+                  href="dashboard_sustainability.html"
+                  class="text-white-50 text-decoration-none"
+                  >Sustainability</a
+                >
+              </li>
+              <li class="mb-2">
+                <a
+                  href="dashboard_technology.html"
+                  class="text-white-50 text-decoration-none"
+                  >Technology</a
+                >
+              </li>
+              <li class="mb-2">
+                <a
+                  href="dashboard_airspace.html"
+                  class="text-white-50 text-decoration-none"
+                  >Airspace</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div class="col-md-3 col-lg-2 col-xl-2 mx-auto">
+            <h6 class="text-uppercase mb-3 fw-bold text-primary">Benefits</h6>
+            <ul class="list-unstyled small">
+              <li class="mb-2">
+                <a href="plans.html" class="text-white-50 text-decoration-none"
+                  >Exclusive Access</a
+                >
+              </li>
+
+              <li class="mb-2">
+                <a href="dashboard_settings.html" class="text-white-50 text-decoration-none"
+                  >My Account</a
+                >
+              </li>
+
+            </ul>
+          </div>
+
+          <div class="col-md-3 col-lg-3 col-xl-3 mx-auto small">
+            <h6 class="text-uppercase mb-3 fw-bold text-primary">Connect</h6>
+            <p class="mb-2 text-white-50">📧 contact@aerolover.com</p>
+            <p class="mb-2 text-white-50">📍 Worldwide Aviation Network</p>
+          </div>
+        </div>
+
+        <hr class="my-4 border-light opacity-25" />
+
+        <div class="row align-items-center small">
+          <div class="col-md-7 text-center text-md-start">
+            <p class="mb-0 text-white-50">
+              © 2026 Aerolover. Built with Bootstrap 5 & Vanilla JS.
+            </p>
+          </div>
+          <div class="col-md-5 text-center text-md-end mt-3 mt-md-0">
+            <a href="#" class="text-white-50 text-decoration-none me-3"
+              >Privacy Policy</a
+            >
+            <a href="#" class="text-white-50 text-decoration-none"
+              >Terms of Service</a
+            >
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Import Map for ES Modules -->
+    <script type="importmap">
+      {
+        "imports": {
+          "@popperjs/core": "https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/esm/popper.js",
+          "bootstrap": "https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.esm.min.js"
+        }
+      }
+    </script>
+
+    <!-- Bootstrap Module Script -->
+    <script type="module">
+      import * as bootstrap from "bootstrap";
+
+      // Initialize carousel
+      const newsCarousel = document.querySelector("#newsCarousel");
+      if (newsCarousel) {
+        new bootstrap.Carousel(newsCarousel, {
+          interval: 5000,
+          ride: "carousel",
+        });
+      }
+    </script>
+
+    <!-- Project Scripts -->
+    <script src="script.js"></script>
+  </body>
+</html>
