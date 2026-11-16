@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Aerolover - Qatar Airways Profile</title>
+    <title>Aerolover - Qatar Airways</title>
     <!-- Bootstrap 5 CSS -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="style.css" />
     <script src="script.js" defer></script>
   </head>
-  <body class="bg-light d-flex flex-column min-vh-100">
+  <body class="bg-light">
     <!-- Navbar -->
     <nav
       class="navbar navbar-expand-lg sticky-top navbar-glass border-bottom shadow-sm py-2"
@@ -42,15 +42,12 @@
           <!-- All Navigation Links -->
           <ul class="navbar-nav me-auto mb-2 mb-lg-0 fw-semibold">
             <li class="nav-item">
-              <a class="nav-link" href="index.html">Home</a>
+              <a class="nav-link active" aria-current="page" href="index.html"
+                >Home</a
+              >
             </li>
             <li class="nav-item">
-              <a
-                class="nav-link active"
-                aria-current="page"
-                href="airlines.html"
-                >Airlines</a
-              >
+              <a class="nav-link" href="airlines.html">Airlines</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="airports.html">Airports</a>
@@ -72,18 +69,18 @@
             </li>
           </ul>
 
-          <div class="d-flex flex-wrap align-items-center gap-2">
+          <div class="d-flex align-items-center gap-3">
             <a
               href="signin.html"
-              class="btn btn-outline-primary rounded-pill px-3"
+              class="btn btn-outline-primary rounded-pill px-1"
             >
               Sign In
             </a>
-            <a href="signup.html" class="btn btn-primary rounded-pill px-3">
+            <a href="signup.html" class="btn btn-primary rounded-pill px-1">
               Create Free Account
             </a>
 
-            <form id="searchForm" class="d-flex gap-2 ms-lg-2" role="search">
+            <form id="searchForm" class="d-flex gap-2 ms-2" role="search">
               <div class="input-group">
                 <input
                   type="search"
@@ -116,7 +113,9 @@
         </div>
 
         <!-- Hero Header Card -->
-        <div class="card border-0 shadow-sm rounded-4 p-4 p-md-5 mb-4 bg-white text-center">
+        <div
+          class="card border-0 shadow-sm rounded-4 p-4 p-md-5 mb-4 bg-white text-center"
+        >
           <div class="mb-3">
             <img
               src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLLsTBoSTiUr5M4i3W7YYsBST9cd7s-nvAS7Tor291Kg7sN39QcdiMO7k&s=10"
@@ -126,13 +125,19 @@
             />
           </div>
           <div class="mb-2">
-            <span class="badge bg-danger-subtle text-danger rounded-pill px-3 py-2 fw-semibold">
+            <span
+              class="badge bg-danger-subtle text-danger rounded-pill px-3 py-2 fw-semibold"
+            >
               IATA: QR • ICAO: QTR • HQ: Doha, Qatar • oneworld Alliance
             </span>
           </div>
           <h1 class="display-5 fw-bold text-dark mt-2">Qatar Airways</h1>
           <p class="lead text-muted mx-auto" style="max-width: 750px">
-            The state-owned flag carrier of Qatar, headquartered in Doha. Operating a hub-and-spoke network from Hamad International Airport (DOH), Qatar Airways is a multi-time Skytrax Airline of the Year winner and the global launch customer for both the Airbus A350-900 and A350-1000.
+            The state-owned flag carrier of Qatar, headquartered in Doha.
+            Operating a hub-and-spoke network from Hamad International Airport
+            (DOH), Qatar Airways is a multi-time Skytrax Airline of the Year
+            winner and the global launch customer for both the Airbus A350-900
+            and A350-1000.
           </p>
         </div>
 
@@ -146,79 +151,155 @@
                 <h3 class="fw-bold mb-0">Active Fleet Overview</h3>
               </div>
               <p class="text-muted small mb-4">
-                Qatar Airways operates a modern fleet of over 250 narrow-body, wide-body, and dedicated cargo aircraft connecting six continents via Doha.
+                Qatar Airways operates a modern fleet of over 250 narrow-body,
+                wide-body, and dedicated cargo aircraft connecting six
+                continents via Doha.
               </p>
 
               <ul class="list-group list-group-flush border rounded-3">
-                <li class="list-group-item d-flex justify-content-between align-items-center py-3">
+                <li
+                  class="list-group-item d-flex justify-content-between align-items-center py-3"
+                >
                   <div>
                     <span class="fw-bold text-dark">Airbus A320-200</span>
-                    <div class="text-muted small">Short-haul Middle East, Levant & South Asia routes</div>
+                    <div class="text-muted small">
+                      Short-haul Middle East, Levant & South Asia routes
+                    </div>
                   </div>
-                  <span class="badge bg-light text-dark border rounded-pill">132–144 Seats</span>
+                  <span class="badge bg-light text-dark border rounded-pill"
+                    >132–144 Seats</span
+                  >
                 </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center py-3">
+                <li
+                  class="list-group-item d-flex justify-content-between align-items-center py-3"
+                >
                   <div>
                     <span class="fw-bold text-dark">Airbus A321neo</span>
-                    <div class="text-muted small">Next-gen single-aisle fleet renewal aircraft</div>
+                    <div class="text-muted small">
+                      Next-gen single-aisle fleet renewal aircraft
+                    </div>
                   </div>
-                  <span class="badge bg-success-subtle text-success rounded-pill">236 Seats</span>
+                  <span
+                    class="badge bg-success-subtle text-success rounded-pill"
+                    >236 Seats</span
+                  >
                 </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center py-3">
+                <li
+                  class="list-group-item d-flex justify-content-between align-items-center py-3"
+                >
                   <div>
                     <span class="fw-bold text-dark">Airbus A350-900</span>
-                    <div class="text-muted small">Global launch customer; long-haul twin-aisle</div>
+                    <div class="text-muted small">
+                      Global launch customer; long-haul twin-aisle
+                    </div>
                   </div>
-                  <span class="badge bg-primary-subtle text-primary rounded-pill">283 Seats</span>
+                  <span
+                    class="badge bg-primary-subtle text-primary rounded-pill"
+                    >283 Seats</span
+                  >
                 </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center py-3">
+                <li
+                  class="list-group-item d-flex justify-content-between align-items-center py-3"
+                >
                   <div>
                     <span class="fw-bold text-dark">Airbus A350-1000</span>
-                    <div class="text-muted small">Largest operator worldwide; Qsuite flagship widebody</div>
+                    <div class="text-muted small">
+                      Largest operator worldwide; Qsuite flagship widebody
+                    </div>
                   </div>
-                  <span class="badge bg-primary-subtle text-primary rounded-pill">327–395 Seats</span>
+                  <span
+                    class="badge bg-primary-subtle text-primary rounded-pill"
+                    >327–395 Seats</span
+                  >
                 </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center py-3">
+                <li
+                  class="list-group-item d-flex justify-content-between align-items-center py-3"
+                >
                   <div>
                     <span class="fw-bold text-dark">Airbus A380-800</span>
-                    <div class="text-muted small">Double-decker flagship with First Class & Onboard Lounge</div>
+                    <div class="text-muted small">
+                      Double-decker flagship with First Class & Onboard Lounge
+                    </div>
                   </div>
-                  <span class="badge bg-primary-subtle text-primary rounded-pill">517 Seats</span>
+                  <span
+                    class="badge bg-primary-subtle text-primary rounded-pill"
+                    >517 Seats</span
+                  >
                 </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center py-3">
+                <li
+                  class="list-group-item d-flex justify-content-between align-items-center py-3"
+                >
                   <div>
                     <span class="fw-bold text-dark">Boeing 777-200LR</span>
-                    <div class="text-muted small">Ultra-long-range widebody for distant Americas & Oceania</div>
+                    <div class="text-muted small">
+                      Ultra-long-range widebody for distant Americas & Oceania
+                    </div>
                   </div>
-                  <span class="badge bg-light text-dark border rounded-pill">272–276 Seats</span>
+                  <span class="badge bg-light text-dark border rounded-pill"
+                    >272–276 Seats</span
+                  >
                 </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center py-3">
+                <li
+                  class="list-group-item d-flex justify-content-between align-items-center py-3"
+                >
                   <div>
                     <span class="fw-bold text-dark">Boeing 777-300ER</span>
-                    <div class="text-muted small">High-capacity long-haul network workhorse</div>
+                    <div class="text-muted small">
+                      High-capacity long-haul network workhorse
+                    </div>
                   </div>
-                  <span class="badge bg-primary-subtle text-primary rounded-pill">296–412 Seats</span>
+                  <span
+                    class="badge bg-primary-subtle text-primary rounded-pill"
+                    >296–412 Seats</span
+                  >
                 </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center py-3">
+                <li
+                  class="list-group-item d-flex justify-content-between align-items-center py-3"
+                >
                   <div>
-                    <span class="fw-bold text-dark">Boeing 787-8 Dreamliner</span>
-                    <div class="text-muted small">Medium-to-long-haul composite widebody</div>
+                    <span class="fw-bold text-dark"
+                      >Boeing 787-8 Dreamliner</span
+                    >
+                    <div class="text-muted small">
+                      Medium-to-long-haul composite widebody
+                    </div>
                   </div>
-                  <span class="badge bg-success-subtle text-success rounded-pill">254–267 Seats</span>
+                  <span
+                    class="badge bg-success-subtle text-success rounded-pill"
+                    >254–267 Seats</span
+                  >
                 </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center py-3">
+                <li
+                  class="list-group-item d-flex justify-content-between align-items-center py-3"
+                >
                   <div>
-                    <span class="fw-bold text-dark">Boeing 787-9 Dreamliner</span>
-                    <div class="text-muted small">Features Business Class Suites with sliding privacy doors</div>
+                    <span class="fw-bold text-dark"
+                      >Boeing 787-9 Dreamliner</span
+                    >
+                    <div class="text-muted small">
+                      Features Business Class Suites with sliding privacy doors
+                    </div>
                   </div>
-                  <span class="badge bg-success-subtle text-success rounded-pill">311 Seats</span>
+                  <span
+                    class="badge bg-success-subtle text-success rounded-pill"
+                    >311 Seats</span
+                  >
                 </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center py-3">
+                <li
+                  class="list-group-item d-flex justify-content-between align-items-center py-3"
+                >
                   <div>
-                    <span class="fw-bold text-dark">Boeing 777F (Qatar Airways Cargo)</span>
-                    <div class="text-muted small">Dedicated global air freighter fleet</div>
+                    <span class="fw-bold text-dark"
+                      >Boeing 777F (Qatar Airways Cargo)</span
+                    >
+                    <div class="text-muted small">
+                      Dedicated global air freighter fleet
+                    </div>
                   </div>
-                  <span class="badge bg-warning-subtle text-warning-emphasis rounded-pill">Cargo Only</span>
+                  <span
+                    class="badge bg-warning-subtle text-warning-emphasis rounded-pill"
+                    >Cargo Only</span
+                  >
                 </li>
               </ul>
             </div>
@@ -233,53 +314,75 @@
                 <h3 class="fw-bold mb-0">Cabin & Services</h3>
               </div>
               <p class="text-muted small">
-                Qatar Airways sets industry benchmarks for premium long-haul cabins and digital onboard connectivity:
+                Qatar Airways sets industry benchmarks for premium long-haul
+                cabins and digital onboard connectivity:
               </p>
               <ul class="list-group list-group-flush small">
                 <li class="list-group-item px-0">
-                  <strong>First Class (A380):</strong> Ultra-wide lie-flat seats in a 1-2-1 layout with access to the upper-deck lounge and Al Safwa First Lounge in Doha.
+                  <strong>First Class (A380):</strong> Ultra-wide lie-flat seats
+                  in a 1-2-1 layout with access to the upper-deck lounge and Al
+                  Safwa First Lounge in Doha.
                 </li>
                 <li class="list-group-item px-0">
-                  <strong>Qsuite Business Class:</strong> Award-winning enclosed suites with sliding privacy doors, convertible double beds, and customizable 4-seat quad workspaces.
+                  <strong>Qsuite Business Class:</strong> Award-winning enclosed
+                  suites with sliding privacy doors, convertible double beds,
+                  and customizable 4-seat quad workspaces.
                 </li>
                 <li class="list-group-item px-0">
-                  <strong>Oryx One & Starlink Wi-Fi:</strong> Up to 8,000 entertainment options paired with complimentary high-speed Starlink gate-to-gate connectivity across widebodies.
+                  <strong>Oryx One & Starlink Wi-Fi:</strong> Up to 8,000
+                  entertainment options paired with complimentary high-speed
+                  Starlink gate-to-gate connectivity across widebodies.
                 </li>
                 <li class="list-group-item px-0">
-                  <strong>Privilege Club (Avios):</strong> Frequent flyer program utilizing Avios currency across Qatar Airways, British Airways, Iberia, and oneworld partners.
+                  <strong>Privilege Club (Avios):</strong> Frequent flyer
+                  program utilizing Avios currency across Qatar Airways, British
+                  Airways, Iberia, and oneworld partners.
                 </li>
               </ul>
             </div>
 
             <!-- Destinations Card -->
-            <div class="card border-0 shadow-sm rounded-4 p-4 bg-white flex-grow-1">
+            <div
+              class="card border-0 shadow-sm rounded-4 p-4 bg-white flex-grow-1"
+            >
               <div class="d-flex align-items-center gap-2 mb-3">
                 <span class="fs-4">🌍</span>
                 <h3 class="fw-bold mb-0">Major Hub & Global Network</h3>
               </div>
               <p class="text-muted small">
-                Connecting over 170 destinations across 6 continents through its single super-hub in Qatar:
+                Connecting over 170 destinations across 6 continents through its
+                single super-hub in Qatar:
               </p>
               <ul class="list-group list-group-flush small">
                 <li class="list-group-item px-0 d-flex justify-content-between">
                   <span><strong>Hamad International (DOH)</strong> — Doha</span>
-                  <span class="text-muted">Global Super-Hub & Orchard Terminal</span>
+                  <span class="text-muted"
+                    >Global Super-Hub & Orchard Terminal</span
+                  >
                 </li>
                 <li class="list-group-item px-0 d-flex justify-content-between">
                   <span><strong>Europe</strong></span>
-                  <span class="text-muted">London (LHR/LGW), Paris, Frankfurt, Madrid, Lisbon</span>
+                  <span class="text-muted"
+                    >London (LHR/LGW), Paris, Frankfurt, Madrid, Lisbon</span
+                  >
                 </li>
                 <li class="list-group-item px-0 d-flex justify-content-between">
                   <span><strong>The Americas</strong></span>
-                  <span class="text-muted">JFK, DFW, LAX, Miami, Toronto, São Paulo, Bogotá</span>
+                  <span class="text-muted"
+                    >JFK, DFW, LAX, Miami, Toronto, São Paulo, Bogotá</span
+                  >
                 </li>
                 <li class="list-group-item px-0 d-flex justify-content-between">
                   <span><strong>Asia-Pacific & Australia</strong></span>
-                  <span class="text-muted">Sydney, Melbourne, Auckland, Tokyo, Singapore, Delhi</span>
+                  <span class="text-muted"
+                    >Sydney, Melbourne, Auckland, Tokyo, Singapore, Delhi</span
+                  >
                 </li>
                 <li class="list-group-item px-0 d-flex justify-content-between">
                   <span><strong>Middle East & Africa</strong></span>
-                  <span class="text-muted">Riyadh, Jeddah, Cairo, Johannesburg, Nairobi</span>
+                  <span class="text-muted"
+                    >Riyadh, Jeddah, Cairo, Johannesburg, Nairobi</span
+                  >
                 </li>
               </ul>
             </div>

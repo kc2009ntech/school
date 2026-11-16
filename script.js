@@ -209,7 +209,16 @@ document.addEventListener("DOMContentLoaded", () => {
     "checkout.html",
   ];
 
-  const paymentRequiredPages = ["exclusive.html"];
+  const paymentRequiredPages = [
+    "exclusive.html",
+    "exclusive_airlines.html",
+    "exclusive_airports.html",
+    "exclusive_latestnews.html",
+    "exclusive_sustainability.html",
+    "exclusive_technology.html",
+    "exclusive_airspace.html",
+    "exclusive_contact.html",
+  ];
 
   const isProtected = protectedPages.some((page) => currentPath.endsWith(page));
   const isPaymentProtected = paymentRequiredPages.some((page) =>
@@ -1327,3 +1336,101 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+// Interactive Category Pill & Keyword Filter
+const filterInput = document.getElementById("techFilterInput");
+const categoryPills = document.querySelectorAll(".category-pill");
+const cards = document.querySelectorAll(".tech-card-wrapper");
+const noResults = document.getElementById("noTechResults");
+const resetBtn = document.getElementById("resetTechFiltersBtn");
+let activeCategory = "all";
+
+function filterCards() {
+  const query = filterInput.value.trim().toLowerCase();
+  let visibleCount = 0;
+
+  cards.forEach((card) => {
+    const title = (card.dataset.title || "").toLowerCase();
+    const text = card.textContent.toLowerCase();
+    const category = card.dataset.category;
+
+    const matchesCategory =
+      activeCategory === "all" || category === activeCategory;
+    const matchesQuery =
+      !query || title.includes(query) || text.includes(query);
+
+    if (matchesCategory && matchesQuery) {
+      card.classList.remove("d-none");
+      card.classList.add("d-flex");
+      visibleCount++;
+    } else {
+      card.classList.add("d-none");
+      card.classList.remove("d-flex");
+    }
+  });
+
+  noResults.classList.toggle("d-none", visibleCount > 0);
+}
+
+categoryPills.forEach((pill) => {
+  pill.addEventListener("click", () => {
+    categoryPills.forEach((btn) => {
+      btn.classList.remove("btn-primary", "active");
+      btn.classList.add("btn-outline-secondary");
+    });
+    pill.classList.remove("btn-outline-secondary");
+    pill.classList.add("btn-primary", "active");
+    activeCategory = pill.dataset.category;
+    filterCards();
+  });
+});
+
+filterInput.addEventListener("input", filterCards);
+
+resetBtn.addEventListener("click", () => {
+  filterInput.value = "";
+  categoryPills[0].click();
+});
+
+// Populate Technical Specs Modal
+const techModal = document.getElementById("techDetailModal");
+techModal.addEventListener("show.bs.modal", (event) => {
+  const button = event.relatedTarget;
+  document.getElementById("techModalTitle").textContent =
+    button.getAttribute("data-tech-title");
+  document.getElementById("techModalCategory").textContent =
+    button.getAttribute("data-tech-category");
+  document.getElementById("techModalSpec").textContent =
+    button.getAttribute("data-tech-spec");
+  document.getElementById("techModalDesc").textContent =
+    button.getAttribute("data-tech-desc");
+});
+// Initialize carousel
+const newsCarousel = document.querySelector("#newsCarousel");
+if (newsCarousel) {
+  new bootstrap.Carousel(newsCarousel, {
+    interval: 5000,
+    ride: "carousel",
+  });
+}
+
+// Personalize greeting with logged-in member name if available
+const storedName =
+  localStorage.getItem("userName") ||
+  sessionStorage.getItem("userName") ||
+  document.getElementById("navUserName")?.textContent;
+const greetingEl = document.getElementById("loungeMemberGreeting");
+if (greetingEl && storedName && storedName.trim() !== "Account") {
+  greetingEl.textContent = storedName.trim();
+}
+
+// Populate Perk Preview Modal
+const perkModal = document.getElementById("perkPreviewModal");
+if (perkModal) {
+  perkModal.addEventListener("show.bs.modal", (event) => {
+    const button = event.relatedTarget;
+    document.getElementById("perkModalTitle").textContent =
+      button.getAttribute("data-perk-title");
+    document.getElementById("perkModalBody").textContent =
+      button.getAttribute("data-perk-body");
+  });
+}

@@ -10,35 +10,8 @@
       rel="stylesheet"
       crossorigin="anonymous"
     />
-    <style>
-      .navbar-glass {
-        background-color: rgba(253, 252, 252, 0.85);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-      }
-      .avatar-circle {
-        width: 32px;
-        height: 32px;
-        background-color: #0d6efd;
-        color: #faf6f6;
-        font-weight: bold;
-        font-size: 0.85rem;
-        border-radius: 50%;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-      }
-      .carousel-item img {
-        height: 420px;
-        object-fit: cover;
-      }
-      .carousel-caption-glass {
-        background: rgba(0, 0, 0, 0.65);
-        backdrop-filter: blur(8px);
-        border-radius: 1rem;
-        padding: 1.25rem 1.5rem;
-      }
-    </style>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body class="bg-light">
     <!-- Navbar -->
@@ -70,8 +43,7 @@
           <ul class="navbar-nav me-auto mb-2 mb-lg-0 fw-semibold">
             <li class="nav-item">
               <a
-                class="nav-link active"
-                aria-current="page"
+                class="nav-link"
                 href="dashboard.html"
                 >Home</a
               >
@@ -83,19 +55,16 @@
               <a class="nav-link" href="dashboard_airports.html">Airports</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="dashboard2.html">Latest news</a>
+              <a class="nav-link" href="dashboard_latestnews.html">Latest news</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="sustainability.html">Sustainability</a>
+              <a class="nav-link active" aria-current="page" href="dashboard_sustainability.html">Sustainability</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="technology.html">Technology</a>
+              <a class="nav-link" href="dashboard_technology.html">Technology</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="airspace.html">Airspace</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="technology.html">Technology</a>
+              <a class="nav-link" href="dashboard_airspace.html">Airspace</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="dashboard_contact.html">Contact</a>
@@ -125,7 +94,7 @@
                 <li>
                   <a
                     class="dropdown-item text-warning fw-semibold"
-                    href="plans.html"
+                    href="dashboard_plans.html"
                     >⚡ Upgrade Subscription</a
                   >
                 </li>
@@ -158,155 +127,175 @@
       </div>
     </nav>
 <!-- Hero Header -->
-<header class="hero-sustainability py-5 mb-5 shadow-sm">
-  <div class="container py-4 text-center">
-    <span
-      class="badge bg-light text-success px-3 py-2 rounded-pill fw-bold mb-3"
-    >
-      🌱 Net-Zero Aviation Goals
-    </span>
-    <h1 class="display-4 fw-bold mb-3">Sustainable Aviation Infrastructure</h1>
-    <p class="lead col-md-8 mx-auto opacity-90">
-      Exploring revolutionary green technologies, Sustainable Aviation Fuels
-      (SAF), and eco-friendly airport initiatives reshaping flight for tomorrow.
-    </p>
-  </div>
-</header>
-
-<!-- Main Content Area -->
-<main class="container mb-5">
-  <!-- Section Overview Cards -->
-  <div class="row g-4 mb-5">
-    <!-- Card 1: Sustainable Aviation Fuel -->
-    <div class="col-md-4">
-      <div class="card border-0 shadow-sm rounded-4 h-100 overflow-hidden">
-        <img
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoPzEUWrRlHFEZOFMI6KvOzdGCPrcNeelr15zdfkFlxNzL8NCdk86Fcrb3&s=10"
-          class="card-img-top feature-card-img"
-          alt="Sustainable Aviation Fuel"
-        />
-        <div class="card-body p-4 d-flex flex-column justify-content-between">
-          <div>
-            <span class="badge bg-success-subtle text-success rounded-pill mb-2"
-              >Clean Energy</span
-            >
-            <h4 class="fw-bold card-title">Sustainable Aviation Fuel (SAF)</h4>
-            <p class="text-muted small">
-              Discover how synthetic and bio-derived fuels are drastically
-              lowering CO₂ emissions across transoceanic commercial flights.
-            </p>
-          </div>
-          <a href="#" class="btn btn-outline-success btn-sm rounded-pill mt-3"
-            >Learn More →</a
-          >
-        </div>
-      </div>
-    </div>
-
-    <!-- Card 2: Zero-Emission Fleet -->
-    <div class="col-md-4">
-      <div class="card border-0 shadow-sm rounded-4 h-100 overflow-hidden">
-        <img
-          src="https://images.euronews.com/articles/stories/09/64/06/83/1536x864_cmsv2_a6bff4bf-4ce7-5355-a884-faf4e563bbb5-9640683.jpg"
-          class="card-img-top feature-card-img"
-          alt="Zero Emission Fleet"
-        />
-        <div class="card-body p-4 d-flex flex-column justify-content-between">
-          <div>
-            <span class="badge bg-primary-subtle text-primary rounded-pill mb-2"
-              >Hydrogen & Electric</span
-            >
-            <h4 class="fw-bold card-title">Zero-Emission Aircraft</h4>
-            <p class="text-muted small">
-              Exploring next-generation hydrogen fuel cells and hybrid-electric
-              engines driving short-haul flights into a cleaner era.
-            </p>
-          </div>
-          <a href="#" class="btn btn-outline-primary btn-sm rounded-pill mt-3"
-            >Learn More →</a
-          >
-        </div>
-      </div>
-    </div>
-
-    <!-- Card 3: Green Airports -->
-    <div class="col-md-4">
-      <div class="card border-0 shadow-sm rounded-4 h-100 overflow-hidden">
-        <img
-          src="https://static.wikia.nocookie.net/aviation-airport/images/c/c6/London_heathrow_airport_lhr-1.jpg/revision/latest/scale-to-width-down/1200?cb=20240425180753"
-          class="card-img-top feature-card-img"
-          alt="Eco Terminal"
-        />
-        <div class="card-body p-4 d-flex flex-column justify-content-between">
-          <div>
-            <span class="badge bg-warning-subtle text-dark rounded-pill mb-2"
-              >Infrastructure</span
-            >
-            <h4 class="fw-bold card-title">Eco-Friendly Hubs</h4>
-            <p class="text-muted small">
-              How international terminals are achieving carbon neutrality
-              through solar power grids, automated ground transport, and waste
-              reduction.
-            </p>
-          </div>
-          <a
-            href="#"
-            class="btn btn-outline-warning text-dark btn-sm rounded-pill mt-3"
-            >Learn More →</a
-          >
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Roadmap Section -->
-  <div class="bg-white p-5 rounded-4 shadow-sm">
-    <div class="row align-items-center">
-      <div class="col-lg-6">
-        <span class="text-success fw-bold text-uppercase small"
-          >Industry Milestones</span
+    <header class="hero-sustainability py-5 mb-5 shadow-sm">
+      <div class="container py-4 text-center">
+        <span
+          class="badge bg-light text-success px-3 py-2 rounded-pill fw-bold mb-3"
         >
-        <h2 class="fw-bold mb-3">The Path to Net-Zero 2050</h2>
-        <p class="text-muted">
-          The commercial aviation industry has committed to achieving net-zero
-          carbon emissions by 2050. Achieving this target requires synchronized
-          efforts across fuel production, technological breakthroughs, and
-          flight path optimization.
+          🌱 Net-Zero Aviation Goals
+        </span>
+        <h1 class="display-4 fw-bold mb-3">
+          Sustainable Aviation Infrastructure
+        </h1>
+        <p class="lead col-md-8 mx-auto opacity-90">
+          Exploring revolutionary green technologies, Sustainable Aviation Fuels
+          (SAF), and eco-friendly airport initiatives reshaping flight for
+          tomorrow.
         </p>
-        <ul class="list-unstyled text-muted me-2">
-          <li class="mb-2">
-            ✔️ <strong>2030 Goal:</strong> 10% global SAF usage on commercial
-            routes.
-          </li>
-          <li class="mb-2">
-            ✔️ <strong>2035 Horizon:</strong> Regional hydrogen-powered
-            passenger aircraft introduction.
-          </li>
-          <li class="mb-2">
-            ✔️ <strong>2050 Target:</strong> Complete decarbonization across
-            global air transport.
-          </li>
-        </ul>
       </div>
-      <div class="col-lg-6 text-center">
-        <div class="p-4 bg-light rounded-4 border">
-          <h3 class="display-6 fw-bold text-success mb-2">80%</h3>
-          <p class="fw-semibold text-dark mb-1">Potential CO₂ Reduction</p>
-          <small class="text-muted"
-            >Achievable through 100% unblended Sustainable Aviation Fuel usage
-            compared to conventional jet fuel.</small
-          >
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="container mb-5">
+      <!-- Section Overview Cards -->
+      <div class="row g-4 mb-5">
+        <!-- Card 1: Sustainable Aviation Fuel -->
+        <div class="col-md-4">
+          <div class="card border-0 shadow-sm rounded-4 h-100 overflow-hidden">
+            <img
+              src="https://ecadin.org/wp-content/uploads/2025/10/SAF-Illustration-2.webp"
+              class="card-img-top feature-card-img"
+              alt="Sustainable Aviation Fuel"
+            />
+            <div
+              class="card-body p-4 d-flex flex-column justify-content-between"
+            >
+              <div>
+                <span
+                  class="badge bg-success-subtle text-success rounded-pill mb-2"
+                  >Clean Energy</span
+                >
+                <h4 class="fw-bold card-title">
+                  Sustainable Aviation Fuel (SAF)
+                </h4>
+                <p class="text-muted small">
+                  Discover how synthetic and bio-derived fuels are drastically
+                  lowering CO₂ emissions across transoceanic commercial flights.
+                </p>
+              </div>
+              <a
+                href="#"
+                class="btn btn-outline-success btn-sm rounded-pill mt-3"
+                >Learn More →</a
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2: Zero-Emission Fleet -->
+        <div class="col-md-4">
+          <div class="card border-0 shadow-sm rounded-4 h-100 overflow-hidden">
+            <img
+              src="https://images.euronews.com/articles/stories/09/64/06/83/1536x864_cmsv2_a6bff4bf-4ce7-5355-a884-faf4e563bbb5-9640683.jpg"
+              class="card-img-top feature-card-img"
+              alt="Zero Emission Fleet"
+            />
+            <div
+              class="card-body p-4 d-flex flex-column justify-content-between"
+            >
+              <div>
+                <span
+                  class="badge bg-primary-subtle text-primary rounded-pill mb-2"
+                  >Hydrogen & Electric</span
+                >
+                <h4 class="fw-bold card-title">Zero-Emission Aircraft</h4>
+                <p class="text-muted small">
+                  Exploring next-generation hydrogen fuel cells and
+                  hybrid-electric engines driving short-haul flights into a
+                  cleaner era.
+                </p>
+              </div>
+              <a
+                href="#"
+                class="btn btn-outline-primary btn-sm rounded-pill mt-3"
+                >Learn More →</a
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3: Green Airports -->
+        <div class="col-md-4">
+          <div class="card border-0 shadow-sm rounded-4 h-100 overflow-hidden">
+            <img
+              src="https://www.usatoday.com/gcdn/-mm-/472f55f95540fdd5242ff93d7d616f0a54c2e5b5/c=1-0-959-539/local/-/media/2016/04/20/USATODAY/usatsports/changi.jpg?width=660&height=372&fit=crop&format=pjpg&auto=webp"
+              class="card-img-top feature-card-img"
+              alt="Eco Terminal"
+            />
+            <div
+              class="card-body p-4 d-flex flex-column justify-content-between"
+            >
+              <div>
+                <span
+                  class="badge bg-warning-subtle text-dark rounded-pill mb-2"
+                  >Infrastructure</span
+                >
+                <h4 class="fw-bold card-title">Eco-Friendly Hubs</h4>
+                <p class="text-muted small">
+                  How international terminals are achieving carbon neutrality
+                  through solar power grids, automated ground transport, and
+                  waste reduction.
+                </p>
+              </div>
+              <a
+                href="#"
+                class="btn btn-outline-warning text-dark btn-sm rounded-pill mt-3"
+                >Learn More →</a
+              >
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-</main>
+
+      <!-- Roadmap Section -->
+      <div class="bg-white p-5 rounded-4 shadow-sm">
+        <div class="row align-items-center">
+          <div class="col-lg-6">
+            <span class="text-success fw-bold text-uppercase small"
+              >Industry Milestones</span
+            >
+            <h2 class="fw-bold mb-3">The Path to Net-Zero 2050</h2>
+            <p class="text-muted">
+              The commercial aviation industry has committed to achieving
+              net-zero carbon emissions by 2050. Achieving this target requires
+              synchronized efforts across fuel production, technological
+              breakthroughs, and flight path optimization.
+            </p>
+            <ul class="list-unstyled text-muted me-2">
+              <li class="mb-2">
+                ✔️ <strong>2030 Goal:</strong> 10% global SAF usage on
+                commercial routes.
+              </li>
+              <li class="mb-2">
+                ✔️ <strong>2035 Horizon:</strong> Regional hydrogen-powered
+                passenger aircraft introduction.
+              </li>
+              <li class="mb-2">
+                ✔️ <strong>2050 Target:</strong> Complete decarbonization across
+                global air transport.
+              </li>
+            </ul>
+          </div>
+          <div class="col-lg-6 text-center">
+            <div class="p-4 bg-light rounded-4 border">
+              <h3 class="display-6 fw-bold text-success mb-2">80%</h3>
+              <p class="fw-semibold text-dark mb-1">Potential CO₂ Reduction</p>
+              <small class="text-muted"
+                >Achievable through 100% unblended Sustainable Aviation Fuel
+                usage compared to conventional jet fuel.</small
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
 <!-- Footer -->
     <footer class="bg-dark text-white pt-5 pb-4 mt-5">
       <div class="container text-center text-md-start">
         <div class="row g-4">
           <div class="col-md-4 col-lg-4 col-xl-3 mx-auto">
-            <a href="index.html" class="d-inline-block mb-3">
+            <a href="dashboard.html" class="d-inline-block mb-3">
               <img
                 src="image/image.png"
                 alt="AeroLover logo"
@@ -377,7 +366,7 @@
             <h6 class="text-uppercase mb-3 fw-bold text-primary">Benefits</h6>
             <ul class="list-unstyled small">
               <li class="mb-2">
-                <a href="plans.html" class="text-white-50 text-decoration-none"
+                <a href="dashboard_plans.html" class="text-white-50 text-decoration-none"
                   >Exclusive Access</a
                 >
               </li>

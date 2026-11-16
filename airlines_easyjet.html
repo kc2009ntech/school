@@ -1,0 +1,446 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Aerolover - Easyjet</title>
+    <!-- Bootstrap 5 CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body class="bg-light">
+    <!-- Navbar -->
+    <nav
+      class="navbar navbar-expand-lg sticky-top navbar-glass border-bottom shadow-sm py-2"
+    >
+      <div class="container-fluid px-4">
+        <a class="navbar-brand me-4" href="index.html">
+          <img
+            src="image/image.png"
+            alt="Aerolover Logo"
+            style="height: 3.2rem"
+          />
+        </a>
+        <button
+          class="navbar-toggler border-0"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarContent"
+          aria-controls="navbarContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarContent">
+          <!-- All Navigation Links -->
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0 fw-semibold">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="index.html"
+                >Home</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="airlines.html">Airlines</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="airports.html">Airports</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="latestnews.html">Latest news</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="sustainability.html">Sustainability</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="technology.html">Technology</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="airspace.html">Airspace</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html">Contact</a>
+            </li>
+          </ul>
+
+          <div class="d-flex align-items-center gap-3">
+            <a
+              href="signin.html"
+              class="btn btn-outline-primary rounded-pill px-1"
+            >
+              Sign In
+            </a>
+            <a href="signup.html" class="btn btn-primary rounded-pill px-1">
+              Create Free Account
+            </a>
+
+            <form id="searchForm" class="d-flex gap-2 ms-2" role="search">
+              <div class="input-group">
+                <input
+                  type="search"
+                  id="searchInput"
+                  class="form-control rounded-start-pill"
+                  placeholder="Search..."
+                  required
+                />
+                <button type="submit" class="btn btn-primary rounded-end-pill">
+                  Go
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container py-5 flex-grow-1">
+      <div class="col-12 col-lg-10 mx-auto">
+        <!-- Back Button -->
+        <div class="mb-4">
+          <a
+            href="airlines.html"
+            class="btn btn-outline-secondary btn-sm rounded-pill px-3"
+          >
+            ← Back to Airlines Directory
+          </a>
+        </div>
+
+        <!-- Hero Header Card -->
+        <div
+          class="card border-0 shadow-sm rounded-4 p-4 p-md-5 mb-4 bg-white text-center"
+        >
+          <div class="mb-3">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/a/ad/Hamburg_Airport_easyJet_Airbus_A321-251NX_G-UZMB_%28DSC0425%29.jpg?utm_source=en.wikipedia.org&utm_campaign=index&utm_content=original"
+              class="img-fluid rounded-3 shadow-sm"
+              style="max-height: 600px; object-fit: contain"
+              alt="easyJet Logo"
+            />
+          </div>
+          <div class="mb-2">
+            <span
+              class="badge bg-warning-subtle text-warning-emphasis rounded-pill px-3 py-2 fw-semibold"
+            >
+              IATA: U2 / EC / DS • ICAO: EZY / EJU / EZS • HQ: London Luton, UK
+              • Independent Low-Cost Carrier
+            </span>
+          </div>
+          <h1 class="display-5 fw-bold text-dark mt-2">easyJet</h1>
+          <p class="lead text-muted mx-auto" style="max-width: 750px">
+            One of Europe's largest low-cost airline groups, headquartered at
+            London Luton Airport (LTN). Operating across three Air Operator
+            Certificates in the UK, Austria, and Switzerland, easyJet focuses on
+            point-to-point short- and medium-haul flights connecting primary
+            European airports.
+          </p>
+        </div>
+
+        <!-- Content Grid -->
+        <div class="row g-4">
+          <!-- Fleet Overview & List (Left Column) -->
+          <div class="col-lg-7">
+            <div class="card border-0 shadow-sm rounded-4 p-4 h-100 bg-white">
+              <div class="d-flex align-items-center gap-2 mb-3">
+                <span class="fs-4">✈️</span>
+                <h3 class="fw-bold mb-0">Active Fleet Overview</h3>
+              </div>
+              <p class="text-muted small mb-4">
+                easyJet operates an all-Airbus A320 family fleet of over 340
+                aircraft, steadily retiring older A319s in favor of
+                higher-capacity, fuel-efficient A320neo and A321neo jets.
+              </p>
+
+              <ul class="list-group list-group-flush border rounded-3">
+                <li
+                  class="list-group-item d-flex justify-content-between align-items-center py-3"
+                >
+                  <div>
+                    <span class="fw-bold text-dark">Airbus A319-100</span>
+                    <div class="text-muted small">
+                      Short-runway & regional European point-to-point routes
+                    </div>
+                  </div>
+                  <span class="badge bg-light text-dark border rounded-pill"
+                    >156 Seats</span
+                  >
+                </li>
+                <li
+                  class="list-group-item d-flex justify-content-between align-items-center py-3"
+                >
+                  <div>
+                    <span class="fw-bold text-dark">Airbus A320-200</span>
+                    <div class="text-muted small">
+                      Core European continental & Mediterranean network
+                      workhorse
+                    </div>
+                  </div>
+                  <span class="badge bg-light text-dark border rounded-pill"
+                    >180–186 Seats</span
+                  >
+                </li>
+                <li
+                  class="list-group-item d-flex justify-content-between align-items-center py-3"
+                >
+                  <div>
+                    <span class="fw-bold text-dark">Airbus A320neo</span>
+                    <div class="text-muted small">
+                      Next-generation fuel-efficient narrowbody with quieter
+                      engines
+                    </div>
+                  </div>
+                  <span
+                    class="badge bg-success-subtle text-success rounded-pill"
+                    >186 Seats</span
+                  >
+                </li>
+                <li
+                  class="list-group-item d-flex justify-content-between align-items-center py-3"
+                >
+                  <div>
+                    <span class="fw-bold text-dark">Airbus A321neo</span>
+                    <div class="text-muted small">
+                      High-capacity flagship for slot-constrained hubs & longer
+                      leisure routes
+                    </div>
+                  </div>
+                  <span
+                    class="badge bg-success-subtle text-success rounded-pill"
+                    >235 Seats</span
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Services & Destinations (Right Column) -->
+          <div class="col-lg-5 d-flex flex-column gap-4">
+            <!-- Services Card -->
+            <div class="card border-0 shadow-sm rounded-4 p-4 bg-white">
+              <div class="d-flex align-items-center gap-2 mb-3">
+                <span class="fs-4">🛋️</span>
+                <h3 class="fw-bold mb-0">Cabin & Services</h3>
+              </div>
+              <p class="text-muted small">
+                easyJet operates an unbundled single-class cabin model with
+                flexible add-ons for business and leisure flyers:
+              </p>
+              <ul class="list-group list-group-flush small">
+                <li class="list-group-item px-0">
+                  <strong>Up Front & Extra Legroom Seats:</strong> Front-row and
+                  over-wing exit seats featuring extra pitch, Speedy Boarding,
+                  and large overhead cabin bag allowance.
+                </li>
+                <li class="list-group-item px-0">
+                  <strong>FLEXI Fares:</strong> Tailored for business travelers
+                  with unlimited date changes, Fast Track security, Speedy
+                  Boarding, and an included hold bag.
+                </li>
+                <li class="list-group-item px-0">
+                  <strong>easyJet Plus:</strong> Annual membership offering
+                  dedicated bag drop, Fast Track security, free seat selection,
+                  and Speedy Boarding on every flight.
+                </li>
+                <li class="list-group-item px-0">
+                  <strong>Bistro & Boutique:</strong> Buy-on-board menu
+                  featuring hot meals, snacks, drinks, and duty-free retail
+                  items.
+                </li>
+              </ul>
+            </div>
+
+            <!-- Destinations Card -->
+            <div
+              class="card border-0 shadow-sm rounded-4 p-4 bg-white flex-grow-1"
+            >
+              <div class="d-flex align-items-center gap-2 mb-3">
+                <span class="fs-4">🌍</span>
+                <h3 class="fw-bold mb-0">Major Bases & Network</h3>
+              </div>
+              <p class="text-muted small">
+                Operating over 1,000 routes across more than 150 airports in 35+
+                countries throughout Europe, North Africa, and the Middle East:
+              </p>
+              <ul class="list-group list-group-flush small">
+                <li class="list-group-item px-0 d-flex justify-content-between">
+                  <span
+                    ><strong>London Gatwick (LGW) & Luton (LTN)</strong> —
+                    UK</span
+                  >
+                  <span class="text-muted">Largest Operating Bases</span>
+                </li>
+                <li class="list-group-item px-0 d-flex justify-content-between">
+                  <span
+                    ><strong
+                      >Bristol (BRS), Manchester (MAN) & Edinburgh (EDI)</strong
+                    ></span
+                  >
+                  <span class="text-muted">Key UK Regional Hubs</span>
+                </li>
+                <li class="list-group-item px-0 d-flex justify-content-between">
+                  <span
+                    ><strong>Geneva (GVA) & Basel-Mulhouse (BSL)</strong></span
+                  >
+                  <span class="text-muted">easyJet Switzerland Hubs</span>
+                </li>
+                <li class="list-group-item px-0 d-flex justify-content-between">
+                  <span
+                    ><strong
+                      >Milan Malpensa (MXP), Paris Orly (ORY) & Berlin
+                      (BER)</strong
+                    ></span
+                  >
+                  <span class="text-muted">Mainland Europe Primary Bases</span>
+                </li>
+                <li class="list-group-item px-0 d-flex justify-content-between">
+                  <span><strong>Leisure & Sun Gateways</strong></span>
+                  <span class="text-muted"
+                    >Palma de Mallorca, Faro, Alicante, Málaga, Marrakech</span
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white pt-5 pb-4 mt-auto">
+      <div class="container text-center text-md-start">
+        <div class="row g-4">
+          <div class="col-md-4 col-lg-4 col-xl-3 mx-auto">
+            <a href="index.html" class="d-inline-block mb-3">
+              <img
+                src="image/image.png"
+                alt="AeroLover logo"
+                style="height: 4.5rem"
+              />
+            </a>
+            <p class="text-white-50 small">
+              Your ultimate portal for aviation news, airport updates, airline
+              fleet specs, and future aerospace technologies.
+            </p>
+          </div>
+
+          <div class="col-md-2 col-lg-2 col-xl-2 mx-auto">
+            <h6 class="text-uppercase mb-3 fw-bold text-primary">Navigation</h6>
+            <ul class="list-unstyled small">
+              <li class="mb-2">
+                <a href="index.html" class="text-white-50 text-decoration-none"
+                  >Home</a
+                >
+              </li>
+              <li class="mb-2">
+                <a
+                  href="airlines.html"
+                  class="text-white-50 text-decoration-none"
+                  >Airlines</a
+                >
+              </li>
+              <li class="mb-2">
+                <a
+                  href="airports.html"
+                  class="text-white-50 text-decoration-none"
+                  >Airports</a
+                >
+              </li>
+              <li class="mb-2">
+                <a
+                  href="latestnews.html"
+                  class="text-white-50 text-decoration-none"
+                  >Latest news</a
+                >
+              </li>
+              <li class="mb-2">
+                <a
+                  href="sustainability.html"
+                  class="text-white-50 text-decoration-none"
+                  >Sustainability</a
+                >
+              </li>
+              <li class="mb-2">
+                <a
+                  href="technology.html"
+                  class="text-white-50 text-decoration-none"
+                  >Technology</a
+                >
+              </li>
+              <li class="mb-2">
+                <a
+                  href="airspace.html"
+                  class="text-white-50 text-decoration-none"
+                  >Airspace</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div class="col-md-3 col-lg-2 col-xl-2 mx-auto">
+            <h6 class="text-uppercase mb-3 fw-bold text-primary">Benefits</h6>
+            <ul class="list-unstyled small">
+              <li class="mb-2">
+                <a href="plans.html" class="text-white-50 text-decoration-none"
+                  >Exclusive Access</a
+                >
+              </li>
+              <li class="mb-2">
+                <a href="signin.html" class="text-white-50 text-decoration-none"
+                  >Sign in</a
+                >
+              </li>
+              <li class="mb-2">
+                <a href="signup.html" class="text-white-50 text-decoration-none"
+                  >Create account</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div class="col-md-3 col-lg-3 col-xl-3 mx-auto small">
+            <h6 class="text-uppercase mb-3 fw-bold text-primary">Connect</h6>
+            <p class="mb-2 text-white-50">📧 contact@aerolover.com</p>
+            <p class="mb-2 text-white-50">📍 Worldwide Aviation Network</p>
+          </div>
+        </div>
+
+        <hr class="my-4 border-light opacity-25" />
+
+        <div class="row align-items-center small">
+          <div class="col-md-7 text-center text-md-start">
+            <p class="mb-0 text-white-50">
+              © 2026 Aerolover. Built with Bootstrap 5 & Vanilla JS.
+            </p>
+          </div>
+          <div class="col-md-5 text-center text-md-end mt-3 mt-md-0">
+            <a href="#" class="text-white-50 text-decoration-none me-3"
+              >Privacy Policy</a
+            >
+            <a href="#" class="text-white-50 text-decoration-none"
+              >Terms of Service</a
+            >
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Import Map & Main Script -->
+    <script type="importmap">
+      {
+        "imports": {
+          "@popperjs/core": "https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/esm/popper.js",
+          "bootstrap": "https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.esm.min.js"
+        }
+      }
+    </script>
+    <script type="module">
+      import * as bootstrap from "bootstrap";
+    </script>
+  </body>
+</html>

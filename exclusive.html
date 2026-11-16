@@ -12,7 +12,7 @@
     />
     <style>
       .navbar-glass {
-        background-color: rgba(255, 255, 255, 0.85);
+        background-color: rgba(255, 255, 255, 0.88);
         backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);
       }
@@ -28,25 +28,52 @@
         align-items: center;
         justify-content: center;
       }
+      .lounge-hero {
+        background: linear-gradient(
+          135deg,
+          #0b192c 0%,
+          #103766 55%,
+          #1d63b8 100%
+        );
+        color: #ffffff;
+      }
+      .lounge-card {
+        transition:
+          transform 0.22s ease,
+          box-shadow 0.22s ease;
+      }
+      .lounge-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 1rem 2rem rgba(13, 110, 253, 0.12) !important;
+      }
+      .icon-pill {
+        width: 52px;
+        height: 52px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        border-radius: 1rem;
+      }
       .carousel-item img {
         height: 420px;
         object-fit: cover;
       }
       .carousel-caption-glass {
-        background: rgba(0, 0, 0, 0.65);
+        background: rgba(11, 25, 44, 0.72);
         backdrop-filter: blur(8px);
         border-radius: 1rem;
         padding: 1.25rem 1.5rem;
       }
     </style>
   </head>
-  <body class="bg-light">
+  <body class="bg-light d-flex flex-column min-vh-100">
     <!-- Navbar -->
     <nav
       class="navbar navbar-expand-lg sticky-top navbar-glass border-bottom shadow-sm py-2"
     >
       <div class="container-fluid px-4">
-        <a class="navbar-brand me-4" href="index.html">
+        <a class="navbar-brand me-4" href="dashboard.html">
           <img
             src="image/image.png"
             alt="Aerolover Logo"
@@ -66,158 +93,271 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarContent">
-          <!-- All Navigation Links -->
+          <!-- Navigation Links -->
           <ul class="navbar-nav me-auto mb-2 mb-lg-0 fw-semibold">
             <li class="nav-item">
-              <a class="nav-link" href="index.html">Home</a>
+              <a class="nav-link" href="dashboard.html">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="airlines.html">Airlines</a>
+              <a class="nav-link" href="dashboard_airlines.html">Airlines</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="airports.html">Airports</a>
+              <a class="nav-link" href="dashboard_airports.html">Airports</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="news.html">News</a>
+              <a class="nav-link" href="dashboard_latestnews.html"
+                >Latest news</a
+              >
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="sustainability.html">Sustainability</a>
+              <a class="nav-link" href="dashboard_sustainability.html"
+                >Sustainability</a
+              >
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="technology.html">Technology</a>
+              <a class="nav-link" href="dashboard_technology.html"
+                >Technology</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="dashboard_airspace.html">Airspace</a>
             </li>
           </ul>
 
-          <div class="dropdown">
-            <button
-              class="btn btn-outline-primary dropdown-toggle rounded-pill px-3 d-inline-flex align-items-center gap-2"
-              type="button"
-              id="dropdownMenuButton"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              <span id="navAvatarCircle" class="avatar-circle d-none"></span>
-              <span id="navUserName">Account</span>
-            </button>
-            <ul
-              class="dropdown-menu dropdown-menu-end shadow-sm"
-              aria-labelledby="dropdownMenuButton"
-            >
-              <li>
-                <a class="dropdown-item" href="dashboard_settings.html"
-                  >Account Settings</a
-                >
-              </li>
-              <li><hr class="dropdown-divider" /></li>
-              <li>
-                <button class="dropdown-item text-danger" id="logoutBtn">
-                  Sign Out
-                </button>
-              </li>
-            </ul>
-          </div>
-          <!-- Search Bar -->
-          <form id="searchForm" class="d-flex gap-2 ms-2" role="search">
-            <div class="input-group">
-              <input
-                type="search"
-                id="searchInput"
-                class="form-control rounded-start-pill"
-                placeholder="Search Google..."
-                required
-              />
-              <button type="submit" class="btn btn-primary rounded-end-pill">
-                Search
+          <div class="d-flex flex-wrap align-items-center gap-2">
+            <div class="dropdown">
+              <button
+                class="btn btn-outline-primary dropdown-toggle rounded-pill px-3 d-inline-flex align-items-center gap-2"
+                type="button"
+                id="dropdownMenuButton"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <span id="navAvatarCircle" class="avatar-circle d-none"></span>
+                <span id="navUserName">Account</span>
               </button>
+              <ul
+                class="dropdown-menu dropdown-menu-end shadow-sm"
+                aria-labelledby="dropdownMenuButton"
+              >
+                <li>
+                  <a class="dropdown-item" href="dashboard_settings.html"
+                    >Account Settings</a
+                  >
+                </li>
+                <li><hr class="dropdown-divider" /></li>
+                <li>
+                  <button class="dropdown-item text-danger" id="logoutBtn">
+                    Sign Out
+                  </button>
+                </li>
+              </ul>
             </div>
-          </form>
+
+            <!-- Search Bar -->
+            <form id="searchForm" class="d-flex gap-2 ms-lg-2" role="search">
+              <div class="input-group">
+                <input
+                  type="search"
+                  id="searchInput"
+                  class="form-control rounded-start-pill"
+                  placeholder="Search..."
+                  required
+                />
+                <button type="submit" class="btn btn-primary rounded-end-pill">
+                  Go
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </nav>
 
     <!-- Main Content Container -->
-    <div class="container py-5">
-      <!-- Welcome Header -->
-      <div class="p-4 p-md-5 mb-4 rounded-4 shadow-sm border bg-white">
-        <span class="badge bg-success mb-2 px-3 py-2 rounded-pill">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="16"
-            height="16"
-            fill="currentColor"
-            class="bi bi-award-fill"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="m8 0 1.669.864 1.858.282.842 1.68 1.337 1.32L13.4 6l.306 1.854-1.337 1.32-.842 1.68-1.858.282L8 12l-1.669-.864-1.858-.282-.842-1.68-1.337-1.32L2.6 6l-.306-1.854 1.337-1.32.842-1.68L6.331.864z"
-            />
-            <path
-              d="M4 11.794V16l4-1 4 1v-4.206l-2.018.306L8 13.126 6.018 12.1z"
-            />
-          </svg>
-          Premium Unlocked
-        </span>
-        <h1 class="display-6 fw-bold text-primary mb-2">
-          Welcome to the Exclusive Lounge! 👨‍✈️
-        </h1>
-        <p class="text-muted fs-5 mb-0">
-          Your payment has been verified. You now have full access to non-public
-          fleet reports, high-res wallpapers, and early flight logs.
-        </p>
+    <div class="container py-5 flex-grow-1">
+      <!-- Warm First-Class Welcome Banner -->
+      <div
+        class="lounge-hero p-4 p-md-5 mb-5 rounded-4 shadow position-relative overflow-hidden"
+      >
+        <div class="row align-items-center g-4">
+          <div class="col-lg-8">
+            <div class="d-inline-flex align-items-center gap-2 mb-3">
+              <span
+                class="badge bg-warning text-dark px-3 py-2 rounded-pill fw-bold"
+              >
+                ✈️ First-Class Member Access
+              </span>
+              <span
+                class="badge bg-white bg-opacity-10 text-white border border-light border-opacity-25 px-3 py-2 rounded-pill"
+              >
+                VIP Lounge
+              </span>
+            </div>
+            <h1 class="display-5 fw-bold mb-3">
+              Welcome aboard, <span id="loungeMemberGreeting">Aviator</span>! 👋
+            </h1>
+            <p class="lead text-white-50 mb-4" style="max-width: 650px">
+              Make yourself comfortable in the Aerolover Exclusive Lounge. Thank
+              you for supporting our aviation community—your insider fleet
+              analytics, 4K cockpit wallpapers, and early cabin reports are
+              ready below.
+            </p>
+            <div class="d-flex flex-wrap gap-2">
+              <a
+                href="#memberPerks"
+                class="btn btn-light text-primary fw-semibold rounded-pill px-4"
+              >
+                Explore Your Perks ↓
+              </a>
+              <a
+                href="dashboard_airlines.html"
+                class="btn btn-outline-light rounded-pill px-4"
+              >
+                Browse Fleet Directory
+              </a>
+            </div>
+          </div>
+
+          <!-- Boarding Pass Style Status Card -->
+          <div class="col-lg-4">
+            <div
+              class="bg-white text-dark rounded-4 p-4 shadow-sm border-start border-warning border-5"
+            >
+              <div
+                class="d-flex justify-content-between align-items-center border-bottom pb-3 mb-3"
+              >
+                <div>
+                  <div class="small text-uppercase text-muted fw-bold">
+                    Boarding Pass
+                  </div>
+                  <div class="fw-bold fs-5 text-primary">AEROLOVER VIP</div>
+                </div>
+                <span class="fs-2">🎫</span>
+              </div>
+              <div class="row g-2 small mb-3">
+                <div class="col-6">
+                  <span class="text-muted d-block">CABIN</span>
+                  <span class="fw-bold">First Class Lounge</span>
+                </div>
+                <div class="col-6">
+                  <span class="text-muted d-block">STATUS</span>
+                  <span
+                    class="badge bg-success-subtle text-success rounded-pill"
+                    >● Active Member</span
+                  >
+                </div>
+              </div>
+              <div class="small text-muted bg-light rounded-3 p-2 text-center">
+                Enjoy unlimited access to all insider drops & reports.
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <!-- Secret Content Grid -->
-      <div class="row g-4 mb-5">
-        <!-- Card 1 -->
-        <div class="col-md-4">
-          <div class="card h-100 shadow-sm border-0">
-            <div class="card-body">
-              <h5 class="card-title text-primary">📊 Fleet Analytics</h5>
-              <p class="card-text text-muted">
-                View real-time delivery timelines for next-generation widebody
-                aircraft orders.
-              </p>
-            </div>
-            <div class="card-footer bg-white border-0">
-              <button class="btn btn-sm btn-primary rounded-pill w-100">
-                View Data
-              </button>
-            </div>
+      <!-- Member Perks Section -->
+      <div id="memberPerks" class="mb-5">
+        <div
+          class="d-flex flex-wrap justify-content-between align-items-end mb-4"
+        >
+          <div>
+            <span class="text-primary fw-bold text-uppercase small"
+              >Included With Your Membership</span
+            >
+            <h2 class="fw-bold mb-0">Your Exclusive Member Perks</h2>
           </div>
+          <span class="text-muted small">Updated weekly for VIP members</span>
         </div>
 
-        <!-- Card 2 -->
-        <div class="col-md-4">
-          <div class="card h-100 shadow-sm border-0">
-            <div class="card-body">
-              <h5 class="card-title text-success">🖼️ Member Wallpapers</h5>
-              <p class="card-text text-muted">
-                Download high-resolution 4K cockpit and exterior aircraft
-                photography.
-              </p>
-            </div>
-            <div class="card-footer bg-white border-0">
-              <button class="btn btn-sm btn-success rounded-pill w-100">
-                Download Pack
-              </button>
+        <div class="row g-4 align-items-stretch">
+          <!-- Card 1 -->
+          <div class="col-md-4 d-flex">
+            <div
+              class="card lounge-card w-100 shadow-sm border-0 rounded-4 p-3 bg-white d-flex flex-column"
+            >
+              <div class="card-body d-flex flex-column">
+                <div class="icon-pill bg-primary-subtle text-primary mb-3">
+                  📊
+                </div>
+                <h5 class="card-title fw-bold">Fleet Analytics & Orders</h5>
+                <p class="card-text text-muted small mb-4">
+                  Track real-time delivery timelines, aircraft retirements, and
+                  cabin retrofit schedules across major global airlines.
+                </p>
+                <div class="mt-auto">
+                  <button
+                    type="button"
+                    class="btn btn-primary btn-sm rounded-pill w-100 py-2 fw-semibold"
+                    data-bs-toggle="modal"
+                    data-bs-target="#perkPreviewModal"
+                    data-perk-title="📊 Fleet Analytics & Delivery Tracker"
+                    data-perk-body="Latest Q4 Insider Highlights: Airbus A350-900/1000 widebody deliveries continue accelerating across European and Middle Eastern carriers, while Boeing 787-9 and 737 MAX 8/9 fleet renewals expand transcontinental capacity."
+                  >
+                    Open Fleet Data
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
 
-        <!-- Card 3 -->
-        <div class="col-md-4">
-          <div class="card h-100 shadow-sm border-0">
-            <div class="card-body">
-              <h5 class="card-title text-info">📝 Early Flight Reports</h5>
-              <p class="card-text text-muted">
-                Read preview reviews on new airline cabin products before public
-                release.
-              </p>
+          <!-- Card 2 -->
+          <div class="col-md-4 d-flex">
+            <div
+              class="card lounge-card w-100 shadow-sm border-0 rounded-4 p-3 bg-white d-flex flex-column"
+            >
+              <div class="card-body d-flex flex-column">
+                <div class="icon-pill bg-success-subtle text-success mb-3">
+                  🖼️
+                </div>
+                <h5 class="card-title fw-bold">4K Member Wallpapers</h5>
+                <p class="card-text text-muted small mb-4">
+                  Curated ultra-HD cockpit sunset shots, wing-view photography,
+                  and widebody livery packs for desktop and mobile.
+                </p>
+                <div class="mt-auto">
+                  <button
+                    type="button"
+                    class="btn btn-success btn-sm rounded-pill w-100 py-2 fw-semibold"
+                    data-bs-toggle="modal"
+                    data-bs-target="#perkPreviewModal"
+                    data-perk-title="🖼️ 4K Aviation Wallpaper Collection"
+                    data-perk-body="This month's VIP pack features 12 uncompressed 4K wallpapers: Golden Hour over the North Atlantic (A350 Flight Deck), Doha Orchard Terminal Night Apron, and Alpine Approach into Zurich."
+                  >
+                    Preview Wallpaper Pack
+                  </button>
+                </div>
+              </div>
             </div>
-            <div class="card-footer bg-white border-0">
-              <button class="btn btn-sm btn-info text-white rounded-pill w-100">
-                Read Articles
-              </button>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="col-md-4 d-flex">
+            <div
+              class="card lounge-card w-100 shadow-sm border-0 rounded-4 p-3 bg-white d-flex flex-column"
+            >
+              <div class="card-body d-flex flex-column">
+                <div class="icon-pill bg-info-subtle text-info-emphasis mb-3">
+                  📝
+                </div>
+                <h5 class="card-title fw-bold">Early Flight & Cabin Reports</h5>
+                <p class="card-text text-muted small mb-4">
+                  Read hands-on preview reviews of new Business Class suites,
+                  flagship lounges, and inaugural routes before public release.
+                </p>
+                <div class="mt-auto">
+                  <button
+                    type="button"
+                    class="btn btn-info text-white btn-sm rounded-pill w-100 py-2 fw-semibold"
+                    data-bs-toggle="modal"
+                    data-bs-target="#perkPreviewModal"
+                    data-perk-title="📝 Early Flight & Cabin Reports"
+                    data-perk-body="Early Access Dispatch: Inside next-generation sliding-door Business Suites on ultra-long-haul twinjets, comparing seat ergonomics, Starlink gate-to-gate Wi-Fi speeds, and flagship hub lounge dining."
+                  >
+                    Read Early Reports
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -227,14 +367,13 @@
       <section class="py-4">
         <div class="d-flex justify-content-between align-items-end mb-4">
           <div>
-            <span
-              class="text-primary fw-bold text-uppercase small tracking-wide"
+            <span class="text-primary fw-bold text-uppercase small"
               >Breaking Headlines</span
             >
             <h2 class="fw-bold mb-0">Featured Aviation News</h2>
           </div>
           <a
-            href="news.html"
+            href="dashboard_latestnews.html"
             class="btn btn-outline-primary btn-sm rounded-pill px-3"
           >
             View All News →
@@ -293,7 +432,7 @@
                   networks.
                 </p>
                 <a
-                  href="news.html"
+                  href="dashboard_latestnews.html"
                   class="btn btn-primary btn-sm rounded-pill px-3"
                   >Read Full Story</a
                 >
@@ -320,7 +459,7 @@
                   processing times by up to 40%.
                 </p>
                 <a
-                  href="news.html"
+                  href="dashboard_latestnews.html"
                   class="btn btn-success btn-sm rounded-pill px-3"
                   >Read Full Story</a
                 >
@@ -347,7 +486,7 @@
                   modifications.
                 </p>
                 <a
-                  href="news.html"
+                  href="dashboard_latestnews.html"
                   class="btn btn-info text-dark btn-sm rounded-pill px-3"
                   >Read Full Story</a
                 >
@@ -386,94 +525,75 @@
           </p>
         </div>
 
-        <div class="row g-4">
-          <div class="col-md-4">
-            <div class="card h-100 shadow-sm border-0 rounded-4 p-3">
-              <div class="card-body">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="48"
-                  height="48"
-                  fill="currentColor"
-                  class="text-primary mb-3"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M6.428 1.151C6.708.591 7.213 0 8 0s1.292.592 1.572 1.151C9.861 1.73 10 2.431 10 3v3.691l5.17 2.585a1.5 1.5 0 0 1 .83 1.342V12a.5.5 0 0 1-.582.493l-5.507-.918-.375 2.253 1.318 1.318A.5.5 0 0 1 10.5 16h-5a.5.5 0 0 1-.354-.854l1.319-1.318-.376-2.253-5.507.918A.5.5 0 0 1 0 12v-1.382a1.5 1.5 0 0 1 .83-1.342L6 6.691V3c0-.568.14-1.271.428-1.849m.894.448C7.111 2.02 7 2.569 7 3v4a.5.5 0 0 1-.276.447l-5.448 2.724a.5.5 0 0 0-.276.447v.792l5.418-.903a.5.5 0 0 1 .575.41l.5 3a.5.5 0 0 1-.14.437L6.708 15h2.586l-.647-.646a.5.5 0 0 1-.14-.436l.5-3a.5.5 0 0 1 .576-.411L15 11.41v-.792a.5.5 0 0 0-.276-.447L9.276 7.447A.5.5 0 0 1 9 7V3c0-.432-.11-.979-.322-1.401C8.458 1.159 8.213 1 8 1s-.458.158-.678.599"
-                  />
-                </svg>
+        <div class="row g-4 align-items-stretch">
+          <div class="col-md-4 d-flex">
+            <div
+              class="card lounge-card w-100 shadow-sm border-0 rounded-4 p-3 bg-white d-flex flex-column"
+            >
+              <div class="card-body d-flex flex-column">
+                <div class="icon-pill bg-primary-subtle text-primary mb-3">
+                  ✈️
+                </div>
                 <h4 class="card-title fw-bold">Airlines & Fleets</h4>
-                <p class="card-text text-muted">
+                <p class="card-text text-muted small mb-4">
                   Detailed breakdowns of wide-body deliveries, cabin
                   configurations, and route expansions.
                 </p>
-                <a
-                  href="airlines.html"
-                  class="btn btn-outline-primary btn-sm rounded-pill mt-2"
-                  >View Airlines</a
-                >
+                <div class="mt-auto">
+                  <a
+                    href="dashboard_airlines.html"
+                    class="btn btn-outline-primary btn-sm rounded-pill px-3"
+                    >View Airlines →</a
+                  >
+                </div>
               </div>
             </div>
           </div>
 
-          <div class="col-md-4">
-            <div class="card h-100 shadow-sm border-0 rounded-4 p-3">
-              <div class="card-body">
-                <div
-                  class="d-inline-flex align-items-center justify-content-center bg-primary-subtle text-primary rounded-circle mb-3 p-3"
-                  style="width: 56px; height: 56px"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="28"
-                    height="28"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      d="M10 2h4l1 4h-6l1-4zm-1 5h6l1 3h-8l1-3zm-1 4h10l-1 3h-2v8h-4v-8h-2l-1-3zm3 5h2v6h-2v-6z"
-                    />
-                  </svg>
+          <div class="col-md-4 d-flex">
+            <div
+              class="card lounge-card w-100 shadow-sm border-0 rounded-4 p-3 bg-white d-flex flex-column"
+            >
+              <div class="card-body d-flex flex-column">
+                <div class="icon-pill bg-primary-subtle text-primary mb-3">
+                  🛫
                 </div>
                 <h4 class="card-title fw-bold">Airports & Terminals</h4>
-                <p class="card-text text-muted">
+                <p class="card-text text-muted small mb-4">
                   Coverage of new runway construction, terminal modernizations,
                   and biometric check-in rollouts.
                 </p>
-                <a
-                  href="airports.html"
-                  class="btn btn-outline-primary btn-sm rounded-pill mt-2"
-                  >View Airports</a
-                >
+                <div class="mt-auto">
+                  <a
+                    href="dashboard_airports.html"
+                    class="btn btn-outline-primary btn-sm rounded-pill px-3"
+                    >View Airports →</a
+                  >
+                </div>
               </div>
             </div>
           </div>
 
-          <div class="col-md-4">
-            <div class="card h-100 shadow-sm border-0 rounded-4 p-3">
-              <div class="card-body">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="48"
-                  height="48"
-                  fill="currentColor"
-                  class="text-primary mb-3"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M1.4 1.7c.217.289.65.84 1.725 1.274 1.093.44 2.885.774 5.834.528 2.02-.168 3.431.51 4.326 1.556C14.161 6.082 14.5 7.41 14.5 8.5q0 .344-.027.734C13.387 8.252 11.877 7.76 10.39 7.5c-2.016-.288-4.188-.445-5.59-2.045-.142-.162-.402-.102-.379.112.108.985 1.104 1.82 1.844 2.308 2.37 1.566 5.772-.118 7.6 3.071.505.8 1.374 2.7 1.75 4.292.07.298-.066.611-.354.715a.7.7 0 0 1-.161.042 1 1 0 0 1-1.08-.794c-.13-.97-.396-1.913-.868-2.77C12.173 13.386 10.565 14 8 14c-1.854 0-3.32-.544-4.45-1.435-1.124-.887-1.889-2.095-2.39-3.383-1-2.562-1-5.536-.65-7.28L.73.806z"
-                  />
-                </svg>
+          <div class="col-md-4 d-flex">
+            <div
+              class="card lounge-card w-100 shadow-sm border-0 rounded-4 p-3 bg-white d-flex flex-column"
+            >
+              <div class="card-body d-flex flex-column">
+                <div class="icon-pill bg-primary-subtle text-primary mb-3">
+                  🛰️
+                </div>
                 <h4 class="card-title fw-bold">Aerospace Tech & SAF</h4>
-                <p class="card-text text-muted">
+                <p class="card-text text-muted small mb-4">
                   Updates on Sustainable Aviation Fuel testing, hydrogen
                   propulsion, and next-gen avionics.
                 </p>
-                <a
-                  href="technology.html"
-                  class="btn btn-outline-primary btn-sm rounded-pill mt-2"
-                  >View Tech</a
-                >
+                <div class="mt-auto">
+                  <a
+                    href="dashboard_technology.html"
+                    class="btn btn-outline-primary btn-sm rounded-pill px-3"
+                    >View Tech →</a
+                  >
+                </div>
               </div>
             </div>
           </div>
@@ -481,12 +601,50 @@
       </main>
     </div>
 
+    <!-- Member Perk Preview Modal -->
+    <div
+      class="modal fade"
+      id="perkPreviewModal"
+      tabindex="-1"
+      aria-labelledby="perkModalTitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 shadow rounded-4">
+          <div class="modal-header border-bottom-0 pb-0">
+            <span class="badge bg-warning text-dark rounded-pill px-3 py-1"
+              >VIP Exclusive</span
+            >
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body p-4">
+            <h4 class="fw-bold mb-3" id="perkModalTitle"></h4>
+            <p class="text-muted mb-0" id="perkModalBody"></p>
+          </div>
+          <div class="modal-footer border-top-0 pt-0">
+            <button
+              type="button"
+              class="btn btn-primary btn-sm rounded-pill px-4"
+              data-bs-dismiss="modal"
+            >
+              Got It
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- Footer -->
-    <footer class="bg-dark text-white pt-5 pb-4 mt-5">
+    <footer class="bg-dark text-white pt-5 pb-4 mt-auto">
       <div class="container text-center text-md-start">
         <div class="row g-4">
           <div class="col-md-4 col-lg-4 col-xl-3 mx-auto">
-            <a href="index.html" class="d-inline-block mb-3">
+            <a href="dashboard.html" class="d-inline-block mb-3">
               <img
                 src="image/image.png"
                 alt="AeroLover logo"
@@ -530,7 +688,6 @@
                   >Latest news</a
                 >
               </li>
-
               <li class="mb-2">
                 <a
                   href="dashboard_sustainability.html"
@@ -558,12 +715,6 @@
           <div class="col-md-3 col-lg-2 col-xl-2 mx-auto">
             <h6 class="text-uppercase mb-3 fw-bold text-primary">Benefits</h6>
             <ul class="list-unstyled small">
-              <li class="mb-2">
-                <a href="plans.html" class="text-white-50 text-decoration-none"
-                  >Exclusive Access</a
-                >
-              </li>
-
               <li class="mb-2">
                 <a
                   href="dashboard_settings.html"
@@ -614,15 +765,6 @@
     <!-- Bootstrap Module Script -->
     <script type="module">
       import * as bootstrap from "bootstrap";
-
-      // Initialize carousel
-      const newsCarousel = document.querySelector("#newsCarousel");
-      if (newsCarousel) {
-        new bootstrap.Carousel(newsCarousel, {
-          interval: 5000,
-          ride: "carousel",
-        });
-      }
     </script>
 
     <!-- Project Scripts -->

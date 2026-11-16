@@ -10,35 +10,8 @@
       rel="stylesheet"
       crossorigin="anonymous"
     />
-    <style>
-      .navbar-glass {
-        background-color: rgba(253, 252, 252, 0.85);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-      }
-      .avatar-circle {
-        width: 32px;
-        height: 32px;
-        background-color: #0d6efd;
-        color: #faf6f6;
-        font-weight: bold;
-        font-size: 0.85rem;
-        border-radius: 50%;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-      }
-      .carousel-item img {
-        height: 420px;
-        object-fit: cover;
-      }
-      .carousel-caption-glass {
-        background: rgba(0, 0, 0, 0.65);
-        backdrop-filter: blur(8px);
-        border-radius: 1rem;
-        padding: 1.25rem 1.5rem;
-      }
-    </style>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body class="bg-light">
     <!-- Navbar -->
@@ -70,32 +43,28 @@
           <ul class="navbar-nav me-auto mb-2 mb-lg-0 fw-semibold">
             <li class="nav-item">
               <a
-                class="nav-link active"
-                aria-current="page"
+                class="nav-link"
                 href="dashboard.html"
                 >Home</a
               >
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="airlines.html">Airlines</a>
+              <a class="nav-link" href="dashboard_airlines.html">Airlines</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="dashboard_airports.html">Airports</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="dashboard2.html">Latest news</a>
+              <a class="nav-link" href="dashboard_latestnews.html">Latest news</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="sustainability.html">Sustainability</a>
+              <a class="nav-link" href="dashboard_sustainability.html">Sustainability</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="technology.html">Technology</a>
+              <a class="nav-link active" aria-current="page" href="dashboard_technology.html">Technology</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="airspace.html">Airspace</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="technology.html">Technology</a>
+              <a class="nav-link" href="dashboard_airspace.html">Airspace</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="dashboard_contact.html">Contact</a>
@@ -125,7 +94,7 @@
                 <li>
                   <a
                     class="dropdown-item text-warning fw-semibold"
-                    href="plans.html"
+                    href="dashboard_plans.html"
                     >⚡ Upgrade Subscription</a
                   >
                 </li>
@@ -157,17 +126,56 @@
         </div>
       </div>
     </nav>
-       <!-- Header Section -->
-    <div class="container mt-5">
-      <div class="text-primary fw-bold text-uppercase small tracking-wide">
-        Innovations & Next-Gen Systems
+       
+    <!-- Modern Hero Banner -->
+    <header class="tech-hero py-5 mb-5 shadow-sm">
+      <div class="container py-3">
+        <div class="row align-items-center g-4">
+          <div class="col-lg-8">
+            <span
+              class="badge bg-primary bg-opacity-25 border border-light border-opacity-25 text-white px-3 py-2 rounded-pill fw-semibold mb-3"
+            >
+              🚀 Innovations & Next-Gen Systems
+            </span>
+            <h1 class="display-5 fw-bold mb-3">Aerospace Technology</h1>
+            <p class="lead text-white-50 mb-0" style="max-width: 650px">
+              Explore breakthroughs in next-generation propulsion, synthetic
+              vision flight decks, recyclable composite airframes, and
+              autonomous airspace systems.
+            </p>
+          </div>
+          <div class="col-lg-4">
+            <div
+              class="bg-white bg-opacity-10 border border-light border-opacity-25 rounded-4 p-4 backdrop-blur"
+            >
+              <div class="row text-center g-2">
+                <div class="col-4">
+                  <div class="fs-4 fw-bold text-info">4</div>
+                  <div class="small text-white-50">Domains</div>
+                </div>
+                <div
+                  class="col-4 border-start border-end border-light border-opacity-25"
+                >
+                  <div class="fs-4 fw-bold text-info">-20%</div>
+                  <div class="small text-white-50">Fuel Burn</div>
+                </div>
+                <div class="col-4">
+                  <div class="fs-4 fw-bold text-info">2035</div>
+                  <div class="small text-white-50">H₂ Horizon</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <h2 class="fw-bold mb-3">Aerospace Technology</h2>
+    </header>
 
-      <!-- Filter Controls Bar -->
-      <div class="card border-0 shadow-sm rounded-4 p-3 mb-4 bg-white">
+    <!-- Main Content -->
+    <main class="container pb-5 flex-grow-1">
+      <!-- Filter & Category Pill Controls Bar -->
+      <div class="card border-0 shadow-sm rounded-4 p-3 p-md-4 mb-4 bg-white">
         <div class="row g-3 align-items-center">
-          <div class="col-md-7">
+          <div class="col-lg-6">
             <div class="input-group">
               <span
                 class="input-group-text bg-light border-end-0 rounded-start-pill text-muted px-3"
@@ -177,68 +185,108 @@
                 type="text"
                 id="techFilterInput"
                 class="form-control bg-light border-start-0 rounded-end-pill"
-                placeholder="Filter technologies by keyword, engine, or avionics..."
+                placeholder="Filter by keyword, engine, avionics, or material..."
               />
             </div>
           </div>
-          <div class="col-md-5">
-            <select
-              id="categoryFilterSelect"
-              class="form-select rounded-pill bg-light"
+          <div class="col-lg-6">
+            <div
+              class="d-flex flex-wrap gap-2 justify-content-lg-end"
+              id="categoryPills"
             >
-              <option value="all" selected>All Categories</option>
-              <option value="propulsion">Propulsion & Engines</option>
-              <option value="avionics">Avionics & Flight Deck</option>
-              <option value="materials">Advanced Materials</option>
-              <option value="autonomous">Autonomous Systems</option>
-            </select>
+              <button
+                type="button"
+                class="btn btn-primary btn-sm rounded-pill px-3 category-pill active"
+                data-category="all"
+              >
+                All Systems
+              </button>
+              <button
+                type="button"
+                class="btn btn-outline-secondary btn-sm rounded-pill px-3 category-pill"
+                data-category="propulsion"
+              >
+                Propulsion
+              </button>
+              <button
+                type="button"
+                class="btn btn-outline-secondary btn-sm rounded-pill px-3 category-pill"
+                data-category="avionics"
+              >
+                Avionics
+              </button>
+              <button
+                type="button"
+                class="btn btn-outline-secondary btn-sm rounded-pill px-3 category-pill"
+                data-category="materials"
+              >
+                Materials
+              </button>
+              <button
+                type="button"
+                class="btn btn-outline-secondary btn-sm rounded-pill px-3 category-pill"
+                data-category="autonomous"
+              >
+                Autonomous
+              </button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <!-- Technology Grid -->
-    <div class="container pb-5">
-      <div class="row g-4" id="techGrid">
+      <!-- Technology Grid -->
+      <div class="row g-4 align-items-stretch" id="techGrid">
         <!-- Tech Card 1 -->
         <div
-          class="col-md-6 col-lg-4 tech-card-wrapper"
-          data-title="Hydrogen-Electric Turboprop Propulsion"
+          class="col-md-6 col-lg-4 d-flex tech-card-wrapper"
+          data-title="Hydrogen-Electric Power Turboprop Propulsion"
           data-category="propulsion"
         >
-          <div class="card border-0 shadow-sm rounded-4 h-100 overflow-hidden">
-            <img
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoPzEUWrRlHFEZOFMI6KvOzdGCPrcNeelr15zdfkFlxNzL8NCdk86Fcrb3&s=10"
-              class="card-img-top tech-card-img"
-              alt="Hydrogen Engine Technology"
-            />
-            <div
-              class="card-body p-4 d-flex flex-column justify-content-between"
-            >
-              <div>
-                <div class="d-flex gap-2 mb-2">
-                  <span
-                    class="badge bg-primary-subtle text-primary rounded-pill"
-                    >Propulsion</span
-                  >
-                  <span
-                    class="badge bg-secondary-subtle text-secondary rounded-pill"
-                    >Zero Emissions</span
-                  >
-                </div>
-                <h4 class="card-title fw-bold">Hydrogen-Electric Power</h4>
-                <p class="card-text text-muted small">
-                  Next-generation liquid hydrogen fuel cell powertrain designs
-                  enabling zero-CO2 regional passenger flights.
-                </p>
-              </div>
-              <div class="pt-3 border-top mt-3">
-                <a
-                  href="#"
-                  class="btn btn-outline-primary btn-sm rounded-pill w-100"
+          <div
+            class="card tech-card border-0 shadow-sm rounded-4 w-100 overflow-hidden d-flex flex-column bg-white"
+          >
+            <div class="overflow-hidden position-relative">
+              <img
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoPzEUWrRlHFEZOFMI6KvOzdGCPrcNeelr15zdfkFlxNzL8NCdk86Fcrb3&s=10"
+                class="card-img-top tech-card-img"
+                alt="Hydrogen Engine Technology"
+              />
+              <span
+                class="badge bg-dark bg-opacity-75 text-white position-absolute top-0 end-0 m-3 rounded-pill px-3"
+              >
+                TRL 6 • Testing
+              </span>
+            </div>
+            <div class="card-body p-4 d-flex flex-column flex-grow-1">
+              <div class="d-flex flex-wrap gap-2 mb-2">
+                <span
+                  class="badge bg-primary-subtle text-primary rounded-pill px-3"
+                  >Propulsion</span
                 >
-                  Read Technical Overview
-                </a>
+                <span
+                  class="badge bg-success-subtle text-success rounded-pill px-3"
+                  >Zero Emissions</span
+                >
+              </div>
+              <h4 class="card-title fw-bold mb-2">Hydrogen-Electric Power</h4>
+              <p class="card-text text-muted small mb-4">
+                Next-generation liquid hydrogen fuel cell powertrain designs
+                enabling zero-CO₂ regional passenger flights with water vapor as
+                the sole byproduct.
+              </p>
+              <div class="mt-auto pt-3 border-top">
+                <button
+                  type="button"
+                  class="btn btn-outline-primary btn-sm rounded-pill w-100 fw-semibold"
+                  data-bs-toggle="modal"
+                  data-bs-target="#techDetailModal"
+                  data-tech-title="Hydrogen-Electric Propulsion"
+                  data-tech-category="Propulsion & Zero Emissions"
+                  data-tech-spec="Cryogenic Liquid H₂ Fuel Cells • 2–4 MW Class • Regional Turboprop Integration"
+                  data-tech-desc="Hydrogen-electric powertrains convert stored cryogenic liquid hydrogen into electricity via proton-exchange membrane (PEM) fuel cells to drive high-efficiency electric motors, eliminating in-flight carbon emissions and significantly reducing NOx output."
+                >
+                  Inspect Technical Specs →
+                </button>
               </div>
             </div>
           </div>
@@ -246,45 +294,57 @@
 
         <!-- Tech Card 2 -->
         <div
-          class="col-md-6 col-lg-4 tech-card-wrapper"
-          data-title="Synthetic Vision Systems (SVS)"
+          class="col-md-6 col-lg-4 d-flex tech-card-wrapper"
+          data-title="Synthetic Vision Flight Decks Systems (SVS)"
           data-category="avionics"
         >
-          <div class="card border-0 shadow-sm rounded-4 h-100 overflow-hidden">
-            <img
-              src="https://images.euronews.com/articles/stories/09/64/06/83/1536x864_cmsv2_a6bff4bf-4ce7-5355-a884-faf4e563bbb5-9640683.jpg"
-              class="card-img-top tech-card-img"
-              alt="Synthetic Vision Avionics"
-            />
-            <div
-              class="card-body p-4 d-flex flex-column justify-content-between"
-            >
-              <div>
-                <div class="d-flex gap-2 mb-2">
-                  <span class="badge bg-info-subtle text-info rounded-pill"
-                    >Avionics</span
-                  >
-                  <span
-                    class="badge bg-secondary-subtle text-secondary rounded-pill"
-                    >Flight Safety</span
-                  >
-                </div>
-                <h4 class="card-title fw-bold">
-                  Synthetic Vision Flight Decks
-                </h4>
-                <p class="card-text text-muted small">
-                  3D topographic terrain rendering overlaid on glass cockpit
-                  displays, maximizing pilot situational awareness in
-                  zero-visibility conditions.
-                </p>
-              </div>
-              <div class="pt-3 border-top mt-3">
-                <a
-                  href="#"
-                  class="btn btn-outline-primary btn-sm rounded-pill w-100"
+          <div
+            class="card tech-card border-0 shadow-sm rounded-4 w-100 overflow-hidden d-flex flex-column bg-white"
+          >
+            <div class="overflow-hidden position-relative">
+              <img
+                src="https://images.euronews.com/articles/stories/09/64/06/83/1536x864_cmsv2_a6bff4bf-4ce7-5355-a884-faf4e563bbb5-9640683.jpg"
+                class="card-img-top tech-card-img"
+                alt="Synthetic Vision Avionics"
+              />
+              <span
+                class="badge bg-dark bg-opacity-75 text-white position-absolute top-0 end-0 m-3 rounded-pill px-3"
+              >
+                Active Fleet
+              </span>
+            </div>
+            <div class="card-body p-4 d-flex flex-column flex-grow-1">
+              <div class="d-flex flex-wrap gap-2 mb-2">
+                <span
+                  class="badge bg-info-subtle text-info-emphasis rounded-pill px-3"
+                  >Avionics</span
                 >
-                  Read Technical Overview
-                </a>
+                <span
+                  class="badge bg-secondary-subtle text-secondary rounded-pill px-3"
+                  >Flight Safety</span
+                >
+              </div>
+              <h4 class="card-title fw-bold mb-2">
+                Synthetic Vision Flight Decks
+              </h4>
+              <p class="card-text text-muted small mb-4">
+                3D topographic terrain rendering overlaid on glass cockpit
+                displays and HUDs, maximizing pilot situational awareness in
+                zero-visibility conditions.
+              </p>
+              <div class="mt-auto pt-3 border-top">
+                <button
+                  type="button"
+                  class="btn btn-outline-primary btn-sm rounded-pill w-100 fw-semibold"
+                  data-bs-toggle="modal"
+                  data-bs-target="#techDetailModal"
+                  data-tech-title="Synthetic Vision Systems (SVS)"
+                  data-tech-category="Avionics & Flight Safety"
+                  data-tech-spec="3D Terrain Database • HUD & Primary Flight Display Overlay • Enhanced Flight Vision (EFVS)"
+                  data-tech-desc="Synthetic Vision combines high-resolution global elevation databases, obstacle mapping, and infrared sensor feeds into a real-time 3D out-the-window view on primary flight displays, preventing Controlled Flight Into Terrain (CFIT) during low-visibility approaches."
+                >
+                  Inspect Technical Specs →
+                </button>
               </div>
             </div>
           </div>
@@ -292,44 +352,57 @@
 
         <!-- Tech Card 3 -->
         <div
-          class="col-md-6 col-lg-4 tech-card-wrapper"
-          data-title="Thermoplastic Composite Fuselage Assemblies"
+          class="col-md-6 col-lg-4 d-flex tech-card-wrapper"
+          data-title="Thermoplastic Aerostructures Composite Fuselage Assemblies"
           data-category="materials"
         >
-          <div class="card border-0 shadow-sm rounded-4 h-100 overflow-hidden">
-            <img
-              src="https://static0.simpleflyingimages.com/wordpress/wp-content/uploads/2023/12/20190617-dsc3827-3.jpg"
-              class="card-img-top tech-card-img"
-              alt="Composite Aerostructures"
-            />
-            <div
-              class="card-body p-4 d-flex flex-column justify-content-between"
-            >
-              <div>
-                <div class="d-flex gap-2 mb-2">
-                  <span
-                    class="badge bg-success-subtle text-success rounded-pill"
-                    >Materials</span
-                  >
-                  <span
-                    class="badge bg-secondary-subtle text-secondary rounded-pill"
-                    >Lightweight</span
-                  >
-                </div>
-                <h4 class="card-title fw-bold">Thermoplastic Aerostructures</h4>
-                <p class="card-text text-muted small">
-                  Fully recyclable composite airframes delivering up to 20%
-                  total weight reduction compared to conventional aluminium
-                  alloys.
-                </p>
-              </div>
-              <div class="pt-3 border-top mt-3">
-                <a
-                  href="#"
-                  class="btn btn-outline-primary btn-sm rounded-pill w-100"
+          <div
+            class="card tech-card border-0 shadow-sm rounded-4 w-100 overflow-hidden d-flex flex-column bg-white"
+          >
+            <div class="overflow-hidden position-relative">
+              <img
+                src="https://static0.simpleflyingimages.com/wordpress/wp-content/uploads/2023/12/20190617-dsc3827-3.jpg"
+                class="card-img-top tech-card-img"
+                alt="Composite Aerostructures"
+              />
+              <span
+                class="badge bg-dark bg-opacity-75 text-white position-absolute top-0 end-0 m-3 rounded-pill px-3"
+              >
+                Next-Gen Airframe
+              </span>
+            </div>
+            <div class="card-body p-4 d-flex flex-column flex-grow-1">
+              <div class="d-flex flex-wrap gap-2 mb-2">
+                <span
+                  class="badge bg-success-subtle text-success rounded-pill px-3"
+                  >Materials</span
                 >
-                  Read Technical Overview
-                </a>
+                <span
+                  class="badge bg-secondary-subtle text-secondary rounded-pill px-3"
+                  >Lightweight</span
+                >
+              </div>
+              <h4 class="card-title fw-bold mb-2">
+                Thermoplastic Aerostructures
+              </h4>
+              <p class="card-text text-muted small mb-4">
+                Fully recyclable weldable composite airframes delivering up to
+                20% total weight reduction compared to conventional aluminum
+                alloys.
+              </p>
+              <div class="mt-auto pt-3 border-top">
+                <button
+                  type="button"
+                  class="btn btn-outline-primary btn-sm rounded-pill w-100 fw-semibold"
+                  data-bs-toggle="modal"
+                  data-bs-target="#techDetailModal"
+                  data-tech-title="Thermoplastic Composite Aerostructures"
+                  data-tech-category="Advanced Materials & Manufacturing"
+                  data-tech-spec="Induction-Welded Carbon PEEK/PAEK • Out-of-Autoclave • 100% Recyclable Matrix"
+                  data-tech-desc="Unlike traditional thermoset composites, thermoplastic composites can be reshaped and induction-welded without metal rivets or heavy autoclaves—cutting manufacturing cycle times while reducing structural airframe weight and enabling end-of-life recycling."
+                >
+                  Inspect Technical Specs →
+                </button>
               </div>
             </div>
           </div>
@@ -337,44 +410,57 @@
 
         <!-- Tech Card 4 -->
         <div
-          class="col-md-6 col-lg-4 tech-card-wrapper"
-          data-title="Autonomous Collision Avoidance Algorithms"
+          class="col-md-6 col-lg-4 d-flex tech-card-wrapper"
+          data-title="AI Flight Management Systems Autonomous Collision Avoidance"
           data-category="autonomous"
         >
-          <div class="card border-0 shadow-sm rounded-4 h-100 overflow-hidden">
-            <img
-              src="https://static.wikia.nocookie.net/aviation-airport/images/c/c6/London_heathrow_airport_lhr-1.jpg/revision/latest/scale-to-width-down/1200?cb=20240425180753"
-              class="card-img-top tech-card-img"
-              alt="Autonomous Flight Management"
-            />
-            <div
-              class="card-body p-4 d-flex flex-column justify-content-between"
-            >
-              <div>
-                <div class="d-flex gap-2 mb-2">
-                  <span
-                    class="badge bg-warning-subtle text-warning-emphasis rounded-pill"
-                    >Autonomous</span
-                  >
-                  <span
-                    class="badge bg-secondary-subtle text-secondary rounded-pill"
-                    >AI Avionics</span
-                  >
-                </div>
-                <h4 class="card-title fw-bold">AI Flight Management Systems</h4>
-                <p class="card-text text-muted small">
-                  Machine-learning flight software capable of calculating
-                  real-time micro-route corrections to minimize fuel burn and
-                  turbulence.
-                </p>
-              </div>
-              <div class="pt-3 border-top mt-3">
-                <a
-                  href="#"
-                  class="btn btn-outline-primary btn-sm rounded-pill w-100"
+          <div
+            class="card tech-card border-0 shadow-sm rounded-4 w-100 overflow-hidden d-flex flex-column bg-white"
+          >
+            <div class="overflow-hidden position-relative">
+              <img
+                src="https://static.wikia.nocookie.net/aviation-airport/images/c/c6/London_heathrow_airport_lhr-1.jpg/revision/latest/scale-to-width-down/1200?cb=20240425180753"
+                class="card-img-top tech-card-img"
+                alt="Autonomous Flight Management"
+              />
+              <span
+                class="badge bg-dark bg-opacity-75 text-white position-absolute top-0 end-0 m-3 rounded-pill px-3"
+              >
+                AI Co-Pilot
+              </span>
+            </div>
+            <div class="card-body p-4 d-flex flex-column flex-grow-1">
+              <div class="d-flex flex-wrap gap-2 mb-2">
+                <span
+                  class="badge bg-warning-subtle text-warning-emphasis rounded-pill px-3"
+                  >Autonomous</span
                 >
-                  Read Technical Overview
-                </a>
+                <span
+                  class="badge bg-secondary-subtle text-secondary rounded-pill px-3"
+                  >AI Avionics</span
+                >
+              </div>
+              <h4 class="card-title fw-bold mb-2">
+                AI Flight Management Systems
+              </h4>
+              <p class="card-text text-muted small mb-4">
+                Machine-learning flight software capable of calculating
+                real-time 4D micro-route corrections to minimize contrails, fuel
+                burn, and turbulence.
+              </p>
+              <div class="mt-auto pt-3 border-top">
+                <button
+                  type="button"
+                  class="btn btn-outline-primary btn-sm rounded-pill w-100 fw-semibold"
+                  data-bs-toggle="modal"
+                  data-bs-target="#techDetailModal"
+                  data-tech-title="AI Flight Management & Trajectory Optimization"
+                  data-tech-category="Autonomous Systems & AI Avionics"
+                  data-tech-spec="4D Trajectory Optimization • Contrail Avoidance • Predictive Weather Routing"
+                  data-tech-desc="AI-assisted flight management continuously ingests live atmospheric wind, temperature, and humidity telemetry to recommend altitude and heading micro-adjustments—reducing fuel consumption and avoiding ice-supersaturated zones that form warming contrails."
+                >
+                  Inspect Technical Specs →
+                </button>
               </div>
             </div>
           </div>
@@ -382,44 +468,55 @@
 
         <!-- Tech Card 5 -->
         <div
-          class="col-md-6 col-lg-4 tech-card-wrapper"
-          data-title="Open Fan Architecture Geared Engines"
+          class="col-md-6 col-lg-4 d-flex tech-card-wrapper"
+          data-title="Open Rotor Propulsion Fan Architecture Geared Engines"
           data-category="propulsion"
         >
-          <div class="card border-0 shadow-sm rounded-4 h-100 overflow-hidden">
-            <img
-              src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/LATAM_A350-900_PR-XTA.jpg/1200px-LATAM_A350-900_PR-XTA.jpg"
-              class="card-img-top tech-card-img"
-              alt="Open Fan Engine Concept"
-            />
-            <div
-              class="card-body p-4 d-flex flex-column justify-content-between"
-            >
-              <div>
-                <div class="d-flex gap-2 mb-2">
-                  <span
-                    class="badge bg-primary-subtle text-primary rounded-pill"
-                    >Propulsion</span
-                  >
-                  <span
-                    class="badge bg-secondary-subtle text-secondary rounded-pill"
-                    >High Efficiency</span
-                  >
-                </div>
-                <h4 class="card-title fw-bold">Open Rotor Propulsion</h4>
-                <p class="card-text text-muted small">
-                  Unshrouded fan blade configurations targeted at producing 20%
-                  lower fuel burn and greenhouse emissions for future narrowbody
-                  jets.
-                </p>
-              </div>
-              <div class="pt-3 border-top mt-3">
-                <a
-                  href="#"
-                  class="btn btn-outline-primary btn-sm rounded-pill w-100"
+          <div
+            class="card tech-card border-0 shadow-sm rounded-4 w-100 overflow-hidden d-flex flex-column bg-white"
+          >
+            <div class="overflow-hidden position-relative">
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/LATAM_A350-900_PR-XTA.jpg/1200px-LATAM_A350-900_PR-XTA.jpg"
+                class="card-img-top tech-card-img"
+                alt="Open Fan Engine Concept"
+              />
+              <span
+                class="badge bg-dark bg-opacity-75 text-white position-absolute top-0 end-0 m-3 rounded-pill px-3"
+              >
+                RISE Program
+              </span>
+            </div>
+            <div class="card-body p-4 d-flex flex-column flex-grow-1">
+              <div class="d-flex flex-wrap gap-2 mb-2">
+                <span
+                  class="badge bg-primary-subtle text-primary rounded-pill px-3"
+                  >Propulsion</span
                 >
-                  Read Technical Overview
-                </a>
+                <span
+                  class="badge bg-secondary-subtle text-secondary rounded-pill px-3"
+                  >High Efficiency</span
+                >
+              </div>
+              <h4 class="card-title fw-bold mb-2">Open Rotor Propulsion</h4>
+              <p class="card-text text-muted small mb-4">
+                Unshrouded carbon-composite fan blade configurations targeted at
+                producing 20% lower fuel burn and emissions for future
+                narrowbody jets.
+              </p>
+              <div class="mt-auto pt-3 border-top">
+                <button
+                  type="button"
+                  class="btn btn-outline-primary btn-sm rounded-pill w-100 fw-semibold"
+                  data-bs-toggle="modal"
+                  data-bs-target="#techDetailModal"
+                  data-tech-title="Open Fan Architecture Engines"
+                  data-tech-category="Propulsion & Ultra-High Bypass"
+                  data-tech-spec="Unshrouded Variable-Pitch Fan • 100% SAF & H₂ Compatible • Hybrid-Electric Core"
+                  data-tech-desc="Removing the heavy outer nacelle allows ultra-high bypass ratios with larger carbon-fiber fan blades, dramatically improving propulsive efficiency while maintaining Mach 0.80 cruise speeds and low acoustic footprints."
+                >
+                  Inspect Technical Specs →
+                </button>
               </div>
             </div>
           </div>
@@ -427,45 +524,57 @@
 
         <!-- Tech Card 6 -->
         <div
-          class="col-md-6 col-lg-4 tech-card-wrapper"
-          data-title="Satellite-Based Navigation Systems (SBAS)"
+          class="col-md-6 col-lg-4 d-flex tech-card-wrapper"
+          data-title="Next-Gen Satellite Navigation Systems (SBAS)"
           data-category="avionics"
         >
-          <div class="card border-0 shadow-sm rounded-4 h-100 overflow-hidden">
-            <img
-              src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Singapore_Airlines_A350-900_9V-SMF.jpg/1200px-Singapore_Airlines_A350-900_9V-SMF.jpg"
-              class="card-img-top tech-card-img"
-              alt="Satellite Navigation Systems"
-            />
-            <div
-              class="card-body p-4 d-flex flex-column justify-content-between"
-            >
-              <div>
-                <div class="d-flex gap-2 mb-2">
-                  <span class="badge bg-info-subtle text-info rounded-pill"
-                    >Avionics</span
-                  >
-                  <span
-                    class="badge bg-secondary-subtle text-secondary rounded-pill"
-                    >GPS / GNSS</span
-                  >
-                </div>
-                <h4 class="card-title fw-bold">
-                  Next-Gen Satellite Navigation
-                </h4>
-                <p class="card-text text-muted small">
-                  High-precision augmented satellite guidance enabling
-                  continuous descent approach profiles and tighter airspace
-                  separation.
-                </p>
-              </div>
-              <div class="pt-3 border-top mt-3">
-                <a
-                  href="#"
-                  class="btn btn-outline-primary btn-sm rounded-pill w-100"
+          <div
+            class="card tech-card border-0 shadow-sm rounded-4 w-100 overflow-hidden d-flex flex-column bg-white"
+          >
+            <div class="overflow-hidden position-relative">
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Singapore_Airlines_A350-900_9V-SMF.jpg/1200px-Singapore_Airlines_A350-900_9V-SMF.jpg"
+                class="card-img-top tech-card-img"
+                alt="Satellite Navigation Systems"
+              />
+              <span
+                class="badge bg-dark bg-opacity-75 text-white position-absolute top-0 end-0 m-3 rounded-pill px-3"
+              >
+                RNP AR / GNSS
+              </span>
+            </div>
+            <div class="card-body p-4 d-flex flex-column flex-grow-1">
+              <div class="d-flex flex-wrap gap-2 mb-2">
+                <span
+                  class="badge bg-info-subtle text-info-emphasis rounded-pill px-3"
+                  >Avionics</span
                 >
-                  Read Technical Overview
-                </a>
+                <span
+                  class="badge bg-secondary-subtle text-secondary rounded-pill px-3"
+                  >GPS / GNSS</span
+                >
+              </div>
+              <h4 class="card-title fw-bold mb-2">
+                Next-Gen Satellite Navigation
+              </h4>
+              <p class="card-text text-muted small mb-4">
+                High-precision augmented satellite guidance enabling curved
+                RNP-AR approaches, continuous descents, and tighter oceanic
+                separation.
+              </p>
+              <div class="mt-auto pt-3 border-top">
+                <button
+                  type="button"
+                  class="btn btn-outline-primary btn-sm rounded-pill w-100 fw-semibold"
+                  data-bs-toggle="modal"
+                  data-bs-target="#techDetailModal"
+                  data-tech-title="Satellite-Based Augmentation Systems (SBAS)"
+                  data-tech-category="Avionics & Airspace Navigation"
+                  data-tech-spec="Dual-Frequency Multi-Constellation GNSS • Sub-Meter Vertical Accuracy • RNP 0.1"
+                  data-tech-desc="SBAS and GBAS replace legacy ground-based radio beacons with differential satellite corrections, enabling precision curved approaches around mountainous terrain and reducing airport delays during adverse weather."
+                >
+                  Inspect Technical Specs →
+                </button>
               </div>
             </div>
           </div>
@@ -475,21 +584,75 @@
       <!-- No Results Message -->
       <div
         id="noTechResults"
-        class="alert alert-warning text-center rounded-4 py-4 d-none mt-4"
+        class="alert alert-light border shadow-sm text-center rounded-4 py-5 d-none mt-4"
         role="alert"
       >
-        <h5 class="fw-bold">No Technologies Found</h5>
-        <p class="mb-0 text-muted">
-          Try adjusting your search criteria or category filter.
+        <div class="fs-2 mb-2">🛰️</div>
+        <h5 class="fw-bold">No Matching Technologies Found</h5>
+        <p class="mb-3 text-muted small">
+          Try clearing your search term or selecting another aerospace category.
         </p>
+        <button
+          type="button"
+          id="resetTechFiltersBtn"
+          class="btn btn-primary btn-sm rounded-pill px-4"
+        >
+          Reset Filters
+        </button>
+      </div>
+    </main>
+
+    <!-- Technical Overview Modal -->
+    <div
+      class="modal fade"
+      id="techDetailModal"
+      tabindex="-1"
+      aria-labelledby="techModalTitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 shadow rounded-4">
+          <div class="modal-header border-bottom-0 pb-0">
+            <span
+              id="techModalCategory"
+              class="badge bg-primary-subtle text-primary rounded-pill px-3 py-2"
+            ></span>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body p-4">
+            <h4 class="fw-bold mb-3" id="techModalTitle"></h4>
+            <div class="bg-light rounded-3 p-3 mb-3 border">
+              <div class="small text-uppercase text-muted fw-bold mb-1">
+                Key Architecture & Specs
+              </div>
+              <div class="small fw-semibold text-dark" id="techModalSpec"></div>
+            </div>
+            <p class="text-muted mb-0" id="techModalDesc"></p>
+          </div>
+          <div class="modal-footer border-top-0 pt-0">
+            <button
+              type="button"
+              class="btn btn-secondary btn-sm rounded-pill px-4"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
       </div>
     </div>
+
 <!-- Footer -->
     <footer class="bg-dark text-white pt-5 pb-4 mt-5">
       <div class="container text-center text-md-start">
         <div class="row g-4">
           <div class="col-md-4 col-lg-4 col-xl-3 mx-auto">
-            <a href="index.html" class="d-inline-block mb-3">
+            <a href="dashboard.html" class="d-inline-block mb-3">
               <img
                 src="image/image.png"
                 alt="AeroLover logo"
@@ -560,7 +723,7 @@
             <h6 class="text-uppercase mb-3 fw-bold text-primary">Benefits</h6>
             <ul class="list-unstyled small">
               <li class="mb-2">
-                <a href="plans.html" class="text-white-50 text-decoration-none"
+                <a href="dashboard_plans.html" class="text-white-50 text-decoration-none"
                   >Exclusive Access</a
                 >
               </li>
