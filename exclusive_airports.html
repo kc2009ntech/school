@@ -1,0 +1,754 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Aerolover - Airports</title>
+    <!-- Bootstrap 5 CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      .navbar-glass {
+        background-color: rgba(253, 252, 252, 0.85);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+      }
+      .avatar-circle {
+        width: 32px;
+        height: 32px;
+        background-color: #0d6efd;
+        color: #faf6f6;
+        font-weight: bold;
+        font-size: 0.85rem;
+        border-radius: 50%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+    </style>
+  </head>
+  <body class="bg-light d-flex flex-column min-vh-100">
+    <!-- Navbar -->
+    <!-- Floating Container Navbar -->
+    <header class="sticky-top pt-3 px-3" style="z-index: 1030">
+      <nav
+        class="navbar navbar-expand-lg container navbar-glass border rounded-4 shadow-sm py-2 px-3 px-lg-4"
+      >
+        <a class="navbar-brand me-3" href="exclusive.html">
+          <img
+            src="image/image.png"
+            alt="Aerolover Logo"
+            style="height: 3rem"
+          />
+        </a>
+        <button
+          class="navbar-toggler border-0"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarContent"
+          aria-controls="navbarContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarContent">
+          <!-- Grouped Dropdown Navigation Links -->
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0 fw-semibold gap-lg-2">
+            <li class="nav-item">
+              <a class="nav-link" href="exclusive.html">Home</a>
+            </li>
+
+            <!-- Aviation Dropdown -->
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="aviationDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Aviation
+              </a>
+              <ul
+                class="dropdown-menu border-0 shadow-sm rounded-3"
+                aria-labelledby="aviationDropdown"
+              >
+                <li>
+                  <a class="dropdown-item" href="exclusive_airlines.html"
+                    >Airlines</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="exclusive_airports.html"
+                    >Airports</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="exclusive_airspace.html"
+                    >Airspace</a
+                  >
+                </li>
+              </ul>
+            </li>
+
+            <!-- News & Tech Dropdown -->
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="updatesDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                News & Tech
+              </a>
+              <ul
+                class="dropdown-menu border-0 shadow-sm rounded-3"
+                aria-labelledby="updatesDropdown"
+              >
+                <li>
+                  <a class="dropdown-item" href="exclusive_latestnews.html"
+                    >Latest News</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="exclusive_sustainability.html"
+                    >Sustainability</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="exclusive_technology.html"
+                    >Technology</a
+                  >
+                </li>
+              </ul>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="exclusive_contact.html">Contact</a>
+            </li>
+          </ul>
+
+          <div class="d-flex flex-wrap align-items-center gap-2">
+            <!-- Account Dropdown -->
+            <div class="dropdown">
+              <button
+                class="btn btn-outline-primary dropdown-toggle rounded-pill px-3 d-inline-flex align-items-center gap-2"
+                type="button"
+                id="dropdownMenuButton"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <span id="navAvatarCircle" class="avatar-circle d-none"></span>
+                <span id="navUserName">Account</span>
+              </button>
+              <ul
+                class="dropdown-menu dropdown-menu-end border-0 shadow-sm rounded-3"
+                aria-labelledby="dropdownMenuButton"
+              >
+                <li>
+                  <a class="dropdown-item" href="exclusive_settings.html"
+                    >Account Settings</a
+                  >
+                </li>
+                <li><hr class="dropdown-divider" /></li>
+                <li>
+                  <button class="dropdown-item text-danger" id="logoutBtn">
+                    Sign Out
+                  </button>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Search Bar -->
+            <form id="searchForm" class="d-flex gap-2 ms-lg-1" role="search">
+              <div class="input-group">
+                <input
+                  type="search"
+                  id="searchInput"
+                  class="form-control rounded-start-pill"
+                  placeholder="Search..."
+                  required
+                />
+                <button type="submit" class="btn btn-primary rounded-end-pill">
+                  Go
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Header Section -->
+    <div class="container mt-5">
+      <div class="text-primary fw-bold text-uppercase small tracking-wide">
+        Global Hubs & Terminals
+      </div>
+      <h2 class="fw-bold mb-3">Airports Directory</h2>
+
+      <!-- Filter Controls Bar -->
+      <div class="card border-0 shadow-sm rounded-4 p-3 mb-4 bg-white">
+        <div class="row g-3 align-items-center">
+          <div class="col-md-7">
+            <div class="input-group">
+              <span
+                class="input-group-text bg-light border-end-0 rounded-start-pill text-muted px-3"
+                >🔍</span
+              >
+              <input
+                type="text"
+                id="airportFilterInput"
+                class="form-control bg-light border-start-0 rounded-end-pill"
+                placeholder="Filter airports by name, city or airport code..."
+              />
+            </div>
+          </div>
+          <div class="col-md-5">
+            <select
+              id="regionFilterSelect"
+              class="form-select rounded-pill bg-light"
+            >
+              <option value="all" selected>All Regions</option>
+              <option value="south-america">South America</option>
+              <option value="europe">Europe</option>
+              <option value="north-america">North America</option>
+              <option value="asia">Asia</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Airports Grid -->
+    <div class="container pb-5 flex-grow-1">
+      <p id="airportCount" class="text-muted small mb-3">
+        Showing 3 of 6 airports
+      </p>
+
+      <div class="row g-4" id="airportsGrid">
+        <!-- Airport 1 -->
+        <div
+          class="col-md-6 col-lg-4 airport-card-wrapper"
+          data-title="São Paulo-Guarulhos International Airport (GRU)"
+          data-region="south-america"
+        >
+          <div class="card border-0 shadow-sm rounded-4 h-100 overflow-hidden">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/e/e1/Sao_paulo_airport_terminal_3.jpg?utm_source=en.wikipedia.org&utm_campaign=index&utm_content=original"
+              class="card-img-top airport-card-img"
+              alt="São Paulo Guarulhos Terminal 3"
+            />
+            <div
+              class="card-body p-4 d-flex flex-column justify-content-between"
+            >
+              <div>
+                <div class="d-flex gap-2 mb-2">
+                  <span
+                    class="badge bg-primary-subtle text-primary rounded-pill"
+                    >South America</span
+                  >
+                  <span
+                    class="badge bg-secondary-subtle text-secondary rounded-pill"
+                    >Hub (GRU)</span
+                  >
+                </div>
+                <h4 class="card-title fw-bold">São Paulo Guarulhos</h4>
+                <p class="card-text text-muted small">
+                  Brazil’s busiest international airport hub featuring modern
+                  passenger terminals and extensive long-haul connectivity
+                  across Latin America.
+                </p>
+              </div>
+              <div class="pt-3 border-top mt-3">
+                <button
+                  type="button"
+                  class="btn btn-outline-primary btn-sm rounded-pill w-100"
+                  data-bs-toggle="modal"
+                  data-bs-target="#airportDetailModal"
+                  data-airport-name="São Paulo-Guarulhos International Airport"
+                  data-airport-code="GRU • São Paulo, Brazil"
+                  data-airport-region="South America"
+                  data-airport-desc="Brazil’s busiest international airport hub featuring modern passenger terminals (including Terminal 3 for international carriers) and extensive long-haul connectivity across Latin America, North America, and Europe."
+                >
+                  View Details
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Airport 2 -->
+        <div
+          class="col-md-6 col-lg-4 airport-card-wrapper"
+          data-title="London Heathrow Airport (LHR)"
+          data-region="europe"
+        >
+          <div class="card border-0 shadow-sm rounded-4 h-100 overflow-hidden">
+            <img
+              src="https://londontopia.net/wp-content/uploads/2015/02/Heathrow-T5.jpg"
+              class="card-img-top airport-card-img"
+              alt="London Heathrow Terminal 5"
+            />
+            <div
+              class="card-body p-4 d-flex flex-column justify-content-between"
+            >
+              <div>
+                <div class="d-flex gap-2 mb-2">
+                  <span
+                    class="badge bg-success-subtle text-success rounded-pill"
+                    >Europe</span
+                  >
+                  <span
+                    class="badge bg-secondary-subtle text-secondary rounded-pill"
+                    >Hub (LHR)</span
+                  >
+                </div>
+                <h4 class="card-title fw-bold">London Heathrow</h4>
+                <p class="card-text text-muted small">
+                  One of Europe’s primary aviation gateways, processing tens of
+                  millions of international passengers annually through five
+                  terminals.
+                </p>
+              </div>
+              <div class="pt-3 border-top mt-3">
+                <button
+                  type="button"
+                  class="btn btn-outline-primary btn-sm rounded-pill w-100"
+                  data-bs-toggle="modal"
+                  data-bs-target="#airportDetailModal"
+                  data-airport-name="London Heathrow Airport"
+                  data-airport-code="LHR • London, United Kingdom"
+                  data-airport-region="Europe"
+                  data-airport-desc="One of Europe’s primary aviation gateways and a major global transfer hub, processing tens of millions of international passengers annually across Terminals 2, 3, 4, and 5."
+                >
+                  View Details
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Airport 3 -->
+        <div
+          class="col-md-6 col-lg-4 airport-card-wrapper"
+          data-title="John F. Kennedy International Airport (JFK)"
+          data-region="north-america"
+        >
+          <div class="card border-0 shadow-sm rounded-4 h-100 overflow-hidden">
+            <img
+              src="https://s7d9.scene7.com/is/image/panynjaviation/T4-exterior-new:card-wide-16x9"
+              class="card-img-top airport-card-img"
+              alt="JFK Airport New York"
+            />
+            <div
+              class="card-body p-4 d-flex flex-column justify-content-between"
+            >
+              <div>
+                <div class="d-flex gap-2 mb-2">
+                  <span class="badge bg-info-subtle text-info rounded-pill"
+                    >North America</span
+                  >
+                  <span
+                    class="badge bg-secondary-subtle text-secondary rounded-pill"
+                    >Hub (JFK)</span
+                  >
+                </div>
+                <h4 class="card-title fw-bold">New York JFK</h4>
+                <p class="card-text text-muted small">
+                  The major international gateway to New York City with
+                  multi-terminal operations undergoing a billion-dollar
+                  modernization project.
+                </p>
+              </div>
+              <div class="pt-3 border-top mt-3">
+                <button
+                  type="button"
+                  class="btn btn-outline-primary btn-sm rounded-pill w-100"
+                  data-bs-toggle="modal"
+                  data-bs-target="#airportDetailModal"
+                  data-airport-name="John F. Kennedy International Airport"
+                  data-airport-code="JFK • New York City, USA"
+                  data-airport-region="North America"
+                  data-airport-desc="The major international gateway to New York City, serving over 90 airlines with multi-terminal operations currently undergoing a multi-billion-dollar redevelopment."
+                >
+                  View Details
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Airport 4 -->
+        <div
+          class="col-md-6 col-lg-4 airport-card-wrapper"
+          data-title="Paris Charles de Gaulle Airport (CDG)"
+          data-region="europe"
+        >
+          <div class="card border-0 shadow-sm rounded-4 h-100 overflow-hidden">
+            <img
+              src="https://cdn-paso-back.pro.digital.cloud-adp.fr/back/upload/large_cdg_terminal2_E_hall_K_plan_351d0f4634.jpg"
+              class="card-img-top airport-card-img"
+              alt="Paris CDG Terminal 2E"
+            />
+            <div
+              class="card-body p-4 d-flex flex-column justify-content-between"
+            >
+              <div>
+                <div class="d-flex gap-2 mb-2">
+                  <span
+                    class="badge bg-success-subtle text-success rounded-pill"
+                    >Europe</span
+                  >
+                  <span
+                    class="badge bg-secondary-subtle text-secondary rounded-pill"
+                    >Hub (CDG)</span
+                  >
+                </div>
+                <h4 class="card-title fw-bold">Paris Charles de Gaulle</h4>
+                <p class="card-text text-muted small">
+                  France’s largest hub connecting major worldwide destinations
+                  with dedicated high-speed rail integration directly inside the
+                  terminals.
+                </p>
+              </div>
+              <div class="pt-3 border-top mt-3">
+                <button
+                  type="button"
+                  class="btn btn-outline-primary btn-sm rounded-pill w-100"
+                  data-bs-toggle="modal"
+                  data-bs-target="#airportDetailModal"
+                  data-airport-name="Paris Charles de Gaulle Airport"
+                  data-airport-code="CDG • Paris, France"
+                  data-airport-region="Europe"
+                  data-airport-desc="France’s largest international airport hub connecting worldwide destinations with dedicated TGV high-speed rail integration directly beneath Terminal 2."
+                >
+                  View Details
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Airport 5 -->
+        <div
+          class="col-md-6 col-lg-4 airport-card-wrapper"
+          data-title="Los Angeles International Airport (LAX)"
+          data-region="north-america"
+        >
+          <div class="card border-0 shadow-sm rounded-4 h-100 overflow-hidden">
+            <img
+              src="https://static0.simpleflyingimages.com/wordpress/wp-content/uploads/2025/02/delta-air-lines-airbus-a321-at-lax-shutterstock_2418144697.jpg"
+              class="card-img-top airport-card-img"
+              alt="Los Angeles LAX"
+            />
+            <div
+              class="card-body p-4 d-flex flex-column justify-content-between"
+            >
+              <div>
+                <div class="d-flex gap-2 mb-2">
+                  <span class="badge bg-info-subtle text-info rounded-pill"
+                    >North America</span
+                  >
+                  <span
+                    class="badge bg-secondary-subtle text-secondary rounded-pill"
+                    >Hub (LAX)</span
+                  >
+                </div>
+                <h4 class="card-title fw-bold">Los Angeles (LAX)</h4>
+                <p class="card-text text-muted small">
+                  The primary international hub serving Southern California,
+                  featuring Automated People Mover connections and upgraded
+                  passenger lounges.
+                </p>
+              </div>
+              <div class="pt-3 border-top mt-3">
+                <button
+                  type="button"
+                  class="btn btn-outline-primary btn-sm rounded-pill w-100"
+                  data-bs-toggle="modal"
+                  data-bs-target="#airportDetailModal"
+                  data-airport-name="Los Angeles International Airport"
+                  data-airport-code="LAX • Los Angeles, USA"
+                  data-airport-region="North America"
+                  data-airport-desc="The primary international hub serving Southern California and trans-Pacific routes, featuring Automated People Mover connections and modernized terminals."
+                >
+                  View Details
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Airport 6 -->
+        <div
+          class="col-md-6 col-lg-4 airport-card-wrapper"
+          data-title="Tokyo Haneda Airport (HND)"
+          data-region="asia"
+        >
+          <div class="card border-0 shadow-sm rounded-4 h-100 overflow-hidden">
+            <img
+              src="https://www.machiya-inn-japan.com/blog/wp-content/uploads/2024/12/Haneda-Airport-Tokyo-International-Airport.jpeg"
+              class="card-img-top airport-card-img"
+              alt="Tokyo HND Terminal 1"
+            />
+            <div
+              class="card-body p-4 d-flex flex-column justify-content-between"
+            >
+              <div>
+                <div class="d-flex gap-2 mb-2">
+                  <span
+                    class="badge bg-warning-subtle text-warning-emphasis rounded-pill"
+                    >Asia</span
+                  >
+                  <span
+                    class="badge bg-secondary-subtle text-secondary rounded-pill"
+                    >Hub (HND)</span
+                  >
+                </div>
+                <h4 class="card-title fw-bold">Tokyo Haneda</h4>
+                <p class="card-text text-muted small">
+                  A major international gateway in Japan, world-renowned for its
+                  punctuality, efficiency, and modern passenger facilities.
+                </p>
+              </div>
+              <div class="pt-3 border-top mt-3">
+                <button
+                  type="button"
+                  class="btn btn-outline-primary btn-sm rounded-pill w-100"
+                  data-bs-toggle="modal"
+                  data-bs-target="#airportDetailModal"
+                  data-airport-name="Tokyo Haneda Airport"
+                  data-airport-code="HND • Tokyo, Japan"
+                  data-airport-region="Asia"
+                  data-airport-desc="A major domestic and international gateway located minutes from central Tokyo, consistently ranked among the world's cleanest and most punctual airports."
+                >
+                  View Details
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- No Results Message -->
+      <div
+        id="noResultsMsg"
+        class="alert alert-warning text-center rounded-4 py-4 d-none mt-4"
+        role="alert"
+      >
+        <h5 class="fw-bold">No Airports Found</h5>
+        <p class="mb-0 text-muted">
+          Try adjusting your search terms or region filter.
+        </p>
+      </div>
+
+      <!-- Load More Button Container -->
+      <div class="text-center mt-4">
+        <button
+          id="loadMoreAirportsBtn"
+          class="btn btn-outline-primary rounded-pill px-4"
+        >
+          Load More Airports
+        </button>
+      </div>
+    </div>
+
+    <!-- Airport Details Modal -->
+    <div
+      class="modal fade"
+      id="airportDetailModal"
+      tabindex="-1"
+      aria-labelledby="airportModalTitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 shadow rounded-4">
+          <div class="modal-header border-bottom-0 pb-0">
+            <div>
+              <span
+                id="airportModalRegion"
+                class="badge bg-primary-subtle text-primary rounded-pill mb-2"
+              ></span>
+              <h5 class="modal-title fw-bold" id="airportModalTitle"></h5>
+            </div>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body pt-2">
+            <p
+              class="text-primary fw-semibold small mb-3"
+              id="airportModalCode"
+            ></p>
+            <p class="text-muted mb-0" id="airportModalDesc"></p>
+          </div>
+          <div class="modal-footer border-top-0">
+            <button
+              type="button"
+              class="btn btn-primary rounded-pill px-4"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white pt-5 pb-4 mt-auto">
+      <div class="container text-center text-md-start">
+        <div class="row g-4">
+          <div class="col-md-4 col-lg-4 col-xl-3 mx-auto">
+            <a href="dashboard.html" class="d-inline-block mb-3">
+              <img
+                src="image/image.png"
+                alt="AeroLover logo"
+                style="height: 4.5rem"
+              />
+            </a>
+            <p class="text-white-50 small">
+              Your ultimate portal for aviation news, airport updates, airline
+              fleet specs, and future aerospace technologies.
+            </p>
+          </div>
+
+          <div class="col-md-2 col-lg-2 col-xl-2 mx-auto">
+            <h6 class="text-uppercase mb-3 fw-bold text-primary">Navigation</h6>
+            <ul class="list-unstyled small">
+              <li class="mb-2">
+                <a
+                  href="exclusive.html"
+                  class="text-white-50 text-decoration-none"
+                  >Home</a
+                >
+              </li>
+              <li class="mb-2">
+                <a
+                  href="exclusive_airlines.html"
+                  class="text-white-50 text-decoration-none"
+                  >Airlines</a
+                >
+              </li>
+              <li class="mb-2">
+                <a
+                  href="exclusive_airports.html"
+                  class="text-white-50 text-decoration-none"
+                  >Airports</a
+                >
+              </li>
+              <li class="mb-2">
+                <a
+                  href="exclusive_latestnews.html"
+                  class="text-white-50 text-decoration-none"
+                  >Latest news</a
+                >
+              </li>
+              <li class="mb-2">
+                <a
+                  href="exclusive_sustainability.html"
+                  class="text-white-50 text-decoration-none"
+                  >Sustainability</a
+                >
+              </li>
+              <li class="mb-2">
+                <a
+                  href="exclusive_technology.html"
+                  class="text-white-50 text-decoration-none"
+                  >Technology</a
+                >
+              </li>
+              <li class="mb-2">
+                <a
+                  href="exclusive_airspace.html"
+                  class="text-white-50 text-decoration-none"
+                  >Airspace</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div class="col-md-3 col-lg-2 col-xl-2 mx-auto">
+            <h6 class="text-uppercase mb-3 fw-bold text-primary">Benefits</h6>
+            <ul class="list-unstyled small">
+              <li class="mb-2">
+                <a href="#" class="text-white-50 text-decoration-none"
+                  >Member Perks</a
+                >
+              </li>
+              <li class="mb-2">
+                <a href="#" class="text-white-50 text-decoration-none"
+                  >Fleet Analytics</a
+                >
+              </li>
+              <li class="mb-2">
+                <a href="#" class="text-white-50 text-decoration-none"
+                  >Airport Updates</a
+                >
+              </li>
+              <li class="mb-2">
+                <a href="#" class="text-white-50 text-decoration-none"
+                  >Early News Access</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div class="col-md-3 col-lg-3 col-xl-3 mx-auto small">
+            <h6 class="text-uppercase mb-3 fw-bold text-primary">Connect</h6>
+            <p class="mb-2 text-white-50">📧 contact@aerolover.com</p>
+            <p class="mb-2 text-white-50">📍 Worldwide Aviation Network</p>
+          </div>
+        </div>
+
+        <hr class="my-4 border-light opacity-25" />
+
+        <div class="row align-items-center small">
+          <div class="col-md-7 text-center text-md-start">
+            <p class="mb-0 text-white-50">
+              © 2026 Aerolover. Built with Bootstrap 5 & Vanilla JS.
+            </p>
+          </div>
+          <div class="col-md-5 text-center text-md-end mt-3 mt-md-0">
+            <a href="#" class="text-white-50 text-decoration-none me-3"
+              >Privacy Policy</a
+            >
+            <a href="#" class="text-white-50 text-decoration-none"
+              >Terms of Service</a
+            >
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Import Map for ES Modules -->
+    <script type="importmap">
+      {
+        "imports": {
+          "@popperjs/core": "https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/esm/popper.js",
+          "bootstrap": "https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.esm.min.js"
+        }
+      }
+    </script>
+
+    <!-- Bootstrap Module Script -->
+    <script type="module">
+      import * as bootstrap from "bootstrap";
+    </script>
+
+    <!-- Project Scripts -->
+    <script src="script.js"></script>
+  </body>
+</html>

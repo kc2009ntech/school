@@ -139,7 +139,6 @@ document.addEventListener("DOMContentLoaded", () => {
       return false;
     }
 
-    // Direct password update
     accounts[targetEmail].password = newPassword;
     saveRegisteredAccounts(accounts);
 
@@ -149,7 +148,6 @@ document.addEventListener("DOMContentLoaded", () => {
     return true;
   };
 
-  // Option B UI Listener: One-click testing bypass button
   const quickResetBtn = document.querySelector("#adminQuickResetBtn");
   if (quickResetBtn) {
     quickResetBtn.addEventListener("click", () => {
@@ -194,13 +192,21 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   const isUnlocked = sessionStorage.getItem("isUnlocked") === "true";
-  const isPaid = localStorage.getItem("aerolover_payment_active") === "true";
+
   // ==========================================
-  // 1. ROUTE GUARD (OWNER-ONLY EXCLUSIVE ACCESS)
+  // 1. ROUTE GUARD
   // ==========================================
   const protectedPages = [
     "dashboard.html",
     "dashboard_settings.html",
+    "dashboard_airlines.html",
+    "dashboard_airports.html",
+    "dashboard_latestnews.html",
+    "dashboard_sustainability.html",
+    "dashboard_technology.html",
+    "dashboard_airspace.html",
+    "dashboard_contact.html",
+    "dashboard_plans.html",
     "dashboard_1.html",
     "dashboard_2.html",
     "dashboard_3.html",
@@ -211,6 +217,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const paymentRequiredPages = [
     "exclusive.html",
+    "exclusive_settings.html",
     "exclusive_airlines.html",
     "exclusive_airports.html",
     "exclusive_latestnews.html",
@@ -225,17 +232,16 @@ document.addEventListener("DOMContentLoaded", () => {
     currentPath.endsWith(page),
   );
 
-  // Redirect signed-out / unknown users to sign in
+  // Redirect signed-out visitors to sign in
   if ((isProtected || isPaymentProtected) && !isUnlocked) {
     window.location.href = "signin.html";
     return;
   }
 
-  // Set the site owner's email address here
   const OWNER_EMAIL = "demo@aerolover.com";
   const currentUserEmail = sessionStorage.getItem("userEmail") || "";
 
-  // Strictly check if the active user is the web owner
+  // Allow either the site owner OR any user who has completed payment
   if (isPaymentProtected) {
     const isOwner =
       currentUserEmail.toLowerCase() === OWNER_EMAIL.toLowerCase();
@@ -243,14 +249,18 @@ document.addEventListener("DOMContentLoaded", () => {
       localStorage.setItem("aerolover_payment_active", "true");
     }
 
-    if (!isOwner || !isPaid) {
+    const hasActivePayment =
+      localStorage.getItem("aerolover_payment_active") === "true";
+
+    if (!isOwner && !hasActivePayment) {
       alert(
-        "Access Denied: The Exclusive Lounge is restricted to the site owner only.",
+        "Access Denied: Please subscribe to a plan to enter the Exclusive Lounge.",
       );
       window.location.href = "plans.html";
       return;
     }
   }
+
   // ==========================================
   // DYNAMIC NAVBAR USER NAME & AVATAR DISPLAY
   // ==========================================
@@ -1293,6 +1303,22 @@ document.addEventListener("DOMContentLoaded", () => {
     updateAirportsDisplay();
   }
 
+  // Airport Details Modal Population
+  const airportModal = document.getElementById("airportDetailModal");
+  if (airportModal) {
+    airportModal.addEventListener("show.bs.modal", (event) => {
+      const button = event.relatedTarget;
+      document.getElementById("airportModalTitle").textContent =
+        button.getAttribute("data-airport-name");
+      document.getElementById("airportModalCode").textContent =
+        button.getAttribute("data-airport-code");
+      document.getElementById("airportModalRegion").textContent =
+        button.getAttribute("data-airport-region");
+      document.getElementById("airportModalDesc").textContent =
+        button.getAttribute("data-airport-desc");
+    });
+  }
+
   // ==========================================
   // 9. TIMELINE FILTER LOGIC
   // ==========================================
@@ -1335,102 +1361,111 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
   }
-});
-// Interactive Category Pill & Keyword Filter
-const filterInput = document.getElementById("techFilterInput");
-const categoryPills = document.querySelectorAll(".category-pill");
-const cards = document.querySelectorAll(".tech-card-wrapper");
-const noResults = document.getElementById("noTechResults");
-const resetBtn = document.getElementById("resetTechFiltersBtn");
-let activeCategory = "all";
 
-function filterCards() {
-  const query = filterInput.value.trim().toLowerCase();
-  let visibleCount = 0;
+  // ==========================================
+  // 10. TECHNOLOGY FILTER & MODAL
+  // ==========================================
+  const filterInput = document.getElementById("techFilterInput");
+  const categoryPills = document.querySelectorAll(".category-pill");
+  const cards = document.querySelectorAll(".tech-card-wrapper");
+  const noResults = document.getElementById("noTechResults");
+  const resetTechBtn = document.getElementById("resetTechFiltersBtn");
+  let activeCategory = "all";
 
-  cards.forEach((card) => {
-    const title = (card.dataset.title || "").toLowerCase();
-    const text = card.textContent.toLowerCase();
-    const category = card.dataset.category;
+  if (filterInput && cards.length > 0) {
+    function filterCards() {
+      const query = filterInput.value.trim().toLowerCase();
+      let visibleCount = 0;
 
-    const matchesCategory =
-      activeCategory === "all" || category === activeCategory;
-    const matchesQuery =
-      !query || title.includes(query) || text.includes(query);
+      cards.forEach((card) => {
+        const title = (card.dataset.title || "").toLowerCase();
+        const text = card.textContent.toLowerCase();
+        const category = card.dataset.category;
 
-    if (matchesCategory && matchesQuery) {
-      card.classList.remove("d-none");
-      card.classList.add("d-flex");
-      visibleCount++;
-    } else {
-      card.classList.add("d-none");
-      card.classList.remove("d-flex");
+        const matchesCategory =
+          activeCategory === "all" || category === activeCategory;
+        const matchesQuery =
+          !query || title.includes(query) || text.includes(query);
+
+        if (matchesCategory && matchesQuery) {
+          card.classList.remove("d-none");
+          card.classList.add("d-flex");
+          visibleCount++;
+        } else {
+          card.classList.add("d-none");
+          card.classList.remove("d-flex");
+        }
+      });
+
+      if (noResults) {
+        noResults.classList.toggle("d-none", visibleCount > 0);
+      }
     }
-  });
 
-  noResults.classList.toggle("d-none", visibleCount > 0);
-}
-
-categoryPills.forEach((pill) => {
-  pill.addEventListener("click", () => {
-    categoryPills.forEach((btn) => {
-      btn.classList.remove("btn-primary", "active");
-      btn.classList.add("btn-outline-secondary");
+    categoryPills.forEach((pill) => {
+      pill.addEventListener("click", () => {
+        categoryPills.forEach((btn) => {
+          btn.classList.remove("btn-primary", "active");
+          btn.classList.add("btn-outline-secondary");
+        });
+        pill.classList.remove("btn-outline-secondary");
+        pill.classList.add("btn-primary", "active");
+        activeCategory = pill.dataset.category;
+        filterCards();
+      });
     });
-    pill.classList.remove("btn-outline-secondary");
-    pill.classList.add("btn-primary", "active");
-    activeCategory = pill.dataset.category;
-    filterCards();
-  });
+
+    filterInput.addEventListener("input", filterCards);
+
+    if (resetTechBtn) {
+      resetTechBtn.addEventListener("click", () => {
+        filterInput.value = "";
+        if (categoryPills[0]) categoryPills[0].click();
+      });
+    }
+  }
+
+  const techModal = document.getElementById("techDetailModal");
+  if (techModal) {
+    techModal.addEventListener("show.bs.modal", (event) => {
+      const button = event.relatedTarget;
+      document.getElementById("techModalTitle").textContent =
+        button.getAttribute("data-tech-title");
+      document.getElementById("techModalCategory").textContent =
+        button.getAttribute("data-tech-category");
+      document.getElementById("techModalSpec").textContent =
+        button.getAttribute("data-tech-spec");
+      document.getElementById("techModalDesc").textContent =
+        button.getAttribute("data-tech-desc");
+    });
+  }
+
+  // ==========================================
+  // 11. EXCLUSIVE LOUNGE GREETING & PERK MODAL
+  // ==========================================
+  const greetingEl = document.getElementById("loungeMemberGreeting");
+  if (greetingEl) {
+    const savedProfile = localStorage.getItem(STORAGE_PROFILE_KEY);
+    if (savedProfile) {
+      try {
+        const profile = JSON.parse(savedProfile);
+        if (profile.firstName) {
+          greetingEl.textContent = profile.firstName.trim();
+        }
+      } catch (e) {
+        console.error("Error parsing profile for greeting:", e);
+      }
+    }
+  }
+
+  const perkModal = document.getElementById("perkPreviewModal");
+  if (perkModal) {
+    perkModal.addEventListener("show.bs.modal", (event) => {
+      const button = event.relatedTarget;
+      document.getElementById("perkModalTitle").textContent =
+        button.getAttribute("data-perk-title");
+      document.getElementById("perkModalBody").textContent =
+        button.getAttribute("data-perk-body");
+    });
+  }
 });
-
-filterInput.addEventListener("input", filterCards);
-
-resetBtn.addEventListener("click", () => {
-  filterInput.value = "";
-  categoryPills[0].click();
-});
-
-// Populate Technical Specs Modal
-const techModal = document.getElementById("techDetailModal");
-techModal.addEventListener("show.bs.modal", (event) => {
-  const button = event.relatedTarget;
-  document.getElementById("techModalTitle").textContent =
-    button.getAttribute("data-tech-title");
-  document.getElementById("techModalCategory").textContent =
-    button.getAttribute("data-tech-category");
-  document.getElementById("techModalSpec").textContent =
-    button.getAttribute("data-tech-spec");
-  document.getElementById("techModalDesc").textContent =
-    button.getAttribute("data-tech-desc");
-});
-// Initialize carousel
-const newsCarousel = document.querySelector("#newsCarousel");
-if (newsCarousel) {
-  new bootstrap.Carousel(newsCarousel, {
-    interval: 5000,
-    ride: "carousel",
-  });
-}
-
-// Personalize greeting with logged-in member name if available
-const storedName =
-  localStorage.getItem("userName") ||
-  sessionStorage.getItem("userName") ||
-  document.getElementById("navUserName")?.textContent;
-const greetingEl = document.getElementById("loungeMemberGreeting");
-if (greetingEl && storedName && storedName.trim() !== "Account") {
-  greetingEl.textContent = storedName.trim();
-}
-
-// Populate Perk Preview Modal
-const perkModal = document.getElementById("perkPreviewModal");
-if (perkModal) {
-  perkModal.addEventListener("show.bs.modal", (event) => {
-    const button = event.relatedTarget;
-    document.getElementById("perkModalTitle").textContent =
-      button.getAttribute("data-perk-title");
-    document.getElementById("perkModalBody").textContent =
-      button.getAttribute("data-perk-body");
-  });
-}

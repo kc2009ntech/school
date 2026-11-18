@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Aerolover - Member Dashboard</title>
+    <title>Aerolover - Airspace</title>
     <!-- Bootstrap 5 CSS -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
@@ -11,19 +11,36 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="style.css" />
-    <script src="script.js" defer></script>
+    <style>
+      .airspace-hero {
+        position: relative;
+        min-height: 340px;
+        background:
+          linear-gradient(
+            135deg,
+            rgba(10, 25, 47, 0.88),
+            rgba(13, 110, 253, 0.72)
+          ),
+          url("https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1400&q=80")
+            center/cover no-repeat;
+      }
+      .airspace-card-img {
+        height: 200px;
+        object-fit: cover;
+      }
+    </style>
   </head>
-  <body class="bg-light">
-    <!-- Navbar -->
-    <nav
-      class="navbar navbar-expand-lg sticky-top navbar-glass border-bottom shadow-sm py-2"
-    >
-      <div class="container-fluid px-4">
-        <a class="navbar-brand me-4" href="index.html">
+  <body class="bg-light d-flex flex-column min-vh-100">
+    <!-- Floating Container Navbar (Standard / Public) -->
+    <header class="sticky-top pt-3 px-3" style="z-index: 1030">
+      <nav
+        class="navbar navbar-expand-lg container navbar-glass border rounded-4 shadow-sm py-2 px-3 px-lg-4"
+      >
+        <a class="navbar-brand me-3" href="index.html">
           <img
             src="image/image.png"
             alt="Aerolover Logo"
-            style="height: 3.2rem"
+            style="height: 3rem"
           />
         </a>
         <button
@@ -39,48 +56,100 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarContent">
-          <!-- All Navigation Links -->
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0 fw-semibold">
+          <!-- Grouped Dropdown Navigation Links -->
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0 fw-semibold gap-lg-2">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="index.html"
-                >Home</a
+              <a class="nav-link" href="index.html">Home</a>
+            </li>
+
+            <!-- Aviation Dropdown -->
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle active"
+                href="#"
+                id="aviationDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
               >
+                Aviation
+              </a>
+              <ul
+                class="dropdown-menu border-0 shadow-sm rounded-3"
+                aria-labelledby="aviationDropdown"
+              >
+                <li>
+                  <a class="dropdown-item" href="airlines.html">Airlines</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="airports.html">Airports</a>
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item active"
+                    aria-current="page"
+                    href="airspace.html"
+                    >Airspace</a
+                  >
+                </li>
+              </ul>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="airlines.html">Airlines</a>
+
+            <!-- News & Tech Dropdown -->
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="updatesDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                News & Tech
+              </a>
+              <ul
+                class="dropdown-menu border-0 shadow-sm rounded-3"
+                aria-labelledby="updatesDropdown"
+              >
+                <li>
+                  <a class="dropdown-item" href="latestnews.html"
+                    >Latest News</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="sustainability.html"
+                    >Sustainability</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="technology.html">Technology</a>
+                </li>
+              </ul>
             </li>
+
             <li class="nav-item">
-              <a class="nav-link" href="airports.html">Airports</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="latestnews.html">Latest news</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="sustainability.html">Sustainability</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="technology.html">Technology</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="airspace.html">Airspace</a>
+              <a class="nav-link" href="plans.html">Plans</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="contact.html">Contact</a>
             </li>
           </ul>
 
-          <div class="d-flex align-items-center gap-3">
+          <div class="d-flex flex-wrap align-items-center gap-2">
+            <!-- Auth Buttons -->
             <a
               href="signin.html"
-              class="btn btn-outline-primary rounded-pill px-1"
+              class="btn btn-outline-primary rounded-pill px-3 fw-semibold"
+              >Sign In</a
             >
-              Sign In
-            </a>
-            <a href="signup.html" class="btn btn-primary rounded-pill px-1">
-              Create Free Account
-            </a>
+            <a
+              href="signup.html"
+              class="btn btn-primary rounded-pill px-3 fw-semibold"
+              >Sign Up</a
+            >
 
-            <form id="searchForm" class="d-flex gap-2 ms-2" role="search">
+            <!-- Search Bar -->
+            <form id="searchForm" class="d-flex gap-2 ms-lg-1" role="search">
               <div class="input-group">
                 <input
                   type="search"
@@ -96,174 +165,218 @@
             </form>
           </div>
         </div>
-      </div>
-    </nav>
-
-    <!-- Hero Header -->
-    <header class="hero-airspace py-5 mb-5 shadow-sm">
-      <div class="container py-4 text-center">
-        <span
-          class="badge bg-light text-primary px-3 py-2 rounded-pill fw-bold mb-3"
-        >
-          📡 Air Traffic Management & Operations
-        </span>
-        <h1 class="display-4 fw-bold mb-3">
-          Global Airspace & Navigational Systems
-        </h1>
-        <p class="lead col-md-8 mx-auto opacity-90">
-          Tracking the evolution of Air Traffic Control (ATC), satellite flight
-          routing, airspace classification, and next-gen uncrewed traffic
-          management (UTM).
-        </p>
-      </div>
+      </nav>
     </header>
 
-    <!-- Main Content Area -->
-    <main class="container mb-5">
-      <!-- Feature Cards -->
+    <!-- Main Airspace Content -->
+    <main class="container py-5 flex-grow-1">
+      <!-- Hero Banner with Image -->
+      <section
+        class="airspace-hero rounded-4 shadow-sm text-white p-4 p-md-5 mb-5 d-flex align-items-center"
+      >
+        <div class="col-lg-8">
+          <span
+            class="badge bg-white text-primary fw-bold text-uppercase rounded-pill px-3 py-2 mb-3"
+          >
+            Navigation & Traffic Control
+          </span>
+          <h1 class="display-6 fw-bold mb-3">
+            Global Airspace & Air Traffic Operations
+          </h1>
+          <p class="lead text-white-50 mb-4">
+            Explore controlled airspace classes, transoceanic flight corridors,
+            and satellite-based surveillance keeping millions of flights safely
+            separated worldwide.
+          </p>
+          <div class="d-flex flex-wrap gap-2">
+            <span
+              class="badge bg-dark bg-opacity-50 border border-light-subtle rounded-pill px-3 py-2"
+            >
+              FL180 – FL600 Class A
+            </span>
+            <span
+              class="badge bg-dark bg-opacity-50 border border-light-subtle rounded-pill px-3 py-2"
+            >
+              1,000 ft RVSM Separation
+            </span>
+            <span
+              class="badge bg-dark bg-opacity-50 border border-light-subtle rounded-pill px-3 py-2"
+            >
+              Space-Based ADS-B
+            </span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Airspace Structure Cards with Images -->
+      <div class="d-flex justify-content-between align-items-end mb-3">
+        <div>
+          <div class="text-primary fw-bold text-uppercase small">
+            Controlled Sectors
+          </div>
+          <h3 class="fw-bold mb-0">Airspace Classifications & Corridors</h3>
+        </div>
+      </div>
+
       <div class="row g-4 mb-5">
-        <!-- Card 1: Next-Gen Air Traffic Control -->
-        <div class="col-md-4">
+        <!-- Card 1: Class A Airspace -->
+        <div class="col-md-6 col-lg-4">
           <div class="card border-0 shadow-sm rounded-4 h-100 overflow-hidden">
             <img
-              src="https://images.euronews.com/articles/stories/09/64/06/83/1536x864_cmsv2_a6bff4bf-4ce7-5355-a884-faf4e563bbb5-9640683.jpg"
-              class="card-img-top feature-card-img"
-              alt="NextGen ATC Systems"
+              src="https://images.unsplash.com/photo-1559268950-2d7ceb2efa3a?auto=format&fit=crop&w=900&q=80"
+              class="card-img-top airspace-card-img"
+              alt="Commercial jet cruising at high altitude above clouds"
             />
-            <div
-              class="card-body p-4 d-flex flex-column justify-content-between"
-            >
-              <div>
-                <span
-                  class="badge bg-primary-subtle text-primary rounded-pill mb-2"
-                  >ATC Modernization</span
-                >
-                <h4 class="fw-bold card-title">Satellite Navigation & ADS-B</h4>
-                <p class="text-muted small">
-                  How space-based Automatic Dependent Surveillance-Broadcast
-                  (ADS-B) allows global real-time tracking across oceanic and
-                  remote airspace.
-                </p>
-              </div>
-              <a
-                href="#"
-                class="btn btn-outline-primary btn-sm rounded-pill mt-3"
-                >Learn More →</a
+            <div class="card-body p-4">
+              <div
+                class="d-flex justify-content-between align-items-center mb-2"
               >
+                <span class="badge bg-primary-subtle text-primary rounded-pill"
+                  >High Altitude</span
+                >
+                <span class="fw-bold text-muted small">FL180 – FL600</span>
+              </div>
+              <h4 class="card-title fw-bold">Class A Airspace</h4>
+              <p class="card-text text-muted small mb-0">
+                Reserved exclusively for Instrument Flight Rules (IFR)
+                commercial and high-performance traffic. Air Traffic Control
+                (ATC) provides continuous positive separation for every
+                aircraft.
+              </p>
             </div>
           </div>
         </div>
 
-        <!-- Card 2: Urban Air Mobility & UTM -->
-        <div class="col-md-4">
+        <!-- Card 2: Class B & C Terminals -->
+        <div class="col-md-6 col-lg-4">
           <div class="card border-0 shadow-sm rounded-4 h-100 overflow-hidden">
             <img
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoPzEUWrRlHFEZOFMI6KvOzdGCPrcNeelr15zdfkFlxNzL8NCdk86Fcrb3&s=10"
-              class="card-img-top feature-card-img"
-              alt="Urban Air Mobility"
+              src="https://images.unsplash.com/photo-1542296332-2e4473faf563?auto=format&fit=crop&w=900&q=80"
+              class="card-img-top airspace-card-img"
+              alt="Air traffic control tower overseeing busy airport terminal"
             />
-            <div
-              class="card-body p-4 d-flex flex-column justify-content-between"
-            >
-              <div>
-                <span class="badge bg-info-subtle text-info rounded-pill mb-2"
-                  >Uncrewed Traffic</span
-                >
-                <h4 class="fw-bold card-title">UTM & Drone Integration</h4>
-                <p class="text-muted small">
-                  Building automated traffic management corridors to safely
-                  integrate eVTOL aircraft, cargo drones, and traditional
-                  flights in low-altitude airspace.
-                </p>
-              </div>
-              <a
-                href="#"
-                class="btn btn-outline-info text-dark btn-sm rounded-pill mt-3"
-                >Learn More →</a
+            <div class="card-body p-4">
+              <div
+                class="d-flex justify-content-between align-items-center mb-2"
               >
+                <span class="badge bg-success-subtle text-success rounded-pill"
+                  >Major Hubs</span
+                >
+                <span class="fw-bold text-muted small"
+                  >Surface – 10,000 ft</span
+                >
+              </div>
+              <h4 class="card-title fw-bold">Class B & C Terminals</h4>
+              <p class="card-text text-muted small mb-0">
+                Multi-tiered terminal radar zones surrounding the world's
+                busiest airports, requiring two-way radio communication, ADS-B
+                Out, and explicit ATC clearance before entry.
+              </p>
             </div>
           </div>
         </div>
 
-        <!-- Card 3: Free Route Airspace -->
-        <div class="col-md-4">
+        <!-- Card 3: Oceanic Track Systems -->
+        <div class="col-md-6 col-lg-4">
           <div class="card border-0 shadow-sm rounded-4 h-100 overflow-hidden">
             <img
-              src="https://static.wikia.nocookie.net/aviation-airport/images/c/c6/London_heathrow_airport_lhr-1.jpg/revision/latest/scale-to-width-down/1200?cb=20240425180753"
-              class="card-img-top feature-card-img"
-              alt="Free Route Airspace"
+              src="https://images.unsplash.com/photo-1464037866556-6812c9d1c72e?auto=format&fit=crop&w=900&q=80"
+              class="card-img-top airspace-card-img"
+              alt="Cockpit navigation display over transoceanic flight corridor"
             />
-            <div
-              class="card-body p-4 d-flex flex-column justify-content-between"
-            >
-              <div>
-                <span
-                  class="badge bg-success-subtle text-success rounded-pill mb-2"
-                  >Efficiency</span
-                >
-                <h4 class="fw-bold card-title">Free Route Airspace (FRA)</h4>
-                <p class="text-muted small">
-                  Optimizing flight paths to allow aircraft to fly direct
-                  trajectories, significantly reducing flight duration, fuel
-                  consumption, and emissions.
-                </p>
-              </div>
-              <a
-                href="#"
-                class="btn btn-outline-success btn-sm rounded-pill mt-3"
-                >Learn More →</a
+            <div class="card-body p-4">
+              <div
+                class="d-flex justify-content-between align-items-center mb-2"
               >
+                <span class="badge bg-info-subtle text-info rounded-pill"
+                  >Transoceanic</span
+                >
+                <span class="fw-bold text-muted small">NAT / PAC Tracks</span>
+              </div>
+              <h4 class="card-title fw-bold">Oceanic Track Systems</h4>
+              <p class="card-text text-muted small mb-0">
+                Dynamic daily flight corridors across the North Atlantic and
+                Pacific optimized around upper-level jet streams using
+                Space-Based ADS-B and CPDLC digital links.
+              </p>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Airspace Classification Overview -->
-      <div class="bg-white p-5 rounded-4 shadow-sm">
-        <div class="row align-items-center">
-          <div class="col-lg-7">
-            <span class="text-primary fw-bold text-uppercase small"
-              >ICAO Standards</span
-            >
-            <h2 class="fw-bold mb-3">Understanding Global Airspace Classes</h2>
-            <p class="text-muted">
-              International civil aviation categorizes airspace into classes A
-              through G to manage traffic density and ensure collision
-              avoidance.
-            </p>
-            <div class="row g-3">
-              <div class="col-md-6">
-                <div class="p-3 bg-light rounded-3 border">
-                  <h6 class="fw-bold text-primary mb-1">
-                    Class A - E (Controlled)
-                  </h6>
-                  <p class="small text-muted mb-0">
-                    Requires ATC clearance and continuous two-way radio
-                    communication for all instrument flights.
-                  </p>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="p-3 bg-light rounded-3 border">
-                  <h6 class="fw-bold text-secondary mb-1">
-                    Class F - G (Uncontrolled)
-                  </h6>
-                  <p class="small text-muted mb-0">
-                    Flight information service provided with optional radio
-                    contact depending on local jurisdiction.
-                  </p>
-                </div>
-              </div>
-            </div>
+      <!-- Visual Feature Spotlight + Next-Gen ATC Table -->
+      <div class="card border-0 shadow-sm rounded-4 overflow-hidden bg-white">
+        <div class="row g-0">
+          <div class="col-lg-4">
+            <img
+              src="https://images.unsplash.com/photo-1583073600538-f219abfb20bc?auto=format&fit=crop&w=900&q=80"
+              class="w-100 h-100"
+              style="object-fit: cover; min-height: 240px"
+              alt="Radar and air traffic control workstation"
+            />
           </div>
-          <div class="col-lg-5 text-center mt-4 mt-lg-0">
-            <div class="p-4 bg-primary text-white rounded-4 shadow-sm">
-              <h3 class="display-6 fw-bold mb-2">99.9%</h3>
-              <p class="fw-semibold mb-1">Navigation Precision</p>
-              <small class="opacity-75"
-                >Achieved via GNSS and Performance-Based Navigation (PBN) routes
-                worldwide.</small
+          <div class="col-lg-8 p-4">
+            <div
+              class="d-flex flex-wrap justify-content-between align-items-center mb-3 gap-2"
+            >
+              <div>
+                <h4 class="fw-bold mb-1">
+                  Modern Air Traffic Management Systems
+                </h4>
+                <p class="text-muted small mb-0">
+                  Core technologies powering Reduced Vertical Separation Minima
+                  (RVSM) and Free Route Airspace.
+                </p>
+              </div>
+              <span class="badge bg-primary rounded-pill px-3 py-2"
+                >ICAO Briefing</span
               >
+            </div>
+
+            <div class="table-responsive">
+              <table class="table table-hover align-middle mb-0">
+                <thead class="table-light">
+                  <tr>
+                    <th>System</th>
+                    <th>Primary Role</th>
+                    <th>Operational Benefit</th>
+                  </tr>
+                </thead>
+                <tbody class="small">
+                  <tr>
+                    <td class="fw-bold text-primary">Space-Based ADS-B</td>
+                    <td>Satellite aircraft position & velocity tracking</td>
+                    <td>
+                      Eliminates oceanic radar blind spots and tightens
+                      longitudinal separation
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="fw-bold text-primary">CPDLC</td>
+                    <td>Controller–Pilot Data Link Communications</td>
+                    <td>
+                      Replaces congested HF voice radio with digital text
+                      clearances
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="fw-bold text-primary">PBN / RNP AR</td>
+                    <td>Performance-Based Navigation & curved approaches</td>
+                    <td>
+                      Shortens approach paths, lowers minimums, and cuts fuel
+                      burn
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="fw-bold text-primary">Free Route Airspace</td>
+                    <td>Direct user-preferred trajectories</td>
+                    <td>
+                      Allows airlines to bypass fixed airway waypoints across
+                      continental FIRs
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
@@ -271,7 +384,7 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-dark text-white pt-5 pb-4 mt-5">
+    <footer class="bg-dark text-white pt-5 pb-4 mt-auto">
       <div class="container text-center text-md-start">
         <div class="row g-4">
           <div class="col-md-4 col-lg-4 col-xl-3 mx-auto">
@@ -405,6 +518,6 @@
     </script>
 
     <!-- Project Scripts -->
-    <script src="script.js"></script>
+    <script src="script_3.js"></script>
   </body>
 </html>

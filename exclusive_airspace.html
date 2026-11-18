@@ -1,0 +1,567 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Aerolover - Airspace</title>
+    <!-- Bootstrap 5 CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      crossorigin="anonymous"
+    />
+    <style>
+      .navbar-glass {
+        background-color: rgba(253, 252, 252, 0.85);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+      }
+      .avatar-circle {
+        width: 32px;
+        height: 32px;
+        background-color: #0d6efd;
+        color: #faf6f6;
+        font-weight: bold;
+        font-size: 0.85rem;
+        border-radius: 50%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .airspace-hero {
+        position: relative;
+        min-height: 340px;
+        background:
+          linear-gradient(
+            135deg,
+            rgba(10, 25, 47, 0.88),
+            rgba(13, 110, 253, 0.72)
+          ),
+          url("https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1400&q=80")
+            center/cover no-repeat;
+      }
+      .airspace-card-img {
+        height: 200px;
+        object-fit: cover;
+      }
+    </style>
+  </head>
+  <body class="bg-light d-flex flex-column min-vh-100">
+    <!-- Floating Container Navbar -->
+    <header class="sticky-top pt-3 px-3" style="z-index: 1030">
+      <nav
+        class="navbar navbar-expand-lg container navbar-glass border rounded-4 shadow-sm py-2 px-3 px-lg-4"
+      >
+        <a class="navbar-brand me-3" href="exclusive.html">
+          <img
+            src="image/image.png"
+            alt="Aerolover Logo"
+            style="height: 3rem"
+          />
+        </a>
+        <button
+          class="navbar-toggler border-0"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarContent"
+          aria-controls="navbarContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarContent">
+          <!-- Grouped Dropdown Navigation Links -->
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0 fw-semibold gap-lg-2">
+            <li class="nav-item">
+              <a class="nav-link" href="exclusive.html">Home</a>
+            </li>
+
+            <!-- Aviation Dropdown -->
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle active"
+                href="#"
+                id="aviationDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Aviation
+              </a>
+              <ul
+                class="dropdown-menu border-0 shadow-sm rounded-3"
+                aria-labelledby="aviationDropdown"
+              >
+                <li>
+                  <a class="dropdown-item" href="exclusive_airlines.html"
+                    >Airlines</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="exclusive_airports.html"
+                    >Airports</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item active"
+                    aria-current="page"
+                    href="exclusive_airspace.html"
+                    >Airspace</a
+                  >
+                </li>
+              </ul>
+            </li>
+
+            <!-- News & Tech Dropdown -->
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="updatesDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                News & Tech
+              </a>
+              <ul
+                class="dropdown-menu border-0 shadow-sm rounded-3"
+                aria-labelledby="updatesDropdown"
+              >
+                <li>
+                  <a class="dropdown-item" href="exclusive_latestnews.html"
+                    >Latest News</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="exclusive_sustainability.html"
+                    >Sustainability</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="exclusive_technology.html"
+                    >Technology</a
+                  >
+                </li>
+              </ul>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="exclusive_contact.html">Contact</a>
+            </li>
+          </ul>
+
+          <div class="d-flex flex-wrap align-items-center gap-2">
+            <!-- Account Dropdown -->
+            <div class="dropdown">
+              <button
+                class="btn btn-outline-primary dropdown-toggle rounded-pill px-3 d-inline-flex align-items-center gap-2"
+                type="button"
+                id="dropdownMenuButton"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <span id="navAvatarCircle" class="avatar-circle d-none"></span>
+                <span id="navUserName">Account</span>
+              </button>
+              <ul
+                class="dropdown-menu dropdown-menu-end border-0 shadow-sm rounded-3"
+                aria-labelledby="dropdownMenuButton"
+              >
+                <li>
+                  <a class="dropdown-item" href="exclusive_settings.html"
+                    >Account Settings</a
+                  >
+                </li>
+                <li><hr class="dropdown-divider" /></li>
+                <li>
+                  <button class="dropdown-item text-danger" id="logoutBtn">
+                    Sign Out
+                  </button>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Search Bar -->
+            <form id="searchForm" class="d-flex gap-2 ms-lg-1" role="search">
+              <div class="input-group">
+                <input
+                  type="search"
+                  id="searchInput"
+                  class="form-control rounded-start-pill"
+                  placeholder="Search..."
+                  required
+                />
+                <button type="submit" class="btn btn-primary rounded-end-pill">
+                  Go
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Main Airspace Content -->
+    <main class="container py-5 flex-grow-1">
+      <!-- Hero Banner with Image -->
+      <section
+        class="airspace-hero rounded-4 shadow-sm text-white p-4 p-md-5 mb-5 d-flex align-items-center"
+      >
+        <div class="col-lg-8">
+          <span
+            class="badge bg-white text-primary fw-bold text-uppercase rounded-pill px-3 py-2 mb-3"
+          >
+            Navigation & Traffic Control
+          </span>
+          <h1 class="display-6 fw-bold mb-3">
+            Global Airspace & Air Traffic Operations
+          </h1>
+          <p class="lead text-white-50 mb-4">
+            Explore controlled airspace classes, transoceanic flight corridors,
+            and satellite-based surveillance keeping millions of flights safely
+            separated worldwide.
+          </p>
+          <div class="d-flex flex-wrap gap-2">
+            <span
+              class="badge bg-dark bg-opacity-50 border border-light-subtle rounded-pill px-3 py-2"
+            >
+              FL180 – FL600 Class A
+            </span>
+            <span
+              class="badge bg-dark bg-opacity-50 border border-light-subtle rounded-pill px-3 py-2"
+            >
+              1,000 ft RVSM Separation
+            </span>
+            <span
+              class="badge bg-dark bg-opacity-50 border border-light-subtle rounded-pill px-3 py-2"
+            >
+              Space-Based ADS-B
+            </span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Airspace Structure Cards with Images -->
+      <div class="d-flex justify-content-between align-items-end mb-3">
+        <div>
+          <div class="text-primary fw-bold text-uppercase small">
+            Controlled Sectors
+          </div>
+          <h3 class="fw-bold mb-0">Airspace Classifications & Corridors</h3>
+        </div>
+      </div>
+
+      <div class="row g-4 mb-5">
+        <!-- Card 1: Class A Airspace -->
+        <div class="col-md-6 col-lg-4">
+          <div class="card border-0 shadow-sm rounded-4 h-100 overflow-hidden">
+            <img
+              src="https://images.unsplash.com/photo-1559268950-2d7ceb2efa3a?auto=format&fit=crop&w=900&q=80"
+              class="card-img-top airspace-card-img"
+              alt="Commercial jet cruising at high altitude above clouds"
+            />
+            <div class="card-body p-4">
+              <div
+                class="d-flex justify-content-between align-items-center mb-2"
+              >
+                <span class="badge bg-primary-subtle text-primary rounded-pill"
+                  >High Altitude</span
+                >
+                <span class="fw-bold text-muted small">FL180 – FL600</span>
+              </div>
+              <h4 class="card-title fw-bold">Class A Airspace</h4>
+              <p class="card-text text-muted small mb-0">
+                Reserved exclusively for Instrument Flight Rules (IFR)
+                commercial and high-performance traffic. Air Traffic Control
+                (ATC) provides continuous positive separation for every
+                aircraft.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2: Class B & C Terminals -->
+        <div class="col-md-6 col-lg-4">
+          <div class="card border-0 shadow-sm rounded-4 h-100 overflow-hidden">
+            <img
+              src="https://images.unsplash.com/photo-1542296332-2e4473faf563?auto=format&fit=crop&w=900&q=80"
+              class="card-img-top airspace-card-img"
+              alt="Air traffic control tower overseeing busy airport terminal"
+            />
+            <div class="card-body p-4">
+              <div
+                class="d-flex justify-content-between align-items-center mb-2"
+              >
+                <span class="badge bg-success-subtle text-success rounded-pill"
+                  >Major Hubs</span
+                >
+                <span class="fw-bold text-muted small"
+                  >Surface – 10,000 ft</span
+                >
+              </div>
+              <h4 class="card-title fw-bold">Class B & C Terminals</h4>
+              <p class="card-text text-muted small mb-0">
+                Multi-tiered terminal radar zones surrounding the world's
+                busiest airports, requiring two-way radio communication, ADS-B
+                Out, and explicit ATC clearance before entry.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3: Oceanic Track Systems -->
+        <div class="col-md-6 col-lg-4">
+          <div class="card border-0 shadow-sm rounded-4 h-100 overflow-hidden">
+            <img
+              src="https://images.unsplash.com/photo-1464037866556-6812c9d1c72e?auto=format&fit=crop&w=900&q=80"
+              class="card-img-top airspace-card-img"
+              alt="Cockpit navigation display over transoceanic flight corridor"
+            />
+            <div class="card-body p-4">
+              <div
+                class="d-flex justify-content-between align-items-center mb-2"
+              >
+                <span class="badge bg-info-subtle text-info rounded-pill"
+                  >Transoceanic</span
+                >
+                <span class="fw-bold text-muted small">NAT / PAC Tracks</span>
+              </div>
+              <h4 class="card-title fw-bold">Oceanic Track Systems</h4>
+              <p class="card-text text-muted small mb-0">
+                Dynamic daily flight corridors across the North Atlantic and
+                Pacific optimized around upper-level jet streams using
+                Space-Based ADS-B and CPDLC digital links.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Visual Feature Spotlight + Next-Gen ATC Table -->
+      <div class="card border-0 shadow-sm rounded-4 overflow-hidden bg-white">
+        <div class="row g-0">
+          <div class="col-lg-4">
+            <img
+              src="https://images.unsplash.com/photo-1583073600538-f219abfb20bc?auto=format&fit=crop&w=900&q=80"
+              class="w-100 h-100"
+              style="object-fit: cover; min-height: 240px"
+              alt="Radar and air traffic control workstation"
+            />
+          </div>
+          <div class="col-lg-8 p-4">
+            <div
+              class="d-flex flex-wrap justify-content-between align-items-center mb-3 gap-2"
+            >
+              <div>
+                <h4 class="fw-bold mb-1">
+                  Modern Air Traffic Management Systems
+                </h4>
+                <p class="text-muted small mb-0">
+                  Core technologies powering Reduced Vertical Separation Minima
+                  (RVSM) and Free Route Airspace.
+                </p>
+              </div>
+              <span class="badge bg-primary rounded-pill px-3 py-2"
+                >Member Briefing</span
+              >
+            </div>
+
+            <div class="table-responsive">
+              <table class="table table-hover align-middle mb-0">
+                <thead class="table-light">
+                  <tr>
+                    <th>System</th>
+                    <th>Primary Role</th>
+                    <th>Operational Benefit</th>
+                  </tr>
+                </thead>
+                <tbody class="small">
+                  <tr>
+                    <td class="fw-bold text-primary">Space-Based ADS-B</td>
+                    <td>Satellite aircraft position & velocity tracking</td>
+                    <td>
+                      Eliminates oceanic radar blind spots and tightens
+                      longitudinal separation
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="fw-bold text-primary">CPDLC</td>
+                    <td>Controller–Pilot Data Link Communications</td>
+                    <td>
+                      Replaces congested HF voice radio with digital text
+                      clearances
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="fw-bold text-primary">PBN / RNP AR</td>
+                    <td>Performance-Based Navigation & curved approaches</td>
+                    <td>
+                      Shortens approach paths, lowers minimums, and cuts fuel
+                      burn
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="fw-bold text-primary">Free Route Airspace</td>
+                    <td>Direct user-preferred trajectories</td>
+                    <td>
+                      Allows airlines to bypass fixed airway waypoints across
+                      continental FIRs
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white pt-5 pb-4 mt-auto">
+      <div class="container text-center text-md-start">
+        <div class="row g-4">
+          <div class="col-md-4 col-lg-4 col-xl-3 mx-auto">
+            <a href="dashboard.html" class="d-inline-block mb-3">
+              <img
+                src="image/image.png"
+                alt="AeroLover logo"
+                style="height: 4.5rem"
+              />
+            </a>
+            <p class="text-white-50 small">
+              Your ultimate portal for aviation news, airport updates, airline
+              fleet specs, and future aerospace technologies.
+            </p>
+          </div>
+
+          <div class="col-md-2 col-lg-2 col-xl-2 mx-auto">
+            <h6 class="text-uppercase mb-3 fw-bold text-primary">Navigation</h6>
+            <ul class="list-unstyled small">
+              <li class="mb-2">
+                <a
+                  href="exclusive.html"
+                  class="text-white-50 text-decoration-none"
+                  >Home</a
+                >
+              </li>
+              <li class="mb-2">
+                <a
+                  href="exclusive_airlines.html"
+                  class="text-white-50 text-decoration-none"
+                  >Airlines</a
+                >
+              </li>
+              <li class="mb-2">
+                <a
+                  href="exclusive_airports.html"
+                  class="text-white-50 text-decoration-none"
+                  >Airports</a
+                >
+              </li>
+              <li class="mb-2">
+                <a
+                  href="exclusive_latestnews.html"
+                  class="text-white-50 text-decoration-none"
+                  >Latest news</a
+                >
+              </li>
+              <li class="mb-2">
+                <a
+                  href="exclusive_sustainability.html"
+                  class="text-white-50 text-decoration-none"
+                  >Sustainability</a
+                >
+              </li>
+              <li class="mb-2">
+                <a
+                  href="exclusive_technology.html"
+                  class="text-white-50 text-decoration-none"
+                  >Technology</a
+                >
+              </li>
+              <li class="mb-2">
+                <a
+                  href="exclusive_airspace.html"
+                  class="text-white-50 text-decoration-none"
+                  >Airspace</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div class="col-md-3 col-lg-2 col-xl-2 mx-auto">
+            <h6 class="text-uppercase mb-3 fw-bold text-primary">Benefits</h6>
+            <ul class="list-unstyled small">
+              <li class="mb-2">
+                <a href="#" class="text-white-50 text-decoration-none"
+                  >Member Perks</a
+                >
+              </li>
+              <li class="mb-2">
+                <a href="#" class="text-white-50 text-decoration-none"
+                  >Fleet Analytics</a
+                >
+              </li>
+              <li class="mb-2">
+                <a href="#" class="text-white-50 text-decoration-none"
+                  >Airport Updates</a
+                >
+              </li>
+              <li class="mb-2">
+                <a href="#" class="text-white-50 text-decoration-none"
+                  >Early News Access</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div class="col-md-3 col-lg-3 col-xl-3 mx-auto small">
+            <h6 class="text-uppercase mb-3 fw-bold text-primary">Connect</h6>
+            <p class="mb-2 text-white-50">📧 contact@aerolover.com</p>
+            <p class="mb-2 text-white-50">📍 Worldwide Aviation Network</p>
+          </div>
+        </div>
+
+        <hr class="my-4 border-light opacity-25" />
+
+        <div class="row align-items-center small">
+          <div class="col-md-7 text-center text-md-start">
+            <p class="mb-0 text-white-50">
+              © 2026 Aerolover. Built with Bootstrap 5 & Vanilla JS.
+            </p>
+          </div>
+          <div class="col-md-5 text-center text-md-end mt-3 mt-md-0">
+            <a href="#" class="text-white-50 text-decoration-none me-3"
+              >Privacy Policy</a
+            >
+            <a href="#" class="text-white-50 text-decoration-none"
+              >Terms of Service</a
+            >
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Import Map for ES Modules -->
+    <script type="importmap">
+      {
+        "imports": {
+          "@popperjs/core": "https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/esm/popper.js",
+          "bootstrap": "https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.esm.min.js"
+        }
+      }
+    </script>
+
+    <!-- Bootstrap Module Script -->
+    <script type="module">
+      import * as bootstrap from "bootstrap";
+    </script>
+
+    <!-- Project Scripts -->
+    <script src="script.js"></script>
+  </body>
+</html>

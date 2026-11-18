@@ -54,18 +54,18 @@
   </head>
   <body class="bg-light d-flex flex-column min-vh-100">
     <!-- Navbar -->
-    <nav
-      class="navbar navbar-expand-lg sticky-top bg-white border-bottom shadow-sm py-2"
-    >
-      <div class="container-fluid px-4">
-        <a class="navbar-brand me-4" href="dashboard.html">
+    <!-- Floating Container Navbar -->
+    <header class="sticky-top pt-3 px-3" style="z-index: 1030">
+      <nav
+        class="navbar navbar-expand-lg container navbar-glass border rounded-4 shadow-sm py-2 px-3 px-lg-4"
+      >
+        <a class="navbar-brand me-3" href="dashboard.html">
           <img
             src="image/image.png"
             alt="Aerolover Logo"
-            style="height: 3.2rem"
+            style="height: 3rem"
           />
         </a>
-
         <button
           class="navbar-toggler border-0"
           type="button"
@@ -79,97 +79,142 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarContent">
-          <!-- All Navigation Links -->
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0 fw-semibold">
+          <!-- Grouped Dropdown Navigation Links -->
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0 fw-semibold gap-lg-2">
             <li class="nav-item">
               <a class="nav-link" href="dashboard.html">Home</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="dashboard_airlines.html">Airlines</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="dashboard_airports.html">Airports</a>
-            </li>
-            <li class="nav-item">
+
+            <!-- Aviation Dropdown -->
+            <li class="nav-item dropdown">
               <a
-                class="nav-link active"
-                aria-current="page"
-                href="dashboard_latestnews.html"
-                >Latest news</a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="aviationDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
               >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="dashboard_sustainability.html"
-                >Sustainability</a
+                Aviation
+              </a>
+              <ul
+                class="dropdown-menu border-0 shadow-sm rounded-3"
+                aria-labelledby="aviationDropdown"
               >
+                <li>
+                  <a class="dropdown-item" href="dashboard_airlines.html"
+                    >Airlines</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="dashboard_airports.html"
+                    >Airports</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="dashboard_airspace.html"
+                    >Airspace</a
+                  >
+                </li>
+              </ul>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="dashboard_technology.html"
-                >Technology</a
+
+            <!-- News & Tech Dropdown -->
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="updatesDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
               >
+                News & Tech
+              </a>
+              <ul
+                class="dropdown-menu border-0 shadow-sm rounded-3"
+                aria-labelledby="updatesDropdown"
+              >
+                <li>
+                  <a class="dropdown-item" href="dashboard_latestnews.html"
+                    >Latest News</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="dashboard_sustainability.html"
+                    >Sustainability</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="dashboard_technology.html"
+                    >Technology</a
+                  >
+                </li>
+              </ul>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="dashboard_airspace.html">Airspace</a>
-            </li>
+
             <li class="nav-item">
               <a class="nav-link" href="dashboard_contact.html">Contact</a>
             </li>
           </ul>
-          <!-- Account Dropdown -->
-          <div class="dropdown">
-            <button
-              class="btn btn-outline-primary dropdown-toggle rounded-pill px-1 d-inline-flex align-items-center gap-2"
-              type="button"
-              id="dropdownMenuButton"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              <span id="navAvatarCircle" class="avatar-circle d-none"></span>
-              <span id="navUserName">Account</span>
-            </button>
-            <ul
-              class="dropdown-menu dropdown-menu-end shadow-sm"
-              aria-labelledby="dropdownMenuButton"
-            >
-              <li>
-                <a class="dropdown-item" href="dashboard_settings.html"
-                  >Account Settings</a
-                >
-              </li>
-              <li>
-                <a
-                  class="dropdown-item text-warning fw-semibold"
-                  href="dashboard_plans.html"
-                  >⚡ Upgrade Subscription</a
-                >
-              </li>
-              <li><hr class="dropdown-divider" /></li>
-              <li>
-                <button class="dropdown-item text-danger" id="logoutBtn">
-                  Sign Out
-                </button>
-              </li>
-            </ul>
-          </div>
 
-          <!-- Search Bar -->
-          <form id="searchForm" class="d-flex gap-2 ms-2" role="search">
-            <div class="input-group">
-              <input
-                type="search"
-                id="searchInput"
-                class="form-control rounded-start-pill"
-                placeholder="Search..."
-                required
-              />
-              <button type="submit" class="btn btn-primary rounded-end-pill">
-                Go
+          <div class="d-flex flex-wrap align-items-center gap-2">
+            <!-- Account Dropdown -->
+            <div class="dropdown">
+              <button
+                class="btn btn-outline-primary dropdown-toggle rounded-pill px-3 d-inline-flex align-items-center gap-2"
+                type="button"
+                id="dropdownMenuButton"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <span id="navAvatarCircle" class="avatar-circle d-none"></span>
+                <span id="navUserName">Account</span>
               </button>
+              <ul
+                class="dropdown-menu dropdown-menu-end border-0 shadow-sm rounded-3"
+                aria-labelledby="dropdownMenuButton"
+              >
+                <li>
+                  <a class="dropdown-item" href="dashboard_settings.html"
+                    >Account Settings</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item text-warning fw-semibold"
+                    href="dashboard_plans.html"
+                    >⚡ Upgrade Subscription</a
+                  >
+                </li>
+                <li><hr class="dropdown-divider" /></li>
+                <li>
+                  <button class="dropdown-item text-danger" id="logoutBtn">
+                    Sign Out
+                  </button>
+                </li>
+              </ul>
             </div>
-          </form>
+
+            <!-- Search Bar -->
+            <form id="searchForm" class="d-flex gap-2 ms-lg-1" role="search">
+              <div class="input-group">
+                <input
+                  type="search"
+                  id="searchInput"
+                  class="form-control rounded-start-pill"
+                  placeholder="Search..."
+                  required
+                />
+                <button type="submit" class="btn btn-primary rounded-end-pill">
+                  Go
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
-      </div>
-    </nav>
+      </nav>
+    </header>
 
     <!-- Main Content Area -->
     <main class="container py-5">

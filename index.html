@@ -14,24 +14,137 @@
     <script src="script.js" defer></script>
   </head>
   <body class="bg-light">
-   <div class="container">
-  <nav class="navbar navbar-expand-lg">
-    <a class="navbar-brand fw-bold" href="index.html">
-      <img src="image/image.png" alt="AeroLover Logo" height="50" />
-    </a>
-   <div class="button" style="margin-left: auto;">
-    
-      <a href="signup.html" class="btn btn-primary rounded-pill px-4 fw-bold me-2"
-        >Sign Up</a
+    <!-- Floating Container Navbar (Standard / Public) -->
+    <header class="sticky-top pt-3 px-3" style="z-index: 1030">
+      <nav
+        class="navbar navbar-expand-lg container navbar-glass border rounded-4 shadow-sm py-2 px-3 px-lg-4"
       >
-      <a href="signin.html" class="btn btn-outline-primary rounded-pill px-4"
-        >Log In</a
-      >
-    </div>
-   
-  </nav>
-</div>
+        <a class="navbar-brand me-3" href="index.html">
+          <img
+            src="image/image.png"
+            alt="Aerolover Logo"
+            style="height: 3rem"
+          />
+        </a>
+        <button
+          class="navbar-toggler border-0"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarContent"
+          aria-controls="navbarContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
+        <div class="collapse navbar-collapse" id="navbarContent">
+          <!-- Grouped Dropdown Navigation Links -->
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0 fw-semibold gap-lg-2">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Home</a>
+            </li>
+
+            <!-- Aviation Dropdown -->
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="aviationDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Aviation
+              </a>
+              <ul
+                class="dropdown-menu border-0 shadow-sm rounded-3"
+                aria-labelledby="aviationDropdown"
+              >
+                <li>
+                  <a class="dropdown-item" href="airlines.html">Airlines</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="airports.html">Airports</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="airspace.html">Airspace</a>
+                </li>
+              </ul>
+            </li>
+
+            <!-- News & Tech Dropdown -->
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="updatesDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                News & Tech
+              </a>
+              <ul
+                class="dropdown-menu border-0 shadow-sm rounded-3"
+                aria-labelledby="updatesDropdown"
+              >
+                <li>
+                  <a class="dropdown-item" href="latestnews.html"
+                    >Latest News</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="sustainability.html"
+                    >Sustainability</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="technology.html">Technology</a>
+                </li>
+              </ul>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="plans.html">Plans</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html">Contact</a>
+            </li>
+          </ul>
+
+          <div class="d-flex flex-wrap align-items-center gap-2">
+            <!-- Auth Buttons -->
+            <a
+              href="signin.html"
+              class="btn btn-outline-primary rounded-pill px-3 fw-semibold"
+              >Sign In</a
+            >
+            <a
+              href="signup.html"
+              class="btn btn-primary rounded-pill px-3 fw-semibold"
+              >Sign Up</a
+            >
+
+            <!-- Search Bar -->
+            <form id="searchForm" class="d-flex gap-2 ms-lg-1" role="search">
+              <div class="input-group">
+                <input
+                  type="search"
+                  id="searchInput"
+                  class="form-control rounded-start-pill"
+                  placeholder="Search..."
+                  required
+                />
+                <button type="submit" class="btn btn-primary rounded-end-pill">
+                  Go
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </nav>
+    </header>
 
     <!-- Hero Banner -->
     <header class="hero-section py-5 text-center text-md-start">

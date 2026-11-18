@@ -68,16 +68,16 @@
     </style>
   </head>
   <body class="bg-light d-flex flex-column min-vh-100">
-    <!-- Navbar -->
-    <nav
-      class="navbar navbar-expand-lg sticky-top navbar-glass border-bottom shadow-sm py-2"
-    >
-      <div class="container-fluid px-4">
-        <a class="navbar-brand me-4" href="dashboard.html">
+    <!-- Floating Container Navbar -->
+    <header class="sticky-top pt-3 px-3" style="z-index: 1030">
+      <nav
+        class="navbar navbar-expand-lg container navbar-glass border rounded-4 shadow-sm py-2 px-3 px-lg-4"
+      >
+        <a class="navbar-brand me-3" href="exclusive.html">
           <img
             src="image/image.png"
             alt="Aerolover Logo"
-            style="height: 3.2rem"
+            style="height: 3rem"
           />
         </a>
         <button
@@ -93,38 +93,92 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarContent">
-          <!-- Navigation Links -->
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0 fw-semibold">
+          <!-- Grouped Dropdown Navigation Links -->
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0 fw-semibold gap-lg-2">
             <li class="nav-item">
-              <a class="nav-link" href="dashboard.html">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="dashboard_airlines.html">Airlines</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="dashboard_airports.html">Airports</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="dashboard_latestnews.html"
-                >Latest news</a
+              <a
+                class="nav-link active"
+                aria-current="page"
+                href="exclusive.html"
+                >Home</a
               >
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="dashboard_sustainability.html"
-                >Sustainability</a
+
+            <!-- Aviation Dropdown -->
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="aviationDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
               >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="dashboard_technology.html"
-                >Technology</a
+                Aviation
+              </a>
+              <ul
+                class="dropdown-menu border-0 shadow-sm rounded-3"
+                aria-labelledby="aviationDropdown"
               >
+                <li>
+                  <a class="dropdown-item" href="exclusive_airlines.html"
+                    >Airlines</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="exclusive_airports.html"
+                    >Airports</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="exclusive_airspace.html"
+                    >Airspace</a
+                  >
+                </li>
+              </ul>
             </li>
+
+            <!-- News & Tech Dropdown -->
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="updatesDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                News & Tech
+              </a>
+              <ul
+                class="dropdown-menu border-0 shadow-sm rounded-3"
+                aria-labelledby="updatesDropdown"
+              >
+                <li>
+                  <a class="dropdown-item" href="exclusive_latestnews.html"
+                    >Latest News</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="exclusive_sustainability.html"
+                    >Sustainability</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="exclusive_technology.html"
+                    >Technology</a
+                  >
+                </li>
+              </ul>
+            </li>
+
             <li class="nav-item">
-              <a class="nav-link" href="dashboard_airspace.html">Airspace</a>
+              <a class="nav-link" href="exclusive_contact.html">Contact</a>
             </li>
           </ul>
 
           <div class="d-flex flex-wrap align-items-center gap-2">
+            <!-- Account Dropdown -->
             <div class="dropdown">
               <button
                 class="btn btn-outline-primary dropdown-toggle rounded-pill px-3 d-inline-flex align-items-center gap-2"
@@ -137,11 +191,11 @@
                 <span id="navUserName">Account</span>
               </button>
               <ul
-                class="dropdown-menu dropdown-menu-end shadow-sm"
+                class="dropdown-menu dropdown-menu-end border-0 shadow-sm rounded-3"
                 aria-labelledby="dropdownMenuButton"
               >
                 <li>
-                  <a class="dropdown-item" href="dashboard_settings.html"
+                  <a class="dropdown-item" href="exclusive_settings.html"
                     >Account Settings</a
                   >
                 </li>
@@ -155,7 +209,7 @@
             </div>
 
             <!-- Search Bar -->
-            <form id="searchForm" class="d-flex gap-2 ms-lg-2" role="search">
+            <form id="searchForm" class="d-flex gap-2 ms-lg-1" role="search">
               <div class="input-group">
                 <input
                   type="search"
@@ -171,8 +225,8 @@
             </form>
           </div>
         </div>
-      </div>
-    </nav>
+      </nav>
+    </header>
 
     <!-- Main Content Container -->
     <div class="container py-5 flex-grow-1">
@@ -211,7 +265,7 @@
                 Explore Your Perks ↓
               </a>
               <a
-                href="dashboard_airlines.html"
+                href="exclusive_airlines.html"
                 class="btn btn-outline-light rounded-pill px-4"
               >
                 Browse Fleet Directory
@@ -259,31 +313,41 @@
       <!-- Member Perks Section -->
       <div id="memberPerks" class="mb-5">
         <div
-          class="d-flex flex-wrap justify-content-between align-items-end mb-4"
+          class="d-flex flex-wrap justify-content-between align-items-end mb-4 gap-2"
         >
           <div>
             <span class="text-primary fw-bold text-uppercase small"
-              >Included With Your Membership</span
+              >Included With Your First-Class Membership</span
             >
             <h2 class="fw-bold mb-0">Your Exclusive Member Perks</h2>
           </div>
-          <span class="text-muted small">Updated weekly for VIP members</span>
+          <span
+            class="badge bg-primary-subtle text-primary rounded-pill px-3 py-2"
+          >
+            6 Active VIP Perks Unlocked
+          </span>
         </div>
 
         <div class="row g-4 align-items-stretch">
-          <!-- Card 1 -->
-          <div class="col-md-4 d-flex">
+          <!-- Perk 1: Live Fleet Analytics & Order Book -->
+          <div class="col-md-6 col-lg-4 d-flex">
             <div
               class="card lounge-card w-100 shadow-sm border-0 rounded-4 p-3 bg-white d-flex flex-column"
             >
               <div class="card-body d-flex flex-column">
-                <div class="icon-pill bg-primary-subtle text-primary mb-3">
-                  📊
+                <div
+                  class="d-flex justify-content-between align-items-start mb-3"
+                >
+                  <div class="icon-pill bg-primary-subtle text-primary">📊</div>
+                  <span
+                    class="badge bg-primary-subtle text-primary rounded-pill"
+                    >Live Data</span
+                  >
                 </div>
-                <h5 class="card-title fw-bold">Fleet Analytics & Orders</h5>
+                <h5 class="card-title fw-bold">Fleet Analytics & Order Book</h5>
                 <p class="card-text text-muted small mb-4">
-                  Track real-time delivery timelines, aircraft retirements, and
-                  cabin retrofit schedules across major global airlines.
+                  Track real-time manufacturer delivery schedules, aircraft
+                  retirements, and active widebody backlogs by carrier.
                 </p>
                 <div class="mt-auto">
                   <button
@@ -291,29 +355,34 @@
                     class="btn btn-primary btn-sm rounded-pill w-100 py-2 fw-semibold"
                     data-bs-toggle="modal"
                     data-bs-target="#perkPreviewModal"
-                    data-perk-title="📊 Fleet Analytics & Delivery Tracker"
-                    data-perk-body="Latest Q4 Insider Highlights: Airbus A350-900/1000 widebody deliveries continue accelerating across European and Middle Eastern carriers, while Boeing 787-9 and 737 MAX 8/9 fleet renewals expand transcontinental capacity."
+                    data-perk-key="fleet"
                   >
-                    Open Fleet Data
+                    Open Order Tracker
                   </button>
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- Card 2 -->
-          <div class="col-md-4 d-flex">
+          <!-- Perk 2: 4K Aviation Wallpaper Vault -->
+          <div class="col-md-6 col-lg-4 d-flex">
             <div
               class="card lounge-card w-100 shadow-sm border-0 rounded-4 p-3 bg-white d-flex flex-column"
             >
               <div class="card-body d-flex flex-column">
-                <div class="icon-pill bg-success-subtle text-success mb-3">
-                  🖼️
+                <div
+                  class="d-flex justify-content-between align-items-start mb-3"
+                >
+                  <div class="icon-pill bg-success-subtle text-success">🖼️</div>
+                  <span
+                    class="badge bg-success-subtle text-success rounded-pill"
+                    >4K Uncompressed</span
+                  >
                 </div>
-                <h5 class="card-title fw-bold">4K Member Wallpapers</h5>
+                <h5 class="card-title fw-bold">4K Cockpit & Wing Wallpapers</h5>
                 <p class="card-text text-muted small mb-4">
-                  Curated ultra-HD cockpit sunset shots, wing-view photography,
-                  and widebody livery packs for desktop and mobile.
+                  Download high-resolution flight deck sunsets, wing-view
+                  approaches, and widebody livery packs for desktop & mobile.
                 </p>
                 <div class="mt-auto">
                   <button
@@ -321,28 +390,146 @@
                     class="btn btn-success btn-sm rounded-pill w-100 py-2 fw-semibold"
                     data-bs-toggle="modal"
                     data-bs-target="#perkPreviewModal"
-                    data-perk-title="🖼️ 4K Aviation Wallpaper Collection"
-                    data-perk-body="This month's VIP pack features 12 uncompressed 4K wallpapers: Golden Hour over the North Atlantic (A350 Flight Deck), Doha Orchard Terminal Night Apron, and Alpine Approach into Zurich."
+                    data-perk-key="wallpapers"
                   >
-                    Preview Wallpaper Pack
+                    Browse & Download Pack
                   </button>
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- Card 3 -->
-          <div class="col-md-4 d-flex">
+          <!-- Perk 3: Cabin Retrofit & Seat Map Intel -->
+          <div class="col-md-6 col-lg-4 d-flex">
             <div
               class="card lounge-card w-100 shadow-sm border-0 rounded-4 p-3 bg-white d-flex flex-column"
             >
               <div class="card-body d-flex flex-column">
-                <div class="icon-pill bg-info-subtle text-info-emphasis mb-3">
-                  📝
+                <div
+                  class="d-flex justify-content-between align-items-start mb-3"
+                >
+                  <div
+                    class="icon-pill bg-warning-subtle text-warning-emphasis"
+                  >
+                    💺
+                  </div>
+                  <span
+                    class="badge bg-warning-subtle text-warning-emphasis rounded-pill"
+                    >Tail-Number Lookup</span
+                  >
+                </div>
+                <h5 class="card-title fw-bold">
+                  Cabin Retrofit & Wi-Fi Tracker
+                </h5>
+                <p class="card-text text-muted small mb-4">
+                  Check which aircraft registrations already feature sliding
+                  Business suites, new Premium Economy, and Starlink Wi-Fi.
+                </p>
+                <div class="mt-auto">
+                  <button
+                    type="button"
+                    class="btn btn-warning text-dark btn-sm rounded-pill w-100 py-2 fw-semibold"
+                    data-bs-toggle="modal"
+                    data-bs-target="#perkPreviewModal"
+                    data-perk-key="cabins"
+                  >
+                    Inspect Retrofit Status
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Perk 4: Partner Lounge & Fast-Track Pass -->
+          <div class="col-md-6 col-lg-4 d-flex">
+            <div
+              class="card lounge-card w-100 shadow-sm border-0 rounded-4 p-3 bg-white d-flex flex-column"
+            >
+              <div class="card-body d-flex flex-column">
+                <div
+                  class="d-flex justify-content-between align-items-start mb-3"
+                >
+                  <div class="icon-pill bg-dark text-warning">🥂</div>
+                  <span class="badge bg-dark text-warning rounded-pill"
+                    >Digital Pass</span
+                  >
+                </div>
+                <h5 class="card-title fw-bold">Partner Lounge & Fast-Track</h5>
+                <p class="card-text text-muted small mb-4">
+                  Access 25% off partner airport lounges, priority security lane
+                  vouchers, and aviation museum admission discounts.
+                </p>
+                <div class="mt-auto">
+                  <button
+                    type="button"
+                    class="btn btn-dark btn-sm rounded-pill w-100 py-2 fw-semibold"
+                    data-bs-toggle="modal"
+                    data-bs-target="#perkPreviewModal"
+                    data-perk-key="loungepass"
+                  >
+                    Show Member Pass
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Perk 5: Inaugural Flights & Spotting Invites -->
+          <div class="col-md-6 col-lg-4 d-flex">
+            <div
+              class="card lounge-card w-100 shadow-sm border-0 rounded-4 p-3 bg-white d-flex flex-column"
+            >
+              <div class="card-body d-flex flex-column">
+                <div
+                  class="d-flex justify-content-between align-items-start mb-3"
+                >
+                  <div class="icon-pill bg-danger-subtle text-danger">📅</div>
+                  <span class="badge bg-danger-subtle text-danger rounded-pill"
+                    >VIP RSVP</span
+                  >
+                </div>
+                <h5 class="card-title fw-bold">
+                  Inaugural Route & Airshow Alerts
+                </h5>
+                <p class="card-text text-muted small mb-4">
+                  Get 48-hour early booking alerts for inaugural widebody
+                  flights and RSVP to private ramp spotting days.
+                </p>
+                <div class="mt-auto">
+                  <button
+                    type="button"
+                    class="btn btn-outline-danger btn-sm rounded-pill w-100 py-2 fw-semibold"
+                    data-bs-toggle="modal"
+                    data-bs-target="#perkPreviewModal"
+                    data-perk-key="events"
+                  >
+                    View Upcoming Events
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Perk 6: Early Flight & Cabin Reports -->
+          <div class="col-md-6 col-lg-4 d-flex">
+            <div
+              class="card lounge-card w-100 shadow-sm border-0 rounded-4 p-3 bg-white d-flex flex-column"
+            >
+              <div class="card-body d-flex flex-column">
+                <div
+                  class="d-flex justify-content-between align-items-start mb-3"
+                >
+                  <div class="icon-pill bg-info-subtle text-info-emphasis">
+                    📝
+                  </div>
+                  <span
+                    class="badge bg-info-subtle text-info-emphasis rounded-pill"
+                    >72h Early Access</span
+                  >
                 </div>
                 <h5 class="card-title fw-bold">Early Flight & Cabin Reports</h5>
                 <p class="card-text text-muted small mb-4">
-                  Read hands-on preview reviews of new Business Class suites,
+                  Read hands-on trip reports of new Business Class suites,
                   flagship lounges, and inaugural routes before public release.
                 </p>
                 <div class="mt-auto">
@@ -351,10 +538,9 @@
                     class="btn btn-info text-white btn-sm rounded-pill w-100 py-2 fw-semibold"
                     data-bs-toggle="modal"
                     data-bs-target="#perkPreviewModal"
-                    data-perk-title="📝 Early Flight & Cabin Reports"
-                    data-perk-body="Early Access Dispatch: Inside next-generation sliding-door Business Suites on ultra-long-haul twinjets, comparing seat ergonomics, Starlink gate-to-gate Wi-Fi speeds, and flagship hub lounge dining."
+                    data-perk-key="reports"
                   >
-                    Read Early Reports
+                    Read Insider Reports
                   </button>
                 </div>
               </div>
@@ -373,7 +559,7 @@
             <h2 class="fw-bold mb-0">Featured Aviation News</h2>
           </div>
           <a
-            href="dashboard_latestnews.html"
+            href="exclusive_latestnews.html"
             class="btn btn-outline-primary btn-sm rounded-pill px-3"
           >
             View All News →
@@ -432,7 +618,7 @@
                   networks.
                 </p>
                 <a
-                  href="dashboard_latestnews.html"
+                  href="exclusive_latestnews.html"
                   class="btn btn-primary btn-sm rounded-pill px-3"
                   >Read Full Story</a
                 >
@@ -459,7 +645,7 @@
                   processing times by up to 40%.
                 </p>
                 <a
-                  href="dashboard_latestnews.html"
+                  href="exclusive_latestnews.html"
                   class="btn btn-success btn-sm rounded-pill px-3"
                   >Read Full Story</a
                 >
@@ -486,7 +672,7 @@
                   modifications.
                 </p>
                 <a
-                  href="dashboard_latestnews.html"
+                  href="exclusive_latestnews.html"
                   class="btn btn-info text-dark btn-sm rounded-pill px-3"
                   >Read Full Story</a
                 >
@@ -541,7 +727,7 @@
                 </p>
                 <div class="mt-auto">
                   <a
-                    href="dashboard_airlines.html"
+                    href="exclusive_airlines.html"
                     class="btn btn-outline-primary btn-sm rounded-pill px-3"
                     >View Airlines →</a
                   >
@@ -565,7 +751,7 @@
                 </p>
                 <div class="mt-auto">
                   <a
-                    href="dashboard_airports.html"
+                    href="exclusive_airports.html"
                     class="btn btn-outline-primary btn-sm rounded-pill px-3"
                     >View Airports →</a
                   >
@@ -589,7 +775,7 @@
                 </p>
                 <div class="mt-auto">
                   <a
-                    href="dashboard_technology.html"
+                    href="exclusive_technology.html"
                     class="btn btn-outline-primary btn-sm rounded-pill px-3"
                     >View Tech →</a
                   >
@@ -601,7 +787,7 @@
       </main>
     </div>
 
-    <!-- Member Perk Preview Modal -->
+    <!-- Interactive Member Perk Modal -->
     <div
       class="modal fade"
       id="perkPreviewModal"
@@ -609,12 +795,18 @@
       aria-labelledby="perkModalTitle"
       aria-hidden="true"
     >
-      <div class="modal-dialog modal-dialog-centered">
+      <div
+        class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable"
+      >
         <div class="modal-content border-0 shadow rounded-4">
-          <div class="modal-header border-bottom-0 pb-0">
-            <span class="badge bg-warning text-dark rounded-pill px-3 py-1"
-              >VIP Exclusive</span
-            >
+          <div class="modal-header border-bottom pb-3">
+            <div>
+              <span
+                class="badge bg-warning text-dark rounded-pill px-3 py-1 mb-1"
+                >✈️ First-Class Member Perk</span
+              >
+              <h4 class="fw-bold mb-0" id="perkModalTitle">Member Perk</h4>
+            </div>
             <button
               type="button"
               class="btn-close"
@@ -622,17 +814,14 @@
               aria-label="Close"
             ></button>
           </div>
-          <div class="modal-body p-4">
-            <h4 class="fw-bold mb-3" id="perkModalTitle"></h4>
-            <p class="text-muted mb-0" id="perkModalBody"></p>
-          </div>
-          <div class="modal-footer border-top-0 pt-0">
+          <div class="modal-body p-4" id="perkModalBody"></div>
+          <div class="modal-footer border-top pt-3">
             <button
               type="button"
               class="btn btn-primary btn-sm rounded-pill px-4"
               data-bs-dismiss="modal"
             >
-              Got It
+              Done
             </button>
           </div>
         </div>
@@ -644,7 +833,7 @@
       <div class="container text-center text-md-start">
         <div class="row g-4">
           <div class="col-md-4 col-lg-4 col-xl-3 mx-auto">
-            <a href="dashboard.html" class="d-inline-block mb-3">
+            <a href="exclusive.html" class="d-inline-block mb-3">
               <img
                 src="image/image.png"
                 alt="AeroLover logo"
@@ -662,49 +851,49 @@
             <ul class="list-unstyled small">
               <li class="mb-2">
                 <a
-                  href="dashboard.html"
+                  href="exclusive.html"
                   class="text-white-50 text-decoration-none"
                   >Home</a
                 >
               </li>
               <li class="mb-2">
                 <a
-                  href="dashboard_airlines.html"
+                  href="exclusive_airlines.html"
                   class="text-white-50 text-decoration-none"
                   >Airlines</a
                 >
               </li>
               <li class="mb-2">
                 <a
-                  href="dashboard_airports.html"
+                  href="exclusive_airports.html"
                   class="text-white-50 text-decoration-none"
                   >Airports</a
                 >
               </li>
               <li class="mb-2">
                 <a
-                  href="dashboard_latestnews.html"
+                  href="exclusive_latestnews.html"
                   class="text-white-50 text-decoration-none"
                   >Latest news</a
                 >
               </li>
               <li class="mb-2">
                 <a
-                  href="dashboard_sustainability.html"
+                  href="exclusive_sustainability.html"
                   class="text-white-50 text-decoration-none"
                   >Sustainability</a
                 >
               </li>
               <li class="mb-2">
                 <a
-                  href="dashboard_technology.html"
+                  href="exclusive_technology.html"
                   class="text-white-50 text-decoration-none"
                   >Technology</a
                 >
               </li>
               <li class="mb-2">
                 <a
-                  href="dashboard_airspace.html"
+                  href="exclusive_airspace.html"
                   class="text-white-50 text-decoration-none"
                   >Airspace</a
                 >
@@ -717,9 +906,30 @@
             <ul class="list-unstyled small">
               <li class="mb-2">
                 <a
-                  href="dashboard_settings.html"
+                  href="#memberPerks"
                   class="text-white-50 text-decoration-none"
-                  >My Account</a
+                  >Member Perks</a
+                >
+              </li>
+              <li class="mb-2">
+                <a
+                  href="exclusive_airlines.html"
+                  class="text-white-50 text-decoration-none"
+                  >Fleet Analytics</a
+                >
+              </li>
+              <li class="mb-2">
+                <a
+                  href="exclusive_airports.html"
+                  class="text-white-50 text-decoration-none"
+                  >Airport Updates</a
+                >
+              </li>
+              <li class="mb-2">
+                <a
+                  href="exclusive_latestnews.html"
+                  class="text-white-50 text-decoration-none"
+                  >Early News Access</a
                 >
               </li>
             </ul>
@@ -765,6 +975,190 @@
     <!-- Bootstrap Module Script -->
     <script type="module">
       import * as bootstrap from "bootstrap";
+    </script>
+
+    <!-- Perk Modal Content Script -->
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const perkModal = document.getElementById("perkPreviewModal");
+        if (!perkModal) return;
+
+        const perkContent = {
+          fleet: {
+            title: "📊 Live Fleet Analytics & Delivery Order Book",
+            html: `
+              <p class="text-muted small mb-3">Updated widebody and long-range narrowbody delivery tracker for VIP members:</p>
+              <div class="table-responsive">
+                <table class="table table-hover align-middle small mb-0">
+                  <thead class="table-light">
+                    <tr>
+                      <th>Airline</th>
+                      <th>Aircraft Type</th>
+                      <th>Active / On Order</th>
+                      <th>Next Delivery Window</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="fw-bold">Qatar Airways</td>
+                      <td>Airbus A350-1000 / Boeing 777-9</td>
+                      <td>24 / 94</td>
+                      <td><span class="badge bg-success-subtle text-success">In Progress</span></td>
+                    </tr>
+                    <tr>
+                      <td class="fw-bold">LATAM Airlines</td>
+                      <td>Boeing 787-9 Dreamliner</td>
+                      <td>27 / 15</td>
+                      <td><span class="badge bg-primary-subtle text-primary">Q1–Q4 Rollout</span></td>
+                    </tr>
+                    <tr>
+                      <td class="fw-bold">Lufthansa</td>
+                      <td>Boeing 787-9 (Allegris) / A350-900</td>
+                      <td>31 / 48</td>
+                      <td><span class="badge bg-primary-subtle text-primary">Monthly Handovers</span></td>
+                    </tr>
+                    <tr>
+                      <td class="fw-bold">Iberia</td>
+                      <td>Airbus A321XLR</td>
+                      <td>3 / 5</td>
+                      <td><span class="badge bg-success-subtle text-success">Transatlantic Active</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            `,
+          },
+          wallpapers: {
+            title: "🖼️ 4K Cockpit & Wing-View Wallpaper Vault",
+            html: `
+              <p class="text-muted small mb-3">Click any wallpaper below to open the full-resolution image in a new tab:</p>
+              <div class="row g-3">
+                <div class="col-md-4">
+                  <div class="card border-0 shadow-sm rounded-3 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1464037866556-6812c9d1c72e?auto=format&fit=crop&w=1600&q=90" class="w-100" style="height: 130px; object-fit: cover" alt="Flight Deck Sunset" />
+                    <div class="p-2 text-center">
+                      <div class="fw-bold small mb-1">FL390 Flight Deck</div>
+                      <a href="https://images.unsplash.com/photo-1464037866556-6812c9d1c72e?auto=format&fit=crop&w=2400&q=95" target="_blank" rel="noopener" class="btn btn-outline-success btn-sm rounded-pill w-100">Open 4K</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="card border-0 shadow-sm rounded-3 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1559268950-2d7ceb2efa3a?auto=format&fit=crop&w=1600&q=90" class="w-100" style="height: 130px; object-fit: cover" alt="Winglet Above Clouds" />
+                    <div class="p-2 text-center">
+                      <div class="fw-bold small mb-1">Golden Hour Climb</div>
+                      <a href="https://images.unsplash.com/photo-1559268950-2d7ceb2efa3a?auto=format&fit=crop&w=2400&q=95" target="_blank" rel="noopener" class="btn btn-outline-success btn-sm rounded-pill w-100">Open 4K</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="card border-0 shadow-sm rounded-3 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1600&q=90" class="w-100" style="height: 130px; object-fit: cover" alt="Oceanic Horizon" />
+                    <div class="p-2 text-center">
+                      <div class="fw-bold small mb-1">Atlantic Horizon</div>
+                      <a href="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=2400&q=95" target="_blank" rel="noopener" class="btn btn-outline-success btn-sm rounded-pill w-100">Open 4K</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            `,
+          },
+          cabins: {
+            title: "💺 Cabin Retrofit & Starlink Wi-Fi Rollout",
+            html: `
+              <div class="list-group list-group-flush">
+                <div class="list-group-item px-0">
+                  <div class="d-flex justify-content-between">
+                    <span class="fw-bold">Qatar Airways Boeing 777-300ER</span>
+                    <span class="badge bg-success-subtle text-success rounded-pill">Starlink Live (100% Fleet)</span>
+                  </div>
+                  <p class="text-muted small mb-0 mt-1">Free gate-to-gate low-latency Wi-Fi + Qsuite configuration on ultra-long-haul routes.</p>
+                </div>
+                <div class="list-group-item px-0">
+                  <div class="d-flex justify-content-between">
+                    <span class="fw-bold">Air France Airbus A350-900 (New Config)</span>
+                    <span class="badge bg-primary-subtle text-primary rounded-pill">Sliding Door Suites</span>
+                  </div>
+                  <p class="text-muted small mb-0 mt-1">48 Business suites with privacy doors, 4K OLED screens, and Bluetooth audio pairing.</p>
+                </div>
+                <div class="list-group-item px-0">
+                  <div class="d-flex justify-content-between">
+                    <span class="fw-bold">United Airlines Boeing 737 MAX 8 / 787</span>
+                    <span class="badge bg-warning-subtle text-warning-emphasis rounded-pill">Starlink Fleet Rollout</span>
+                  </div>
+                  <p class="text-muted small mb-0 mt-1">High-speed fleetwide connectivity expansion paired with NEXT cabin overhead bins.</p>
+                </div>
+              </div>
+            `,
+          },
+          loungepass: {
+            title: "🥂 Partner Lounge & Fast-Track Member Pass",
+            html: `
+              <div class="p-4 rounded-4 bg-dark text-white mb-3">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                  <div>
+                    <div class="small text-warning text-uppercase fw-bold">Aerolover VIP Credential</div>
+                    <h5 class="fw-bold mb-0">FIRST-CLASS PARTNER PASS</h5>
+                  </div>
+                  <span class="badge bg-warning text-dark px-3 py-2 rounded-pill fw-bold">CODE: AERO-VIP25</span>
+                </div>
+                <p class="small text-white-50 mb-0">Present this member code at participating partner airport lounges, flight simulator centers, and aviation museums for 25% off day passes.</p>
+              </div>
+              <ul class="small text-muted mb-0">
+                <li class="mb-1"><strong>Airport Lounges:</strong> 25% off single-visit lounge day passes across 140+ international terminals.</li>
+                <li class="mb-1"><strong>Full-Motion Simulators:</strong> 15% member discount on A320 & B737 cockpit sessions.</li>
+                <li><strong>Aviation Museums:</strong> Priority entry & gift shop discount at partner aerospace museums.</li>
+              </ul>
+            `,
+          },
+          events: {
+            title: "📅 Inaugural Route Alerts & VIP Spotting Days",
+            html: `
+              <div class="list-group list-group-flush small">
+                <div class="list-group-item px-0 d-flex justify-content-between align-items-center">
+                  <div>
+                    <div class="fw-bold">A321XLR Transatlantic Inaugural Watch</div>
+                    <span class="text-muted">Live seat-map & fare-drop alert for upcoming narrowbody transatlantic launches.</span>
+                  </div>
+                  <span class="badge bg-danger-subtle text-danger rounded-pill">Alert Active</span>
+                </div>
+                <div class="list-group-item px-0 d-flex justify-content-between align-items-center">
+                  <div>
+                    <div class="fw-bold">GRU / LHR / DXB Perimeter Spotting Meetup</div>
+                    <span class="text-muted">Private ramp-side photography access coordinated with local airport authorities.</span>
+                  </div>
+                  <span class="badge bg-success-subtle text-success rounded-pill">Spots Open</span>
+                </div>
+              </div>
+            `,
+          },
+          reports: {
+            title: "📝 Early Flight & Cabin Dispatch Reports",
+            html: `
+              <div class="p-3 bg-light rounded-3 mb-3">
+                <span class="badge bg-info text-dark mb-2">72-Hour Early Preview</span>
+                <h6 class="fw-bold">Review: Crossing the Atlantic on the Airbus A321XLR</h6>
+                <p class="small text-muted mb-0">Full breakdown of lie-flat herringbone suite comfort, galley noise levels, turbulence handling, and meal service compared to widebody twinjets.</p>
+              </div>
+              <div class="p-3 bg-light rounded-3">
+                <span class="badge bg-primary mb-2">Lounge Audit</span>
+                <h6 class="fw-bold">Flagship Hub Lounge Showdown: Doha vs. Singapore vs. Zurich</h6>
+                <p class="small text-muted mb-0">Comparing à la carte dining, shower suite wait times, tarmac views, and quiet nap rooms during peak midnight connection banks.</p>
+              </div>
+            `,
+          },
+        };
+
+        perkModal.addEventListener("show.bs.modal", (event) => {
+          const button = event.relatedTarget;
+          const key = button?.getAttribute("data-perk-key");
+          const data = perkContent[key];
+          if (data) {
+            document.getElementById("perkModalTitle").textContent = data.title;
+            document.getElementById("perkModalBody").innerHTML = data.html;
+          }
+        });
+      });
     </script>
 
     <!-- Project Scripts -->
