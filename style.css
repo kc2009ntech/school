@@ -1,8 +1,29 @@
 .navbar-glass {
-  background-color: rgba(248, 246, 246, 0.85);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background-color: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
+
+.burger-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.burger-btn:hover {
+  background-color: rgba(13, 110, 253, 0.08);
+}
+
+.burger-btn:focus {
+  box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.2);
+}
+
 .avatar-circle {
   width: 32px;
   height: 32px;
@@ -15,58 +36,153 @@
   align-items: center;
   justify-content: center;
 }
+
+/* Modernized Home Hero & Overlay */
+.modern-hero {
+  background:
+    radial-gradient(
+      circle at 85% 20%,
+      rgba(56, 189, 248, 0.22),
+      transparent 45%
+    ),
+    linear-gradient(135deg, #091526 0%, #103563 55%, #1b5eb3 100%);
+  color: #ffffff;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-grid-overlay {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 36px 36px;
+  pointer-events: none;
+}
+
+.hero-image-card {
+  position: relative;
+  border-radius: 1.5rem;
+  overflow: hidden;
+  box-shadow: 0 1.5rem 3rem rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.hero-floating-pill {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  right: 1rem;
+  background: rgba(9, 21, 38, 0.82);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 1rem;
+  padding: 0.75rem 1rem;
+}
+
+/* Modern Cards & Sector Icons */
+.modern-card,
+.lounge-card {
+  transition:
+    transform 0.22s ease,
+    box-shadow 0.22s ease;
+  border: 1px solid rgba(13, 110, 253, 0.08);
+}
+
+.modern-card:hover,
+.lounge-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 1.25rem 2.5rem rgba(13, 110, 253, 0.12) !important;
+}
+
+.sector-icon,
+.icon-pill {
+  width: 52px;
+  height: 52px;
+  border-radius: 1rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+}
+
+.vip-cta-banner {
+  background: linear-gradient(135deg, #0d6efd 0%, #0a2540 100%);
+}
+
+/* Carousel */
 .carousel-item img {
-  height: 420px;
+  height: 450px;
   object-fit: cover;
 }
+
 .carousel-caption-glass {
-  background: rgba(0, 0, 0, 0.65);
-  backdrop-filter: blur(8px);
-  border-radius: 1rem;
-  padding: 1.25rem 1.5rem;
+  background: rgba(9, 21, 38, 0.78);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 1.25rem;
+  padding: 1.5rem;
 }
+
+/* Sub-page Heroes & Cards */
+.lounge-hero {
+  background: linear-gradient(135deg, #0b192c 0%, #103766 55%, #1d63b8 100%);
+  color: #ffffff;
+}
+
 .hero-airspace {
   background: linear-gradient(135deg, #0d6efd 0%, #03285f 100%);
   color: #ffffff;
 }
+
 .feature-card-img {
   height: 220px;
   object-fit: cover;
 }
+
 .hero-sustainability {
   background: linear-gradient(135deg, #198754 0%, #0e5132 100%);
   color: #ffffff;
 }
+
 .hero-section {
   background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);
   color: #ffffff;
 }
+
 .tech-hero {
   background: linear-gradient(135deg, #0b132b 0%, #1c2541 55%, #0d6efd 100%);
   color: #ffffff;
 }
+
 .tech-card {
   transition:
     transform 0.25s ease,
     box-shadow 0.25s ease;
 }
+
 .tech-card:hover {
   transform: translateY(-6px);
   box-shadow: 0 1rem 2rem rgba(13, 110, 253, 0.14) !important;
 }
+
 .tech-card-img {
   height: 210px;
   width: 100%;
   object-fit: cover;
   transition: transform 0.35s ease;
 }
+
 .tech-card:hover .tech-card-img {
   transform: scale(1.04);
 }
+
 .category-pill {
   cursor: pointer;
   transition: all 0.2s ease;
 }
+
 .category-pill:hover {
   transform: scale(1.05);
   box-shadow: 0 0.5rem 1rem rgba(13, 110, 253, 0.15);

@@ -3,204 +3,414 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Aerolover - Member Dashboard</title>
+    <title>Aerolover - Aviation Insights &amp; Fleet Analytics</title>
     <!-- Bootstrap 5 CSS -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
       rel="stylesheet"
       crossorigin="anonymous"
     />
+    <!-- Bootstrap Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
     <link rel="stylesheet" href="style.css" />
-    <script src="script.js" defer></script>
   </head>
-  <body class="bg-light">
-    <!-- Floating Container Navbar (Standard / Public) -->
+  <body class="bg-light d-flex flex-column min-vh-100">
+    <!-- Floating Container Navbar with Always-Active Burger Menu -->
     <header class="sticky-top pt-3 px-3" style="z-index: 1030">
       <nav
-        class="navbar navbar-expand-lg container navbar-glass border rounded-4 shadow-sm py-2 px-3 px-lg-4"
+        class="navbar container navbar-glass border rounded-4 shadow-sm py-2 px-3 px-lg-4"
       >
-        <a class="navbar-brand me-3" href="index.html">
+        <!-- Brand Logo -->
+        <a class="navbar-brand me-auto" href="index.html">
           <img
             src="image/image.png"
             alt="Aerolover Logo"
             style="height: 3rem"
           />
         </a>
+
+        <!-- Quick Action Pills Visible Next to Burger -->
+        <div class="d-flex align-items-center gap-2 me-2">
+          <!-- Language Selector Dropdown -->
+          <div class="dropdown">
+            <button
+              class="btn btn-light border dropdown-toggle rounded-pill px-3 py-1 fw-semibold d-inline-flex align-items-center gap-1"
+              type="button"
+              id="languageDropdown"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+              aria-label="Select language"
+            >
+              <i class="bi bi-globe2 text-primary"></i>
+              <span id="currentLangLabel">EN</span>
+            </button>
+            <ul
+              class="dropdown-menu dropdown-menu-end border-0 shadow-sm rounded-3"
+              aria-labelledby="languageDropdown"
+            >
+              <li>
+                <button
+                  type="button"
+                  class="dropdown-item d-flex justify-content-between align-items-center active"
+                  data-lang="en"
+                >
+                  <span>English</span>
+                  <small class="text-muted">EN</small>
+                </button>
+              </li>
+              <li>
+                <button
+                  type="button"
+                  class="dropdown-item d-flex justify-content-between align-items-center"
+                  data-lang="pt"
+                >
+                  <span>Português</span>
+                  <small class="text-muted">PT</small>
+                </button>
+              </li>
+              <li>
+                <button
+                  type="button"
+                  class="dropdown-item d-flex justify-content-between align-items-center"
+                  data-lang="es"
+                >
+                  <span>Español</span>
+                  <small class="text-muted">ES</small>
+                </button>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Account Dropdown -->
+          <div class="dropdown">
+            <button
+              class="btn btn-outline-primary dropdown-toggle rounded-pill px-3 py-1 fw-semibold d-inline-flex align-items-center gap-1"
+              type="button"
+              id="authDropdown"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              <i class="bi bi-person-circle"></i>
+              <span data-i18n="nav_account">Account</span>
+            </button>
+            <ul
+              class="dropdown-menu dropdown-menu-end border-0 shadow-sm rounded-3"
+              aria-labelledby="authDropdown"
+            >
+              <li>
+                <a
+                  class="dropdown-item fw-semibold d-flex align-items-center gap-2"
+                  href="signin.html"
+                >
+                  <i class="bi bi-box-arrow-in-right"></i>
+                  <span data-i18n="nav_signin">Sign In</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  class="dropdown-item text-primary fw-semibold d-flex align-items-center gap-2"
+                  href="signup.html"
+                >
+                  <i class="bi bi-person-plus"></i>
+                  <span data-i18n="nav_signup">Sign Up</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Burger Toggle Button (Always Visible) -->
         <button
-          class="navbar-toggler border-0"
+          class="navbar-toggler burger-btn border-0"
           type="button"
           data-bs-toggle="collapse"
-          data-bs-target="#navbarContent"
-          aria-controls="navbarContent"
+          data-bs-target="#burgerMenuContent"
+          aria-controls="burgerMenuContent"
           aria-expanded="false"
-          aria-label="Toggle navigation"
+          aria-label="Toggle navigation menu"
         >
-          <span class="navbar-toggler-icon"></span>
+          <i class="bi bi-list fs-4 text-dark"></i>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarContent">
-          <!-- Grouped Dropdown Navigation Links -->
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0 fw-semibold gap-lg-2">
-            <li class="nav-item">
-              <a class="nav-link" href="index.html">Home</a>
-            </li>
+        <!-- Collapsible Burger Menu Drawer -->
+        <div
+          class="collapse navbar-collapse mt-3 pt-3 border-top"
+          id="burgerMenuContent"
+        >
+          <div class="row g-3 align-items-start">
+            <!-- Main Links -->
+            <div class="col-md-4">
+              <div
+                class="small text-uppercase text-muted fw-bold mb-2"
+                data-i18n="menu_heading"
+              >
+                Menu
+              </div>
+              <ul class="navbar-nav fw-semibold gap-1">
+                <li class="nav-item">
+                  <a
+                    class="nav-link active d-flex align-items-center gap-2"
+                    aria-current="page"
+                    href="index.html"
+                  >
+                    <i class="bi bi-house-door text-primary"></i>
+                    <span data-i18n="nav_home">Home</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a
+                    class="nav-link d-flex align-items-center gap-2"
+                    href="plans.html"
+                  >
+                    <i class="bi bi-gem text-primary"></i>
+                    <span data-i18n="nav_plans">Plans</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a
+                    class="nav-link d-flex align-items-center gap-2"
+                    href="contact.html"
+                  >
+                    <i class="bi bi-chat-dots text-primary"></i>
+                    <span data-i18n="nav_contact">Contact</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
 
-            <!-- Aviation Dropdown -->
-            <li class="nav-item dropdown">
-              <a
-                class="nav-link dropdown-toggle"
-                href="#"
-                id="aviationDropdown"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
+            <!-- Aviation Links -->
+            <div class="col-md-4">
+              <div
+                class="small text-uppercase text-primary fw-bold mb-2"
+                data-i18n="nav_aviation"
               >
                 Aviation
-              </a>
-              <ul
-                class="dropdown-menu border-0 shadow-sm rounded-3"
-                aria-labelledby="aviationDropdown"
-              >
-                <li>
-                  <a class="dropdown-item" href="airlines.html">Airlines</a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="airports.html">Airports</a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="airspace.html">Airspace</a>
-                </li>
-              </ul>
-            </li>
-
-            <!-- News & Tech Dropdown -->
-            <li class="nav-item dropdown">
-              <a
-                class="nav-link dropdown-toggle"
-                href="#"
-                id="updatesDropdown"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                News & Tech
-              </a>
-              <ul
-                class="dropdown-menu border-0 shadow-sm rounded-3"
-                aria-labelledby="updatesDropdown"
-              >
-                <li>
-                  <a class="dropdown-item" href="latestnews.html"
-                    >Latest News</a
-                  >
-                </li>
-                <li>
-                  <a class="dropdown-item" href="sustainability.html"
-                    >Sustainability</a
-                  >
-                </li>
-                <li>
-                  <a class="dropdown-item" href="technology.html">Technology</a>
-                </li>
-              </ul>
-            </li>
-
-            <li class="nav-item">
-              <a class="nav-link" href="plans.html">Plans</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="contact.html">Contact</a>
-            </li>
-          </ul>
-
-          <div class="d-flex flex-wrap align-items-center gap-2">
-            <!-- Auth Buttons -->
-            <a
-              href="signin.html"
-              class="btn btn-outline-primary rounded-pill px-3 fw-semibold"
-              >Sign In</a
-            >
-            <a
-              href="signup.html"
-              class="btn btn-primary rounded-pill px-3 fw-semibold"
-              >Sign Up</a
-            >
-
-            <!-- Search Bar -->
-            <form id="searchForm" class="d-flex gap-2 ms-lg-1" role="search">
-              <div class="input-group">
-                <input
-                  type="search"
-                  id="searchInput"
-                  class="form-control rounded-start-pill"
-                  placeholder="Search..."
-                  required
-                />
-                <button type="submit" class="btn btn-primary rounded-end-pill">
-                  Go
-                </button>
               </div>
-            </form>
+              <ul class="navbar-nav fw-semibold gap-1">
+                <li class="nav-item">
+                  <a
+                    class="nav-link py-1 d-flex align-items-center gap-2"
+                    href="airlines.html"
+                  >
+                    <i class="bi bi-airplane text-primary"></i>
+                    <span data-i18n="nav_airlines">Airlines</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a
+                    class="nav-link py-1 d-flex align-items-center gap-2"
+                    href="airports.html"
+                  >
+                    <i class="bi bi-building text-primary"></i>
+                    <span data-i18n="nav_airports">Airports</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a
+                    class="nav-link py-1 d-flex align-items-center gap-2"
+                    href="airspace.html"
+                  >
+                    <i class="bi bi-broadcast text-primary"></i>
+                    <span data-i18n="nav_airspace">Airspace</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            <!-- News & Tech + Search -->
+            <div class="col-md-4">
+              <div
+                class="small text-uppercase text-primary fw-bold mb-2"
+                data-i18n="nav_news_tech"
+              >
+                News &amp; Tech
+              </div>
+              <ul class="navbar-nav fw-semibold gap-1 mb-3">
+                <li class="nav-item">
+                  <a
+                    class="nav-link py-1 d-flex align-items-center gap-2"
+                    href="latestnews.html"
+                  >
+                    <i class="bi bi-newspaper text-primary"></i>
+                    <span data-i18n="nav_latest_news">Latest News</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a
+                    class="nav-link py-1 d-flex align-items-center gap-2"
+                    href="sustainability.html"
+                  >
+                    <i class="bi bi-leaf text-success"></i>
+                    <span data-i18n="nav_sustainability">Sustainability</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a
+                    class="nav-link py-1 d-flex align-items-center gap-2"
+                    href="technology.html"
+                  >
+                    <i class="bi bi-cpu text-primary"></i>
+                    <span data-i18n="nav_technology">Technology</span>
+                  </a>
+                </li>
+              </ul>
+
+              <!-- Search Bar inside Burger Menu -->
+              <form id="searchForm" class="d-flex" role="search">
+                <div class="input-group">
+                  <span class="input-group-text bg-white border-end-0 rounded-start-pill">
+                    <i class="bi bi-search text-muted"></i>
+                  </span>
+                  <input
+                    type="search"
+                    id="searchInput"
+                    class="form-control border-start-0"
+                    placeholder="Search..."
+                    data-i18n-placeholder="search_placeholder"
+                    required
+                  />
+                  <button
+                    type="submit"
+                    class="btn btn-primary rounded-end-pill px-3"
+                    data-i18n="search_btn"
+                  >
+                    Go
+                  </button>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
       </nav>
     </header>
 
-    <!-- Hero Banner -->
-    <header class="hero-section py-5 text-center text-md-start">
-      <div class="container py-4">
-        <div class="row align-items-center g-4">
-          <div class="col-lg-7">
-            <h1 class="display-4 fw-bold mb-3">
-              Your Premier Destination for Aviation Insights & Analytics
+    <!-- Modern Hero Section -->
+    <section class="container pt-4 pb-2">
+      <div class="modern-hero rounded-4 p-4 p-md-5 shadow-lg">
+        <div class="hero-grid-overlay"></div>
+        <div class="row align-items-center g-4 position-relative">
+          <div class="col-lg-7 text-center text-lg-start">
+            <div class="d-inline-flex align-items-center gap-2 mb-3">
+              <span
+                class="badge bg-info text-dark fw-bold rounded-pill px-3 py-2 d-inline-flex align-items-center gap-1"
+              >
+                <i class="bi bi-airplane-engines"></i>
+                <span data-i18n="hero_badge_1">Global Aviation Intelligence</span>
+              </span>
+              <span
+                class="badge bg-white bg-opacity-10 text-white border border-light border-opacity-25 rounded-pill px-3 py-2"
+                data-i18n="hero_badge_2"
+              >
+                Fleets • Hubs • SAF
+              </span>
+            </div>
+
+            <h1 class="display-5 fw-bold mb-3 lh-sm" data-i18n="hero_title">
+              Your Premier Destination for Aviation Insights &amp; Analytics
             </h1>
-            <p class="lead opacity-90 mb-4">
+            <p class="lead text-white-50 mb-4" data-i18n="hero_subtitle">
               Track global airline fleets, explore international airport
               developments, and stay updated with breaking aerospace news.
             </p>
+
             <div
-              class="d-flex flex-wrap gap-3 justify-content-center justify-content-md-start"
+              class="d-flex flex-wrap gap-3 justify-content-center justify-content-lg-start mb-4"
             >
               <a
                 href="signup.html"
-                class="btn btn-light text-primary btn-lg rounded-pill px-4 fw-bold"
+                class="btn btn-light text-primary btn-lg rounded-pill px-4 fw-bold shadow-sm d-inline-flex align-items-center gap-2"
               >
-                Get Started Free
+                <span data-i18n="hero_cta_primary">Get Started Free</span>
+                <i class="bi bi-arrow-right"></i>
               </a>
               <a
-                href="signin.html"
-                class="btn btn-outline-light btn-lg rounded-pill px-4"
+                href="plans.html"
+                class="btn btn-outline-light btn-lg rounded-pill px-4 fw-semibold"
+                data-i18n="hero_cta_secondary"
               >
-                Sign In
+                Explore VIP Plans
               </a>
             </div>
+
+            <!-- Compact Quick Links Strip -->
+            <div
+              class="d-flex flex-wrap gap-3 justify-content-center justify-content-lg-start small text-white-50"
+            >
+              <span class="d-inline-flex align-items-center gap-1">
+                <i class="bi bi-check-circle-fill text-info"></i>
+                <span data-i18n="hero_check_1">Commercial Fleet Specs</span>
+              </span>
+              <span class="d-inline-flex align-items-center gap-1">
+                <i class="bi bi-check-circle-fill text-info"></i>
+                <span data-i18n="hero_check_2">Airport Expansion Briefings</span>
+              </span>
+              <span class="d-inline-flex align-items-center gap-1">
+                <i class="bi bi-check-circle-fill text-info"></i>
+                <span data-i18n="hero_check_3">Next-Gen Avionics &amp; SAF</span>
+              </span>
+            </div>
           </div>
-          <div class="col-lg-5 text-center">
-            <img
-              src="image/image2.jpg"
-              alt="Aviation Banner"
-              class="img-fluid rounded-4 shadow-lg border border-2 border-white"
-              style="max-height: 320px; object-fit: cover"
-            />
+
+          <div class="col-lg-5">
+            <div class="hero-image-card">
+              <img
+                src="image/image2.jpg"
+                alt="Aviation Banner"
+                class="w-100"
+                style="height: 340px; object-fit: cover"
+              />
+              <div class="hero-floating-pill text-white">
+                <div
+                  class="d-flex justify-content-between align-items-center small"
+                >
+                  <div>
+                    <span
+                      class="text-info fw-bold d-block"
+                      data-i18n="radar_title"
+                      >AEROSPACE RADAR</span
+                    >
+                    <span class="text-white-50" data-i18n="radar_sub"
+                      >Live Industry Coverage &amp; Fleet Briefings</span
+                    >
+                  </div>
+                  <a
+                    href="airlines.html"
+                    class="btn btn-sm btn-primary rounded-pill px-3"
+                    data-i18n="radar_btn"
+                    >Explore</a
+                  >
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </header>
+    </section>
 
     <!-- News Carousel Section -->
     <section class="container py-5">
-      <div class="d-flex justify-content-between align-items-end mb-4">
+      <div
+        class="d-flex flex-wrap justify-content-between align-items-end mb-4 gap-2"
+      >
         <div>
-          <span class="text-primary fw-bold text-uppercase small tracking-wide"
+          <span
+            class="text-primary fw-bold text-uppercase small"
+            data-i18n="news_eyebrow"
             >Breaking Headlines</span
           >
-          <h2 class="fw-bold mb-0">Featured Aviation News</h2>
+          <h2 class="fw-bold mb-0" data-i18n="news_heading">
+            Featured Aviation News
+          </h2>
         </div>
         <a
-          href="news.html"
-          class="btn btn-outline-primary btn-sm rounded-pill px-3"
+          href="latestnews.html"
+          class="btn btn-outline-primary btn-sm rounded-pill px-3 fw-semibold d-inline-flex align-items-center gap-1"
         >
-          View All News →
+          <span data-i18n="news_view_all">View All News</span>
+          <i class="bi bi-arrow-right"></i>
         </a>
       </div>
 
@@ -246,18 +456,26 @@
             <div
               class="carousel-caption carousel-caption-glass text-start mb-4 mx-3 mx-md-5"
             >
-              <span class="badge bg-primary mb-2">Airlines</span>
-              <h3 class="fw-bold text-white mb-2">
+              <span
+                class="badge bg-primary rounded-pill px-3 mb-2"
+                data-i18n="slide1_badge"
+                >Airlines</span
+              >
+              <h3 class="fw-bold text-white mb-2" data-i18n="slide1_title">
                 Next-Gen Commercial Fleet Upgrades Announced
               </h3>
-              <p class="mb-3 d-none d-md-block opacity-90">
+              <p
+                class="mb-3 d-none d-md-block text-white-50"
+                data-i18n="slide1_desc"
+              >
                 Major international carriers place multibillion-dollar orders
                 for fuel-efficient wide-body jets to modernize long-haul
                 networks.
               </p>
               <a
-                href="news.html"
-                class="btn btn-primary btn-sm rounded-pill px-3"
+                href="latestnews.html"
+                class="btn btn-primary btn-sm rounded-pill px-3 fw-semibold"
+                data-i18n="read_full_story"
                 >Read Full Story</a
               >
             </div>
@@ -273,18 +491,26 @@
             <div
               class="carousel-caption carousel-caption-glass text-start mb-4 mx-3 mx-md-5"
             >
-              <span class="badge bg-success mb-2">Airports</span>
-              <h3 class="fw-bold text-white mb-2">
+              <span
+                class="badge bg-success rounded-pill px-3 mb-2"
+                data-i18n="slide2_badge"
+                >Airports</span
+              >
+              <h3 class="fw-bold text-white mb-2" data-i18n="slide2_title">
                 Smart Biometric Terminals Open Worldwide
               </h3>
-              <p class="mb-3 d-none d-md-block opacity-90">
+              <p
+                class="mb-3 d-none d-md-block text-white-50"
+                data-i18n="slide2_desc"
+              >
                 International airport hubs integrate automated facial
                 recognition security lines to cut passenger check-in processing
                 times by up to 40%.
               </p>
               <a
-                href="news.html"
-                class="btn btn-success btn-sm rounded-pill px-3"
+                href="latestnews.html"
+                class="btn btn-success btn-sm rounded-pill px-3 fw-semibold"
+                data-i18n="read_full_story"
                 >Read Full Story</a
               >
             </div>
@@ -300,18 +526,26 @@
             <div
               class="carousel-caption carousel-caption-glass text-start mb-4 mx-3 mx-md-5"
             >
-              <span class="badge bg-info text-dark mb-2">Technology</span>
-              <h3 class="fw-bold text-white mb-2">
+              <span
+                class="badge bg-info text-dark rounded-pill px-3 mb-2"
+                data-i18n="slide3_badge"
+                >Technology</span
+              >
+              <h3 class="fw-bold text-white mb-2" data-i18n="slide3_title">
                 100% SAF Transatlantic Crossing Successful
               </h3>
-              <p class="mb-3 d-none d-md-block opacity-90">
+              <p
+                class="mb-3 d-none d-md-block text-white-50"
+                data-i18n="slide3_desc"
+              >
                 A landmark flight completes a transatlantic flight powered
                 entirely by 100% Sustainable Aviation Fuel without engine
                 modifications.
               </p>
               <a
-                href="news.html"
-                class="btn btn-info text-dark btn-sm rounded-pill px-3"
+                href="latestnews.html"
+                class="btn btn-info text-dark btn-sm rounded-pill px-3 fw-semibold"
+                data-i18n="read_full_story"
                 >Read Full Story</a
               >
             </div>
@@ -341,108 +575,191 @@
     </section>
 
     <!-- Featured Categories Grid -->
-    <main class="container pb-5">
+    <main class="container pb-5 flex-grow-1">
       <div class="text-center mb-5">
-        <h2 class="fw-bold text-primary">Explore Commercial Aviation</h2>
-        <p class="text-muted">In-depth coverage across key industry sectors.</p>
+        <span
+          class="text-primary fw-bold text-uppercase small"
+          data-i18n="sectors_eyebrow"
+          >Industry Sectors</span
+        >
+        <h2 class="fw-bold" data-i18n="sectors_heading">
+          Explore Commercial Aviation
+        </h2>
+        <p class="text-muted" data-i18n="sectors_subtitle">
+          In-depth coverage across key industry sectors.
+        </p>
       </div>
 
-      <div class="row g-4">
-        <div class="col-md-4">
-          <div class="card h-100 shadow-sm border-0 rounded-4 p-3">
-            <div class="card-body">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="48"
-                height="48"
-                fill="currentColor"
-                class="text-primary mb-3"
-                viewBox="0 0 24 24"
+      <div class="row g-4 mb-5">
+        <!-- Airlines -->
+        <div class="col-md-6 col-lg-3">
+          <div
+            class="card modern-card h-100 shadow-sm rounded-4 p-3 bg-white d-flex flex-column"
+          >
+            <div class="card-body d-flex flex-column">
+              <div class="sector-icon bg-primary-subtle text-primary mb-3">
+                <i class="bi bi-airplane-fill"></i>
+              </div>
+              <h5 class="card-title fw-bold" data-i18n="card_airlines_title">
+                Airlines &amp; Fleets
+              </h5>
+              <p
+                class="card-text text-muted small mb-4"
+                data-i18n="card_airlines_desc"
               >
-                <path
-                  d="M6.428 1.151C6.708.591 7.213 0 8 0s1.292.592 1.572 1.151C9.861 1.73 10 2.431 10 3v3.691l5.17 2.585a1.5 1.5 0 0 1 .83 1.342V12a.5.5 0 0 1-.582.493l-5.507-.918-.375 2.253 1.318 1.318A.5.5 0 0 1 10.5 16h-5a.5.5 0 0 1-.354-.854l1.319-1.318-.376-2.253-5.507.918A.5.5 0 0 1 0 12v-1.382a1.5 1.5 0 0 1 .83-1.342L6 6.691V3c0-.568.14-1.271.428-1.849m.894.448C7.111 2.02 7 2.569 7 3v4a.5.5 0 0 1-.276.447l-5.448 2.724a.5.5 0 0 0-.276.447v.792l5.418-.903a.5.5 0 0 1 .575.41l.5 3a.5.5 0 0 1-.14.437L6.708 15h2.586l-.647-.646a.5.5 0 0 1-.14-.436l.5-3a.5.5 0 0 1 .576-.411L15 11.41v-.792a.5.5 0 0 0-.276-.447L9.276 7.447A.5.5 0 0 1 9 7V3c0-.432-.11-.979-.322-1.401C8.458 1.159 8.213 1 8 1s-.458.158-.678.599"
-                />
-              </svg>
-              <h4 class="card-title fw-bold">Airlines & Fleets</h4>
-              <p class="card-text text-muted">
                 Detailed breakdowns of wide-body deliveries, cabin
                 configurations, and route expansions.
               </p>
-              <a
-                href="airlines.html"
-                class="btn btn-outline-primary btn-sm rounded-pill mt-2"
-                >View Airlines</a
-              >
+              <div class="mt-auto">
+                <a
+                  href="airlines.html"
+                  class="btn btn-outline-primary btn-sm rounded-pill px-3 fw-semibold d-inline-flex align-items-center gap-1"
+                >
+                  <span data-i18n="card_airlines_btn">View Airlines</span>
+                  <i class="bi bi-arrow-right"></i>
+                </a>
+              </div>
             </div>
           </div>
         </div>
 
-        <div class="col-md-4">
-          <div class="card h-100 shadow-sm border-0 rounded-4 p-3">
-            <div class="card-body">
-              <div
-                class="d-inline-flex align-items-center justify-content-center bg-primary-subtle text-primary rounded-circle mb-3 p-3"
-                style="width: 56px; height: 56px"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="28"
-                  height="28"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M10 2h4l1 4h-6l1-4zm-1 5h6l1 3h-8l1-3zm-1 4h10l-1 3h-2v8h-4v-8h-2l-1-3zm3 5h2v6h-2v-6z"
-                  />
-                </svg>
+        <!-- Airports -->
+        <div class="col-md-6 col-lg-3">
+          <div
+            class="card modern-card h-100 shadow-sm rounded-4 p-3 bg-white d-flex flex-column"
+          >
+            <div class="card-body d-flex flex-column">
+              <div class="sector-icon bg-success-subtle text-success mb-3">
+                <i class="bi bi-building-fill"></i>
               </div>
-              <h4 class="card-title fw-bold">Airports & Terminals</h4>
-              <p class="card-text text-muted">
+              <h5 class="card-title fw-bold" data-i18n="card_airports_title">
+                Airports &amp; Terminals
+              </h5>
+              <p
+                class="card-text text-muted small mb-4"
+                data-i18n="card_airports_desc"
+              >
                 Coverage of new runway construction, terminal modernizations,
                 and biometric check-in rollouts.
               </p>
-              <a
-                href="airports.html"
-                class="btn btn-outline-primary btn-sm rounded-pill mt-2"
-                >View Airports</a
-              >
+              <div class="mt-auto">
+                <a
+                  href="airports.html"
+                  class="btn btn-outline-success btn-sm rounded-pill px-3 fw-semibold d-inline-flex align-items-center gap-1"
+                >
+                  <span data-i18n="card_airports_btn">View Airports</span>
+                  <i class="bi bi-arrow-right"></i>
+                </a>
+              </div>
             </div>
           </div>
         </div>
 
-        <div class="col-md-4">
-          <div class="card h-100 shadow-sm border-0 rounded-4 p-3">
-            <div class="card-body">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="48"
-                height="48"
-                fill="currentColor"
-                class="text-primary mb-3"
-                viewBox="0 0 24 24"
+        <!-- Airspace -->
+        <div class="col-md-6 col-lg-3">
+          <div
+            class="card modern-card h-100 shadow-sm rounded-4 p-3 bg-white d-flex flex-column"
+          >
+            <div class="card-body d-flex flex-column">
+              <div
+                class="sector-icon bg-warning-subtle text-warning-emphasis mb-3"
               >
-                <path
-                  d="M1.4 1.7c.217.289.65.84 1.725 1.274 1.093.44 2.885.774 5.834.528 2.02-.168 3.431.51 4.326 1.556C14.161 6.082 14.5 7.41 14.5 8.5q0 .344-.027.734C13.387 8.252 11.877 7.76 10.39 7.5c-2.016-.288-4.188-.445-5.59-2.045-.142-.162-.402-.102-.379.112.108.985 1.104 1.82 1.844 2.308 2.37 1.566 5.772-.118 7.6 3.071.505.8 1.374 2.7 1.75 4.292.07.298-.066.611-.354.715a.7.7 0 0 1-.161.042 1 1 0 0 1-1.08-.794c-.13-.97-.396-1.913-.868-2.77C12.173 13.386 10.565 14 8 14c-1.854 0-3.32-.544-4.45-1.435-1.124-.887-1.889-2.095-2.39-3.383-1-2.562-1-5.536-.65-7.28L.73.806z"
-                />
-              </svg>
-              <h4 class="card-title fw-bold">Aerospace Tech & SAF</h4>
-              <p class="card-text text-muted">
+                <i class="bi bi-broadcast-pin"></i>
+              </div>
+              <h5 class="card-title fw-bold" data-i18n="card_airspace_title">
+                Airspace &amp; ATC
+              </h5>
+              <p
+                class="card-text text-muted small mb-4"
+                data-i18n="card_airspace_desc"
+              >
+                Insights into controlled airspace sectors, oceanic corridors,
+                and space-based ADS-B tracking.
+              </p>
+              <div class="mt-auto">
+                <a
+                  href="airspace.html"
+                  class="btn btn-outline-dark btn-sm rounded-pill px-3 fw-semibold d-inline-flex align-items-center gap-1"
+                >
+                  <span data-i18n="card_airspace_btn">View Airspace</span>
+                  <i class="bi bi-arrow-right"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Aerospace Tech & SAF -->
+        <div class="col-md-6 col-lg-3">
+          <div
+            class="card modern-card h-100 shadow-sm rounded-4 p-3 bg-white d-flex flex-column"
+          >
+            <div class="card-body d-flex flex-column">
+              <div class="sector-icon bg-info-subtle text-info-emphasis mb-3">
+                <i class="bi bi-cpu-fill"></i>
+              </div>
+              <h5 class="card-title fw-bold" data-i18n="card_tech_title">
+                Aerospace Tech &amp; SAF
+              </h5>
+              <p
+                class="card-text text-muted small mb-4"
+                data-i18n="card_tech_desc"
+              >
                 Updates on Sustainable Aviation Fuel testing, hydrogen
                 propulsion, and next-gen avionics.
               </p>
-              <a
-                href="technology.html"
-                class="btn btn-outline-primary btn-sm rounded-pill mt-2"
-                >View Tech</a
-              >
+              <div class="mt-auto">
+                <a
+                  href="technology.html"
+                  class="btn btn-outline-primary btn-sm rounded-pill px-3 fw-semibold d-inline-flex align-items-center gap-1"
+                >
+                  <span data-i18n="card_tech_btn">View Tech</span>
+                  <i class="bi bi-arrow-right"></i>
+                </a>
+              </div>
             </div>
           </div>
+        </div>
+      </div>
+
+      <!-- Membership Conversion Card -->
+      <div
+        class="vip-cta-banner rounded-4 p-4 p-md-5 text-white shadow-sm d-flex flex-wrap align-items-center justify-content-between gap-4"
+      >
+        <div style="max-width: 620px">
+          <span
+            class="badge bg-warning text-dark fw-bold rounded-pill px-3 py-1 mb-2 d-inline-flex align-items-center gap-1"
+          >
+            <i class="bi bi-ticket-perforated-fill"></i>
+            <span data-i18n="vip_badge">First-Class Lounge</span>
+          </span>
+          <h3 class="fw-bold mb-2" data-i18n="vip_title">
+            Unlock Fleet Order Trackers, 4K Wallpapers &amp; Early Cabin Reports
+          </h3>
+          <p class="text-white-50 mb-0 small" data-i18n="vip_desc">
+            Create a free Aerolover account or upgrade to Exclusive Access for
+            insider aviation briefings and partner lounge perks.
+          </p>
+        </div>
+        <div class="d-flex flex-wrap gap-2">
+          <a
+            href="plans.html"
+            class="btn btn-warning text-dark fw-bold rounded-pill px-4"
+            data-i18n="vip_btn_plans"
+            >Compare Plans</a
+          >
+          <a
+            href="signup.html"
+            class="btn btn-outline-light rounded-pill px-4 fw-semibold"
+            data-i18n="vip_btn_signup"
+            >Create Free Account</a
+          >
         </div>
       </div>
     </main>
 
     <!-- Footer -->
-    <footer class="bg-dark text-white pt-5 pb-4 mt-5">
+    <footer class="bg-dark text-white pt-5 pb-4 mt-auto">
       <div class="container text-center text-md-start">
         <div class="row g-4">
           <div class="col-md-4 col-lg-4 col-xl-3 mx-auto">
@@ -453,17 +770,25 @@
                 style="height: 4.5rem"
               />
             </a>
-            <p class="text-white-50 small">
+            <p class="text-white-50 small" data-i18n="footer_about">
               Your ultimate portal for aviation news, airport updates, airline
               fleet specs, and future aerospace technologies.
             </p>
           </div>
 
           <div class="col-md-2 col-lg-2 col-xl-2 mx-auto">
-            <h6 class="text-uppercase mb-3 fw-bold text-primary">Navigation</h6>
+            <h6
+              class="text-uppercase mb-3 fw-bold text-primary"
+              data-i18n="footer_nav_heading"
+            >
+              Navigation
+            </h6>
             <ul class="list-unstyled small">
               <li class="mb-2">
-                <a href="index.html" class="text-white-50 text-decoration-none"
+                <a
+                  href="index.html"
+                  class="text-white-50 text-decoration-none"
+                  data-i18n="nav_home"
                   >Home</a
                 >
               </li>
@@ -471,6 +796,7 @@
                 <a
                   href="airlines.html"
                   class="text-white-50 text-decoration-none"
+                  data-i18n="nav_airlines"
                   >Airlines</a
                 >
               </li>
@@ -478,6 +804,7 @@
                 <a
                   href="airports.html"
                   class="text-white-50 text-decoration-none"
+                  data-i18n="nav_airports"
                   >Airports</a
                 >
               </li>
@@ -485,14 +812,15 @@
                 <a
                   href="latestnews.html"
                   class="text-white-50 text-decoration-none"
+                  data-i18n="nav_latest_news"
                   >Latest news</a
                 >
               </li>
-
               <li class="mb-2">
                 <a
                   href="sustainability.html"
                   class="text-white-50 text-decoration-none"
+                  data-i18n="nav_sustainability"
                   >Sustainability</a
                 >
               </li>
@@ -500,6 +828,7 @@
                 <a
                   href="technology.html"
                   class="text-white-50 text-decoration-none"
+                  data-i18n="nav_technology"
                   >Technology</a
                 >
               </li>
@@ -507,6 +836,7 @@
                 <a
                   href="airspace.html"
                   class="text-white-50 text-decoration-none"
+                  data-i18n="nav_airspace"
                   >Airspace</a
                 >
               </li>
@@ -514,22 +844,34 @@
           </div>
 
           <div class="col-md-3 col-lg-2 col-xl-2 mx-auto">
-            <h6 class="text-uppercase mb-3 fw-bold text-primary">Benefits</h6>
+            <h6
+              class="text-uppercase mb-3 fw-bold text-primary"
+              data-i18n="footer_benefits_heading"
+            >
+              Benefits
+            </h6>
             <ul class="list-unstyled small">
               <li class="mb-2">
-                <a href="plans.html" class="text-white-50 text-decoration-none"
+                <a
+                  href="plans.html"
+                  class="text-white-50 text-decoration-none"
+                  data-i18n="footer_exclusive"
                   >Exclusive Access</a
                 >
               </li>
-
               <li class="mb-2">
-                <a href="signin.html" class="text-white-50 text-decoration-none"
+                <a
+                  href="signin.html"
+                  class="text-white-50 text-decoration-none"
+                  data-i18n="nav_signin"
                   >Sign in</a
                 >
               </li>
-
               <li class="mb-2">
-                <a href="signup.html" class="text-white-50 text-decoration-none"
+                <a
+                  href="signup.html"
+                  class="text-white-50 text-decoration-none"
+                  data-i18n="nav_signup"
                   >Create account</a
                 >
               </li>
@@ -537,9 +879,20 @@
           </div>
 
           <div class="col-md-3 col-lg-3 col-xl-3 mx-auto small">
-            <h6 class="text-uppercase mb-3 fw-bold text-primary">Connect</h6>
-            <p class="mb-2 text-white-50">📧 contact@aerolover.com</p>
-            <p class="mb-2 text-white-50">📍 Worldwide Aviation Network</p>
+            <h6
+              class="text-uppercase mb-3 fw-bold text-primary"
+              data-i18n="footer_connect_heading"
+            >
+              Connect
+            </h6>
+            <p class="mb-2 text-white-50 d-flex align-items-center justify-content-center justify-content-md-start gap-2">
+              <i class="bi bi-envelope text-primary"></i>
+              <span>contact@aerolover.com</span>
+            </p>
+            <p class="mb-2 text-white-50 d-flex align-items-center justify-content-center justify-content-md-start gap-2">
+              <i class="bi bi-geo-alt text-primary"></i>
+              <span data-i18n="footer_location">Worldwide Aviation Network</span>
+            </p>
           </div>
         </div>
 
@@ -547,15 +900,21 @@
 
         <div class="row align-items-center small">
           <div class="col-md-7 text-center text-md-start">
-            <p class="mb-0 text-white-50">
-              © 2026 Aerolover. Built with Bootstrap 5 & Vanilla JS.
+            <p class="mb-0 text-white-50" data-i18n="footer_copyright">
+              © 2026 Aerolover. Built with Bootstrap 5 &amp; Vanilla JS.
             </p>
           </div>
           <div class="col-md-5 text-center text-md-end mt-3 mt-md-0">
-            <a href="#" class="text-white-50 text-decoration-none me-3"
+            <a
+              href="#"
+              class="text-white-50 text-decoration-none me-3"
+              data-i18n="footer_privacy"
               >Privacy Policy</a
             >
-            <a href="#" class="text-white-50 text-decoration-none"
+            <a
+              href="#"
+              class="text-white-50 text-decoration-none"
+              data-i18n="footer_terms"
               >Terms of Service</a
             >
           </div>

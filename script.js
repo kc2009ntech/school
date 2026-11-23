@@ -10,9 +10,349 @@ document.addEventListener("DOMContentLoaded", () => {
   const STORAGE_REMEMBER_EMAIL_KEY = "aerolover_remember_email";
   const STORAGE_LOGOUT_EVENT_KEY = "aerolover_logout_event";
   const STORAGE_RESET_TOKENS_KEY = "aerolover_password_reset_tokens";
+  const STORAGE_LANG_KEY = "aerolover_lang";
 
   // Dynamic secret passcode fallback
   let SECRET_PASSCODE = localStorage.getItem("aerolover_passcode") || "skyhigh";
+
+  // ==========================================
+  // 0. FULL-PAGE TRANSLATION ENGINE (EN / PT / ES)
+  // ==========================================
+  const translations = {
+    en: {
+      label: "EN",
+      page_title: "Aerolover - Aviation Insights & Fleet Analytics",
+      menu_heading: "Menu",
+      nav_home: "Home",
+      nav_aviation: "Aviation",
+      nav_airlines: "Airlines",
+      nav_airlines_icon: "✈️ Airlines",
+      nav_airports: "Airports",
+      nav_airports_icon: "🛫 Airports",
+      nav_airspace: "Airspace",
+      nav_airspace_icon: "📡 Airspace",
+      nav_news_tech: "News & Tech",
+      nav_latest_news: "Latest News",
+      nav_latest_news_icon: "📰 Latest News",
+      nav_sustainability: "Sustainability",
+      nav_sustainability_icon: "🌱 Sustainability",
+      nav_technology: "Technology",
+      nav_technology_icon: "🛰️ Technology",
+      nav_plans: "Plans",
+      nav_contact: "Contact",
+      nav_account: "Account",
+      nav_signin: "Sign In",
+      nav_signup: "Sign Up",
+      search_placeholder: "Search...",
+      search_btn: "Go",
+      hero_badge_1: "✈️ Global Aviation Intelligence",
+      hero_badge_2: "Fleets • Hubs • SAF",
+      hero_title:
+        "Your Premier Destination for Aviation Insights & Analytics",
+      hero_subtitle:
+        "Track global airline fleets, explore international airport developments, and stay updated with breaking aerospace news.",
+      hero_cta_primary: "Get Started Free",
+      hero_cta_secondary: "Explore VIP Plans",
+      hero_check_1: "✓ Commercial Fleet Specs",
+      hero_check_2: "✓ Airport Expansion Briefings",
+      hero_check_3: "✓ Next-Gen Avionics & SAF",
+      radar_title: "AEROSPACE RADAR",
+      radar_sub: "Live Industry Coverage & Fleet Briefings",
+      radar_btn: "Explore",
+      news_eyebrow: "Breaking Headlines",
+      news_heading: "Featured Aviation News",
+      news_view_all: "View All News →",
+      slide1_badge: "Airlines",
+      slide1_title: "Next-Gen Commercial Fleet Upgrades Announced",
+      slide1_desc:
+        "Major international carriers place multibillion-dollar orders for fuel-efficient wide-body jets to modernize long-haul networks.",
+      slide2_badge: "Airports",
+      slide2_title: "Smart Biometric Terminals Open Worldwide",
+      slide2_desc:
+        "International airport hubs integrate automated facial recognition security lines to cut passenger check-in processing times by up to 40%.",
+      slide3_badge: "Technology",
+      slide3_title: "100% SAF Transatlantic Crossing Successful",
+      slide3_desc:
+        "A landmark flight completes a transatlantic flight powered entirely by 100% Sustainable Aviation Fuel without engine modifications.",
+      read_full_story: "Read Full Story",
+      sectors_eyebrow: "Industry Sectors",
+      sectors_heading: "Explore Commercial Aviation",
+      sectors_subtitle: "In-depth coverage across key industry sectors.",
+      card_airlines_title: "Airlines & Fleets",
+      card_airlines_desc:
+        "Detailed breakdowns of wide-body deliveries, cabin configurations, and route expansions.",
+      card_airlines_btn: "View Airlines →",
+      card_airports_title: "Airports & Terminals",
+      card_airports_desc:
+        "Coverage of new runway construction, terminal modernizations, and biometric check-in rollouts.",
+      card_airports_btn: "View Airports →",
+      card_airspace_title: "Airspace & ATC",
+      card_airspace_desc:
+        "Insights into controlled airspace sectors, oceanic corridors, and space-based ADS-B tracking.",
+      card_airspace_btn: "View Airspace →",
+      card_tech_title: "Aerospace Tech & SAF",
+      card_tech_desc:
+        "Updates on Sustainable Aviation Fuel testing, hydrogen propulsion, and next-gen avionics.",
+      card_tech_btn: "View Tech →",
+      vip_badge: "🎫 First-Class Lounge",
+      vip_title:
+        "Unlock Fleet Order Trackers, 4K Wallpapers & Early Cabin Reports",
+      vip_desc:
+        "Create a free Aerolover account or upgrade to Exclusive Access for insider aviation briefings and partner lounge perks.",
+      vip_btn_plans: "Compare Plans",
+      vip_btn_signup: "Create Free Account",
+      footer_about:
+        "Your ultimate portal for aviation news, airport updates, airline fleet specs, and future aerospace technologies.",
+      footer_nav_heading: "Navigation",
+      footer_benefits_heading: "Benefits",
+      footer_exclusive: "Exclusive Access",
+      footer_connect_heading: "Connect",
+      footer_location: "📍 Worldwide Aviation Network",
+      footer_copyright:
+        "© 2026 Aerolover. Built with Bootstrap 5 & Vanilla JS.",
+      footer_privacy: "Privacy Policy",
+      footer_terms: "Terms of Service",
+    },
+    pt: {
+      label: "PT",
+      page_title: "Aerolover - Inteligência e Análise da Aviação",
+      menu_heading: "Menu",
+      nav_home: "Início",
+      nav_aviation: "Aviação",
+      nav_airlines: "Companhias Aéreas",
+      nav_airlines_icon: "✈️ Companhias Aéreas",
+      nav_airports: "Aeroportos",
+      nav_airports_icon: "🛫 Aeroportos",
+      nav_airspace: "Espaço Aéreo",
+      nav_airspace_icon: "📡 Espaço Aéreo",
+      nav_news_tech: "Notícias e Tech",
+      nav_latest_news: "Últimas Notícias",
+      nav_latest_news_icon: "📰 Últimas Notícias",
+      nav_sustainability: "Sustentabilidade",
+      nav_sustainability_icon: "🌱 Sustentabilidade",
+      nav_technology: "Tecnologia",
+      nav_technology_icon: "🛰️ Tecnologia",
+      nav_plans: "Planos",
+      nav_contact: "Contato",
+      nav_account: "Conta",
+      nav_signin: "Entrar",
+      nav_signup: "Criar Conta",
+      search_placeholder: "Pesquisar...",
+      search_btn: "Ir",
+      hero_badge_1: "✈️ Inteligência Global da Aviação",
+      hero_badge_2: "Frotas • Hubs • SAF",
+      hero_title:
+        "Seu Principal Portal de Inteligência e Análise da Aviação",
+      hero_subtitle:
+        "Acompanhe frotas globais, explore expansões de aeroportos internacionais e fique por dentro das novidades aeroespaciais.",
+      hero_cta_primary: "Começar Grátis",
+      hero_cta_secondary: "Ver Planos VIP",
+      hero_check_1: "✓ Especificações de Frotas Comerciais",
+      hero_check_2: "✓ Boletins de Expansão Aeroportuária",
+      hero_check_3: "✓ Aviônica de Nova Geração e SAF",
+      radar_title: "RADAR AEROESPACIAL",
+      radar_sub: "Cobertura do Setor e Boletins de Frota",
+      radar_btn: "Explorar",
+      news_eyebrow: "Manchetes Urgentes",
+      news_heading: "Notícias em Destaque da Aviação",
+      news_view_all: "Ver Todas as Notícias →",
+      slide1_badge: "Companhias Aéreas",
+      slide1_title:
+        "Anunciadas Atualizações de Frota Comercial de Nova Geração",
+      slide1_desc:
+        "Grandes companhias internacionais fazem pedidos bilionários de jatos wide-body eficientes para modernizar rotas de longo curso.",
+      slide2_badge: "Aeroportos",
+      slide2_title: "Terminais Biométricos Inteligentes Abrem pelo Mundo",
+      slide2_desc:
+        "Hubs internacionais integram filas de segurança com reconhecimento facial automatizado, reduzindo o tempo de check-in em até 40%.",
+      slide3_badge: "Tecnologia",
+      slide3_title:
+        "Travessia Transatlântica com 100% SAF Concluída com Sucesso",
+      slide3_desc:
+        "Voo histórico completa travessia transatlântica movido integralmente por Combustível Sustentável de Aviação sem modificar os motores.",
+      read_full_story: "Ler Matéria Completa",
+      sectors_eyebrow: "Setores da Indústria",
+      sectors_heading: "Explore a Aviação Comercial",
+      sectors_subtitle:
+        "Cobertura aprofundada nos principais setores da indústria.",
+      card_airlines_title: "Companhias e Frotas",
+      card_airlines_desc:
+        "Análises detalhadas de entregas de wide-bodies, configurações de cabine e expansões de rotas.",
+      card_airlines_btn: "Ver Companhias →",
+      card_airports_title: "Aeroportos e Terminais",
+      card_airports_desc:
+        "Cobertura de construção de novas pistas, modernização de terminais e check-in biométrico.",
+      card_airports_btn: "Ver Aeroportos →",
+      card_airspace_title: "Espaço Aéreo e ATC",
+      card_airspace_desc:
+        "Informações sobre setores controlados, corredores oceânicos e rastreamento ADS-B via satélite.",
+      card_airspace_btn: "Ver Espaço Aéreo →",
+      card_tech_title: "Tecnologia Aeroespacial e SAF",
+      card_tech_desc:
+        "Atualizações sobre testes de combustível sustentável (SAF), propulsão a hidrogênio e aviônica.",
+      card_tech_btn: "Ver Tecnologia →",
+      vip_badge: "🎫 Sala VIP Primeira Classe",
+      vip_title:
+        "Desbloqueie Rastreadores de Frota, Wallpapers 4K e Relatórios Antecipados",
+      vip_desc:
+        "Crie uma conta gratuita na Aerolover ou faça upgrade para o Acesso Exclusivo para boletins internos e benefícios em salas VIP.",
+      vip_btn_plans: "Comparar Planos",
+      vip_btn_signup: "Criar Conta Grátis",
+      footer_about:
+        "Seu portal definitivo para notícias de aviação, atualizações de aeroportos, especificações de frotas e tecnologias aeroespaciais.",
+      footer_nav_heading: "Navegação",
+      footer_benefits_heading: "Benefícios",
+      footer_exclusive: "Acesso Exclusivo",
+      footer_connect_heading: "Contato",
+      footer_location: "📍 Rede Mundial de Aviação",
+      footer_copyright:
+        "© 2026 Aerolover. Desenvolvido com Bootstrap 5 e Vanilla JS.",
+      footer_privacy: "Política de Privacidade",
+      footer_terms: "Termos de Serviço",
+    },
+    es: {
+      label: "ES",
+      page_title: "Aerolover - Análisis e Información de Aviación",
+      menu_heading: "Menú",
+      nav_home: "Inicio",
+      nav_aviation: "Aviación",
+      nav_airlines: "Aerolíneas",
+      nav_airlines_icon: "✈️ Aerolíneas",
+      nav_airports: "Aeropuertos",
+      nav_airports_icon: "🛫 Aeropuertos",
+      nav_airspace: "Espacio Aéreo",
+      nav_airspace_icon: "📡 Espacio Aéreo",
+      nav_news_tech: "Noticias y Tech",
+      nav_latest_news: "Últimas Noticias",
+      nav_latest_news_icon: "📰 Últimas Noticias",
+      nav_sustainability: "Sostenibilidad",
+      nav_sustainability_icon: "🌱 Sostenibilidad",
+      nav_technology: "Tecnología",
+      nav_technology_icon: "🛰️ Tecnología",
+      nav_plans: "Planes",
+      nav_contact: "Contacto",
+      nav_account: "Cuenta",
+      nav_signin: "Iniciar Sesión",
+      nav_signup: "Registrarse",
+      search_placeholder: "Buscar...",
+      search_btn: "Ir",
+      hero_badge_1: "✈️ Inteligencia Global de Aviación",
+      hero_badge_2: "Flotas • Hubs • SAF",
+      hero_title:
+        "Tu Destino Principal para Análisis e Información de Aviación",
+      hero_subtitle:
+        "Sigue flotas globales, explora desarrollos aeroportuarios internacionales y mantente al día con las noticias aeroespaciales.",
+      hero_cta_primary: "Comenzar Gratis",
+      hero_cta_secondary: "Explorar Planes VIP",
+      hero_check_1: "✓ Especificaciones de Flotas Comerciales",
+      hero_check_2: "✓ Informes de Expansión Aeroportuaria",
+      hero_check_3: "✓ Aviónica de Nueva Generación y SAF",
+      radar_title: "RADAR AEROESPACIAL",
+      radar_sub: "Cobertura en Vivo e Informes de Flota",
+      radar_btn: "Explorar",
+      news_eyebrow: "Titulares de Última Hora",
+      news_heading: "Noticias Destacadas de Aviación",
+      news_view_all: "Ver Todas las Noticias →",
+      slide1_badge: "Aerolíneas",
+      slide1_title:
+        "Anunciadas Mejoras de Flota Comercial de Nueva Generación",
+      slide1_desc:
+        "Principales aerolíneas internacionales realizan pedidos multimillonarios de aviones de fuselaje ancho eficientes para rutas de largo radio.",
+      slide2_badge: "Aeropuertos",
+      slide2_title:
+        "Terminales Biométricas Inteligentes Abren en Todo el Mundo",
+      slide2_desc:
+        "Los centros aeroportuarios integran filas de seguridad con reconocimiento facial automatizado, reduciendo los tiempos de facturación hasta un 40%.",
+      slide3_badge: "Tecnología",
+      slide3_title:
+        "Cruce Transatlántico con 100% SAF Completado con Éxito",
+      slide3_desc:
+        "Un vuelo histórico completa una travesía transatlántica impulsado íntegramente por Combustible Sostenible de Aviación sin modificar motores.",
+      read_full_story: "Leer Noticia Completa",
+      sectors_eyebrow: "Sectores de la Industria",
+      sectors_heading: "Explora la Aviación Comercial",
+      sectors_subtitle:
+        "Cobertura en profundidad en los sectores clave de la industria.",
+      card_airlines_title: "Aerolíneas y Flotas",
+      card_airlines_desc:
+        "Desgloses detallados de entregas de fuselaje ancho, configuraciones de cabina y expansión de rutas.",
+      card_airlines_btn: "Ver Aerolíneas →",
+      card_airports_title: "Aeropuertos y Terminales",
+      card_airports_desc:
+        "Cobertura de construcción de nuevas pistas, modernización de terminales y facturación biométrica.",
+      card_airports_btn: "Ver Aeropuertos →",
+      card_airspace_title: "Espacio Aéreo y ATC",
+      card_airspace_desc:
+        "Información sobre sectores controlados, corredores oceánicos y seguimiento ADS-B por satélite.",
+      card_airspace_btn: "Ver Espacio Aéreo →",
+      card_tech_title: "Tecnología Aeroespacial y SAF",
+      card_tech_desc:
+        "Novedades sobre pruebas de combustible sostenible (SAF), propulsión de hidrógeno y aviónica.",
+      card_tech_btn: "Ver Tecnología →",
+      vip_badge: "🎫 Sala VIP Primera Clase",
+      vip_title:
+        "Desbloquea Rastreadores de Flota, Fondos 4K e Informes Anticipados",
+      vip_desc:
+        "Crea una cuenta gratuita en Aerolover o actualiza a Acceso Exclusivo para informes internos y ventajas en salas VIP.",
+      vip_btn_plans: "Comparar Planes",
+      vip_btn_signup: "Crear Cuenta Gratis",
+      footer_about:
+        "Tu portal definitivo para noticias de aviación, actualizaciones de aeropuertos, flotas y tecnologías aeroespaciales.",
+      footer_nav_heading: "Navegación",
+      footer_benefits_heading: "Beneficios",
+      footer_exclusive: "Acceso Exclusivo",
+      footer_connect_heading: "Conectar",
+      footer_location: "📍 Red Mundial de Aviación",
+      footer_copyright:
+        "© 2026 Aerolover. Creado con Bootstrap 5 y Vanilla JS.",
+      footer_privacy: "Política de Privacidad",
+      footer_terms: "Términos de Servicio",
+    },
+  };
+
+  function applyLanguage(lang) {
+    const dict = translations[lang] || translations.en;
+    localStorage.setItem(STORAGE_LANG_KEY, lang);
+    document.documentElement.lang = lang;
+
+    if (
+      dict.page_title &&
+      (currentPath.endsWith("index.html") ||
+        currentPath === "/" ||
+        currentPath.endsWith("/"))
+    ) {
+      document.title = dict.page_title;
+    }
+
+    const currentLangLabel = document.getElementById("currentLangLabel");
+    if (currentLangLabel) currentLangLabel.textContent = dict.label;
+
+    const settingsLangSelect = document.getElementById("settingsLangSelect");
+    if (settingsLangSelect) settingsLangSelect.value = lang;
+
+    document.querySelectorAll("[data-lang]").forEach((btn) => {
+      btn.classList.toggle("active", btn.getAttribute("data-lang") === lang);
+    });
+
+    document.querySelectorAll("[data-i18n]").forEach((el) => {
+      const key = el.getAttribute("data-i18n");
+      if (dict[key]) el.textContent = dict[key];
+    });
+
+    document.querySelectorAll("[data-i18n-placeholder]").forEach((el) => {
+      const key = el.getAttribute("data-i18n-placeholder");
+      if (dict[key]) el.placeholder = dict[key];
+    });
+  }
+
+  document.querySelectorAll("[data-lang]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      applyLanguage(btn.getAttribute("data-lang"));
+    });
+  });
+
+  const savedLang = localStorage.getItem(STORAGE_LANG_KEY) || "en";
+  applyLanguage(savedLang);
 
   // ==========================================
   // HELPER UTILITIES
@@ -915,7 +1255,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // ==========================================
-  // 5. INTERNAL SEARCH & ROUTING SYSTEM
+  // 5. INTERNAL SEARCH & ROUTING SYSTEM (EN / PT / ES)
   // ==========================================
   const searchForm = document.querySelector("#searchForm");
   const searchInput = document.querySelector("#searchInput");
@@ -930,6 +1270,14 @@ document.addEventListener("DOMContentLoaded", () => {
         "aircraft",
         "carrier",
         "flights",
+        "companhia",
+        "companhias",
+        "frota",
+        "frotas",
+        "aerolinea",
+        "aerolineas",
+        "flota",
+        "flotas",
       ],
       target: "airlines.html",
     },
@@ -942,6 +1290,11 @@ document.addEventListener("DOMContentLoaded", () => {
         "runway",
         "gate",
         "lounge",
+        "aeroporto",
+        "aeroportos",
+        "aeropuerto",
+        "aeropuertos",
+        "pista",
       ],
       target: "airports.html",
     },
@@ -954,6 +1307,11 @@ document.addEventListener("DOMContentLoaded", () => {
         "breaking",
         "story",
         "updates",
+        "noticia",
+        "noticias",
+        "ultimas",
+        "manchetes",
+        "titulares",
       ],
       target: "latestnews.html",
     },
@@ -965,6 +1323,11 @@ document.addEventListener("DOMContentLoaded", () => {
         "carbon",
         "eco",
         "emissions",
+        "sustentabilidade",
+        "sustentavel",
+        "sostenibilidad",
+        "sostenible",
+        "verde",
       ],
       target: "sustainability.html",
     },
@@ -977,6 +1340,11 @@ document.addEventListener("DOMContentLoaded", () => {
         "fuel",
         "hydrogen",
         "innovation",
+        "tecnologia",
+        "combustivel",
+        "hidrogenio",
+        "hidrogeno",
+        "avionica",
       ],
       target: "technology.html",
     },
@@ -988,57 +1356,115 @@ document.addEventListener("DOMContentLoaded", () => {
         "navigation",
         "sky",
         "altitude",
+        "espaco aereo",
+        "espacio aereo",
+        "navegacao",
+        "navegacion",
       ],
       target: "airspace.html",
     },
     {
-      keywords: ["contact", "message", "support", "email", "reach", "help"],
+      keywords: [
+        "contact",
+        "message",
+        "support",
+        "email",
+        "reach",
+        "help",
+        "contato",
+        "contacto",
+        "suporte",
+        "soporte",
+        "ajuda",
+        "ayuda",
+      ],
       target: "contact.html",
     },
     {
-      keywords: ["dashboard", "settings", "profile", "account"],
+      keywords: [
+        "dashboard",
+        "settings",
+        "profile",
+        "account",
+        "painel",
+        "configuracoes",
+        "perfil",
+        "conta",
+        "cuenta",
+      ],
       target: "dashboard.html",
     },
     {
-      keywords: ["exclusive", "vip", "premium"],
+      keywords: ["exclusive", "vip", "premium", "exclusivo"],
       target: "exclusive.html",
     },
     {
-      keywords: ["plan", "plans", "pricing", "upgrade", "subscription"],
+      keywords: [
+        "plan",
+        "plans",
+        "pricing",
+        "upgrade",
+        "subscription",
+        "plano",
+        "planos",
+        "planes",
+        "assinatura",
+        "suscripcion",
+      ],
       target: "plans.html",
     },
     {
-      keywords: ["signin", "sign in", "login", "log in"],
+      keywords: [
+        "signin",
+        "sign in",
+        "login",
+        "log in",
+        "entrar",
+        "iniciar sesion",
+      ],
       target: "signin.html",
     },
     {
-      keywords: ["signup", "sign up", "register", "join"],
+      keywords: [
+        "signup",
+        "sign up",
+        "register",
+        "join",
+        "criar conta",
+        "cadastrar",
+        "registrarse",
+      ],
       target: "signup.html",
     },
   ];
 
+  function normalizeSearchText(text) {
+    return text
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .trim();
+  }
+
   if (searchForm && searchInput) {
     searchForm.addEventListener("submit", (e) => {
       e.preventDefault();
-      const query = searchInput.value.trim().toLowerCase();
+      const rawQuery = searchInput.value.trim();
+      const normalizedQuery = normalizeSearchText(rawQuery);
 
-      if (!query) return;
+      if (!normalizedQuery) return;
 
       const matchedRoute = searchRoutes.find((route) =>
-        route.keywords.some((keyword) => query.includes(keyword)),
+        route.keywords.some((keyword) => normalizedQuery.includes(keyword)),
       );
 
       if (matchedRoute) {
         window.location.href = matchedRoute.target;
       } else {
-        window.open(
-          `https://www.google.com/search?q=${encodeURIComponent(query)}`,
-          "_blank",
-        );
+        window.location.href = `https://www.google.com/search?q=${encodeURIComponent(rawQuery)}`;
       }
     });
   }
-
   // ==========================================
   // 6. CONTACT FORM HANDLER
   // ==========================================
