@@ -10,142 +10,285 @@
       rel="stylesheet"
       crossorigin="anonymous"
     />
+    <!-- Bootstrap Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
     <link rel="stylesheet" href="style.css" />
-    <script src="script.js" defer></script>
   </head>
-  <body class="bg-light">
-    <!-- Navbar -->
-    <!-- Floating Container Navbar (Standard / Public) -->
+  <body class="bg-light d-flex flex-column min-vh-100">
+    <!-- Floating Container Navbar with Always-Active Burger Menu -->
     <header class="sticky-top pt-3 px-3" style="z-index: 1030">
       <nav
-        class="navbar navbar-expand-lg container navbar-glass border rounded-4 shadow-sm py-2 px-3 px-lg-4"
+        class="navbar container navbar-glass border rounded-4 shadow-sm py-2 px-3 px-lg-4"
       >
-        <a class="navbar-brand me-3" href="index.html">
+        <!-- Brand Logo -->
+        <a class="navbar-brand me-auto" href="index.html">
           <img
             src="image/image.png"
             alt="Aerolover Logo"
             style="height: 3rem"
           />
         </a>
+
+        <!-- Quick Action Pills Visible Next to Burger -->
+        <div class="d-flex align-items-center gap-2 me-2">
+          <!-- Language Selector Dropdown -->
+          <div class="dropdown">
+            <button
+              class="btn btn-light border dropdown-toggle rounded-pill px-3 py-1 fw-semibold d-inline-flex align-items-center gap-1"
+              type="button"
+              id="languageDropdown"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+              aria-label="Select language"
+            >
+              <i class="bi bi-globe2 text-primary"></i>
+              <span id="currentLangLabel">EN</span>
+            </button>
+            <ul
+              class="dropdown-menu dropdown-menu-end border-0 shadow-sm rounded-3"
+              aria-labelledby="languageDropdown"
+            >
+              <li>
+                <button
+                  type="button"
+                  class="dropdown-item d-flex justify-content-between align-items-center active"
+                  data-lang="en"
+                >
+                  <span>English</span>
+                  <small class="text-muted">EN</small>
+                </button>
+              </li>
+              <li>
+                <button
+                  type="button"
+                  class="dropdown-item d-flex justify-content-between align-items-center"
+                  data-lang="pt"
+                >
+                  <span>Português</span>
+                  <small class="text-muted">PT</small>
+                </button>
+              </li>
+              <li>
+                <button
+                  type="button"
+                  class="dropdown-item d-flex justify-content-between align-items-center"
+                  data-lang="es"
+                >
+                  <span>Español</span>
+                  <small class="text-muted">ES</small>
+                </button>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Account Dropdown -->
+          <div class="dropdown">
+            <button
+              class="btn btn-outline-primary dropdown-toggle rounded-pill px-3 py-1 fw-semibold d-inline-flex align-items-center gap-1"
+              type="button"
+              id="authDropdown"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              <i class="bi bi-person-circle"></i>
+              <span data-i18n="nav_account">Account</span>
+            </button>
+            <ul
+              class="dropdown-menu dropdown-menu-end border-0 shadow-sm rounded-3"
+              aria-labelledby="authDropdown"
+            >
+              <li>
+                <a
+                  class="dropdown-item fw-semibold d-flex align-items-center gap-2"
+                  href="signin.html"
+                >
+                  <i class="bi bi-box-arrow-in-right"></i>
+                  <span data-i18n="nav_signin">Sign In</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  class="dropdown-item text-primary fw-semibold d-flex align-items-center gap-2"
+                  href="signup.html"
+                >
+                  <i class="bi bi-person-plus"></i>
+                  <span data-i18n="nav_signup">Sign Up</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Burger Toggle Button (Always Visible) -->
         <button
-          class="navbar-toggler border-0"
+          class="navbar-toggler burger-btn border-0"
           type="button"
           data-bs-toggle="collapse"
-          data-bs-target="#navbarContent"
-          aria-controls="navbarContent"
+          data-bs-target="#burgerMenuContent"
+          aria-controls="burgerMenuContent"
           aria-expanded="false"
-          aria-label="Toggle navigation"
+          aria-label="Toggle navigation menu"
         >
-          <span class="navbar-toggler-icon"></span>
+          <i class="bi bi-list fs-4 text-dark"></i>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarContent">
-          <!-- Grouped Dropdown Navigation Links -->
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0 fw-semibold gap-lg-2">
-            <li class="nav-item">
-              <a class="nav-link" href="index.html">Home</a>
-            </li>
+        <!-- Collapsible Burger Menu Drawer -->
+        <div
+          class="collapse navbar-collapse mt-3 pt-3 border-top"
+          id="burgerMenuContent"
+        >
+          <div class="row g-3 align-items-start">
+            <!-- Main Links -->
+            <div class="col-md-4">
+              <div
+                class="small text-uppercase text-muted fw-bold mb-2"
+                data-i18n="menu_heading"
+              >
+                Menu
+              </div>
+              <ul class="navbar-nav fw-semibold gap-1">
+                <li class="nav-item">
+                  <a
+                    class="nav-link d-flex align-items-center gap-2"
+                    href="index.html"
+                  >
+                    <i class="bi bi-house-door text-primary"></i>
+                    <span data-i18n="nav_home">Home</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a
+                    class="nav-link d-flex align-items-center gap-2"
+                    href="plans.html"
+                  >
+                    <i class="bi bi-gem text-primary"></i>
+                    <span data-i18n="nav_plans">Plans</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a
+                    class="nav-link d-flex align-items-center gap-2"
+                    href="contact.html"
+                  >
+                    <i class="bi bi-chat-dots text-primary"></i>
+                    <span data-i18n="nav_contact">Contact</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
 
-            <!-- Aviation Dropdown -->
-            <li class="nav-item dropdown">
-              <a
-                class="nav-link dropdown-toggle"
-                href="#"
-                id="aviationDropdown"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
+            <!-- Aviation Links -->
+            <div class="col-md-4">
+              <div
+                class="small text-uppercase text-primary fw-bold mb-2"
+                data-i18n="nav_aviation"
               >
                 Aviation
-              </a>
-              <ul
-                class="dropdown-menu border-0 shadow-sm rounded-3"
-                aria-labelledby="aviationDropdown"
-              >
-                <li>
-                  <a class="dropdown-item" href="airlines.html">Airlines</a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="airports.html">Airports</a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="airspace.html">Airspace</a>
-                </li>
-              </ul>
-            </li>
-
-            <!-- News & Tech Dropdown -->
-            <li class="nav-item dropdown">
-              <a
-                class="nav-link dropdown-toggle"
-                href="#"
-                id="updatesDropdown"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                News & Tech
-              </a>
-              <ul
-                class="dropdown-menu border-0 shadow-sm rounded-3"
-                aria-labelledby="updatesDropdown"
-              >
-                <li>
-                  <a class="dropdown-item" href="latestnews.html"
-                    >Latest News</a
-                  >
-                </li>
-                <li>
-                  <a class="dropdown-item" href="sustainability.html"
-                    >Sustainability</a
-                  >
-                </li>
-                <li>
-                  <a class="dropdown-item" href="technology.html">Technology</a>
-                </li>
-              </ul>
-            </li>
-
-            <li class="nav-item">
-              <a class="nav-link" href="plans.html">Plans</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="contact.html">Contact</a>
-            </li>
-          </ul>
-
-          <div class="d-flex flex-wrap align-items-center gap-2">
-            <!-- Auth Buttons -->
-            <a
-              href="signin.html"
-              class="btn btn-outline-primary rounded-pill px-3 fw-semibold"
-              >Sign In</a
-            >
-            <a
-              href="signup.html"
-              class="btn btn-primary rounded-pill px-3 fw-semibold"
-              >Sign Up</a
-            >
-
-            <!-- Search Bar -->
-            <form id="searchForm" class="d-flex gap-2 ms-lg-1" role="search">
-              <div class="input-group">
-                <input
-                  type="search"
-                  id="searchInput"
-                  class="form-control rounded-start-pill"
-                  placeholder="Search..."
-                  required
-                />
-                <button type="submit" class="btn btn-primary rounded-end-pill">
-                  Go
-                </button>
               </div>
-            </form>
+              <ul class="navbar-nav fw-semibold gap-1">
+                <li class="nav-item">
+                  <a
+                    class="nav-link active py-1 d-flex align-items-center gap-2"
+                    aria-current="page"
+                    href="airlines.html"
+                  >
+                    <i class="bi bi-airplane text-primary"></i>
+                    <span data-i18n="nav_airlines">Airlines</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a
+                    class="nav-link py-1 d-flex align-items-center gap-2"
+                    href="airports.html"
+                  >
+                    <i class="bi bi-building text-primary"></i>
+                    <span data-i18n="nav_airports">Airports</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a
+                    class="nav-link py-1 d-flex align-items-center gap-2"
+                    href="airspace.html"
+                  >
+                    <i class="bi bi-broadcast text-primary"></i>
+                    <span data-i18n="nav_airspace">Airspace</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            <!-- News & Tech + Search -->
+            <div class="col-md-4">
+              <div
+                class="small text-uppercase text-primary fw-bold mb-2"
+                data-i18n="nav_news_tech"
+              >
+                News &amp; Tech
+              </div>
+              <ul class="navbar-nav fw-semibold gap-1 mb-3">
+                <li class="nav-item">
+                  <a
+                    class="nav-link py-1 d-flex align-items-center gap-2"
+                    href="latestnews.html"
+                  >
+                    <i class="bi bi-newspaper text-primary"></i>
+                    <span data-i18n="nav_latest_news">Latest News</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a
+                    class="nav-link py-1 d-flex align-items-center gap-2"
+                    href="sustainability.html"
+                  >
+                    <i class="bi bi-leaf text-success"></i>
+                    <span data-i18n="nav_sustainability">Sustainability</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a
+                    class="nav-link py-1 d-flex align-items-center gap-2"
+                    href="technology.html"
+                  >
+                    <i class="bi bi-cpu text-primary"></i>
+                    <span data-i18n="nav_technology">Technology</span>
+                  </a>
+                </li>
+              </ul>
+
+              <!-- Search Bar inside Burger Menu -->
+              <form id="searchForm" class="d-flex" role="search">
+                <div class="input-group">
+                  <span
+                    class="input-group-text bg-white border-end-0 rounded-start-pill"
+                  >
+                    <i class="bi bi-search text-muted"></i>
+                  </span>
+                  <input
+                    type="search"
+                    id="searchInput"
+                    class="form-control border-start-0"
+                    placeholder="Search..."
+                    data-i18n-placeholder="search_placeholder"
+                    required
+                  />
+                  <button
+                    type="submit"
+                    class="btn btn-primary rounded-end-pill px-3"
+                    data-i18n="search_btn"
+                  >
+                    Go
+                  </button>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
       </nav>
     </header>
+
     <!-- Main Content -->
     <main class="container py-5 flex-grow-1">
       <div class="col-12 col-lg-10 mx-auto">
@@ -153,9 +296,10 @@
         <div class="mb-4">
           <a
             href="airlines.html"
-            class="btn btn-outline-secondary btn-sm rounded-pill px-3"
+            class="btn btn-outline-secondary btn-sm rounded-pill px-3 d-inline-flex align-items-center gap-1"
           >
-            ← Back to Airlines Directory
+            <i class="bi bi-arrow-left"></i>
+            <span>Back to Airlines Directory</span>
           </a>
         </div>
 
@@ -194,7 +338,7 @@
           <div class="col-lg-7">
             <div class="card border-0 shadow-sm rounded-4 p-4 h-100 bg-white">
               <div class="d-flex align-items-center gap-2 mb-3">
-                <span class="fs-4">✈️</span>
+                <i class="bi bi-airplane-fill fs-4 text-primary"></i>
                 <h3 class="fw-bold mb-0">Active Fleet Overview</h3>
               </div>
               <p class="text-muted small mb-4">
@@ -210,8 +354,8 @@
                   <div>
                     <span class="fw-bold text-dark">Airbus A220-300</span>
                     <div class="text-muted small">
-                      Next-gen European narrowbody replacing older A318 & A319
-                      jets
+                      Next-gen European narrowbody replacing older A318 &amp;
+                      A319 jets
                     </div>
                   </div>
                   <span
@@ -227,7 +371,7 @@
                       >Airbus A318 / A319 / A320 / A321</span
                     >
                     <div class="text-muted small">
-                      Domestic French & European continental trunk routes
+                      Domestic French &amp; European continental trunk routes
                     </div>
                   </div>
                   <span class="badge bg-light text-dark border rounded-pill"
@@ -240,7 +384,8 @@
                   <div>
                     <span class="fw-bold text-dark">Airbus A330-200</span>
                     <div class="text-muted small">
-                      Medium-to-long-haul Americas, Africa & Middle East routes
+                      Medium-to-long-haul Americas, Africa &amp; Middle East
+                      routes
                     </div>
                   </div>
                   <span class="badge bg-light text-dark border rounded-pill"
@@ -281,7 +426,7 @@
                 >
                   <div>
                     <span class="fw-bold text-dark"
-                      >Boeing 777-300ER (4-Class & 3-Class)</span
+                      >Boeing 777-300ER (4-Class &amp; 3-Class)</span
                     >
                     <div class="text-muted small">
                       Flagship workhorse featuring La Première First Class
@@ -314,10 +459,10 @@
                 >
                   <div>
                     <span class="fw-bold text-dark"
-                      >Embraer E170 / E190 & CRJ1000 (Air France HOP!)</span
+                      >Embraer E170 / E190 &amp; CRJ1000 (Air France HOP!)</span
                     >
                     <div class="text-muted small">
-                      Regional domestic & European feeder fleet
+                      Regional domestic &amp; European feeder fleet
                     </div>
                   </div>
                   <span
@@ -350,8 +495,8 @@
             <!-- Services Card -->
             <div class="card border-0 shadow-sm rounded-4 p-4 bg-white">
               <div class="d-flex align-items-center gap-2 mb-3">
-                <span class="fs-4">🛋️</span>
-                <h3 class="fw-bold mb-0">Cabin & Services</h3>
+                <i class="bi bi-stars fs-4 text-primary"></i>
+                <h3 class="fw-bold mb-0">Cabin &amp; Services</h3>
               </div>
               <p class="text-muted small">
                 Air France showcases French culinary art and luxury travel
@@ -375,7 +520,7 @@
                   multi-course meals.
                 </li>
                 <li class="list-group-item px-0">
-                  <strong>Flying Blue & Air France Lounges:</strong> Shared
+                  <strong>Flying Blue &amp; Air France Lounges:</strong> Shared
                   loyalty program across Air France, KLM, and SkyTeam partners,
                   with flagship lounges across CDG Terminals 2E, 2F, and 2G.
                 </li>
@@ -387,8 +532,8 @@
               class="card border-0 shadow-sm rounded-4 p-4 bg-white flex-grow-1"
             >
               <div class="d-flex align-items-center gap-2 mb-3">
-                <span class="fs-4">🌍</span>
-                <h3 class="fw-bold mb-0">Major Hubs & Network</h3>
+                <i class="bi bi-globe-americas fs-4 text-primary"></i>
+                <h3 class="fw-bold mb-0">Major Hubs &amp; Network</h3>
               </div>
               <p class="text-muted small">
                 Connecting over 200 destinations across 85+ countries from its
@@ -401,7 +546,9 @@
                 </li>
                 <li class="list-group-item px-0 d-flex justify-content-between">
                   <span><strong>Paris Orly (ORY)</strong></span>
-                  <span class="text-muted">Domestic & French Overseas Hub</span>
+                  <span class="text-muted"
+                    >Domestic &amp; French Overseas Hub</span
+                  >
                 </li>
                 <li class="list-group-item px-0 d-flex justify-content-between">
                   <span><strong>North America</strong></span>
@@ -410,14 +557,14 @@
                   >
                 </li>
                 <li class="list-group-item px-0 d-flex justify-content-between">
-                  <span><strong>South America & Caribbean</strong></span>
+                  <span><strong>South America &amp; Caribbean</strong></span>
                   <span class="text-muted"
                     >São Paulo, Rio de Janeiro, Buenos Aires,
                     Pointe-à-Pitre</span
                   >
                 </li>
                 <li class="list-group-item px-0 d-flex justify-content-between">
-                  <span><strong>Africa & Asia-Pacific</strong></span>
+                  <span><strong>Africa &amp; Asia-Pacific</strong></span>
                   <span class="text-muted"
                     >Abidjan, Dakar, Johannesburg, Tokyo, Seoul, Singapore</span
                   >
@@ -441,17 +588,25 @@
                 style="height: 4.5rem"
               />
             </a>
-            <p class="text-white-50 small">
+            <p class="text-white-50 small" data-i18n="footer_about">
               Your ultimate portal for aviation news, airport updates, airline
               fleet specs, and future aerospace technologies.
             </p>
           </div>
 
           <div class="col-md-2 col-lg-2 col-xl-2 mx-auto">
-            <h6 class="text-uppercase mb-3 fw-bold text-primary">Navigation</h6>
+            <h6
+              class="text-uppercase mb-3 fw-bold text-primary"
+              data-i18n="footer_nav_heading"
+            >
+              Navigation
+            </h6>
             <ul class="list-unstyled small">
               <li class="mb-2">
-                <a href="index.html" class="text-white-50 text-decoration-none"
+                <a
+                  href="index.html"
+                  class="text-white-50 text-decoration-none"
+                  data-i18n="nav_home"
                   >Home</a
                 >
               </li>
@@ -459,6 +614,7 @@
                 <a
                   href="airlines.html"
                   class="text-white-50 text-decoration-none"
+                  data-i18n="nav_airlines"
                   >Airlines</a
                 >
               </li>
@@ -466,6 +622,7 @@
                 <a
                   href="airports.html"
                   class="text-white-50 text-decoration-none"
+                  data-i18n="nav_airports"
                   >Airports</a
                 >
               </li>
@@ -473,6 +630,7 @@
                 <a
                   href="latestnews.html"
                   class="text-white-50 text-decoration-none"
+                  data-i18n="nav_latest_news"
                   >Latest news</a
                 >
               </li>
@@ -480,6 +638,7 @@
                 <a
                   href="sustainability.html"
                   class="text-white-50 text-decoration-none"
+                  data-i18n="nav_sustainability"
                   >Sustainability</a
                 >
               </li>
@@ -487,6 +646,7 @@
                 <a
                   href="technology.html"
                   class="text-white-50 text-decoration-none"
+                  data-i18n="nav_technology"
                   >Technology</a
                 >
               </li>
@@ -494,6 +654,7 @@
                 <a
                   href="airspace.html"
                   class="text-white-50 text-decoration-none"
+                  data-i18n="nav_airspace"
                   >Airspace</a
                 >
               </li>
@@ -501,20 +662,34 @@
           </div>
 
           <div class="col-md-3 col-lg-2 col-xl-2 mx-auto">
-            <h6 class="text-uppercase mb-3 fw-bold text-primary">Benefits</h6>
+            <h6
+              class="text-uppercase mb-3 fw-bold text-primary"
+              data-i18n="footer_benefits_heading"
+            >
+              Benefits
+            </h6>
             <ul class="list-unstyled small">
               <li class="mb-2">
-                <a href="plans.html" class="text-white-50 text-decoration-none"
+                <a
+                  href="plans.html"
+                  class="text-white-50 text-decoration-none"
+                  data-i18n="footer_exclusive"
                   >Exclusive Access</a
                 >
               </li>
               <li class="mb-2">
-                <a href="signin.html" class="text-white-50 text-decoration-none"
+                <a
+                  href="signin.html"
+                  class="text-white-50 text-decoration-none"
+                  data-i18n="nav_signin"
                   >Sign in</a
                 >
               </li>
               <li class="mb-2">
-                <a href="signup.html" class="text-white-50 text-decoration-none"
+                <a
+                  href="signup.html"
+                  class="text-white-50 text-decoration-none"
+                  data-i18n="nav_signup"
                   >Create account</a
                 >
               </li>
@@ -522,9 +697,24 @@
           </div>
 
           <div class="col-md-3 col-lg-3 col-xl-3 mx-auto small">
-            <h6 class="text-uppercase mb-3 fw-bold text-primary">Connect</h6>
-            <p class="mb-2 text-white-50">📧 contact@aerolover.com</p>
-            <p class="mb-2 text-white-50">📍 Worldwide Aviation Network</p>
+            <h6
+              class="text-uppercase mb-3 fw-bold text-primary"
+              data-i18n="footer_connect_heading"
+            >
+              Connect
+            </h6>
+            <p
+              class="mb-2 text-white-50 d-flex align-items-center justify-content-center justify-content-md-start gap-2"
+            >
+              <i class="bi bi-envelope text-primary"></i>
+              <span>contact@aerolover.com</span>
+            </p>
+            <p
+              class="mb-2 text-white-50 d-flex align-items-center justify-content-center justify-content-md-start gap-2"
+            >
+              <i class="bi bi-geo-alt text-primary"></i>
+              <span data-i18n="footer_location">Worldwide Aviation Network</span>
+            </p>
           </div>
         </div>
 
@@ -532,15 +722,21 @@
 
         <div class="row align-items-center small">
           <div class="col-md-7 text-center text-md-start">
-            <p class="mb-0 text-white-50">
-              © 2026 Aerolover. Built with Bootstrap 5 & Vanilla JS.
+            <p class="mb-0 text-white-50" data-i18n="footer_copyright">
+              © 2026 Aerolover. Built with Bootstrap 5 &amp; Vanilla JS.
             </p>
           </div>
           <div class="col-md-5 text-center text-md-end mt-3 mt-md-0">
-            <a href="#" class="text-white-50 text-decoration-none me-3"
+            <a
+              href="#"
+              class="text-white-50 text-decoration-none me-3"
+              data-i18n="footer_privacy"
               >Privacy Policy</a
             >
-            <a href="#" class="text-white-50 text-decoration-none"
+            <a
+              href="#"
+              class="text-white-50 text-decoration-none"
+              data-i18n="footer_terms"
               >Terms of Service</a
             >
           </div>
@@ -560,5 +756,6 @@
     <script type="module">
       import * as bootstrap from "bootstrap";
     </script>
+    <script src="script.js"></script>
   </body>
 </html>
