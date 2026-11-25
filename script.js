@@ -465,9 +465,13 @@ document.addEventListener("DOMContentLoaded", () => {
       back_to_airlines: "Back to Airlines Directory",
       airlines_badge: "IATA: AM • ICAO: AMX • HQ: Mexico City, Mexico • SkyTeam Founding Member",
       airlines_title: "Aeromexico",
+      airlines_overview: "Active fleet overview",
       airlines_description: 
       "The flag carrier of Mexico and a founding member of the Skyteam alliance. Operating primarily from Mexico City International Airport (MEX), Aeroméxico connects domestic Mexican destinations with North America, Central and South America, Europe, and Asia via an all-Boeing and Embraer fleet.", 
-       footer_about:
+      airlines_descriptions2: "Aeroméxico operates a modern mainline fleet of Boeing 737s and 787 Dreamliners alongside regional Embraer E190 jets operated by Aeroméxico Connect.",      
+      airlines_seats: "99 seats",
+      airlines_descriptions3: "Regional domestic Mexican &amp; short-haul U.S./Central America feeder",
+      footer_about:
         "Your ultimate portal for aviation news, airport updates, airline fleet specs, and future aerospace technologies.",
       footer_nav_heading: "Navigation",
       footer_benefits_heading: "Benefits",
@@ -510,8 +514,10 @@ document.addEventListener("DOMContentLoaded", () => {
       airlines_description: "A companhia aérea de bandeira do México e membro fundador da aliança SkyTeam. Operando principalmente a partir do Aeroporto Internacional da Cidade do México (MEX), a Aeroméxico conecta destinos domésticos mexicanos à América do Norte, América Central e do Sul, Europa e Ásia, por meio de uma frota composta exclusivamente por aeronaves Boeing e Embraer.",
       airlines_overview: "Visão geral da frota ativa",
       airlines_descriptions2: "A Aeroméxico opera uma frota moderna de aeronaves Boeing 737 e 787 Dreamliner, complementada por jatos regionais Embraer E190 operados pela Aeroméxico Connect.",
+      airlines_descriptions3: "Serviços regionais domésticos no México e rotas de curta distância nos EUA/América Central",
+      airlines_seats: "99 assentos",
       footer_about:
-        "Seu portal definitivo para notícias de aviação, atualizações de aeroportos, especificações de frota e tecnologias aeroespaciais futuras.",
+      "Seu portal definitivo para notícias de aviação, atualizações de aeroportos, especificações de frota e tecnologias aeroespaciais futuras.",
       footer_nav_heading: "Navegação",
       footer_benefits_heading: "Benefícios",
       footer_exclusive: "Acesso Exclusivo",
