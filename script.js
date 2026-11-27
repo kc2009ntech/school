@@ -15,6 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Dynamic secret passcode fallback
   let SECRET_PASSCODE = localStorage.getItem("aerolover_passcode") || "skyhigh";
 
+
   // ==========================================
   // 0. FULL-PAGE TRANSLATION ENGINE (EN / PT / ES)
   // ==========================================
